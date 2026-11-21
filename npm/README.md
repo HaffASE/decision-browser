@@ -11,18 +11,17 @@ the coding clients. Downloads require
 network access; Linux also needs Playwright's host libraries and a working
 Chromium sandbox. No sudo or security-setting changes are performed.
 
-Once this exact version is published by the project maintainers, start guided
-setup from your project:
+Start guided setup from your project:
 
 ```sh
-npx --yes @haffase/decision-browser@0.1.0 setup codex
+npx --yes @haffa/decision-browser@0.1.1 setup codex
 ```
 
-Use `setup claude` or `setup both` for the other client choices. For an unpublished
-candidate, use the reviewed local archive from the maintainers:
+Use `setup claude` or `setup both` for the other client choices. To install from the
+release tarball you downloaded, run:
 
 ```sh
-npx --offline --yes --package="/absolute/path/haffase-decision-browser-0.1.0.tgz" decision-browser setup
+npx --offline --yes --package="/absolute/path/haffa-decision-browser-0.1.1.tgz" decision-browser setup
 ```
 
 Plain `setup` prompts for the client. Select a provider and enter its key through
@@ -34,9 +33,9 @@ key entry retains the installation and prints an exact resume command.
 For unattended installation without provider prompts:
 
 ```sh
-npx --offline --yes --package=/absolute/path/haffase-decision-browser-0.1.0.tgz decision-browser install codex
-npx --offline --yes --package=/absolute/path/haffase-decision-browser-0.1.0.tgz decision-browser install claude
-npx --offline --yes --package=/absolute/path/haffase-decision-browser-0.1.0.tgz decision-browser install both
+npx --yes @haffa/decision-browser@0.1.1 install codex
+npx --yes @haffa/decision-browser@0.1.1 install claude
+npx --yes @haffa/decision-browser@0.1.1 install both
 ```
 
 `--offline` prevents npm from substituting a registry package. It does **not**
@@ -53,8 +52,8 @@ registrations without uv when a suitable Python is already available.
 Change your provider or inspect the current project using the same package:
 
 ```sh
-npx --offline --yes --package=/absolute/path/haffase-decision-browser-0.1.0.tgz decision-browser configure
-npx --offline --yes --package=/absolute/path/haffase-decision-browser-0.1.0.tgz decision-browser doctor --json
+npx --yes @haffa/decision-browser@0.1.1 configure
+npx --yes @haffa/decision-browser@0.1.1 doctor --json
 ```
 
 `configure [provider]` needs an interactive terminal. `doctor --project /path`

@@ -35,19 +35,17 @@ among observed controls; the runner rechecks the target before acting.
 | Functional checks | Checks against the resulting page | Verified, failed or unverified outcome |
 | Step, time, call and byte limits | Budget enforcement and cleanup | Usage counters, timings and evidence artifacts |
 
-> **Experimental, version 0.1.0.** The quick start uses a reviewed local npm
-> archive. Use the [registry command](docs/releasing.md#first-public-npm-install)
-> once this exact version is published by the project maintainers.
+> **Experimental, version 0.1.1.**
 
 ## Quick start
 
 ### 1. Install and choose a provider
 
 Open a terminal in your project with Node.js 20+ (including npm/npx) and your
-client CLI on `PATH`. Replace the path with the **reviewed local npm artifact**.
+client CLI on `PATH`, then run the pinned npm package.
 
 ```sh
-npx --offline --yes --package="/absolute/path/haffase-decision-browser-0.1.0.tgz" decision-browser setup codex
+npx --yes @haffa/decision-browser@0.1.1 setup codex
 ```
 
 Use `setup claude` for Claude Code or `setup both` for both clients. Plain `setup`
@@ -56,9 +54,8 @@ hidden input for a hosted preset. The preset supplies the endpoint and model.
 An existing local System One service is also available.
 
 The launcher prepares uv and Python automatically. The coding client starts the
-MCP server. `--offline` keeps npm on the local artifact. The runtime downloads
-still use the network. For unattended installation, use `install codex` in place
-of `setup codex`.
+MCP server. Setup downloads the pinned runtime and Chromium. For unattended
+installation, use `install codex` in place of `setup codex`.
 
 Setup installs the MCP configuration, skill and sandboxed Chromium in the current
 project. Installation checks do not use a model key or make API requests. Add
@@ -82,8 +79,8 @@ The server reads your saved profile automatically. To change providers or run an
 optional local diagnostic, use the same reviewed package:
 
 ```sh
-npx --offline --yes --package=/absolute/path/haffase-decision-browser-0.1.0.tgz decision-browser configure
-npx --offline --yes --package=/absolute/path/haffase-decision-browser-0.1.0.tgz decision-browser doctor --json
+npx --yes @haffa/decision-browser@0.1.1 configure
+npx --yes @haffa/decision-browser@0.1.1 doctor --json
 ```
 
 These commands reuse a cached package runtime and do not reinstall Chromium.
@@ -275,8 +272,8 @@ registrations. To use a reviewed new distribution, add `--upgrade` and include
 **every previously installed client**:
 
 ```sh
-python3.12 /path/to/decision-browser-0.1.0.pyz --client both --project "/path/to/project" --upgrade
-python3.12 /path/to/decision-browser-0.1.0.pyz --client both --project "/path/to/project" --uninstall
+python3.12 /path/to/decision-browser.pyz --client both --project "/path/to/project" --upgrade
+python3.12 /path/to/decision-browser.pyz --client both --project "/path/to/project" --uninstall
 ```
 
 Removal deletes unchanged managed entries and skills, preserving other settings.

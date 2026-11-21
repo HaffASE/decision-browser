@@ -2,11 +2,11 @@
 
 ## Guided setup
 
-On macOS/Linux, with Node.js 20+ and your client CLI on PATH, run the reviewed
-npm artifact in an interactive terminal:
+On macOS/Linux, with Node.js 20+ and your client CLI on PATH, run the versioned
+npm package in an interactive terminal:
 
 ```sh
-npx --offline --yes --package=/absolute/path/haffase-decision-browser-0.1.0.tgz decision-browser setup
+npx --yes @haffa/decision-browser@0.1.1 setup
 ```
 
 Choose Codex, Claude Code or both. Setup reuses the installer below, then asks
@@ -33,7 +33,7 @@ resume. Use `install` for unattended installation; `setup --uninstall` is invali
 Windows profile-key persistence is not supported yet; use environment settings.
 The client and Linux host-library prerequisites below still apply. If you already
 use uv, the Python-wheel alternative is
-`uvx --python 3.12 --from /path/to/decision_browser-0.1.0-py3-none-any.whl decision-browser setup`.
+`uvx --python 3.12 --from /path/to/decision_browser-0.1.1-py3-none-any.whl decision-browser setup`.
 
 ## Unattended install
 
@@ -45,7 +45,7 @@ uvx/npm cache path in client settings.
 With uv 0.13.7+ and your client CLI on `PATH`, run from the project directory:
 
 ```sh
-uvx --python 3.12 --from /path/to/decision_browser-0.1.0-py3-none-any.whl decision-browser install codex
+uvx --python 3.12 --from /path/to/decision_browser-0.1.1-py3-none-any.whl decision-browser install codex
 ```
 
 Use a reviewed local wheel from the [build procedure](releasing.md). Replace
@@ -60,10 +60,7 @@ Already installed the reviewed package? Use `decision-browser install codex`.
 `install --help` does not start setup, though an outer uvx invocation may first
 resolve its Python/package environment.
 
-**Publication is still separate.** Neither distribution is published to a registry.
-The short name-only uvx/npx launch used by jev-ra is a release goal, not an
-available download here. Do not run a similarly named registry package. These
-local commands are not cloud/Cowork installers or client logins.
+The Python commands above install the wheel attached to the GitHub release.
 
 ## npm launcher (no manual uv or Python)
 
@@ -71,14 +68,18 @@ With Node.js 20+, npm/npx and your client CLI on PATH, run this
 from the project you want to configure:
 
 ```sh
-npx --offline --yes --package=/absolute/path/haffase-decision-browser-0.1.0.tgz decision-browser install both
+npx --yes @haffa/decision-browser@0.1.1 install both
 ```
 
 Use `decision-browser setup` instead of `decision-browser install both` to choose
 the client and provider interactively in the same flow.
 
-Use a reviewed local artifact from the [build procedure](releasing.md#npm-launcher-candidate).
-The scoped npm name is only proposed; no registry publication is claimed.
+To use the downloaded release tarball instead of the registry, run:
+
+```sh
+npx --offline --yes --package=/absolute/path/haffa-decision-browser-0.1.1.tgz decision-browser install both
+```
+
 Choose `codex`, `claude` or `both`. The default project is the current directory;
 `--project "/absolute/path with spaces"` selects another existing project.
 `--upgrade` and `--uninstall` forward to the same installer described below.
@@ -120,8 +121,8 @@ unchanged.
 Use the same reviewed artifact, without finding a Python environment manually:
 
 ```sh
-npx --offline --yes --package=/absolute/path/haffase-decision-browser-0.1.0.tgz decision-browser configure
-npx --offline --yes --package=/absolute/path/haffase-decision-browser-0.1.0.tgz decision-browser doctor --json
+npx --yes @haffa/decision-browser@0.1.1 configure
+npx --yes @haffa/decision-browser@0.1.1 doctor --json
 ```
 
 `configure [provider]` needs a terminal and changes the shared user profile.
@@ -161,7 +162,7 @@ the installer can run. On Linux, install Playwright's OS dependencies separately
 with administrator approval; the installer never invokes sudo or disables sandboxing.
 
 ```sh
-python3.12 /path/to/decision-browser-0.1.0.pyz codex
+python3.12 /path/to/decision-browser.pyz codex
 ```
 
 Add `--setup` for provider onboarding; omit `codex` with that flag to choose the
@@ -221,7 +222,7 @@ For a reviewed HTTPS package mirror, set `DECISION_BROWSER_INSTALL_INDEX_URL`
 in the environment of the installer. For example:
 
 ```sh
-DECISION_BROWSER_INSTALL_INDEX_URL=https://mirror.example.org/simple python3.12 /path/to/decision-browser-0.1.0.pyz codex
+DECISION_BROWSER_INSTALL_INDEX_URL=https://mirror.example.org/simple python3.12 /path/to/decision-browser.pyz codex
 ```
 
 The mirror must serve the locked versions and artifacts. The mirror route exports
@@ -293,8 +294,8 @@ registrations. The active runtime is never synchronized or rebuilt in place. It 
 updated distribution and use the explicit upgrade option for all installed clients:
 
 ```sh
-python3.12 /path/to/decision-browser-0.1.0.pyz --client both --project "/absolute/path/to/project" --upgrade
-python3.12 /path/to/decision-browser-0.1.0.pyz --client both --project "/absolute/path/to/project" --uninstall
+python3.12 /path/to/decision-browser.pyz --client both --project "/absolute/path/to/project" --upgrade
+python3.12 /path/to/decision-browser.pyz --client both --project "/absolute/path/to/project" --uninstall
 ```
 
 Every install attempt uses a unique permanent runtime path, including repeats and
@@ -357,9 +358,9 @@ results or the provenance of archived reports.
 
 See [release builds](releasing.md). The `.pyz` starts using Python's standard library,
 so it needs no temporary uvx environment or global package installation. It still
-requires Python, uv and the chosen client CLIs. A future public one-command download
-requires an approved, immutable distribution URL and published SHA-256; none is
-invented here. Review the artifact and its checksum before execution.
+requires Python, uv and the chosen client CLIs. Download `decision-browser.pyz` and `SHA256SUMS` from the
+[versioned GitHub release](https://github.com/HaffASE/decision-browser/releases/tag/v0.1.1)
+and verify the archive checksum before execution.
 
 For development, from a checkout use:
 

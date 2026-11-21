@@ -6,6 +6,7 @@ import importlib.util
 import json
 import shutil
 import subprocess
+import tomllib
 from pathlib import Path
 from zipfile import ZipFile
 
@@ -18,7 +19,9 @@ builder = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(builder)
 
 
-def fixture_wheel(tmp_path, version="0.1.0"):
+def fixture_wheel(tmp_path, version=None):
+    if version is None:
+        version = tomllib.loads((ROOT / "pyproject.toml").read_text())["project"]["version"]
     wheel = tmp_path / "fixture.whl"
     files = {
         "pyproject.toml": f'[project]\nname="decision-browser"\nversion="{version}"\n',
@@ -66,8 +69,7 @@ def test_npm_bundle_rejects_other_wheel_version_before_writing(tmp_path):
 
 
 def test_npm_version_matches_project():
-    import tomllib
-
     project = tomllib.loads((ROOT / "pyproject.toml").read_text())["project"]
     package = json.loads((ROOT / "npm/package.json").read_text())
+    assert package["name"] == "@haffa/decision-browser"
     assert project["version"] == package["version"]

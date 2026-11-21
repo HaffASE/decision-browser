@@ -5,6 +5,11 @@ Versions follow the policy in [Releasing](docs/releasing.md).
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-11-21
+
+- Install the npm launcher from `@haffa/decision-browser`. The quick start pins
+  the version and includes commands for setup, provider configuration and diagnostics.
+
 ## [0.1.0] - 2026-11-20
 
 - Run browser tasks from Codex and Claude Code with scope approval, bounded

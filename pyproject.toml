@@ -1,6 +1,6 @@
 [project]
 name = "decision-browser"
-version = "0.1.0"
+version = "0.1.1"
 description = "Bounded Decision Browser MCP with fail-closed admission and evidence artifacts."
 readme = "README.md"
 license = "MIT"

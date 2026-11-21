@@ -197,7 +197,7 @@ def test_npm_missing_bootstrap_input_rejects_before_candidate_creation(tmp_path)
         for name in metadata.REQUIRED_BOOTSTRAP_FILES:
             if name == "scripts/build-constraints.txt":
                 continue
-            value = '[project]\nname="decision-browser"\nversion="0.1.0"\n' if name == "pyproject.toml" else "fixture"
+            value = (ROOT / name).read_text(encoding="utf-8") if name == "pyproject.toml" else "fixture"
             archive.writestr("decision_browser/bootstrap/" + name, value)
     output = tmp_path / "candidate"
     with pytest.raises(ValueError, match="complete bootstrap"):

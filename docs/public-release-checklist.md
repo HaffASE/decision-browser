@@ -18,8 +18,8 @@ implementation milestone, not a replacement for the native/live gates below.
   persistent wheel runtime, full Chromium and bundled skills. Keep credentials,
   project trust and native admission outside setup.
 - [x] Document updates, removal, conflicts, local checks, support and limitations.
-- [x] Keep package and lock versions aligned at `0.1.0`. This is preparation
-  metadata, not evidence of an existing public release.
+- [x] Align the Python distribution, lockfile and npm launcher at `0.1.1`.
+  The npm publisher chose the personal scope `@haffa` for the public release.
 - [x] Preserve historical benchmark numbers, images and revision identifiers.
   They are not fresh results for this candidate.
 
@@ -54,7 +54,7 @@ unchecked boxes here are release gates, not claims that a check failed.
 
 ## Before publishing
 
-- [ ] Owner confirms rights to code, benchmark source records, screenshots/GIFs
+- [x] Owner confirms rights to code, benchmark source records, screenshots/GIFs
   and other assets. Included licenses do not settle all material ownership.
 - [ ] Establish and test a private vulnerability reporting channel and define
   maintenance expectations. GitHub's private reporting feature is available for
@@ -70,9 +70,8 @@ unchecked boxes here are release gates, not claims that a check failed.
 - [x] Choose `0.1.0`, move its notes to the dated `2026-11-20` changelog entry,
   and pass `scripts/check_release.py --tag v0.1.0` at `d367eb2`. Repeat this
   check on the final candidate before creating its tag.
-- [ ] Obtain explicit approval for public visibility and each publication
-  destination. Authorization to push a private branch/create a draft PR does
-  not authorize a release, merge or public repository.
+- [x] The owner approved public visibility, the GitHub release and publication
+  of the npm package as `@haffa/decision-browser`.
 - [ ] After release approval, tag the reviewed commit and require the full tag
   matrix plus release-candidate gate. Publish only the tested artifact hashes.
 
