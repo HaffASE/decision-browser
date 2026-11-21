@@ -159,7 +159,7 @@ class OwnedFixtureResource:
             if task.done():
                 self._task_done(task)
         unfinished = [task for task in self._tasks if not task.done()]
-        unknown = bool(unfinished) or not listener_closed or self._failed_tasks > 0
+        unknown = bool(unfinished) or bool(self._writers) or not listener_closed or self._failed_tasks > 0
         report = CleanupReport(
             clean=not unknown,
             unknown=unknown,
@@ -228,7 +228,16 @@ class OwnedFixtureResource:
         if self._closing or self._report is not None:
             self._abort_writer(writer)
             return
-        self._track(asyncio.create_task(self._handle(reader, writer)))
+        self._writers.add(writer)
+        handler = self._handle(reader, writer)
+        try:
+            task = asyncio.create_task(handler)
+        except BaseException:
+            handler.close()
+            self._abort_writer(writer)
+            self._writers.discard(writer)
+            raise
+        self._track(task)
 
     def _track(self, task: asyncio.Task[None]) -> None:
         self._tasks.add(task)
@@ -252,7 +261,6 @@ class OwnedFixtureResource:
     async def _handle(
         self, reader: asyncio.StreamReader, writer: asyncio.StreamWriter
     ) -> None:
-        self._writers.add(writer)
         served = False
         try:
             raw = await self._read_headers(reader)
@@ -262,7 +270,6 @@ class OwnedFixtureResource:
         except (TimeoutError, OSError, RuntimeError, ConnectionError):
             served = False
         finally:
-            self._writers.discard(writer)
             if served:
                 try:
                     writer.close()
@@ -270,6 +277,7 @@ class OwnedFixtureResource:
                     self._abort_writer(writer)
             else:
                 self._abort_writer(writer)
+            self._writers.discard(writer)
 
     async def _read_headers(self, reader: asyncio.StreamReader) -> bytes | None:
         assert self._deadline is not None
@@ -342,6 +350,7 @@ class OwnedFixtureResource:
             server.close()
         for writer in tuple(self._writers):
             self._abort_writer(writer)
+            self._writers.discard(writer)
         current = asyncio.current_task()
         for task in tuple(self._tasks):
             if task is not current and not task.done():

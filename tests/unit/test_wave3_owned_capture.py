@@ -20,6 +20,15 @@ from decision_browser.owned_fixture_server import OwnedFixtureResource
 from decision_browser.privacy import CaptureEvidence
 
 
+class _Writer:
+    def __init__(self):
+        self.transport = self
+        self.aborted = False
+
+    def abort(self):
+        self.aborted = True
+
+
 def _arm(driver, *, deadline=None):
     arm = _OwnedInitialArm(
         expected_url="https://owned.example/doc", deadline=deadline or time.monotonic() + 2,
@@ -177,11 +186,47 @@ async def test_db058_completed_connections_are_discarded_and_failures_counted(mo
 
     monkeypatch.setattr(resource, "_handle", done)
     for _ in range(30):
-        resource._client(object(), object())
+        resource._client(object(), _Writer())
         await asyncio.sleep(0)
         await asyncio.sleep(0)
     assert resource.owned_task_count == 0
     assert (await resource.close()).clean
+
+
+async def test_accepted_writer_is_aborted_if_closed_before_handler_starts(monkeypatch):
+    resource = OwnedFixtureResource()
+    writer = _Writer()
+
+    async def never_started(*args):
+        pytest.fail("handler started before immediate close")
+
+    monkeypatch.setattr(resource, "_handle", never_started)
+    resource._client(object(), writer)
+    report = await resource.close()
+    assert report.clean and report.owned_tasks == 0
+    assert writer.aborted
+    assert resource.open_connection_count == 0
+
+
+async def test_accepted_writer_is_aborted_if_handler_cannot_be_scheduled(monkeypatch):
+    resource = OwnedFixtureResource()
+    writer = _Writer()
+    handlers = []
+
+    def refuse(handler):
+        handlers.append(handler)
+        raise RuntimeError("synthetic scheduling failure")
+
+    monkeypatch.setattr(asyncio, "create_task", refuse)
+    try:
+        with pytest.raises(RuntimeError, match="synthetic scheduling failure"):
+            resource._client(object(), writer)
+        assert writer.aborted
+        assert resource.open_connection_count == resource.owned_task_count == 0
+        assert handlers[0].cr_frame is None
+    finally:
+        for handler in handlers:
+            handler.close()
 
 
 async def test_db071_fixture_close_joins_cancelled_task_after_execution_deadline():
@@ -293,7 +338,7 @@ async def test_db058_completed_connection_exception_is_consumed_and_reported(mon
         raise RuntimeError("synthetic")
 
     monkeypatch.setattr(resource, "_handle", fail)
-    resource._client(object(), object())
+    resource._client(object(), _Writer())
     await asyncio.sleep(0)
     await asyncio.sleep(0)
     assert resource.owned_task_count == 0
