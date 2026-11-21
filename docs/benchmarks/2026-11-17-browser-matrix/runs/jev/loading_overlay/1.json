@@ -1,0 +1,307 @@
+{
+  "arm": "jev",
+  "case": "loading_overlay",
+  "repetition": 1,
+  "phase": "finished",
+  "started_at": "2026-11-17T18:17:08.694019+00:00",
+  "record": "runs/jev/loading_overlay/1.json",
+  "group": "short",
+  "goal_sha256": "7aeeec881362d835a918714e79cb095d64e795c3520ddb34659d881ebb4eba06",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 12,
+    "timeout_s": 75.0,
+    "max_input_bytes": 131072
+  },
+  "confirmed": true,
+  "observed": true,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "verified",
+    "reason": "verified",
+    "functional": "verified",
+    "steps": 12,
+    "native_evidence": [
+      "text:ok",
+      "route:ok"
+    ],
+    "native_timings": {
+      "setup": 0.00015324994456022978,
+      "browser": 7.051788582233712,
+      "verification": 0.1256571258418262,
+      "total": 7.264443082967773
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:63586/loading_overlay/",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      true,
+      true
+    ],
+    "independent_verification_ms": 2,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "wait",
+      "wait",
+      "wait",
+      "click",
+      "wait",
+      "wait",
+      "wait",
+      "fill",
+      "wait",
+      "wait",
+      "click"
+    ],
+    "arm": "jev",
+    "model": "jev-latest",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 2179,
+          "output_tokens": 227,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 8454,
+          "duration_ms": 816,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2259,
+          "output_tokens": 226,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 8655,
+          "duration_ms": 369,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2365,
+          "output_tokens": 226,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 8974,
+          "duration_ms": 352,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2446,
+          "output_tokens": 226,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 9176,
+          "duration_ms": 377,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2208,
+          "output_tokens": 186,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 7972,
+          "duration_ms": 360,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3086,
+          "output_tokens": 305,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 11669,
+          "duration_ms": 283,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3167,
+          "output_tokens": 305,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 11871,
+          "duration_ms": 377,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3273,
+          "output_tokens": 305,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 12190,
+          "duration_ms": 289,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3337,
+          "output_tokens": 303,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 12334,
+          "duration_ms": 420,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3417,
+          "output_tokens": 304,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 12536,
+          "duration_ms": 292,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3523,
+          "output_tokens": 304,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 12855,
+          "duration_ms": 380,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 11,
+      "request_bytes": 116686,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 11,
+        "cached_tokens": 11,
+        "cache_write_tokens": 11,
+        "reasoning_tokens": 11
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": false,
+        "cached_tokens": false,
+        "cache_write_tokens": false,
+        "reasoning_tokens": false
+      },
+      "reported_tokens": {
+        "input_tokens": 31260,
+        "output_tokens": 2917,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 31260,
+      "output_tokens": 2917,
+      "total_tokens": null,
+      "cached_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "returncode": 0,
+    "wall_ms": 7516,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": true,
+    "expected": [
+      {
+        "name": "services",
+        "data": {
+          "query": "climate"
+        }
+      }
+    ],
+    "observed": [
+      {
+        "name": "services",
+        "data": {
+          "query": "climate"
+        }
+      }
+    ]
+  },
+  "finished_at": "2026-11-17T18:17:16.339628+00:00"
+}

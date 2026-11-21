@@ -1,0 +1,113 @@
+{
+  "source_before": {
+    "__init__.py": "3e126883df274770a888302b8b41c297d4cf55121c79e6ced37dbf940b8af013",
+    "action_context.py": "a93ec02ef44a6ff0f2c084100ff7df7be551b685f9d79e31d047cfde9bccf8df",
+    "admission.py": "8397f6d1b5e0d357d46e1b3046a23cc0bceddb890074aa208dd4d79067d3ebd1",
+    "artifacts.py": "bc72be289eea5605746f82dfd6e5a640d71617b7abce1251a4f14e87096871b6",
+    "browser.py": "c6122e2918171a73861734feeae536b6e477f5ca7aaf580689016985b9500f53",
+    "budget.py": "3db3e64eea8ddf7726bcb1f5dae94fd58af925a6fd51d78e72ccaab442452bc7",
+    "cli.py": "364a17ddd4aba686bf47fce920a2757565ba977511d5b9ffde347535b16041ae",
+    "collector.js": "8354adaafe88688223986c573c7387e81f24e65f4d83a5abea6cf8f4ef0e267b",
+    "committed_navigation_capture.py": "d05d9973477e763d7438da2f715ed95743ed16a589133da0146d7a722af240b7",
+    "contracts.py": "81d48898fa2f8ac23f00dc61d35056401ea47cfc89cbfe8dc1585bec3242329b",
+    "counter_acceptance.py": "0abef70b4848774a349b499e3e1975d94c52f04f505e56f6965f7c0117e0ca7a",
+    "decision_codec.py": "f24359a4ad102b07a78accc333ac1b1f942952f22bf63ebd4f7d92c9edfcf6e8",
+    "desk.py": "c06ec9a5bd6a5b857e965c92695c451aa5b27f7607414bc2a07933a16675da2c",
+    "dom.py": "6ca226e5801afd827d52dbc6a59bd3190b874377e5c2c0faf98764b30b716b7f",
+    "experiment_budget.py": "5f954f0452f9b4c3803b7535b192cd65f261f46ce19430ae8a8196ed8c4fba9f",
+    "experiment_operator.py": "bb6947480bef963fd11486bfa850cbd75767906c9b5228bb2f23220ee5f8a2c0",
+    "flights_continuation.py": "c28998c2fbadd272c41b194b5fb3247099ffd9174e3d685f8bb7f659a76e05bf",
+    "flights_evidence.py": "9687287a3465e7aeacbaf238a50996cc15d46f9cbbe952bee18fe8c4261b905e",
+    "flights_pilot.py": "ca773912545e813a8dce3ea62e13540c81f90731554fa65076aefe27ee21a2f8",
+    "flights_provider.py": "e6d383e922f797e6d492930de7d29258a88426bdd7631a0c6b197abd328cea23",
+    "keychain_entry.py": "d7b470a9f140e067b47e47e9fe927e79d2f549455834d4460303a1fdd221f35d",
+    "model_context.py": "f2c530dd76a6d1578b22be999d6ff6510fc4c11caaafd899039391421918c332",
+    "owned_fixture.py": "875a83ee8961ae366a91eeb4fadf19f9f3b786c0a4a5193ab1ab4519f559d3f5",
+    "owned_fixture_frame.py": "578bb5579a27526100a71215b8dfe716fec167db6b86e1f72fe3fe481efa5220",
+    "owned_fixture_server.py": "1f1be44c9b06fcec46b33a136826e2712fd140ab330a21813793828f0fd97ce1",
+    "policy.py": "9db6e059a37009d69685e14006c93daf8d5b2af68b3f8344ce04c4f519b7938d",
+    "privacy.py": "a569406aea6bb0b18ee51ac9ae7440dcbc8aaead6523c8182fa62c3776cbbefc",
+    "provider.py": "7f0022348bcf7166fd505bb4ebf5376a32ffd97d27c6bf22c3ea2ece6bcb5a5b",
+    "provider_config.py": "dd64d50b2b7b89919745591cb7fd42204df58d3c8a9b5a892f7abb7867772555",
+    "provider_http.py": "db248f1e0f387b42616577faf4c6e5d63f4a3edcbc9dd30c0e5d1d940e4f3231",
+    "runner.py": "1b416a0cc787979dc04b169aaa8df44fba2ece51276a6a84067ec81b9b1d1cd4",
+    "server.py": "67269f87f8800c7584736c2fd82750f1d9f1854862a6f75c1655d968d8bb56f9",
+    "snapshot.js": "44694fd5fcaf977086315930709f8c801954e81f6d8b4ef826579208ad7c2b0a",
+    "systemone_provider.py": "713cc11c9b46e44dd8cf35ace2e41e5359028741e265063134e02344f87d5f12",
+    "text_provider.py": "34e209f4ce73aba09c40636e49a72e39deede6fbb57b1397713b5aa5f4728451",
+    "verification.py": "1681c1e58ff47e086ca12254519e61fabdbddbf19f320b9afd2e3364506b4fa4",
+    "viewport_text.js": "a2960775329ac322d7e754d4c6b6775b20391e46729b4241066b72877f7a7849"
+  },
+  "compact": true,
+  "cases": [
+    {
+      "case": "article",
+      "records": [
+        {
+          "step": 1,
+          "format": "decision-browser-choice-table-v3",
+          "request_bytes": 6695,
+          "escaped_input_bytes": 1757,
+          "instructions_bytes": 3403,
+          "choice_count": 17
+        },
+        {
+          "step": 2,
+          "format": "decision-browser-choice-table-v3",
+          "request_bytes": 7037,
+          "escaped_input_bytes": 2039,
+          "instructions_bytes": 3403,
+          "choice_count": 17
+        },
+        {
+          "step": 3,
+          "format": "decision-browser-choice-table-v3",
+          "request_bytes": 8961,
+          "escaped_input_bytes": 3238,
+          "instructions_bytes": 3403,
+          "choice_count": 23
+        }
+      ],
+      "total_request_bytes": 22693
+    },
+    {
+      "case": "profile_form",
+      "records": [
+        {
+          "step": 1,
+          "format": "decision-browser-choice-table-v3",
+          "request_bytes": 9516,
+          "escaped_input_bytes": 3340,
+          "instructions_bytes": 3780,
+          "choice_count": 26
+        },
+        {
+          "step": 2,
+          "format": "decision-browser-choice-table-v3",
+          "request_bytes": 9804,
+          "escaped_input_bytes": 3592,
+          "instructions_bytes": 3780,
+          "choice_count": 26
+        },
+        {
+          "step": 3,
+          "format": "decision-browser-choice-table-v3",
+          "request_bytes": 10113,
+          "escaped_input_bytes": 3856,
+          "instructions_bytes": 3780,
+          "choice_count": 26
+        },
+        {
+          "step": 4,
+          "format": "decision-browser-choice-table-v3",
+          "request_bytes": 10321,
+          "escaped_input_bytes": 4067,
+          "instructions_bytes": 3780,
+          "choice_count": 26
+        }
+      ],
+      "total_request_bytes": 39754
+    }
+  ],
+  "source_unchanged": true
+}

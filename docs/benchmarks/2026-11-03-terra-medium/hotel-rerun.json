@@ -1,0 +1,118 @@
+{
+  "goal": "Find Lisbon stays, choose Design and Free cancellation, then open Casa Flora.",
+  "model": "gpt-6.1-terra",
+  "reasoning_effort": "medium",
+  "max_calls_per_run": 12,
+  "original_agent_sha256": "ef89a2e9ec837a6b54e81bfbb4f5a53e6512c7d22d7f4ec88c3f96c787e19fdc",
+  "revised_agent_sha256": "a0f84d45001194cef87925fea36e10107d7ded34a11fe3aa6071bef4e159481c",
+  "original_observation_source": "Deterministic Chromium replay; the original benchmark retained actions but did not log model inputs.",
+  "original_replay_snapshot": "- paragraph [ref=f1e2]: Casa Flora | Lisbon | Design | Free cancellation",
+  "estimated_usd": "0.016298",
+  "runs": [
+    {
+      "repetition": 1,
+      "model_calls": 6,
+      "wall_ms": 14962,
+      "actions": [
+        "fill",
+        "click",
+        "select",
+        "click",
+        "click",
+        "done"
+      ],
+      "first_property_call": 6,
+      "property_observation": {
+        "url": "http://127.0.0.1:54881/hotel/property/casa-flora?destination=Lisbon&category=design&cancellation=true",
+        "viewport": {
+          "y": 0,
+          "height": 720,
+          "pageHeight": 720
+        },
+        "snapshot": "- paragraph [ref=f1e2]: Casa Flora | Lisbon | Design | Free cancellation"
+      },
+      "model_response": [
+        {
+          "name": "done",
+          "arguments": {}
+        }
+      ],
+      "page_checks": [
+        true,
+        true
+      ],
+      "event_check": true,
+      "confirmed": true
+    },
+    {
+      "repetition": 2,
+      "model_calls": 6,
+      "wall_ms": 13795,
+      "actions": [
+        "fill",
+        "select",
+        "click",
+        "click",
+        "click",
+        "done"
+      ],
+      "first_property_call": 6,
+      "property_observation": {
+        "url": "http://127.0.0.1:54892/hotel/property/casa-flora?destination=Lisbon&category=design&cancellation=true",
+        "viewport": {
+          "y": 0,
+          "height": 720,
+          "pageHeight": 720
+        },
+        "snapshot": "- paragraph [ref=f1e2]: Casa Flora | Lisbon | Design | Free cancellation"
+      },
+      "model_response": [
+        {
+          "name": "done",
+          "arguments": {}
+        }
+      ],
+      "page_checks": [
+        true,
+        true
+      ],
+      "event_check": true,
+      "confirmed": true
+    },
+    {
+      "repetition": 3,
+      "model_calls": 6,
+      "wall_ms": 10833,
+      "actions": [
+        "fill",
+        "click",
+        "select",
+        "click",
+        "click",
+        "done"
+      ],
+      "first_property_call": 6,
+      "property_observation": {
+        "url": "http://127.0.0.1:54909/hotel/property/casa-flora?destination=Lisbon&category=design&cancellation=true",
+        "viewport": {
+          "y": 0,
+          "height": 720,
+          "pageHeight": 720
+        },
+        "snapshot": "- paragraph [ref=f1e2]: Casa Flora | Lisbon | Design | Free cancellation"
+      },
+      "model_response": [
+        {
+          "name": "done",
+          "arguments": {}
+        }
+      ],
+      "page_checks": [
+        true,
+        true
+      ],
+      "event_check": true,
+      "confirmed": true
+    }
+  ]
+}

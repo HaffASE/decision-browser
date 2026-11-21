@@ -1,0 +1,27 @@
+{
+  "confirmed": {
+    "before": 47,
+    "after": 48,
+    "reduction_percent": -2.127659574468077
+  },
+  "calls": {
+    "before": 149,
+    "after": 125,
+    "reduction_percent": 16.10738255033557
+  },
+  "input_tokens": {
+    "before": 340097,
+    "after": 254060,
+    "reduction_percent": 25.29778269140863
+  },
+  "request_bytes": {
+    "before": 1175180,
+    "after": 897001,
+    "reduction_percent": 23.671182286968808
+  },
+  "known_estimated_usd": {
+    "before": 0.03552134,
+    "after": 0.02518907,
+    "reduction_percent": 29.087500640460064
+  }
+}

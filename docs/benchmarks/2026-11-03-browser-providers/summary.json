@@ -1,0 +1,357 @@
+{
+  "schema_version": 1,
+  "attempts": 288,
+  "repetitions": 3,
+  "tasks": [
+    "click",
+    "search",
+    "select",
+    "navigate",
+    "counter",
+    "public_about",
+    "hotel",
+    "profile_form",
+    "autocomplete",
+    "calendar",
+    "styled_filter",
+    "consent",
+    "delayed_menu",
+    "loading_overlay",
+    "below_fold",
+    "article"
+  ],
+  "arms": {
+    "decision-browser": {
+      "openai": {
+        "attempts": 48,
+        "confirmed": 42,
+        "observed": 42,
+        "all_attempt_median_ms": 3232.0,
+        "decision_requests": 159,
+        "text_requests": 0,
+        "http_2xx": 159,
+        "priced_attempts": 48,
+        "estimated_usd": "0.0297236"
+      },
+      "opencode": {
+        "attempts": 48,
+        "confirmed": 38,
+        "observed": 38,
+        "all_attempt_median_ms": 3418.5,
+        "decision_requests": 138,
+        "text_requests": 0,
+        "http_2xx": 138,
+        "priced_attempts": 48,
+        "estimated_usd": "0.015176532"
+      }
+    },
+    "jev-ultrafast": {
+      "openai": {
+        "attempts": 48,
+        "confirmed": 34,
+        "observed": 34,
+        "all_attempt_median_ms": 3800.0,
+        "decision_requests": 193,
+        "text_requests": 24,
+        "http_2xx": 217,
+        "priced_attempts": 48,
+        "estimated_usd": "0.0188169"
+      },
+      "opencode": {
+        "attempts": 48,
+        "confirmed": 38,
+        "observed": 38,
+        "all_attempt_median_ms": 3669.0,
+        "decision_requests": 166,
+        "text_requests": 21,
+        "http_2xx": 187,
+        "priced_attempts": 48,
+        "estimated_usd": "0.012034838"
+      }
+    },
+    "jev-ra": {
+      "openai": {
+        "attempts": 48,
+        "confirmed": 34,
+        "observed": 41,
+        "all_attempt_median_ms": 3262.5,
+        "decision_requests": 192,
+        "text_requests": 0,
+        "http_2xx": 192,
+        "priced_attempts": 48,
+        "estimated_usd": "0.0283964"
+      },
+      "opencode": {
+        "attempts": 48,
+        "confirmed": 32,
+        "observed": 35,
+        "all_attempt_median_ms": 3614.0,
+        "decision_requests": 176,
+        "text_requests": 0,
+        "http_2xx": 176,
+        "priced_attempts": 48,
+        "estimated_usd": "0.011801076"
+      }
+    }
+  },
+  "paired_confirmations": {
+    "decision-browser": {
+      "both": 33,
+      "openai_only": 9,
+      "opencode_only": 5,
+      "neither": 1
+    },
+    "jev-ultrafast": {
+      "both": 26,
+      "openai_only": 8,
+      "opencode_only": 12,
+      "neither": 2
+    },
+    "jev-ra": {
+      "both": 25,
+      "openai_only": 9,
+      "opencode_only": 7,
+      "neither": 7
+    }
+  },
+  "per_case": {
+    "click": {
+      "decision-browser": {
+        "openai": 3,
+        "opencode": 3
+      },
+      "jev-ultrafast": {
+        "openai": 3,
+        "opencode": 3
+      },
+      "jev-ra": {
+        "openai": 3,
+        "opencode": 3
+      }
+    },
+    "search": {
+      "decision-browser": {
+        "openai": 3,
+        "opencode": 2
+      },
+      "jev-ultrafast": {
+        "openai": 3,
+        "opencode": 3
+      },
+      "jev-ra": {
+        "openai": 3,
+        "opencode": 0
+      }
+    },
+    "select": {
+      "decision-browser": {
+        "openai": 3,
+        "opencode": 3
+      },
+      "jev-ultrafast": {
+        "openai": 1,
+        "opencode": 3
+      },
+      "jev-ra": {
+        "openai": 3,
+        "opencode": 3
+      }
+    },
+    "navigate": {
+      "decision-browser": {
+        "openai": 3,
+        "opencode": 3
+      },
+      "jev-ultrafast": {
+        "openai": 3,
+        "opencode": 3
+      },
+      "jev-ra": {
+        "openai": 3,
+        "opencode": 3
+      }
+    },
+    "counter": {
+      "decision-browser": {
+        "openai": 3,
+        "opencode": 3
+      },
+      "jev-ultrafast": {
+        "openai": 3,
+        "opencode": 3
+      },
+      "jev-ra": {
+        "openai": 0,
+        "opencode": 0
+      }
+    },
+    "public_about": {
+      "decision-browser": {
+        "openai": 3,
+        "opencode": 3
+      },
+      "jev-ultrafast": {
+        "openai": 3,
+        "opencode": 3
+      },
+      "jev-ra": {
+        "openai": 0,
+        "opencode": 3
+      }
+    },
+    "hotel": {
+      "decision-browser": {
+        "openai": 0,
+        "opencode": 2
+      },
+      "jev-ultrafast": {
+        "openai": 0,
+        "opencode": 3
+      },
+      "jev-ra": {
+        "openai": 1,
+        "opencode": 2
+      }
+    },
+    "profile_form": {
+      "decision-browser": {
+        "openai": 3,
+        "opencode": 3
+      },
+      "jev-ultrafast": {
+        "openai": 2,
+        "opencode": 3
+      },
+      "jev-ra": {
+        "openai": 0,
+        "opencode": 3
+      }
+    },
+    "autocomplete": {
+      "decision-browser": {
+        "openai": 3,
+        "opencode": 2
+      },
+      "jev-ultrafast": {
+        "openai": 3,
+        "opencode": 0
+      },
+      "jev-ra": {
+        "openai": 3,
+        "opencode": 3
+      }
+    },
+    "calendar": {
+      "decision-browser": {
+        "openai": 3,
+        "opencode": 0
+      },
+      "jev-ultrafast": {
+        "openai": 0,
+        "opencode": 2
+      },
+      "jev-ra": {
+        "openai": 3,
+        "opencode": 3
+      }
+    },
+    "styled_filter": {
+      "decision-browser": {
+        "openai": 3,
+        "opencode": 3
+      },
+      "jev-ultrafast": {
+        "openai": 3,
+        "opencode": 3
+      },
+      "jev-ra": {
+        "openai": 3,
+        "opencode": 3
+      }
+    },
+    "consent": {
+      "decision-browser": {
+        "openai": 3,
+        "opencode": 3
+      },
+      "jev-ultrafast": {
+        "openai": 3,
+        "opencode": 0
+      },
+      "jev-ra": {
+        "openai": 0,
+        "opencode": 0
+      }
+    },
+    "delayed_menu": {
+      "decision-browser": {
+        "openai": 3,
+        "opencode": 3
+      },
+      "jev-ultrafast": {
+        "openai": 3,
+        "opencode": 3
+      },
+      "jev-ra": {
+        "openai": 3,
+        "opencode": 0
+      }
+    },
+    "loading_overlay": {
+      "decision-browser": {
+        "openai": 0,
+        "opencode": 3
+      },
+      "jev-ultrafast": {
+        "openai": 1,
+        "opencode": 3
+      },
+      "jev-ra": {
+        "openai": 3,
+        "opencode": 3
+      }
+    },
+    "below_fold": {
+      "decision-browser": {
+        "openai": 3,
+        "opencode": 0
+      },
+      "jev-ultrafast": {
+        "openai": 2,
+        "opencode": 0
+      },
+      "jev-ra": {
+        "openai": 3,
+        "opencode": 3
+      }
+    },
+    "article": {
+      "decision-browser": {
+        "openai": 3,
+        "opencode": 2
+      },
+      "jev-ultrafast": {
+        "openai": 1,
+        "opencode": 3
+      },
+      "jev-ra": {
+        "openai": 3,
+        "opencode": 0
+      }
+    }
+  },
+  "source_sha256": {
+    "decision-browser": "733e3ffaf4e9efa703f119dc11a70b99a08a20dcf677e6ddf23fcf0588a8e85a",
+    "jev-ultrafast": "0a078644bfc2dceddc0eb280fea828d50ff48c4ba44f20afc3ae151fc486e349",
+    "jev-ra": "f5bd5fa457958cb1bd958a1c9929f541cc215d74f37d43a677e1df1f28a60b4c",
+    "corpus": "4ae66ab66fcfd15e3d2fbe017a6ec71f5c5929afa553393ce9e9af941bfd8382",
+    "harness": "e1662bc544dbfd4ee4380609ab3298118e195da945da72b0a653c74476225d7c",
+    "workers": {
+      "decision-browser": "628304533c76510d6f7fec74e04e399b7b955334ec55fdfcb397e7baf3d7eabc",
+      "jev-ultrafast": "7af6d637e42fbcfcac8237041c34ab3b0a9b57d9e3478d73a4ba809cc1d3ae4e",
+      "jev-ra": "a771387f35006202fc07e340a946a54ea09bf0d3fbebb874080e4eccd541e4f0"
+    },
+    "matrix": "a4f407284c12f13fe41c11347e43ed71bd6960ab66123840a6aae22bc8d71b79",
+    "core_manifest": "7027a9ed92997922543b4c238cb17e7184ce6c35e448eb17aa39a83a7812c9ec"
+  }
+}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>decision-browser-counter</title></head>
+<body>
+<p id="count">0</p>
+<button id="inc" type="button">inc</button>
+<button id="reset" type="button">reset</button>
+<script>
+const count = document.getElementById("count");
+let n = 0;
+document.getElementById("inc").addEventListener("click", () => {
+  n += 1;
+  count.textContent = String(n);
+});
+document.getElementById("reset").addEventListener("click", () => {
+  n = 0;
+  count.textContent = "0";
+});
+</script>
+</body>
+</html>

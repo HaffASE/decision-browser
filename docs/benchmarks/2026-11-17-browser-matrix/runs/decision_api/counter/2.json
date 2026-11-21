@@ -1,0 +1,174 @@
+{
+  "arm": "decision_api",
+  "case": "counter",
+  "repetition": 2,
+  "phase": "finished",
+  "started_at": "2026-11-17T18:21:08.904297+00:00",
+  "record": "runs/decision_api/counter/2.json",
+  "group": "short",
+  "goal_sha256": "83bdd37052779072cf50854a6e3f210a6053a6b3a50af88d4f37168b7c61909a",
+  "limits": {
+    "max_steps": 8,
+    "max_calls": 12,
+    "timeout_s": 75.0,
+    "max_input_bytes": 131072
+  },
+  "confirmed": true,
+  "observed": true,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "verified",
+    "reason": "verified",
+    "functional": "verified",
+    "steps": 4,
+    "native_evidence": [
+      "text:ok",
+      "route:ok"
+    ],
+    "native_timings": {
+      "setup": 0.00015054200775921345,
+      "browser": 4.014261291013099,
+      "verification": 0.0582061669556424,
+      "total": 4.151307624997571
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:49839/r/2a67279280364588b4045d9ae16ae329/counter/",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      true,
+      true
+    ],
+    "independent_verification_ms": 3,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "click",
+      "click",
+      "click"
+    ],
+    "arm": "decision_api",
+    "model": "gpt-6-luna",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 1529,
+          "output_tokens": 0,
+          "total_tokens": 1529,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 6385,
+          "duration_ms": 1100,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1610,
+          "output_tokens": 0,
+          "total_tokens": 1610,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 6621,
+          "duration_ms": 579,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1690,
+          "output_tokens": 0,
+          "total_tokens": 1690,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 6859,
+          "duration_ms": 719,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 3,
+      "request_bytes": 19865,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true,
+        "cached_tokens": true,
+        "cache_write_tokens": true,
+        "reasoning_tokens": true
+      },
+      "reported_tokens": {
+        "input_tokens": 4829,
+        "output_tokens": 0,
+        "total_tokens": 4829,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 4829,
+      "output_tokens": 0,
+      "total_tokens": 4829,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0
+    },
+    "returncode": 0,
+    "wall_ms": 4398,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": true,
+    "events": [
+      {
+        "name": "increment",
+        "query": null,
+        "order": null
+      },
+      {
+        "name": "increment",
+        "query": null,
+        "order": null
+      },
+      {
+        "name": "increment",
+        "query": null,
+        "order": null
+      }
+    ],
+    "details_visits": 0,
+    "counter": 3
+  },
+  "finished_at": "2026-11-17T18:21:13.442261+00:00"
+}

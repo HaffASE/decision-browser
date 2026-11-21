@@ -1,0 +1,565 @@
+{
+  "arm": "jev",
+  "case": "support_handoff",
+  "repetition": 3,
+  "phase": "finished",
+  "started_at": "2026-11-17T18:23:49.698058+00:00",
+  "record": "runs/jev/support_handoff/3.json",
+  "group": "long",
+  "goal_sha256": "a661b7a4c7cfeef61640276489de01f37476b6c138b2e42a9f9d8af6bceb8c18",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 24,
+    "timeout_s": 180,
+    "max_input_bytes": 524288
+  },
+  "confirmed": false,
+  "observed": false,
+  "lifecycle_success": true,
+  "native_success": false,
+  "functional_check_passed": false,
+  "result": {
+    "status": "limit_exceeded",
+    "reason": "budget_limit",
+    "functional": "failed",
+    "steps": 24,
+    "native_evidence": [
+      "route:mismatch",
+      "text:playwright_error"
+    ],
+    "native_timings": {
+      "setup": 0.0003488330403342843,
+      "browser": 16.53960720601026,
+      "verification": 12.78292771091219,
+      "total": 29.445077124983072
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:51955/support_handoff/stage/4",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      false,
+      false
+    ],
+    "independent_verification_ms": 5,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "select",
+      "fill",
+      "wait",
+      "wait",
+      "click",
+      "wait",
+      "wait",
+      "wait",
+      "wait",
+      "wait",
+      "wait",
+      "wait",
+      "click",
+      "click",
+      "select",
+      "select",
+      "wait",
+      "wait",
+      "wait",
+      "wait",
+      "click",
+      "select",
+      "click"
+    ],
+    "arm": "jev",
+    "model": "jev-latest",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 3829,
+          "output_tokens": 407,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 15323,
+          "duration_ms": 824,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3883,
+          "output_tokens": 408,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 15406,
+          "duration_ms": 316,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3974,
+          "output_tokens": 407,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 15515,
+          "duration_ms": 397,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4055,
+          "output_tokens": 407,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 15717,
+          "duration_ms": 413,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4159,
+          "output_tokens": 407,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 16036,
+          "duration_ms": 309,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3331,
+          "output_tokens": 253,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 11366,
+          "duration_ms": 404,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3416,
+          "output_tokens": 253,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 11575,
+          "duration_ms": 281,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3528,
+          "output_tokens": 253,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 11901,
+          "duration_ms": 295,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3611,
+          "output_tokens": 253,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 12110,
+          "duration_ms": 353,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3697,
+          "output_tokens": 253,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 12319,
+          "duration_ms": 403,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3785,
+          "output_tokens": 253,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 12528,
+          "duration_ms": 335,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3791,
+          "output_tokens": 253,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 12521,
+          "duration_ms": 337,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3786,
+          "output_tokens": 253,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 12510,
+          "duration_ms": 301,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3571,
+          "output_tokens": 265,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 12734,
+          "duration_ms": 346,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4789,
+          "output_tokens": 360,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 17397,
+          "duration_ms": 440,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4809,
+          "output_tokens": 361,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 17276,
+          "duration_ms": 339,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4780,
+          "output_tokens": 362,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 17116,
+          "duration_ms": 314,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4776,
+          "output_tokens": 362,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 17116,
+          "duration_ms": 477,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4805,
+          "output_tokens": 362,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 17233,
+          "duration_ms": 345,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4803,
+          "output_tokens": 362,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 17233,
+          "duration_ms": 314,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4796,
+          "output_tokens": 362,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 17233,
+          "duration_ms": 308,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4345,
+          "output_tokens": 321,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 15938,
+          "duration_ms": 2390,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4336,
+          "output_tokens": 321,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 15986,
+          "duration_ms": 328,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 23,
+      "request_bytes": 340089,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 23,
+        "cached_tokens": 23,
+        "cache_write_tokens": 23,
+        "reasoning_tokens": 23
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": false,
+        "cached_tokens": false,
+        "cache_write_tokens": false,
+        "reasoning_tokens": false
+      },
+      "reported_tokens": {
+        "input_tokens": 94655,
+        "output_tokens": 7498,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 94655,
+      "output_tokens": 7498,
+      "total_tokens": null,
+      "cached_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "returncode": 0,
+    "wall_ms": 29818,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": false,
+    "expected": [
+      {
+        "action": "Search tickets",
+        "fields": {
+          "Queue": "Network",
+          "Ticket number": "R-214"
+        }
+      },
+      {
+        "action": "R-214 edge packet loss",
+        "fields": {}
+      },
+      {
+        "action": "Open activity log",
+        "fields": {}
+      },
+      {
+        "action": "Classify fault",
+        "fields": {
+          "Fault code": "EDGE-72",
+          "Priority": "High"
+        }
+      },
+      {
+        "action": "Apply routing",
+        "fields": {
+          "Receiving team": "Network Operations",
+          "On-call rotation": "on"
+        }
+      },
+      {
+        "action": "Add note",
+        "fields": {
+          "Handoff note": "Compare edge counters",
+          "Note tag": "Diagnosis"
+        }
+      },
+      {
+        "action": "Review handoff",
+        "fields": {}
+      },
+      {
+        "action": "Save handoff draft",
+        "fields": {}
+      }
+    ],
+    "observed": [
+      {
+        "action": "Search tickets",
+        "fields": {
+          "Queue": "Network",
+          "Ticket number": "R-214"
+        }
+      },
+      {
+        "action": "R-214 edge packet loss",
+        "fields": {}
+      },
+      {
+        "action": "Open activity log",
+        "fields": {}
+      },
+      {
+        "action": "Classify fault",
+        "fields": {
+          "Fault code": "EDGE-72",
+          "Priority": "High"
+        }
+      }
+    ]
+  },
+  "finished_at": "2026-11-17T18:24:19.740802+00:00"
+}

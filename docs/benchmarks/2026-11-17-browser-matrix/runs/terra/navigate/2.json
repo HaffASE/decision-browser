@@ -1,0 +1,130 @@
+{
+  "arm": "terra",
+  "case": "navigate",
+  "repetition": 2,
+  "phase": "finished",
+  "started_at": "2026-11-17T18:20:29.532605+00:00",
+  "record": "runs/terra/navigate/2.json",
+  "group": "short",
+  "goal_sha256": "9b3965002d01dd8249734ca4a359001fed9e2e1f8657be91ba85c9f9605c4fdf",
+  "limits": {
+    "max_steps": 8,
+    "max_calls": 12,
+    "timeout_s": 75.0,
+    "max_input_bytes": 131072
+  },
+  "confirmed": true,
+  "observed": true,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "done",
+    "reason": "goal_achieved",
+    "checks": [
+      true,
+      true
+    ],
+    "final_url": "http://127.0.0.1:49284/r/a0c615cc44b44bc8aa21459b79433e3b/navigate/details",
+    "actions": [
+      "click",
+      "done"
+    ],
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "cleanup": {
+      "browser": "closed"
+    },
+    "route": "terra",
+    "model": "gpt-6.1-terra",
+    "reasoning_effort": "medium",
+    "calls": 2,
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 631,
+          "output_tokens": 18,
+          "total_tokens": 649,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 3823,
+          "duration_ms": 3020,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 628,
+          "output_tokens": 28,
+          "total_tokens": 656,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 13,
+          "status": 200,
+          "input_bytes": 3821,
+          "duration_ms": 1791,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 2,
+      "request_bytes": 7644,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true,
+        "cached_tokens": true,
+        "cache_write_tokens": true,
+        "reasoning_tokens": true
+      },
+      "reported_tokens": {
+        "input_tokens": 1259,
+        "output_tokens": 46,
+        "total_tokens": 1305,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 13
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 1259,
+      "output_tokens": 46,
+      "total_tokens": 1305,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 13
+    },
+    "arm": "terra",
+    "returncode": 0,
+    "wall_ms": 6397,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": true,
+    "events": [],
+    "details_visits": 1,
+    "counter": 0
+  },
+  "finished_at": "2026-11-17T18:20:36.266594+00:00"
+}

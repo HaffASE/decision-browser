@@ -1,0 +1,179 @@
+{
+  "case": "exhibit_planner",
+  "model": "gpt-6-luna",
+  "confirmed": true,
+  "observed": true,
+  "reason": "verified",
+  "wall_ms": 28633,
+  "estimated_usd": "0.006431900",
+  "calls": 18,
+  "checks": [
+    true,
+    true
+  ],
+  "kind": "Separate unscored live browser diagnostic, excluded from the reported 105 attempts",
+  "source": "dd7ea91c51879a8afcb9c8d4a89c94bd18e68d69",
+  "http_200": 18,
+  "trajectory": [
+    {
+      "call": 1,
+      "stage": "/exhibit_planner/",
+      "operation": "fill",
+      "selected_target": "Museum city",
+      "other_refusals": [],
+      "other_rejections": []
+    },
+    {
+      "call": 2,
+      "stage": "/exhibit_planner/",
+      "operation": "select",
+      "selected_target": "Season",
+      "other_refusals": [],
+      "other_rejections": [
+        "target_fill"
+      ]
+    },
+    {
+      "call": 3,
+      "stage": "/exhibit_planner/",
+      "operation": "submit",
+      "selected_target": "Museum city Season Choose an option Winter Spring Summer Explore exhibitions",
+      "other_refusals": [
+        "target_select"
+      ],
+      "other_rejections": [
+        "target_fill"
+      ]
+    },
+    {
+      "call": 4,
+      "stage": "/exhibit_planner/stage/1",
+      "operation": "click",
+      "selected_target": "Tidal Maps",
+      "other_refusals": [],
+      "other_rejections": []
+    },
+    {
+      "call": 5,
+      "stage": "/exhibit_planner/stage/2",
+      "operation": "select",
+      "selected_target": "Caption language",
+      "other_refusals": [],
+      "other_rejections": []
+    },
+    {
+      "call": 6,
+      "stage": "/exhibit_planner/stage/2",
+      "operation": "click",
+      "selected_target": "Audio guide",
+      "other_refusals": [
+        "target_select"
+      ],
+      "other_rejections": []
+    },
+    {
+      "call": 7,
+      "stage": "/exhibit_planner/stage/2",
+      "operation": "click",
+      "selected_target": "Add first stop",
+      "other_refusals": [
+        "target_select"
+      ],
+      "other_rejections": []
+    },
+    {
+      "call": 8,
+      "stage": "/exhibit_planner/stage/3",
+      "operation": "click",
+      "selected_target": "Copper wing",
+      "other_refusals": [],
+      "other_rejections": []
+    },
+    {
+      "call": 9,
+      "stage": "/exhibit_planner/stage/4",
+      "operation": "click",
+      "selected_target": "Fresco Study",
+      "other_refusals": [],
+      "other_rejections": []
+    },
+    {
+      "call": 10,
+      "stage": "/exhibit_planner/stage/5",
+      "operation": "select",
+      "selected_target": "Entry slot",
+      "other_refusals": [],
+      "other_rejections": []
+    },
+    {
+      "call": 11,
+      "stage": "/exhibit_planner/stage/5",
+      "operation": "click",
+      "selected_target": "Step-free access",
+      "other_refusals": [],
+      "other_rejections": []
+    },
+    {
+      "call": 12,
+      "stage": "/exhibit_planner/stage/5",
+      "operation": "submit",
+      "selected_target": "Entry slot Choose an option 11:45 12:30 13:00 Step-free access Set visit options",
+      "other_refusals": [],
+      "other_rejections": []
+    },
+    {
+      "call": 13,
+      "stage": "/exhibit_planner/stage/6",
+      "operation": "fill",
+      "selected_target": "Route name",
+      "other_refusals": [],
+      "other_rejections": []
+    },
+    {
+      "call": 14,
+      "stage": "/exhibit_planner/stage/6",
+      "operation": "select",
+      "selected_target": "Route template",
+      "other_refusals": [],
+      "other_rejections": [
+        "target_fill"
+      ]
+    },
+    {
+      "call": 15,
+      "stage": "/exhibit_planner/stage/6",
+      "operation": "click",
+      "selected_target": "Preview route",
+      "other_refusals": [],
+      "other_rejections": [
+        "target_fill"
+      ]
+    },
+    {
+      "call": 16,
+      "stage": "/exhibit_planner/stage/7",
+      "operation": "fill",
+      "selected_target": "Plan owner",
+      "other_refusals": [],
+      "other_rejections": []
+    },
+    {
+      "call": 17,
+      "stage": "/exhibit_planner/stage/7",
+      "operation": "click",
+      "selected_target": "Add owner",
+      "other_refusals": [],
+      "other_rejections": [
+        "target_fill"
+      ]
+    },
+    {
+      "call": 18,
+      "stage": "/exhibit_planner/stage/8",
+      "operation": "click",
+      "selected_target": "Save exhibit route",
+      "other_refusals": [],
+      "other_rejections": []
+    }
+  ]
+}

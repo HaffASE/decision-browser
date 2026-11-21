@@ -1,0 +1,200 @@
+[project]
+name = "decision-browser"
+version = "0.1.0"
+description = "Bounded Decision Browser MCP with fail-closed admission and evidence artifacts."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
+requires-python = ">=3.11"
+dependencies = [
+    "playwright==1.64.1",
+    "mcp==2.3.0",
+    "httpx==0.28.1",
+    "certifi==2026.10.23",
+    "pydantic==2.14.2",
+]
+
+[project.urls]
+Repository = "https://github.com/HaffASE/decision-browser"
+Issues = "https://github.com/HaffASE/decision-browser/issues"
+
+[project.scripts]
+decision-browser="decision_browser.cli:main"
+decision-browser-install="decision_browser.install:main"
+decision-browser-counter="decision_browser.counter_acceptance:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest==9.1.1",
+    "pytest-asyncio==1.4.0",
+    "ruff==0.16.10",
+    "mypy==2.4.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest==9.1.1",
+    "pytest-asyncio==1.4.0",
+    "ruff==0.16.10",
+    "mypy==2.4.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.hooks.custom]
+path = "hatch_build.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/decision_browser"]
+
+[tool.hatch.build.targets.wheel.sources]
+"src" = ""
+
+[tool.hatch.build.targets.wheel.force-include]
+"skills/decision-browser" = "decision_browser/skill"
+"scripts/install.py" = "decision_browser/install.py"
+"THIRD_PARTY_NOTICES.md" = "decision_browser/THIRD_PARTY_NOTICES.md"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+
+[tool.ruff]
+target-version = "py311"
+src = ["src"]
+
+[tool.mypy]
+python_version = "3.11"
+mypy_path = "src"
+packages = ["decision_browser"]
+
+[tool.hatch.build.targets.sdist]
+only-include = [
+    "src/decision_browser",
+    "skills/decision-browser",
+    "tests",
+    "examples",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "SECURITY.md",
+    "CONTRIBUTING.md",
+    "SUPPORT.md",
+    "scripts/install.py",
+    "scripts/prepare_tool_runtime.py",
+    "scripts/build_installer.py",
+    "scripts/build_npm.py",
+    "scripts/build_metadata.py",
+    "npm",
+    "docs/installation.md",
+    "docs/task-scoped-admission.md",
+    "docs/action-classification.md",
+    "THIRD_PARTY_NOTICES.md",
+    "docs/releasing.md",
+    "docs/public-release-checklist.md",
+    "docs/public-release-plan.md",
+    "scripts/check_release.py",
+    "pyproject.toml",
+    "hatch_build.py",
+    "uv.lock",
+    "scripts/run_counter_acceptance.py",
+    "scripts/run_browser_scenarios.py",
+    "scripts/run_provider_browser_matrix.py",
+    "scripts/render_provider_browser_matrix.py",
+    "scripts/compare_browser_libraries.py",
+    "scripts/render_library_comparison.py",
+    "scripts/benchmarks",
+    "docs/browser-control-stage-one.md",
+    "scripts/verify.py",
+    "scripts/build-constraints.txt",
+    "docs/verification.md",
+    "docs/browser-scenarios.md",
+    "docs/providers.md",
+    "docs/admission-store.md",
+    "docs/context-evidence-privacy.md",
+    "docs/internal-maintenance.md",
+    "docs/benchmarks",
+    "docs/assets",
+    ".github/workflows/verify.yml",
+]
+include = [
+    "/src/decision_browser",
+    "/skills/decision-browser",
+    "/tests",
+    "/examples",
+    "/README.md",
+    "/CHANGELOG.md",
+    "/LICENSE",
+    "/SECURITY.md",
+    "/CONTRIBUTING.md",
+    "/SUPPORT.md",
+    "/scripts/install.py",
+    "/scripts/prepare_tool_runtime.py",
+    "/scripts/build_installer.py",
+    "/scripts/build_npm.py",
+    "/scripts/build_metadata.py",
+    "/npm",
+    "/docs/installation.md",
+    "/docs/task-scoped-admission.md",
+    "/docs/action-classification.md",
+    "/THIRD_PARTY_NOTICES.md",
+    "/docs/releasing.md",
+    "/docs/public-release-checklist.md",
+    "/docs/public-release-plan.md",
+    "/scripts/check_release.py",
+    "/pyproject.toml",
+    "/hatch_build.py",
+    "/uv.lock",
+    "/scripts/run_counter_acceptance.py",
+    "/scripts/run_browser_scenarios.py",
+    "/scripts/run_provider_browser_matrix.py",
+    "/scripts/render_provider_browser_matrix.py",
+    "/scripts/compare_browser_libraries.py",
+    "/scripts/render_library_comparison.py",
+    "/scripts/benchmarks",
+    "/docs/browser-control-stage-one.md",
+    "/scripts/verify.py",
+    "/scripts/build-constraints.txt",
+    "/docs/verification.md",
+    "/docs/browser-scenarios.md",
+    "/docs/providers.md",
+    "/docs/admission-store.md",
+    "/docs/context-evidence-privacy.md",
+    "/docs/internal-maintenance.md",
+    "/docs/benchmarks",
+    "/docs/assets",
+    "/.github/workflows/verify.yml",
+]
+exclude = [
+    "/.agents",
+    "/.agents/**",
+    "/.codex",
+    "/.codex/**",
+    "/.omc",
+    "/.omc/**",
+    "/.omx",
+    "/.omx/**",
+    "/.omx-state-locks",
+    "/.omx-state-locks/**",
+    "/.omx-state-locks.identity.json",
+    "/.venv",
+    "/.venv/**",
+    "/dist",
+    "/dist/**",
+    "/docs/benchmarks/**/output",
+    "/docs/benchmarks/**/output/**",
+    "**/.agents/**",
+    "**/.codex/**",
+    "**/.omc/**",
+    "**/.omx/**",
+    "**/.omx-state-locks/**",
+    "**/.venv/**",
+    "**/.mypy_cache/**",
+    "**/.pytest_cache/**",
+    "**/.ruff_cache/**",
+    "**/.cache/**",
+    "**/__pycache__/**",
+    "**/*.pyc",
+    "**/*.pyo",
+]

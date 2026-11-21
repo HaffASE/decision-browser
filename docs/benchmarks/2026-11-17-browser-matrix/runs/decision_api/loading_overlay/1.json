@@ -1,0 +1,205 @@
+{
+  "arm": "decision_api",
+  "case": "loading_overlay",
+  "repetition": 1,
+  "phase": "finished",
+  "started_at": "2026-11-17T18:17:16.343269+00:00",
+  "record": "runs/decision_api/loading_overlay/1.json",
+  "group": "short",
+  "goal_sha256": "7aeeec881362d835a918714e79cb095d64e795c3520ddb34659d881ebb4eba06",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 12,
+    "timeout_s": 75.0,
+    "max_input_bytes": 131072
+  },
+  "confirmed": true,
+  "observed": true,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "verified",
+    "reason": "verified",
+    "functional": "verified",
+    "steps": 6,
+    "native_evidence": [
+      "text:ok",
+      "route:ok"
+    ],
+    "native_timings": {
+      "setup": 0.00015129090752452612,
+      "browser": 4.990804583299905,
+      "verification": 0.07921766676008701,
+      "total": 5.180611707968637
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:63666/loading_overlay/",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      true,
+      true
+    ],
+    "independent_verification_ms": 2,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "click",
+      "wait",
+      "wait",
+      "fill",
+      "click"
+    ],
+    "arm": "decision_api",
+    "model": "gpt-6-luna",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 1445,
+          "output_tokens": 0,
+          "total_tokens": 1445,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 6288,
+          "duration_ms": 1075,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1366,
+          "output_tokens": 0,
+          "total_tokens": 1366,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 5787,
+          "duration_ms": 406,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1942,
+          "output_tokens": 0,
+          "total_tokens": 1942,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 8132,
+          "duration_ms": 481,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1998,
+          "output_tokens": 0,
+          "total_tokens": 1998,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 8334,
+          "duration_ms": 531,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2068,
+          "output_tokens": 0,
+          "total_tokens": 2068,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 8595,
+          "duration_ms": 455,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 5,
+      "request_bytes": 37136,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true,
+        "cached_tokens": true,
+        "cache_write_tokens": true,
+        "reasoning_tokens": true
+      },
+      "reported_tokens": {
+        "input_tokens": 8819,
+        "output_tokens": 0,
+        "total_tokens": 8819,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 8819,
+      "output_tokens": 0,
+      "total_tokens": 8819,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0
+    },
+    "returncode": 0,
+    "wall_ms": 5474,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": true,
+    "expected": [
+      {
+        "name": "services",
+        "data": {
+          "query": "climate"
+        }
+      }
+    ],
+    "observed": [
+      {
+        "name": "services",
+        "data": {
+          "query": "climate"
+        }
+      }
+    ]
+  },
+  "finished_at": "2026-11-17T18:17:21.830422+00:00"
+}

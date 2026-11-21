@@ -1,0 +1,183 @@
+{
+  "arm": "opencode_jev",
+  "case": "article",
+  "repetition": 3,
+  "phase": "finished",
+  "started_at": "2026-11-17T20:36:13.026766+00:00",
+  "record": "runs/opencode_jev/article/3.json",
+  "group": "short",
+  "goal_sha256": "b46ae3d40160598dd24d905a4c7e02868192efe82629ab231307b980a057244c",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 12,
+    "timeout_s": 75.0,
+    "max_input_bytes": 131072
+  },
+  "confirmed": true,
+  "observed": true,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "verified",
+    "reason": "verified",
+    "functional": "verified",
+    "steps": 4,
+    "native_evidence": [
+      "text:ok",
+      "route:ok"
+    ],
+    "native_timings": {
+      "setup": 0.00020899996161460876,
+      "browser": 3.233589500072412,
+      "verification": 0.06901641597505659,
+      "total": 3.391802208032459
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:62136/article/article/godel-incompleteness",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      true,
+      true
+    ],
+    "independent_verification_ms": 2,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "fill",
+      "click",
+      "navigate"
+    ],
+    "arm": "opencode_jev",
+    "model": "jev-1.13",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 3097,
+          "output_tokens": 305,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 12685,
+          "duration_ms": 903,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3239,
+          "output_tokens": 305,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 13067,
+          "duration_ms": 365,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3890,
+          "output_tokens": 346,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 14834,
+          "duration_ms": 372,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 3,
+      "request_bytes": 40586,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 3,
+        "cached_tokens": 3,
+        "cache_write_tokens": 3,
+        "reasoning_tokens": 3
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": false,
+        "cached_tokens": false,
+        "cache_write_tokens": false,
+        "reasoning_tokens": false
+      },
+      "reported_tokens": {
+        "input_tokens": 10226,
+        "output_tokens": 956,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 10226,
+      "output_tokens": 956,
+      "total_tokens": null,
+      "cached_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "returncode": 0,
+    "wall_ms": 3653,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": true,
+    "expected": [
+      {
+        "name": "article_search",
+        "data": {
+          "query": "Godel incompleteness"
+        }
+      },
+      {
+        "name": "article",
+        "data": {
+          "slug": "godel-incompleteness"
+        }
+      }
+    ],
+    "observed": [
+      {
+        "name": "article_search",
+        "data": {
+          "query": "Godel incompleteness"
+        }
+      },
+      {
+        "name": "article",
+        "data": {
+          "slug": "godel-incompleteness"
+        }
+      }
+    ]
+  },
+  "finished_at": "2026-11-17T20:36:16.998187+00:00"
+}

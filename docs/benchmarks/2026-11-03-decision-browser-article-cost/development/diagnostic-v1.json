@@ -1,0 +1,1865 @@
+{
+  "kind": "development screening; separate from primary matrix",
+  "status": "COMPLETE",
+  "model": "gpt-6-luna",
+  "started_at": "2026-11-03T06:42:54.588318+00:00",
+  "sources": {
+    "decision-browser": {
+      "sha256": "e4d874672fdb83161858276349bf87201a62340d3ff7a57bb3978e4035a8b6ad",
+      "files": [
+        {
+          "path": "src/decision_browser/__init__.py",
+          "sha256": "3e126883df274770a888302b8b41c297d4cf55121c79e6ced37dbf940b8af013"
+        },
+        {
+          "path": "src/decision_browser/action_context.py",
+          "sha256": "a93ec02ef44a6ff0f2c084100ff7df7be551b685f9d79e31d047cfde9bccf8df"
+        },
+        {
+          "path": "src/decision_browser/admission.py",
+          "sha256": "8397f6d1b5e0d357d46e1b3046a23cc0bceddb890074aa208dd4d79067d3ebd1"
+        },
+        {
+          "path": "src/decision_browser/artifacts.py",
+          "sha256": "bc72be289eea5605746f82dfd6e5a640d71617b7abce1251a4f14e87096871b6"
+        },
+        {
+          "path": "src/decision_browser/browser.py",
+          "sha256": "c6122e2918171a73861734feeae536b6e477f5ca7aaf580689016985b9500f53"
+        },
+        {
+          "path": "src/decision_browser/budget.py",
+          "sha256": "3db3e64eea8ddf7726bcb1f5dae94fd58af925a6fd51d78e72ccaab442452bc7"
+        },
+        {
+          "path": "src/decision_browser/cli.py",
+          "sha256": "364a17ddd4aba686bf47fce920a2757565ba977511d5b9ffde347535b16041ae"
+        },
+        {
+          "path": "src/decision_browser/collector.js",
+          "sha256": "8354adaafe88688223986c573c7387e81f24e65f4d83a5abea6cf8f4ef0e267b"
+        },
+        {
+          "path": "src/decision_browser/committed_navigation_capture.py",
+          "sha256": "d05d9973477e763d7438da2f715ed95743ed16a589133da0146d7a722af240b7"
+        },
+        {
+          "path": "src/decision_browser/contracts.py",
+          "sha256": "81d48898fa2f8ac23f00dc61d35056401ea47cfc89cbfe8dc1585bec3242329b"
+        },
+        {
+          "path": "src/decision_browser/counter_acceptance.py",
+          "sha256": "0abef70b4848774a349b499e3e1975d94c52f04f505e56f6965f7c0117e0ca7a"
+        },
+        {
+          "path": "src/decision_browser/decision_codec.py",
+          "sha256": "f24359a4ad102b07a78accc333ac1b1f942952f22bf63ebd4f7d92c9edfcf6e8"
+        },
+        {
+          "path": "src/decision_browser/desk.py",
+          "sha256": "c06ec9a5bd6a5b857e965c92695c451aa5b27f7607414bc2a07933a16675da2c"
+        },
+        {
+          "path": "src/decision_browser/dom.py",
+          "sha256": "6ca226e5801afd827d52dbc6a59bd3190b874377e5c2c0faf98764b30b716b7f"
+        },
+        {
+          "path": "src/decision_browser/experiment_budget.py",
+          "sha256": "5f954f0452f9b4c3803b7535b192cd65f261f46ce19430ae8a8196ed8c4fba9f"
+        },
+        {
+          "path": "src/decision_browser/experiment_operator.py",
+          "sha256": "bb6947480bef963fd11486bfa850cbd75767906c9b5228bb2f23220ee5f8a2c0"
+        },
+        {
+          "path": "src/decision_browser/flights_continuation.py",
+          "sha256": "c28998c2fbadd272c41b194b5fb3247099ffd9174e3d685f8bb7f659a76e05bf"
+        },
+        {
+          "path": "src/decision_browser/flights_evidence.py",
+          "sha256": "9687287a3465e7aeacbaf238a50996cc15d46f9cbbe952bee18fe8c4261b905e"
+        },
+        {
+          "path": "src/decision_browser/flights_pilot.py",
+          "sha256": "ca773912545e813a8dce3ea62e13540c81f90731554fa65076aefe27ee21a2f8"
+        },
+        {
+          "path": "src/decision_browser/flights_provider.py",
+          "sha256": "e6d383e922f797e6d492930de7d29258a88426bdd7631a0c6b197abd328cea23"
+        },
+        {
+          "path": "src/decision_browser/keychain_entry.py",
+          "sha256": "d7b470a9f140e067b47e47e9fe927e79d2f549455834d4460303a1fdd221f35d"
+        },
+        {
+          "path": "src/decision_browser/model_context.py",
+          "sha256": "ceeeb5ebb66d632beb98d4d8a4a653012986ccfe3b525360f535830443ca41a7"
+        },
+        {
+          "path": "src/decision_browser/owned_fixture.py",
+          "sha256": "875a83ee8961ae366a91eeb4fadf19f9f3b786c0a4a5193ab1ab4519f559d3f5"
+        },
+        {
+          "path": "src/decision_browser/owned_fixture_frame.py",
+          "sha256": "578bb5579a27526100a71215b8dfe716fec167db6b86e1f72fe3fe481efa5220"
+        },
+        {
+          "path": "src/decision_browser/owned_fixture_server.py",
+          "sha256": "1f1be44c9b06fcec46b33a136826e2712fd140ab330a21813793828f0fd97ce1"
+        },
+        {
+          "path": "src/decision_browser/policy.py",
+          "sha256": "9db6e059a37009d69685e14006c93daf8d5b2af68b3f8344ce04c4f519b7938d"
+        },
+        {
+          "path": "src/decision_browser/privacy.py",
+          "sha256": "a569406aea6bb0b18ee51ac9ae7440dcbc8aaead6523c8182fa62c3776cbbefc"
+        },
+        {
+          "path": "src/decision_browser/provider.py",
+          "sha256": "e3261078eadc674423a4d9b23ecd43aec97b8a40ddb98d9c884c73ac81dbe865"
+        },
+        {
+          "path": "src/decision_browser/provider_config.py",
+          "sha256": "dd64d50b2b7b89919745591cb7fd42204df58d3c8a9b5a892f7abb7867772555"
+        },
+        {
+          "path": "src/decision_browser/provider_http.py",
+          "sha256": "db248f1e0f387b42616577faf4c6e5d63f4a3edcbc9dd30c0e5d1d940e4f3231"
+        },
+        {
+          "path": "src/decision_browser/runner.py",
+          "sha256": "1b416a0cc787979dc04b169aaa8df44fba2ece51276a6a84067ec81b9b1d1cd4"
+        },
+        {
+          "path": "src/decision_browser/server.py",
+          "sha256": "67269f87f8800c7584736c2fd82750f1d9f1854862a6f75c1655d968d8bb56f9"
+        },
+        {
+          "path": "src/decision_browser/snapshot.js",
+          "sha256": "44694fd5fcaf977086315930709f8c801954e81f6d8b4ef826579208ad7c2b0a"
+        },
+        {
+          "path": "src/decision_browser/systemone_provider.py",
+          "sha256": "713cc11c9b46e44dd8cf35ace2e41e5359028741e265063134e02344f87d5f12"
+        },
+        {
+          "path": "src/decision_browser/text_provider.py",
+          "sha256": "34e209f4ce73aba09c40636e49a72e39deede6fbb57b1397713b5aa5f4728451"
+        },
+        {
+          "path": "src/decision_browser/verification.py",
+          "sha256": "1681c1e58ff47e086ca12254519e61fabdbddbf19f320b9afd2e3364506b4fa4"
+        },
+        {
+          "path": "src/decision_browser/viewport_text.js",
+          "sha256": "a2960775329ac322d7e754d4c6b6775b20391e46729b4241066b72877f7a7849"
+        }
+      ]
+    },
+    "corpus": {
+      "sha256": "4ae66ab66fcfd15e3d2fbe017a6ec71f5c5929afa553393ce9e9af941bfd8382",
+      "files": [
+        {
+          "path": "scripts/benchmarks/baseline_site.py",
+          "sha256": "63c2a1c009325f20b16499ebda24fd27d35d7d66116c68cad1a6c8fb2c69d1f6"
+        },
+        {
+          "path": "tests/fixtures/scenarios/workflows.html",
+          "sha256": "c2a24e876e6d99b0c417792c47027f6f00a7e6eca73b71ef8706e1727f0e2503"
+        },
+        {
+          "path": "tests/integration/browser_scenarios.py",
+          "sha256": "13927d4ca0e433fbe04046f72889d17e90cce225a711b1e0b0cfa6324f9724fc"
+        }
+      ]
+    },
+    "harness": {
+      "sha256": "e1662bc544dbfd4ee4380609ab3298118e195da945da72b0a653c74476225d7c",
+      "files": [
+        {
+          "path": "scripts/benchmarks/__init__.py",
+          "sha256": "a95ae957dc952541123f7e9a928bc5287f030079b8cade8b9f40497bedd19af3"
+        },
+        {
+          "path": "scripts/benchmarks/baseline_site.py",
+          "sha256": "63c2a1c009325f20b16499ebda24fd27d35d7d66116c68cad1a6c8fb2c69d1f6"
+        },
+        {
+          "path": "scripts/benchmarks/common.py",
+          "sha256": "85b0a6b2c4167db564aff4e989dd03055b4257a22928af68ac88911f2d990b96"
+        },
+        {
+          "path": "scripts/benchmarks/dbc_runner.py",
+          "sha256": "3389fd75451713d14e8f23e1e8b21d029fad9b319e9d0768ca3146e30640fdb9"
+        },
+        {
+          "path": "scripts/benchmarks/jev_runner.py",
+          "sha256": "e54f595a21dc19c2c99e302e574cfb80174e89db73baf04b918e819744964d37"
+        },
+        {
+          "path": "scripts/benchmarks/openai_transport.py",
+          "sha256": "da22350a50b4315e8dc2f11c3236e1d8dc654a4943be24f771bc3856a5f8fa06"
+        },
+        {
+          "path": "scripts/benchmarks/ultrafast_runner.py",
+          "sha256": "2eeda0af9db0ec4986eba2c296edb9c1574a58a1ae1e3425448c738838421ce6"
+        },
+        {
+          "path": "scripts/compare_browser_libraries.py",
+          "sha256": "be5a97d7c06fd71109966c511484c802d7117dde11c61277ecd75f6b9d023dfa"
+        }
+      ]
+    },
+    "jev-ultrafast": {
+      "sha256": "0a078644bfc2dceddc0eb280fea828d50ff48c4ba44f20afc3ae151fc486e349",
+      "files": [
+        {
+          "path": "jev_ultrafast/__init__.py",
+          "sha256": "60f025b8d24465e2c0f7a3547d43b8020fd8843de7b6cb3f892ef63f5548cf63"
+        },
+        {
+          "path": "jev_ultrafast/agent.py",
+          "sha256": "aaf8b271cb0ee6643fe7beb525328ab80de8568c7ac044d02b9c6721161e7c8b"
+        },
+        {
+          "path": "jev_ultrafast/browser.py",
+          "sha256": "ee08dafa93d731bd292aa0263a578a29c8001cf22eef3c59fe44a159649155ee"
+        },
+        {
+          "path": "jev_ultrafast/demo.py",
+          "sha256": "a0cfb10909b370efb284cbbe16bdb4b7e7e06ba6385827404169027645a1d8a4"
+        },
+        {
+          "path": "jev_ultrafast/model.py",
+          "sha256": "a85ada8458d23642c5c8a4095acf0565e6268f81dcda26f6308942b653e9c9f3"
+        },
+        {
+          "path": "jev_ultrafast/questions.py",
+          "sha256": "66a7054b85040b949e1757311257ea0c5a843c635f9a40c99f6d15ad660fb422"
+        },
+        {
+          "path": "jev_ultrafast/snapshot.js",
+          "sha256": "e50473501c8fb8e70f3b21866d987393e3f2315c639d638bd477d170e81ed78d"
+        },
+        {
+          "path": "jev_ultrafast/static/app.js",
+          "sha256": "711e1cb2df44fff17e79bc9344d3e2aab1111107c6d169ec06b6a0d416fac9fb"
+        },
+        {
+          "path": "jev_ultrafast/static/fixture.html",
+          "sha256": "e48e7d7b6225b215060692e0a28c3d0b59e465e4b94c1bc510d5f37ff0b8bfbe"
+        },
+        {
+          "path": "jev_ultrafast/static/index.html",
+          "sha256": "a03afe6f51df1c844225f976488dd4b5ae6c9985d1f4f8aa26392013cb3b6cf6"
+        },
+        {
+          "path": "jev_ultrafast/static/style.css",
+          "sha256": "cde13f05006719cf01d881a54ccedd6c25326122badaee0c68f78656a36f9e8d"
+        },
+        {
+          "path": "pyproject.toml",
+          "sha256": "3afd9e12c2c1c1efb32231669cd2d415b16c098cc057e91fc05844f4ab6c19e2"
+        },
+        {
+          "path": "uv.lock",
+          "sha256": "d3a617f725f84c48ef3661f2d7a561b7ddc311772ecd16accbd04c591f964b29"
+        }
+      ],
+      "git_commit": "8251e272398011cdef648965204d1c20cd838333",
+      "git_dirty": false
+    },
+    "jev-ra": {
+      "sha256": "f5bd5fa457958cb1bd958a1c9929f541cc215d74f37d43a677e1df1f28a60b4c",
+      "files": [
+        {
+          "path": "jev_ra/__init__.py",
+          "sha256": "4e7815dafb810f3b7b9c2fb58198ec84c92a07a4cdf0f901576e0dbb63b08856"
+        },
+        {
+          "path": "jev_ra/__main__.py",
+          "sha256": "b9e0c87bfd99c6d36646b7208af38a5d7d29da15c68118fed57777ca5bb9289d"
+        },
+        {
+          "path": "jev_ra/agent.py",
+          "sha256": "3b0696dd8a36f42574b8a7addb6792713f6f63029ac3c3da634254740c8c3a0c"
+        },
+        {
+          "path": "jev_ra/bench/__init__.py",
+          "sha256": "f874bb2cfc904b589842135e8e6184ad0e50e31baf754103d41fb7dd8fe6c93c"
+        },
+        {
+          "path": "jev_ra/bench/pages/catalog.html",
+          "sha256": "3314421cbd27062eae415eb104396c6ed702a5d1410d8711d32b4308ee29ed66"
+        },
+        {
+          "path": "jev_ra/bench/pages/checkout.html",
+          "sha256": "fd986eedc8f9bc6dbe22ade86862f5a276aa33ac35d35a2c53a634e8b0a9627c"
+        },
+        {
+          "path": "jev_ra/bench/scripted.py",
+          "sha256": "89b638a5b11ad2dc8959366f6bce2966d5437c734caab0d68ad88247604f0bd7"
+        },
+        {
+          "path": "jev_ra/bench/verify.py",
+          "sha256": "42592ea9179425f7d2136eebdefd617e55b07abf07f7422676f73115cd86403f"
+        },
+        {
+          "path": "jev_ra/browser/__init__.py",
+          "sha256": "763705f17803ebb358e69c13dbc71a8c817bb15aa373151ee41fc729b4c4c3a4"
+        },
+        {
+          "path": "jev_ra/browser/actions.py",
+          "sha256": "82c8922e68028c7a97e53410bf4f407ab993a93bf6e176d6e81f1579fec1a3d4"
+        },
+        {
+          "path": "jev_ra/browser/chrome.py",
+          "sha256": "18eeec4785a8625899bd2997c974a9e186335b4a08b742ae349d7a61ebeb3fa2"
+        },
+        {
+          "path": "jev_ra/browser/present.py",
+          "sha256": "dadafb6c22b6884f449c509bbc28901e03c4082a05b3b50f24debc37017e012b"
+        },
+        {
+          "path": "jev_ra/browser/session.py",
+          "sha256": "26ee592c18288c7603a78b3c7c7987e7b51a3008eae3177b6847ed76bb8dc9f8"
+        },
+        {
+          "path": "jev_ra/browser/snapshot.js",
+          "sha256": "6a80df43ef269fe01f76c73854bb724bf8e5598310aca403efb2127501fcb041"
+        },
+        {
+          "path": "jev_ra/cli.py",
+          "sha256": "3371c9f734eec74a631efc4a34191e4df3bae51fbba6d2ac955291b1bf8a2bde"
+        },
+        {
+          "path": "jev_ra/config.py",
+          "sha256": "9d129e0a3aa86a7a7fbda9639526b1af2126ebbb1d2798a5bd7be02b0aa033d5"
+        },
+        {
+          "path": "jev_ra/corpus.py",
+          "sha256": "733a170d0b7e74fc2d49abe64d05759918d75df449b10e0f060175cd68cd74c2"
+        },
+        {
+          "path": "jev_ra/decide/__init__.py",
+          "sha256": "4d0a1cf898adaeb9c2506d6a1fe80568f221a1789522d84f8e2b4123bd73bd93"
+        },
+        {
+          "path": "jev_ra/decide/client.py",
+          "sha256": "0daa596cd54ab7358e6beef6d169c9a1e009c7988e212a5911fb76a090f2138e"
+        },
+        {
+          "path": "jev_ra/decide/openai_decisions.py",
+          "sha256": "6b942b507223c155e5b359a668a75a65e1d2aa0997b5171753992156f7edfaae"
+        },
+        {
+          "path": "jev_ra/decide/policy.py",
+          "sha256": "e9f19e3495b2b791ae13f3cd1dc565e0af25f5e2bb62231ca517d2857e0adb1a"
+        },
+        {
+          "path": "jev_ra/decide/questions.py",
+          "sha256": "f30c46732f3e6d89ae4b8620351483821edd2ed55fdd9b5d203e68ee715d2196"
+        },
+        {
+          "path": "jev_ra/errors.py",
+          "sha256": "15138466600e17f731e7f81416ea254814b46bde9b829ef8a8bbf4d32ec8027f"
+        },
+        {
+          "path": "jev_ra/extract.py",
+          "sha256": "fc35d35f7381f9dee27c32761dc149f722d4df01d58b80d704aeb8b9a9e9d2a9"
+        },
+        {
+          "path": "jev_ra/logs.py",
+          "sha256": "69c6e0c42d57ad1da6aab1d341133cfdbbc209fbda4391ae89285c6e053a21a9"
+        },
+        {
+          "path": "jev_ra/mcp_server.py",
+          "sha256": "4e14832884428811832a13bc46a18baef1986a871c7a0e7abea330dfa404f7ef"
+        },
+        {
+          "path": "jev_ra/pacing.py",
+          "sha256": "332f08b99c11f8777702e81e2f74c6251090a72b65bb6a721c8f1fe2290a043f"
+        },
+        {
+          "path": "jev_ra/profile.py",
+          "sha256": "55e01857f7a6a3c93e16e3b9b27a52d823f388c24551fdb26d6b1aa533300ca1"
+        },
+        {
+          "path": "jev_ra/py.typed",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "jev_ra/runs.py",
+          "sha256": "5cc830d6c462068bd72e72b3fa7a6d850cc650a24c1af1d1a41bb3fe576ce58e"
+        },
+        {
+          "path": "jev_ra/search.py",
+          "sha256": "8a7bb68f38f5e5f8197b00ee424038c0c1bba3849fa32bf3149d07a4b3f42a8a"
+        },
+        {
+          "path": "jev_ra/serve.py",
+          "sha256": "3c338ec1a86910ea018b946685fe3ba5abbbe8b1aff0c72f69241ee71719a7f0"
+        },
+        {
+          "path": "jev_ra/text.py",
+          "sha256": "fdd20dffd5a5582872247df959085e50feeeab0bcfa3f827777744afa8c6eb90"
+        },
+        {
+          "path": "jev_ra/trace.py",
+          "sha256": "9990fb310eec54219610b13e02cc67563775f175b305990e24b56c6767149476"
+        },
+        {
+          "path": "pyproject.toml",
+          "sha256": "860ec498ec9e7826a98455ae815a5c2074e4979d45df0ce4bebe5359a4ecc4ea"
+        }
+      ],
+      "git_commit": null,
+      "provenance": "local adapted source; no Git metadata"
+    }
+  },
+  "planned_cases": [
+    "article",
+    "article",
+    "loading_overlay",
+    "article",
+    "loading_overlay",
+    "article"
+  ],
+  "spend_stop_usd": 0.25,
+  "previous_estimated_usd": 0.0138002,
+  "estimated_usd": 0.0052202,
+  "usage_complete": true,
+  "runs": [
+    {
+      "attempt": 1,
+      "case": "article",
+      "confirmed": true,
+      "observed": true,
+      "native_success": true,
+      "functional_check_passed": true,
+      "oracle": {
+        "success": true,
+        "expected": [
+          {
+            "name": "article_search",
+            "data": {
+              "query": "Godel incompleteness"
+            }
+          },
+          {
+            "name": "article",
+            "data": {
+              "slug": "godel-incompleteness"
+            }
+          }
+        ],
+        "observed": [
+          {
+            "name": "article_search",
+            "data": {
+              "query": "Godel incompleteness"
+            }
+          },
+          {
+            "name": "article",
+            "data": {
+              "slug": "godel-incompleteness"
+            }
+          }
+        ]
+      },
+      "result": {
+        "status": "verified",
+        "reason": "verified",
+        "functional": "verified",
+        "steps": 5,
+        "actions": [
+          "fill",
+          "click",
+          "click",
+          "click"
+        ],
+        "task_ms": 3995,
+        "admission_class": "ordinary_task_scoped",
+        "development_only": false,
+        "evidence": [
+          "text:ok",
+          "route:ok"
+        ],
+        "native_timings": {
+          "setup": 0.043062000011559576,
+          "browser": 3.8670893339731265,
+          "verification": 0.03960958300740458,
+          "total": 3.995089750009356
+        },
+        "final_url": "http://127.0.0.1:56919/article/article/godel-incompleteness",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "checks": [
+          true,
+          true
+        ],
+        "independent_verification_ms": 3,
+        "cleanup": {
+          "driver_state": "closed",
+          "errors": []
+        },
+        "usage": {
+          "blocked_by_budget": 0,
+          "blocked_by_bytes": 0,
+          "blocked_by_cost": 0,
+          "input_bytes": 24701,
+          "attempts": 4,
+          "decisions_attempts": 4,
+          "responses_attempts": 0,
+          "completed_2xx": 4,
+          "non_2xx": 0,
+          "transport_errors": 0,
+          "in_flight": 0,
+          "usage_missing": 0,
+          "usage_complete": true,
+          "estimated_usd": 0.0008392250000000001,
+          "calls": [
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 5216,
+              "status": 200,
+              "duration_ms": 532,
+              "usage_reported": true,
+              "estimated_usd": 0.00017620000000000003,
+              "input_tokens": 1762,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 5460,
+              "status": 200,
+              "duration_ms": 458,
+              "usage_reported": true,
+              "estimated_usd": 0.0001832,
+              "input_tokens": 1832,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 5606,
+              "status": 200,
+              "duration_ms": 357,
+              "usage_reported": true,
+              "estimated_usd": 0.0001874,
+              "input_tokens": 1874,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 8419,
+              "status": 200,
+              "duration_ms": 395,
+              "usage_reported": true,
+              "estimated_usd": 0.000292425,
+              "input_tokens": 2588,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 1345
+            }
+          ],
+          "input_tokens": 8056,
+          "output_tokens": 0,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1345,
+          "token_fields_missing": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "decision_trace": [
+          {
+            "operation": "fill",
+            "target": "1",
+            "target_label": "Search query",
+            "offered_labels": [
+              "Search query"
+            ],
+            "completion": {
+              "pending": 2,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          },
+          {
+            "operation": "click",
+            "target": "1",
+            "target_label": "Search query",
+            "offered_labels": [
+              "Search query",
+              "Search articles"
+            ],
+            "completion": {
+              "pending": 2,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          },
+          {
+            "operation": "click",
+            "target": "1",
+            "target_label": "Search articles",
+            "offered_labels": [
+              "Search articles"
+            ],
+            "completion": {
+              "pending": 2,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          },
+          {
+            "operation": "click",
+            "target": "4",
+            "target_label": "Gödel's incompleteness theorems",
+            "offered_labels": [
+              "Search query",
+              "Search articles",
+              "Kurt Gödel biography",
+              "Gödel's incompleteness theorems",
+              "Gödel's completeness theorem"
+            ],
+            "completion": {
+              "pending": 2,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          }
+        ],
+        "returncode": 0,
+        "stderr_bytes": 0,
+        "wall_process_ms": 4389
+      }
+    },
+    {
+      "attempt": 2,
+      "case": "article",
+      "confirmed": true,
+      "observed": true,
+      "native_success": true,
+      "functional_check_passed": true,
+      "oracle": {
+        "success": true,
+        "expected": [
+          {
+            "name": "article_search",
+            "data": {
+              "query": "Godel incompleteness"
+            }
+          },
+          {
+            "name": "article",
+            "data": {
+              "slug": "godel-incompleteness"
+            }
+          }
+        ],
+        "observed": [
+          {
+            "name": "article_search",
+            "data": {
+              "query": "Godel incompleteness"
+            }
+          },
+          {
+            "name": "article",
+            "data": {
+              "slug": "godel-incompleteness"
+            }
+          }
+        ]
+      },
+      "result": {
+        "status": "verified",
+        "reason": "verified",
+        "functional": "verified",
+        "steps": 5,
+        "actions": [
+          "fill",
+          "click",
+          "click",
+          "click"
+        ],
+        "task_ms": 3559,
+        "admission_class": "ordinary_task_scoped",
+        "development_only": false,
+        "evidence": [
+          "text:ok",
+          "route:ok"
+        ],
+        "native_timings": {
+          "setup": 0.028116875007981434,
+          "browser": 3.4625980830169283,
+          "verification": 0.0296658749866765,
+          "total": 3.5591438749979716
+        },
+        "final_url": "http://127.0.0.1:56923/article/article/godel-incompleteness",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "checks": [
+          true,
+          true
+        ],
+        "independent_verification_ms": 2,
+        "cleanup": {
+          "driver_state": "closed",
+          "errors": []
+        },
+        "usage": {
+          "blocked_by_budget": 0,
+          "blocked_by_bytes": 0,
+          "blocked_by_cost": 0,
+          "input_bytes": 24701,
+          "attempts": 4,
+          "decisions_attempts": 4,
+          "responses_attempts": 0,
+          "completed_2xx": 4,
+          "non_2xx": 0,
+          "transport_errors": 0,
+          "in_flight": 0,
+          "usage_missing": 0,
+          "usage_complete": true,
+          "estimated_usd": 0.0008402,
+          "calls": [
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 5216,
+              "status": 200,
+              "duration_ms": 570,
+              "usage_reported": true,
+              "estimated_usd": 0.00017620000000000003,
+              "input_tokens": 1762,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 5460,
+              "status": 200,
+              "duration_ms": 340,
+              "usage_reported": true,
+              "estimated_usd": 0.0001833,
+              "input_tokens": 1833,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 5606,
+              "status": 200,
+              "duration_ms": 428,
+              "usage_reported": true,
+              "estimated_usd": 0.00018790000000000001,
+              "input_tokens": 1879,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 8419,
+              "status": 200,
+              "duration_ms": 447,
+              "usage_reported": true,
+              "estimated_usd": 0.0002928,
+              "input_tokens": 2591,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 1348
+            }
+          ],
+          "input_tokens": 8065,
+          "output_tokens": 0,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1348,
+          "token_fields_missing": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "decision_trace": [
+          {
+            "operation": "fill",
+            "target": "1",
+            "target_label": "Search query",
+            "offered_labels": [
+              "Search query"
+            ],
+            "completion": {
+              "pending": 2,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          },
+          {
+            "operation": "click",
+            "target": "1",
+            "target_label": "Search query",
+            "offered_labels": [
+              "Search query",
+              "Search articles"
+            ],
+            "completion": {
+              "pending": 2,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          },
+          {
+            "operation": "click",
+            "target": "1",
+            "target_label": "Search articles",
+            "offered_labels": [
+              "Search articles"
+            ],
+            "completion": {
+              "pending": 2,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          },
+          {
+            "operation": "click",
+            "target": "4",
+            "target_label": "Gödel's incompleteness theorems",
+            "offered_labels": [
+              "Search query",
+              "Search articles",
+              "Kurt Gödel biography",
+              "Gödel's incompleteness theorems",
+              "Gödel's completeness theorem"
+            ],
+            "completion": {
+              "pending": 2,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          }
+        ],
+        "returncode": 0,
+        "stderr_bytes": 0,
+        "wall_process_ms": 3964
+      }
+    },
+    {
+      "attempt": 3,
+      "case": "loading_overlay",
+      "confirmed": false,
+      "observed": false,
+      "native_success": false,
+      "functional_check_passed": false,
+      "oracle": {
+        "success": false,
+        "expected": [
+          {
+            "name": "services",
+            "data": {
+              "query": "climate"
+            }
+          }
+        ],
+        "observed": []
+      },
+      "result": {
+        "status": "verification_failed",
+        "reason": "verification_failed",
+        "functional": "failed",
+        "steps": 6,
+        "actions": [
+          "click",
+          "wait",
+          "fill",
+          "click",
+          "wait",
+          "DONE"
+        ],
+        "task_ms": 4689,
+        "admission_class": "observe_driver",
+        "development_only": false,
+        "evidence": [
+          "text:mismatch",
+          "route:ok"
+        ],
+        "native_timings": {
+          "setup": 0.0353313329978846,
+          "browser": 4.572112752008252,
+          "verification": 0.02854316498269327,
+          "total": 4.688974666991271
+        },
+        "final_url": "http://127.0.0.1:56930/loading_overlay/",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "checks": [
+          false,
+          true
+        ],
+        "independent_verification_ms": 5,
+        "cleanup": {
+          "driver_state": "closed",
+          "errors": []
+        },
+        "usage": {
+          "blocked_by_budget": 0,
+          "blocked_by_bytes": 0,
+          "blocked_by_cost": 0,
+          "input_bytes": 31752,
+          "attempts": 6,
+          "decisions_attempts": 6,
+          "responses_attempts": 0,
+          "completed_2xx": 6,
+          "non_2xx": 0,
+          "transport_errors": 0,
+          "in_flight": 0,
+          "usage_missing": 0,
+          "usage_complete": true,
+          "estimated_usd": 0.001051,
+          "calls": [
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 4205,
+              "status": 200,
+              "duration_ms": 590,
+              "usage_reported": true,
+              "estimated_usd": 0.0001384,
+              "input_tokens": 1384,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 3813,
+              "status": 200,
+              "duration_ms": 310,
+              "usage_reported": true,
+              "estimated_usd": 0.0001241,
+              "input_tokens": 1241,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 5619,
+              "status": 200,
+              "duration_ms": 531,
+              "usage_reported": true,
+              "estimated_usd": 0.0001877,
+              "input_tokens": 1877,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 5847,
+              "status": 200,
+              "duration_ms": 329,
+              "usage_reported": true,
+              "estimated_usd": 0.0001944,
+              "input_tokens": 1944,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 6002,
+              "status": 200,
+              "duration_ms": 470,
+              "usage_reported": true,
+              "estimated_usd": 0.00019910000000000001,
+              "input_tokens": 1991,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 6266,
+              "status": 200,
+              "duration_ms": 644,
+              "usage_reported": true,
+              "estimated_usd": 0.00020730000000000002,
+              "input_tokens": 2073,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0
+            }
+          ],
+          "input_tokens": 10510,
+          "output_tokens": 0,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "token_fields_missing": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "decision_trace": [
+          {
+            "operation": "click",
+            "target": "1",
+            "target_label": "Load services",
+            "offered_labels": [
+              "Load services"
+            ],
+            "completion": {
+              "pending": 1,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          },
+          {
+            "operation": "wait",
+            "target": "short",
+            "target_label": "short",
+            "offered_labels": [
+              "short"
+            ],
+            "completion": {
+              "pending": 1,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          },
+          {
+            "operation": "fill",
+            "target": "1",
+            "target_label": "Service query",
+            "offered_labels": [
+              "Service query"
+            ],
+            "completion": {
+              "pending": 1,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          },
+          {
+            "operation": "click",
+            "target": "1",
+            "target_label": "Service query",
+            "offered_labels": [
+              "Service query",
+              "Search services"
+            ],
+            "completion": {
+              "pending": 1,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          },
+          {
+            "operation": "wait",
+            "target": "short",
+            "target_label": "short",
+            "offered_labels": [
+              "short"
+            ],
+            "completion": {
+              "pending": 1,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          },
+          {
+            "operation": "DONE",
+            "target": null,
+            "target_label": null,
+            "offered_labels": [],
+            "completion": {
+              "pending": 1,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          }
+        ],
+        "returncode": 0,
+        "stderr_bytes": 0,
+        "wall_process_ms": 5105
+      }
+    },
+    {
+      "attempt": 4,
+      "case": "article",
+      "confirmed": true,
+      "observed": true,
+      "native_success": true,
+      "functional_check_passed": true,
+      "oracle": {
+        "success": true,
+        "expected": [
+          {
+            "name": "article_search",
+            "data": {
+              "query": "Godel incompleteness"
+            }
+          },
+          {
+            "name": "article",
+            "data": {
+              "slug": "godel-incompleteness"
+            }
+          }
+        ],
+        "observed": [
+          {
+            "name": "article_search",
+            "data": {
+              "query": "Godel incompleteness"
+            }
+          },
+          {
+            "name": "article",
+            "data": {
+              "slug": "godel-incompleteness"
+            }
+          }
+        ]
+      },
+      "result": {
+        "status": "verified",
+        "reason": "verified",
+        "functional": "verified",
+        "steps": 5,
+        "actions": [
+          "fill",
+          "click",
+          "click",
+          "click"
+        ],
+        "task_ms": 3314,
+        "admission_class": "ordinary_task_scoped",
+        "development_only": false,
+        "evidence": [
+          "text:ok",
+          "route:ok"
+        ],
+        "native_timings": {
+          "setup": 0.03819308400852606,
+          "browser": 3.2028027499618474,
+          "verification": 0.03374187502777204,
+          "total": 3.3138274170050863
+        },
+        "final_url": "http://127.0.0.1:56934/article/article/godel-incompleteness",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "checks": [
+          true,
+          true
+        ],
+        "independent_verification_ms": 3,
+        "cleanup": {
+          "driver_state": "closed",
+          "errors": []
+        },
+        "usage": {
+          "blocked_by_budget": 0,
+          "blocked_by_bytes": 0,
+          "blocked_by_cost": 0,
+          "input_bytes": 24701,
+          "attempts": 4,
+          "decisions_attempts": 4,
+          "responses_attempts": 0,
+          "completed_2xx": 4,
+          "non_2xx": 0,
+          "transport_errors": 0,
+          "in_flight": 0,
+          "usage_missing": 0,
+          "usage_complete": true,
+          "estimated_usd": 0.00084055,
+          "calls": [
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 5216,
+              "status": 200,
+              "duration_ms": 543,
+              "usage_reported": true,
+              "estimated_usd": 0.00017620000000000003,
+              "input_tokens": 1762,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 5460,
+              "status": 200,
+              "duration_ms": 343,
+              "usage_reported": true,
+              "estimated_usd": 0.0001834,
+              "input_tokens": 1834,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 5606,
+              "status": 200,
+              "duration_ms": 318,
+              "usage_reported": true,
+              "estimated_usd": 0.00018790000000000001,
+              "input_tokens": 1879,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 8419,
+              "status": 200,
+              "duration_ms": 289,
+              "usage_reported": true,
+              "estimated_usd": 0.00029305,
+              "input_tokens": 2593,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 1350
+            }
+          ],
+          "input_tokens": 8068,
+          "output_tokens": 0,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1350,
+          "token_fields_missing": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "decision_trace": [
+          {
+            "operation": "fill",
+            "target": "1",
+            "target_label": "Search query",
+            "offered_labels": [
+              "Search query"
+            ],
+            "completion": {
+              "pending": 2,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          },
+          {
+            "operation": "click",
+            "target": "1",
+            "target_label": "Search query",
+            "offered_labels": [
+              "Search query",
+              "Search articles"
+            ],
+            "completion": {
+              "pending": 2,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          },
+          {
+            "operation": "click",
+            "target": "1",
+            "target_label": "Search articles",
+            "offered_labels": [
+              "Search articles"
+            ],
+            "completion": {
+              "pending": 2,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          },
+          {
+            "operation": "click",
+            "target": "4",
+            "target_label": "Gödel's incompleteness theorems",
+            "offered_labels": [
+              "Search query",
+              "Search articles",
+              "Kurt Gödel biography",
+              "Gödel's incompleteness theorems",
+              "Gödel's completeness theorem"
+            ],
+            "completion": {
+              "pending": 2,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          }
+        ],
+        "returncode": 0,
+        "stderr_bytes": 0,
+        "wall_process_ms": 3760
+      }
+    },
+    {
+      "attempt": 5,
+      "case": "loading_overlay",
+      "confirmed": true,
+      "observed": true,
+      "native_success": true,
+      "functional_check_passed": true,
+      "oracle": {
+        "success": true,
+        "expected": [
+          {
+            "name": "services",
+            "data": {
+              "query": "climate"
+            }
+          }
+        ],
+        "observed": [
+          {
+            "name": "services",
+            "data": {
+              "query": "climate"
+            }
+          }
+        ]
+      },
+      "result": {
+        "status": "verified",
+        "reason": "verified",
+        "functional": "verified",
+        "steps": 8,
+        "actions": [
+          "click",
+          "wait",
+          "wait",
+          "fill",
+          "wait",
+          "click",
+          "click"
+        ],
+        "task_ms": 4992,
+        "admission_class": "ordinary_task_scoped",
+        "development_only": false,
+        "evidence": [
+          "text:ok",
+          "route:ok"
+        ],
+        "native_timings": {
+          "setup": 0.02052525000181049,
+          "browser": 4.906200209981762,
+          "verification": 0.02514570704079233,
+          "total": 4.991961208026623
+        },
+        "final_url": "http://127.0.0.1:56938/loading_overlay/",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "checks": [
+          true,
+          true
+        ],
+        "independent_verification_ms": 3,
+        "cleanup": {
+          "driver_state": "closed",
+          "errors": []
+        },
+        "usage": {
+          "blocked_by_budget": 0,
+          "blocked_by_bytes": 0,
+          "blocked_by_cost": 0,
+          "input_bytes": 38164,
+          "attempts": 7,
+          "decisions_attempts": 7,
+          "responses_attempts": 0,
+          "completed_2xx": 7,
+          "non_2xx": 0,
+          "transport_errors": 0,
+          "in_flight": 0,
+          "usage_missing": 0,
+          "usage_complete": true,
+          "estimated_usd": 0.001289825,
+          "calls": [
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 4205,
+              "status": 200,
+              "duration_ms": 651,
+              "usage_reported": true,
+              "estimated_usd": 0.0001384,
+              "input_tokens": 1384,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 3813,
+              "status": 200,
+              "duration_ms": 339,
+              "usage_reported": true,
+              "estimated_usd": 0.0001243,
+              "input_tokens": 1243,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 5619,
+              "status": 200,
+              "duration_ms": 350,
+              "usage_reported": true,
+              "estimated_usd": 0.000188,
+              "input_tokens": 1880,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 5821,
+              "status": 200,
+              "duration_ms": 322,
+              "usage_reported": true,
+              "estimated_usd": 0.000194,
+              "input_tokens": 1940,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 6049,
+              "status": 200,
+              "duration_ms": 217,
+              "usage_reported": true,
+              "estimated_usd": 0.0002009,
+              "input_tokens": 2009,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 6251,
+              "status": 200,
+              "duration_ms": 344,
+              "usage_reported": true,
+              "estimated_usd": 0.00020710000000000002,
+              "input_tokens": 2071,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 6406,
+              "status": 200,
+              "duration_ms": 599,
+              "usage_reported": true,
+              "estimated_usd": 0.000237125,
+              "input_tokens": 2115,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 1025
+            }
+          ],
+          "input_tokens": 12642,
+          "output_tokens": 0,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1025,
+          "token_fields_missing": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "decision_trace": [
+          {
+            "operation": "click",
+            "target": "1",
+            "target_label": "Load services",
+            "offered_labels": [
+              "Load services"
+            ],
+            "completion": {
+              "pending": 1,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          },
+          {
+            "operation": "wait",
+            "target": "short",
+            "target_label": "short",
+            "offered_labels": [
+              "short"
+            ],
+            "completion": {
+              "pending": 1,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          },
+          {
+            "operation": "wait",
+            "target": "short",
+            "target_label": "short",
+            "offered_labels": [
+              "short"
+            ],
+            "completion": {
+              "pending": 1,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          },
+          {
+            "operation": "fill",
+            "target": "1",
+            "target_label": "Service query",
+            "offered_labels": [
+              "Service query"
+            ],
+            "completion": {
+              "pending": 1,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          },
+          {
+            "operation": "wait",
+            "target": "short",
+            "target_label": "short",
+            "offered_labels": [
+              "short"
+            ],
+            "completion": {
+              "pending": 1,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          },
+          {
+            "operation": "click",
+            "target": "1",
+            "target_label": "Service query",
+            "offered_labels": [
+              "Service query",
+              "Search services"
+            ],
+            "completion": {
+              "pending": 1,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          },
+          {
+            "operation": "click",
+            "target": "1",
+            "target_label": "Search services",
+            "offered_labels": [
+              "Search services"
+            ],
+            "completion": {
+              "pending": 1,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          }
+        ],
+        "returncode": 0,
+        "stderr_bytes": 0,
+        "wall_process_ms": 5402
+      }
+    },
+    {
+      "attempt": 6,
+      "case": "article",
+      "confirmed": false,
+      "observed": false,
+      "native_success": false,
+      "functional_check_passed": false,
+      "oracle": {
+        "success": false,
+        "expected": [
+          {
+            "name": "article_search",
+            "data": {
+              "query": "Godel incompleteness"
+            }
+          },
+          {
+            "name": "article",
+            "data": {
+              "slug": "godel-incompleteness"
+            }
+          }
+        ],
+        "observed": []
+      },
+      "result": {
+        "status": "verification_failed",
+        "reason": "verification_failed",
+        "functional": "failed",
+        "steps": 2,
+        "actions": [
+          "fill",
+          "DONE"
+        ],
+        "task_ms": 2081,
+        "admission_class": "ordinary_task_scoped",
+        "development_only": false,
+        "evidence": [
+          "text:mismatch",
+          "route:mismatch"
+        ],
+        "native_timings": {
+          "setup": 0.03602737499750219,
+          "browser": 1.9825733749603387,
+          "verification": 0.016925666015595198,
+          "total": 2.0806174580066
+        },
+        "final_url": "http://127.0.0.1:56941/article/",
+        "viewport": {
+          "width": 1280,
+          "height": 720
+        },
+        "checks": [
+          false,
+          false
+        ],
+        "independent_verification_ms": 3,
+        "cleanup": {
+          "driver_state": "closed",
+          "errors": []
+        },
+        "usage": {
+          "blocked_by_budget": 0,
+          "blocked_by_bytes": 0,
+          "blocked_by_cost": 0,
+          "input_bytes": 10676,
+          "attempts": 2,
+          "decisions_attempts": 2,
+          "responses_attempts": 0,
+          "completed_2xx": 2,
+          "non_2xx": 0,
+          "transport_errors": 0,
+          "in_flight": 0,
+          "usage_missing": 0,
+          "usage_complete": true,
+          "estimated_usd": 0.00035940000000000006,
+          "calls": [
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 5216,
+              "status": 200,
+              "duration_ms": 756,
+              "usage_reported": true,
+              "estimated_usd": 0.00017620000000000003,
+              "input_tokens": 1762,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            {
+              "endpoint": "decisions",
+              "state": "response",
+              "input_bytes": 5460,
+              "status": 200,
+              "duration_ms": 399,
+              "usage_reported": true,
+              "estimated_usd": 0.0001832,
+              "input_tokens": 1832,
+              "output_tokens": 0,
+              "cached_tokens": 0,
+              "cache_write_tokens": 0
+            }
+          ],
+          "input_tokens": 3594,
+          "output_tokens": 0,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "token_fields_missing": {
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "cached_tokens": 0,
+            "cache_write_tokens": 0
+          }
+        },
+        "decision_trace": [
+          {
+            "operation": "fill",
+            "target": "1",
+            "target_label": "Search query",
+            "offered_labels": [
+              "Search query"
+            ],
+            "completion": {
+              "pending": 2,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          },
+          {
+            "operation": "DONE",
+            "target": null,
+            "target_label": null,
+            "offered_labels": [],
+            "completion": {
+              "pending": 2,
+              "total": 2
+            },
+            "scroll": {
+              "down": false,
+              "up": false
+            }
+          }
+        ],
+        "returncode": 0,
+        "stderr_bytes": 0,
+        "wall_process_ms": 2490
+      }
+    }
+  ],
+  "sources_unchanged": true,
+  "confirmed": 4,
+  "finished_at": "2026-11-03T06:43:22.242225+00:00",
+  "publication": {
+    "original_sha256": "dec469d973085ea0e4cc0c4ae0a6c393e21c46eb7ae49396a906597aa0accec8",
+    "redactions": {
+      "browser_executable_absolute_path": 0
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "goal": "Observe the heading on example.com; do not request mutation. Site background effects can still occur.",
+  "start_url": "https://example.com/",
+  "mode": "isolated",
+  "values": {},
+  "checks": [
+    {
+      "kind": "text",
+      "target": "h1",
+      "expected": "Example Domain"
+    }
+  ],
+  "viewports": [
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "limits": {
+    "max_steps": 12,
+    "max_seconds": 120.0,
+    "max_provider_calls": 12,
+    "max_input_bytes": 262144,
+    "max_output_bytes": 262144,
+    "max_stored_bytes": 10485760
+  },
+  "privacy": {
+    "blocked_literals": [],
+    "send_images": false
+  },
+  "visual": false
+}

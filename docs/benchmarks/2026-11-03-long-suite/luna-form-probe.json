@@ -1,0 +1,115 @@
+{
+  "kind": "unscored paired probe; museum decision 15",
+  "base_source": "a5c22bb8d58aedcedefff29e6073b98bd346a823",
+  "state_sha256": "177f4914537234a9c4a5ce5382dd8dbd896e896f4d1ebbdc425b66bf2d8b703b",
+  "payload_sha256": {
+    "baseline": "36126e61198ee2fabb709a8cfa646c8f47aff5ca63c8656daf4c066bbaa61013",
+    "descriptors": "536bdb1c6a3b19cf76666400af2b1c762a1ddb4fcccb9af20b8d05e4fdb8f031"
+  },
+  "only_changed_operation_descriptions": {
+    "select": "Change a control to a different value required by the goal. An empty option clears the field; leave a matching value in place.",
+    "submit": "Advance the visible form when its current fields and selections match the requested values."
+  },
+  "observations": [
+    {
+      "pair": 1,
+      "version": "baseline",
+      "timestamp": "2026-11-03T18:20:12.879150+00:00",
+      "http": [
+        200
+      ],
+      "operation": "select",
+      "target_choice": "1",
+      "target_confidence": 0.33,
+      "native_result": "accepted",
+      "target_name": "Route template",
+      "selected_now": [
+        "Two stops"
+      ],
+      "chosen_option": {
+        "label": "Choose an option",
+        "value": ""
+      }
+    },
+    {
+      "pair": 1,
+      "version": "descriptors",
+      "timestamp": "2026-11-03T18:20:13.464252+00:00",
+      "http": [
+        200
+      ],
+      "operation": "click",
+      "target_choice": "3",
+      "target_confidence": 0.91,
+      "native_result": "accepted",
+      "target_name": "Preview route"
+    },
+    {
+      "pair": 2,
+      "version": "descriptors",
+      "timestamp": "2026-11-03T18:20:13.855744+00:00",
+      "http": [
+        200
+      ],
+      "operation": "click",
+      "target_choice": "3",
+      "target_confidence": 0.91,
+      "native_result": "accepted",
+      "target_name": "Preview route"
+    },
+    {
+      "pair": 2,
+      "version": "baseline",
+      "timestamp": "2026-11-03T18:20:14.547087+00:00",
+      "http": [
+        200
+      ],
+      "operation": "select",
+      "target_choice": "1",
+      "target_confidence": 0.33,
+      "native_result": "accepted",
+      "target_name": "Route template",
+      "selected_now": [
+        "Two stops"
+      ],
+      "chosen_option": {
+        "label": "Choose an option",
+        "value": ""
+      }
+    },
+    {
+      "pair": 3,
+      "version": "baseline",
+      "timestamp": "2026-11-03T18:20:15.048581+00:00",
+      "http": [
+        200
+      ],
+      "operation": "select",
+      "target_choice": "1",
+      "target_confidence": 0.33,
+      "native_result": "accepted",
+      "target_name": "Route template",
+      "selected_now": [
+        "Two stops"
+      ],
+      "chosen_option": {
+        "label": "Choose an option",
+        "value": ""
+      }
+    },
+    {
+      "pair": 3,
+      "version": "descriptors",
+      "timestamp": "2026-11-03T18:20:15.871460+00:00",
+      "http": [
+        200
+      ],
+      "operation": "click",
+      "target_choice": "3",
+      "target_confidence": 0.91,
+      "native_result": "accepted",
+      "target_name": "Preview route"
+    }
+  ],
+  "estimated_usd": "0.00135702"
+}

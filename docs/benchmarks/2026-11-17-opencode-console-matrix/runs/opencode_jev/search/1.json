@@ -1,0 +1,147 @@
+{
+  "arm": "opencode_jev",
+  "case": "search",
+  "repetition": 1,
+  "phase": "finished",
+  "started_at": "2026-11-17T20:32:45.275342+00:00",
+  "record": "runs/opencode_jev/search/1.json",
+  "group": "short",
+  "goal_sha256": "ddc3f6f76786a6fdf61018dae64a330f1970d9b2879d276a78140854c9d66aa0",
+  "limits": {
+    "max_steps": 8,
+    "max_calls": 12,
+    "timeout_s": 75.0,
+    "max_input_bytes": 131072
+  },
+  "confirmed": true,
+  "observed": true,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "verified",
+    "reason": "verified",
+    "functional": "verified",
+    "steps": 3,
+    "native_evidence": [
+      "text:ok",
+      "route:ok"
+    ],
+    "native_timings": {
+      "setup": 0.00016004208009690046,
+      "browser": 2.7666703338036314,
+      "verification": 0.04659141611773521,
+      "total": 2.94505045900587
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:59623/r/2a08859ffaf349c99842b7a1df59eaee/search/",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      true,
+      true
+    ],
+    "independent_verification_ms": 2,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "fill",
+      "click"
+    ],
+    "arm": "opencode_jev",
+    "model": "jev-1.13",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 3985,
+          "output_tokens": 345,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 15251,
+          "duration_ms": 950,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4131,
+          "output_tokens": 344,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 15674,
+          "duration_ms": 402,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 2,
+      "request_bytes": 30925,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 2,
+        "cached_tokens": 2,
+        "cache_write_tokens": 2,
+        "reasoning_tokens": 2
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": false,
+        "cached_tokens": false,
+        "cache_write_tokens": false,
+        "reasoning_tokens": false
+      },
+      "reported_tokens": {
+        "input_tokens": 8116,
+        "output_tokens": 689,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 8116,
+      "output_tokens": 689,
+      "total_tokens": null,
+      "cached_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "returncode": 0,
+    "wall_ms": 3225,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": true,
+    "events": [
+      {
+        "name": "search",
+        "query": "orbital mechanics",
+        "order": null
+      }
+    ],
+    "details_visits": 0,
+    "counter": 0
+  },
+  "finished_at": "2026-11-17T20:32:48.544160+00:00"
+}

@@ -1,0 +1,130 @@
+{
+  "arm": "opencode_jev",
+  "case": "click",
+  "repetition": 1,
+  "phase": "finished",
+  "started_at": "2026-11-17T20:32:38.742387+00:00",
+  "record": "runs/opencode_jev/click/1.json",
+  "group": "short",
+  "goal_sha256": "0950d0736c099d5f82e846cc5f6e5fb74f6e5cbfad7c80b63b9fc1617c7a7126",
+  "limits": {
+    "max_steps": 8,
+    "max_calls": 12,
+    "timeout_s": 75.0,
+    "max_input_bytes": 131072
+  },
+  "confirmed": true,
+  "observed": true,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "verified",
+    "reason": "verified",
+    "functional": "verified",
+    "steps": 2,
+    "native_evidence": [
+      "text:ok",
+      "route:ok"
+    ],
+    "native_timings": {
+      "setup": 0.00015662505757063627,
+      "browser": 1.8748708749189973,
+      "verification": 0.04855862504336983,
+      "total": 2.009820207953453
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:59554/r/73e9e25801c64f2198ae4cc6067c1148/click/",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      true,
+      true
+    ],
+    "independent_verification_ms": 2,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "click"
+    ],
+    "arm": "opencode_jev",
+    "model": "jev-1.13",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 2711,
+          "output_tokens": 227,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 10229,
+          "duration_ms": 815,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 1,
+      "request_bytes": 10229,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 1,
+        "cached_tokens": 1,
+        "cache_write_tokens": 1,
+        "reasoning_tokens": 1
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": false,
+        "cached_tokens": false,
+        "cache_write_tokens": false,
+        "reasoning_tokens": false
+      },
+      "reported_tokens": {
+        "input_tokens": 2711,
+        "output_tokens": 227,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 2711,
+      "output_tokens": 227,
+      "total_tokens": null,
+      "cached_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "returncode": 0,
+    "wall_ms": 2308,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": true,
+    "events": [
+      {
+        "name": "activate",
+        "query": null,
+        "order": null
+      }
+    ],
+    "details_visits": 0,
+    "counter": 0
+  },
+  "finished_at": "2026-11-17T20:32:41.173439+00:00"
+}

@@ -1,0 +1,321 @@
+{
+  "arm": "jev",
+  "case": "library_research",
+  "repetition": 1,
+  "phase": "finished",
+  "started_at": "2026-11-17T18:16:55.659020+00:00",
+  "record": "runs/jev/library_research/1.json",
+  "group": "long",
+  "goal_sha256": "ed4e0cab9634fd883d9245ed39567e76f855e36dcb607a14cbf4731283ad5925",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 24,
+    "timeout_s": 180,
+    "max_input_bytes": 524288
+  },
+  "confirmed": false,
+  "observed": false,
+  "lifecycle_success": true,
+  "native_success": false,
+  "functional_check_passed": false,
+  "result": {
+    "status": "failed",
+    "reason": "failed",
+    "functional": "failed",
+    "steps": 10,
+    "native_evidence": [
+      "provider:rejected_sentinel",
+      "route:mismatch",
+      "text:playwright_error"
+    ],
+    "native_timings": {
+      "setup": 0.000151541898958385,
+      "browser": 0.0,
+      "verification": 5.098936417954974,
+      "total": 12.512513749999925
+    },
+    "admission_class": "observe_driver",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:63485/library_research/stage/1",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      false,
+      false
+    ],
+    "independent_verification_ms": 3,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "fill",
+      "select",
+      "wait",
+      "wait",
+      "wait",
+      "click",
+      "wait",
+      "wait",
+      "wait"
+    ],
+    "arm": "jev",
+    "model": "jev-latest",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 3850,
+          "output_tokens": 408,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 15446,
+          "duration_ms": 941,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3929,
+          "output_tokens": 406,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 15613,
+          "duration_ms": 426,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4001,
+          "output_tokens": 408,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 15793,
+          "duration_ms": 313,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4076,
+          "output_tokens": 408,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 15996,
+          "duration_ms": 299,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4181,
+          "output_tokens": 408,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 16316,
+          "duration_ms": 343,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4264,
+          "output_tokens": 408,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 16519,
+          "duration_ms": 762,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3359,
+          "output_tokens": 253,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 11669,
+          "duration_ms": 374,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3446,
+          "output_tokens": 253,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 11879,
+          "duration_ms": 283,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3556,
+          "output_tokens": 253,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 12206,
+          "duration_ms": 306,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3642,
+          "output_tokens": 252,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 12416,
+          "duration_ms": 376,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 10,
+      "request_bytes": 143853,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 10,
+        "cached_tokens": 10,
+        "cache_write_tokens": 10,
+        "reasoning_tokens": 10
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": false,
+        "cached_tokens": false,
+        "cache_write_tokens": false,
+        "reasoning_tokens": false
+      },
+      "reported_tokens": {
+        "input_tokens": 38304,
+        "output_tokens": 3457,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 38304,
+      "output_tokens": 3457,
+      "total_tokens": null,
+      "cached_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "returncode": 0,
+    "wall_ms": 12765,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": false,
+    "expected": [
+      {
+        "action": "Search catalogue",
+        "fields": {
+          "Catalogue query": "Glacier Atlas",
+          "Collection": "Earth Science"
+        }
+      },
+      {
+        "action": "Glacier Atlas field guide",
+        "fields": {}
+      },
+      {
+        "action": "Read appendix",
+        "fields": {}
+      },
+      {
+        "action": "Look up reference",
+        "fields": {
+          "Companion reference": "GL-42"
+        }
+      },
+      {
+        "action": "Peer-reviewed paper",
+        "fields": {}
+      },
+      {
+        "action": "Preview list",
+        "fields": {
+          "Reading list name": "Ice Notes",
+          "List tag": "Fieldwork"
+        }
+      },
+      {
+        "action": "Save reading list",
+        "fields": {}
+      }
+    ],
+    "observed": [
+      {
+        "action": "Search catalogue",
+        "fields": {
+          "Catalogue query": "Glacier Atlas",
+          "Collection": "Earth Science"
+        }
+      }
+    ]
+  },
+  "finished_at": "2026-11-17T18:17:08.691310+00:00"
+}

@@ -1,0 +1,11 @@
+{
+  "name": "@haffase/decision-browser",
+  "version": "0.1.0",
+  "description": "Project installer for Decision Browser, without manual Python setup",
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "bin": { "decision-browser": "bin/decision-browser.cjs" },
+  "files": ["bin/", "installer/", "README.md", "LICENSE", "THIRD_PARTY_NOTICES.md"],
+  "repository": { "type": "git", "url": "https://github.com/HaffASE/decision-browser.git", "directory": "npm" },
+  "scripts": { "test": "node --test test/*.test.cjs" }
+}

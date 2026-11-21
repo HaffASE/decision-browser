@@ -1,0 +1,384 @@
+{
+  "arm": "opencode_jev",
+  "case": "library_research",
+  "repetition": 1,
+  "phase": "finished",
+  "started_at": "2026-11-17T20:32:09.855963+00:00",
+  "record": "runs/opencode_jev/library_research/1.json",
+  "group": "long",
+  "goal_sha256": "ed4e0cab9634fd883d9245ed39567e76f855e36dcb607a14cbf4731283ad5925",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 24,
+    "timeout_s": 180,
+    "max_input_bytes": 524288
+  },
+  "confirmed": true,
+  "observed": true,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "verified",
+    "reason": "verified",
+    "functional": "verified",
+    "steps": 13,
+    "native_evidence": [
+      "route:ok",
+      "text:ok"
+    ],
+    "native_timings": {
+      "setup": 0.0001546249259263277,
+      "browser": 9.288375624804758,
+      "verification": 1.7440272922394797,
+      "total": 11.126196000026539
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:59155/library_research/summary",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      true,
+      true
+    ],
+    "independent_verification_ms": 2,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "fill",
+      "select",
+      "submit",
+      "click",
+      "click",
+      "select",
+      "click",
+      "click",
+      "fill",
+      "select",
+      "submit",
+      "click"
+    ],
+    "arm": "opencode_jev",
+    "model": "jev-1.13",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 4340,
+          "output_tokens": 408,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 17965,
+          "duration_ms": 821,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4414,
+          "output_tokens": 408,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 18110,
+          "duration_ms": 352,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4482,
+          "output_tokens": 408,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 18290,
+          "duration_ms": 380,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3299,
+          "output_tokens": 253,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 12061,
+          "duration_ms": 323,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3438,
+          "output_tokens": 266,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 13641,
+          "duration_ms": 364,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4213,
+          "output_tokens": 323,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 16448,
+          "duration_ms": 405,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4320,
+          "output_tokens": 323,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 16524,
+          "duration_ms": 352,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3875,
+          "output_tokens": 253,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 14014,
+          "duration_ms": 416,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 5332,
+          "output_tokens": 399,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 21103,
+          "duration_ms": 349,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 5403,
+          "output_tokens": 399,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 21231,
+          "duration_ms": 359,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 5495,
+          "output_tokens": 400,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 21384,
+          "duration_ms": 385,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4305,
+          "output_tokens": 266,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 16494,
+          "duration_ms": 326,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 12,
+      "request_bytes": 207265,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 12,
+        "cached_tokens": 12,
+        "cache_write_tokens": 12,
+        "reasoning_tokens": 12
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": false,
+        "cached_tokens": false,
+        "cache_write_tokens": false,
+        "reasoning_tokens": false
+      },
+      "reported_tokens": {
+        "input_tokens": 52916,
+        "output_tokens": 4106,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 52916,
+      "output_tokens": 4106,
+      "total_tokens": null,
+      "cached_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "returncode": 0,
+    "wall_ms": 11379,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": true,
+    "expected": [
+      {
+        "action": "Search catalogue",
+        "fields": {
+          "Catalogue query": "Glacier Atlas",
+          "Collection": "Earth Science"
+        }
+      },
+      {
+        "action": "Glacier Atlas field guide",
+        "fields": {}
+      },
+      {
+        "action": "Read appendix",
+        "fields": {}
+      },
+      {
+        "action": "Look up reference",
+        "fields": {
+          "Companion reference": "GL-42"
+        }
+      },
+      {
+        "action": "Peer-reviewed paper",
+        "fields": {}
+      },
+      {
+        "action": "Preview list",
+        "fields": {
+          "Reading list name": "Ice Notes",
+          "List tag": "Fieldwork"
+        }
+      },
+      {
+        "action": "Save reading list",
+        "fields": {}
+      }
+    ],
+    "observed": [
+      {
+        "action": "Search catalogue",
+        "fields": {
+          "Catalogue query": "Glacier Atlas",
+          "Collection": "Earth Science"
+        }
+      },
+      {
+        "action": "Glacier Atlas field guide",
+        "fields": {}
+      },
+      {
+        "action": "Read appendix",
+        "fields": {}
+      },
+      {
+        "action": "Look up reference",
+        "fields": {
+          "Companion reference": "GL-42"
+        }
+      },
+      {
+        "action": "Peer-reviewed paper",
+        "fields": {}
+      },
+      {
+        "action": "Preview list",
+        "fields": {
+          "Reading list name": "Ice Notes",
+          "List tag": "Fieldwork"
+        }
+      },
+      {
+        "action": "Save reading list",
+        "fields": {}
+      }
+    ]
+  },
+  "finished_at": "2026-11-17T20:32:21.376339+00:00"
+}

@@ -1,0 +1,7 @@
+# Project-local opt-in only.
+# macOS Keychain item: /usr/bin/security find-generic-password -s OPENAI_API_KEY -w
+# No global write. No key value is stored.
+[mcp_servers.decision_browser]
+command = "/absolute/path/to/decision-browser/.venv/bin/python"
+args = ["-m", "decision_browser.keychain_entry"]
+cwd = "/absolute/path/to/decision-browser"

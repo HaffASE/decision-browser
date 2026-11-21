@@ -1,0 +1,201 @@
+{
+  "probe": "unscored paired decision probe, no browser application of decisions",
+  "baseline_revision": "dd7ea91c51879a8afcb9c8d4a89c94bd18e68d69",
+  "candidate_sha256": {
+    "provider.py": "cd5b3defd35250bc5625ebcf6beac4169146d29782cfa69dad6837c95e2f19d2",
+    "model_context.py": "6d2252a60db72d1b989ca90dc627c8068cbffd989f16e0efdb62b9835a47eefd",
+    "decision_codec.py": "619e4837db119de1843642438b4917ce764e0ccd608f6da4c3a25a1a22a4a6e5"
+  },
+  "states": {
+    "first_stop": {
+      "shared_state_sha256": "46c9eacdc2e0f8ca91bede2e1a1825e45872a8b3ca830f07eba83eb8a31d0592",
+      "wire_sha256": {
+        "baseline": "c46b6a95f040137f2524e281c987613610da8156b6f2c56a5a793c317874c987",
+        "atomic": "0d08b1c8ad267e3a821e350219f67b3067c8dd7b27b9597486a4f7b3f837f492"
+      },
+      "baseline_operations": [
+        "UNABLE",
+        "click",
+        "select",
+        "submit",
+        "scroll",
+        "wait",
+        "screenshot",
+        "navigate"
+      ],
+      "atomic_operations": [
+        "UNABLE",
+        "click",
+        "select",
+        "action_b9fa2628a015b40a",
+        "scroll",
+        "action_e03c4a42ea44bcb4",
+        "action_14f4e23c5e1d1329",
+        "action_1a3d66b6dbd468b5"
+      ],
+      "atomic_bindings": {
+        "action_b9fa2628a015b40a": "submit on target \"1\"",
+        "action_e03c4a42ea44bcb4": "wait on target \"short\"",
+        "action_14f4e23c5e1d1329": "screenshot on target \"capture\"",
+        "action_1a3d66b6dbd468b5": "navigate on target \"route0\""
+      },
+      "offline_checks": "Both providers parsed explicit refusal as refusal and resolved a synthetic submit to the same currently observed form."
+    },
+    "route_editor": {
+      "shared_state_sha256": "177f4914537234a9c4a5ce5382dd8dbd896e896f4d1ebbdc425b66bf2d8b703b",
+      "wire_sha256": {
+        "atomic": "5f55cf81133d17a369d4b5ec35c1cc001e25682097384e423297188518e2ad5a",
+        "baseline": "2c59214d434be7884e6c26f593462a4089b525e43df5905b306a78e8341654ea"
+      },
+      "baseline_operations": [
+        "UNABLE",
+        "click",
+        "fill",
+        "select",
+        "enter",
+        "submit",
+        "scroll",
+        "wait",
+        "screenshot",
+        "navigate"
+      ],
+      "atomic_operations": [
+        "UNABLE",
+        "click",
+        "action_9f21c4f47a234a5c",
+        "select",
+        "action_b004089fdc449755",
+        "action_b73aef27c843a66d",
+        "scroll",
+        "action_e03c4a42ea44bcb4",
+        "action_14f4e23c5e1d1329",
+        "action_1a3d66b6dbd468b5"
+      ],
+      "atomic_bindings": {
+        "action_9f21c4f47a234a5c": "fill on target \"1\"",
+        "action_b004089fdc449755": "enter on target \"1\"",
+        "action_b73aef27c843a66d": "submit on target \"1\"",
+        "action_e03c4a42ea44bcb4": "wait on target \"short\"",
+        "action_14f4e23c5e1d1329": "screenshot on target \"capture\"",
+        "action_1a3d66b6dbd468b5": "navigate on target \"route0\""
+      },
+      "offline_checks": "Both providers parsed explicit refusal as refusal and resolved a synthetic submit to the same currently observed form."
+    }
+  },
+  "observations": [
+    {
+      "pair": 1,
+      "timestamp": "2026-11-03T18:34:03.942800+00:00",
+      "case": "first_stop",
+      "version": "baseline",
+      "http": [
+        200
+      ],
+      "chosen_operation_wire": "click",
+      "result": "accepted",
+      "operation": "click",
+      "target_name": "Add first stop",
+      "desired_control": true
+    },
+    {
+      "pair": 1,
+      "timestamp": "2026-11-03T18:34:05.511157+00:00",
+      "case": "first_stop",
+      "version": "atomic",
+      "http": [
+        200
+      ],
+      "chosen_operation_wire": "click",
+      "result": "accepted",
+      "operation": "click",
+      "target_name": "Add first stop",
+      "desired_control": true
+    },
+    {
+      "pair": 1,
+      "timestamp": "2026-11-03T18:34:06.659412+00:00",
+      "case": "route_editor",
+      "version": "atomic",
+      "http": [
+        200
+      ],
+      "chosen_operation_wire": "action_b73aef27c843a66d",
+      "result": "accepted",
+      "operation": "submit",
+      "target_name": "Route name Route template Choose an option Single stop Two stops Preview route",
+      "desired_control": true
+    },
+    {
+      "pair": 1,
+      "timestamp": "2026-11-03T18:34:07.911902+00:00",
+      "case": "route_editor",
+      "version": "baseline",
+      "http": [
+        200
+      ],
+      "chosen_operation_wire": "click",
+      "result": "accepted",
+      "operation": "click",
+      "target_name": "Preview route",
+      "desired_control": true
+    },
+    {
+      "pair": 2,
+      "timestamp": "2026-11-03T18:34:08.948956+00:00",
+      "case": "first_stop",
+      "version": "atomic",
+      "http": [
+        200
+      ],
+      "chosen_operation_wire": "click",
+      "result": "accepted",
+      "operation": "click",
+      "target_name": "Add first stop",
+      "desired_control": true
+    },
+    {
+      "pair": 2,
+      "timestamp": "2026-11-03T18:34:09.962146+00:00",
+      "case": "first_stop",
+      "version": "baseline",
+      "http": [
+        200
+      ],
+      "chosen_operation_wire": "click",
+      "result": "accepted",
+      "operation": "click",
+      "target_name": "Add first stop",
+      "desired_control": true
+    },
+    {
+      "pair": 2,
+      "timestamp": "2026-11-03T18:34:10.979751+00:00",
+      "case": "route_editor",
+      "version": "baseline",
+      "http": [
+        200
+      ],
+      "chosen_operation_wire": "click",
+      "result": "accepted",
+      "operation": "click",
+      "target_name": "Preview route",
+      "desired_control": true
+    },
+    {
+      "pair": 2,
+      "timestamp": "2026-11-03T18:34:12.204117+00:00",
+      "case": "route_editor",
+      "version": "atomic",
+      "http": [
+        200
+      ],
+      "chosen_operation_wire": "action_b73aef27c843a66d",
+      "result": "accepted",
+      "operation": "submit",
+      "target_name": "Route name Route template Choose an option Single stop Two stops Preview route",
+      "desired_control": true
+    }
+  ],
+  "estimated_usd": "0.001717950",
+  "limits": "Two pairs per fixed state, interleaved, all calls retained. This probes next decisions only. Neither arm reached a refused/invalid selected action in these live draws."
+}

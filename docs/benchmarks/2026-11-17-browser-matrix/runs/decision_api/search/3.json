@@ -1,0 +1,147 @@
+{
+  "arm": "decision_api",
+  "case": "search",
+  "repetition": 3,
+  "phase": "finished",
+  "started_at": "2026-11-17T18:24:58.028687+00:00",
+  "record": "runs/decision_api/search/3.json",
+  "group": "short",
+  "goal_sha256": "ddc3f6f76786a6fdf61018dae64a330f1970d9b2879d276a78140854c9d66aa0",
+  "limits": {
+    "max_steps": 8,
+    "max_calls": 12,
+    "timeout_s": 75.0,
+    "max_input_bytes": 131072
+  },
+  "confirmed": true,
+  "observed": true,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "verified",
+    "reason": "verified",
+    "functional": "verified",
+    "steps": 3,
+    "native_evidence": [
+      "text:ok",
+      "route:ok"
+    ],
+    "native_timings": {
+      "setup": 0.00016166595742106438,
+      "browser": 3.4385590839665383,
+      "verification": 0.047104666009545326,
+      "total": 3.5760982090141624
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:52502/r/5a9e7f708d9c42d8af3d50994a8485aa/search/",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      true,
+      true
+    ],
+    "independent_verification_ms": 2,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "fill",
+      "submit"
+    ],
+    "arm": "decision_api",
+    "model": "gpt-6-luna",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 2392,
+          "output_tokens": 0,
+          "total_tokens": 2392,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 9369,
+          "duration_ms": 1476,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2488,
+          "output_tokens": 0,
+          "total_tokens": 2488,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 9758,
+          "duration_ms": 574,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 2,
+      "request_bytes": 19127,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true,
+        "cached_tokens": true,
+        "cache_write_tokens": true,
+        "reasoning_tokens": true
+      },
+      "reported_tokens": {
+        "input_tokens": 4880,
+        "output_tokens": 0,
+        "total_tokens": 4880,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 4880,
+      "output_tokens": 0,
+      "total_tokens": 4880,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0
+    },
+    "returncode": 0,
+    "wall_ms": 3819,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": true,
+    "events": [
+      {
+        "name": "search",
+        "query": "orbital mechanics",
+        "order": null
+      }
+    ],
+    "details_visits": 0,
+    "counter": 0
+  },
+  "finished_at": "2026-11-17T18:25:01.979976+00:00"
+}

@@ -1,0 +1,3182 @@
+{
+  "planned_runs": 67,
+  "completed_runs": 67,
+  "verdict": "HAS_FAILURES",
+  "arms": {
+    "jev": {
+      "attempts": 50,
+      "confirmed": 9,
+      "observed": 9,
+      "usage_complete_runs": 50,
+      "calls": 527,
+      "http_errors": 0,
+      "median_wall_ms": 7270.5,
+      "tokens": {
+        "input_tokens": {
+          "total": 1971516,
+          "reported_total": 1971516,
+          "missing_calls": 0,
+          "unknown_runs": 0
+        },
+        "output_tokens": {
+          "total": 154677,
+          "reported_total": 154677,
+          "missing_calls": 0,
+          "unknown_runs": 0
+        },
+        "total_tokens": {
+          "total": null,
+          "reported_total": 0,
+          "missing_calls": 527,
+          "unknown_runs": 0
+        },
+        "cached_tokens": {
+          "total": null,
+          "reported_total": 0,
+          "missing_calls": 527,
+          "unknown_runs": 0
+        },
+        "cache_write_tokens": {
+          "total": null,
+          "reported_total": 0,
+          "missing_calls": 527,
+          "unknown_runs": 0
+        },
+        "reasoning_tokens": {
+          "total": null,
+          "reported_total": 0,
+          "missing_calls": 527,
+          "unknown_runs": 0
+        }
+      },
+      "errors": {
+        "limit_exceeded": 13,
+        "budget_limit": 17,
+        "failed": 11
+      },
+      "unknown_usage_runs": 0
+    },
+    "terra": {
+      "attempts": 6,
+      "confirmed": 6,
+      "observed": 6,
+      "usage_complete_runs": 6,
+      "calls": 90,
+      "http_errors": 0,
+      "median_wall_ms": 38124.5,
+      "tokens": {
+        "input_tokens": {
+          "total": 141978,
+          "reported_total": 141978,
+          "missing_calls": 0,
+          "unknown_runs": 0
+        },
+        "output_tokens": {
+          "total": 1890,
+          "reported_total": 1890,
+          "missing_calls": 0,
+          "unknown_runs": 0
+        },
+        "total_tokens": {
+          "total": 143868,
+          "reported_total": 143868,
+          "missing_calls": 0,
+          "unknown_runs": 0
+        },
+        "cached_tokens": {
+          "total": 0,
+          "reported_total": 0,
+          "missing_calls": 0,
+          "unknown_runs": 0
+        },
+        "cache_write_tokens": {
+          "total": 114078,
+          "reported_total": 114078,
+          "missing_calls": 0,
+          "unknown_runs": 0
+        },
+        "reasoning_tokens": {
+          "total": 0,
+          "reported_total": 0,
+          "missing_calls": 0,
+          "unknown_runs": 0
+        }
+      },
+      "errors": {},
+      "unknown_usage_runs": 0
+    },
+    "decision_api": {
+      "attempts": 11,
+      "confirmed": 7,
+      "observed": 7,
+      "usage_complete_runs": 11,
+      "calls": 107,
+      "http_errors": 0,
+      "median_wall_ms": 14262,
+      "tokens": {
+        "input_tokens": {
+          "total": 318066,
+          "reported_total": 318066,
+          "missing_calls": 0,
+          "unknown_runs": 0
+        },
+        "output_tokens": {
+          "total": 0,
+          "reported_total": 0,
+          "missing_calls": 0,
+          "unknown_runs": 0
+        },
+        "total_tokens": {
+          "total": 318066,
+          "reported_total": 318066,
+          "missing_calls": 0,
+          "unknown_runs": 0
+        },
+        "cached_tokens": {
+          "total": 0,
+          "reported_total": 0,
+          "missing_calls": 0,
+          "unknown_runs": 0
+        },
+        "cache_write_tokens": {
+          "total": 118213,
+          "reported_total": 118213,
+          "missing_calls": 0,
+          "unknown_runs": 0
+        },
+        "reasoning_tokens": {
+          "total": 0,
+          "reported_total": 0,
+          "missing_calls": 0,
+          "unknown_runs": 0
+        }
+      },
+      "errors": {
+        "verification_failed": 3,
+        "no_progress": 1
+      },
+      "unknown_usage_runs": 0
+    }
+  },
+  "cases": {
+    "equipment_pickup": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 3,
+        "calls": 69,
+        "http_errors": 0,
+        "median_wall_ms": 19842,
+        "tokens": {
+          "input_tokens": {
+            "total": 287115,
+            "reported_total": 287115,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 21236,
+            "reported_total": 21236,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 69,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 69,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 69,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 69,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {
+          "budget_limit": 3
+        },
+        "unknown_usage_runs": 0
+      },
+      "terra": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "decision_api": {
+        "attempts": 1,
+        "confirmed": 1,
+        "observed": 1,
+        "usage_complete_runs": 1,
+        "calls": 15,
+        "http_errors": 0,
+        "median_wall_ms": 17482,
+        "tokens": {
+          "input_tokens": {
+            "total": 45337,
+            "reported_total": 45337,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 45337,
+            "reported_total": 45337,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 19547,
+            "reported_total": 19547,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "autocomplete": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 3,
+        "calls": 27,
+        "http_errors": 0,
+        "median_wall_ms": 6622,
+        "tokens": {
+          "input_tokens": {
+            "total": 95923,
+            "reported_total": 95923,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 8234,
+            "reported_total": 8234,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 27,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 27,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 27,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 27,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {
+          "limit_exceeded": 3
+        },
+        "unknown_usage_runs": 0
+      },
+      "terra": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "decision_api": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "delayed_menu": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 3,
+        "calls": 36,
+        "http_errors": 0,
+        "median_wall_ms": 9060,
+        "tokens": {
+          "input_tokens": {
+            "total": 105948,
+            "reported_total": 105948,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 8412,
+            "reported_total": 8412,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 36,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 36,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 36,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 36,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {
+          "budget_limit": 3
+        },
+        "unknown_usage_runs": 0
+      },
+      "terra": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "decision_api": {
+        "attempts": 1,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 1,
+        "calls": 3,
+        "http_errors": 0,
+        "median_wall_ms": 4331,
+        "tokens": {
+          "input_tokens": {
+            "total": 4827,
+            "reported_total": 4827,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 4827,
+            "reported_total": 4827,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {
+          "verification_failed": 1
+        },
+        "unknown_usage_runs": 0
+      }
+    },
+    "calendar": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 3,
+        "calls": 9,
+        "http_errors": 0,
+        "median_wall_ms": 3715,
+        "tokens": {
+          "input_tokens": {
+            "total": 23341,
+            "reported_total": 23341,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 2034,
+            "reported_total": 2034,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {
+          "failed": 3
+        },
+        "unknown_usage_runs": 0
+      },
+      "terra": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "decision_api": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "counter": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 18,
+        "http_errors": 0,
+        "median_wall_ms": 5193,
+        "tokens": {
+          "input_tokens": {
+            "total": 53695,
+            "reported_total": 53695,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 4075,
+            "reported_total": 4075,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 18,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 18,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 18,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 18,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "terra": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "decision_api": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "rail_itinerary": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 3,
+        "calls": 23,
+        "http_errors": 0,
+        "median_wall_ms": 7419,
+        "tokens": {
+          "input_tokens": {
+            "total": 84367,
+            "reported_total": 84367,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 6826,
+            "reported_total": 6826,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 23,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 23,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 23,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 23,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {
+          "failed": 3
+        },
+        "unknown_usage_runs": 0
+      },
+      "terra": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 33,
+        "http_errors": 0,
+        "median_wall_ms": 24286,
+        "tokens": {
+          "input_tokens": {
+            "total": 43044,
+            "reported_total": 43044,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 678,
+            "reported_total": 678,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 43722,
+            "reported_total": 43722,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 29457,
+            "reported_total": 29457,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "decision_api": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "article": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 3,
+        "calls": 27,
+        "http_errors": 0,
+        "median_wall_ms": 6565,
+        "tokens": {
+          "input_tokens": {
+            "total": 93391,
+            "reported_total": 93391,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 8246,
+            "reported_total": 8246,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 27,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 27,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 27,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 27,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {
+          "limit_exceeded": 3
+        },
+        "unknown_usage_runs": 0
+      },
+      "terra": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "decision_api": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "below_fold": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 3,
+        "calls": 36,
+        "http_errors": 0,
+        "median_wall_ms": 7270,
+        "tokens": {
+          "input_tokens": {
+            "total": 93459,
+            "reported_total": 93459,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 6768,
+            "reported_total": 6768,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 36,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 36,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 36,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 36,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {
+          "budget_limit": 3
+        },
+        "unknown_usage_runs": 0
+      },
+      "terra": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "decision_api": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "library_research": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 3,
+        "calls": 69,
+        "http_errors": 0,
+        "median_wall_ms": 17278,
+        "tokens": {
+          "input_tokens": {
+            "total": 282024,
+            "reported_total": 282024,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 20708,
+            "reported_total": 20708,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 69,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 69,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 69,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 69,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {
+          "budget_limit": 3
+        },
+        "unknown_usage_runs": 0
+      },
+      "terra": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "decision_api": {
+        "attempts": 2,
+        "confirmed": 2,
+        "observed": 2,
+        "usage_complete_runs": 2,
+        "calls": 24,
+        "http_errors": 0,
+        "median_wall_ms": 17295.5,
+        "tokens": {
+          "input_tokens": {
+            "total": 70203,
+            "reported_total": 70203,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 70203,
+            "reported_total": 70203,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 24531,
+            "reported_total": 24531,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "profile_form": {
+      "jev": {
+        "attempts": 2,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 2,
+        "calls": 14,
+        "http_errors": 0,
+        "median_wall_ms": 6568.0,
+        "tokens": {
+          "input_tokens": {
+            "total": 59300,
+            "reported_total": 59300,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 5638,
+            "reported_total": 5638,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 14,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 14,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 14,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 14,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {
+          "limit_exceeded": 2
+        },
+        "unknown_usage_runs": 0
+      },
+      "terra": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "decision_api": {
+        "attempts": 1,
+        "confirmed": 1,
+        "observed": 1,
+        "usage_complete_runs": 1,
+        "calls": 5,
+        "http_errors": 0,
+        "median_wall_ms": 6645,
+        "tokens": {
+          "input_tokens": {
+            "total": 14611,
+            "reported_total": 14611,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 14611,
+            "reported_total": 14611,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 2219,
+            "reported_total": 2219,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "support_handoff": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 3,
+        "calls": 69,
+        "http_errors": 0,
+        "median_wall_ms": 19819,
+        "tokens": {
+          "input_tokens": {
+            "total": 304386,
+            "reported_total": 304386,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 22297,
+            "reported_total": 22297,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 69,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 69,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 69,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 69,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {
+          "budget_limit": 3
+        },
+        "unknown_usage_runs": 0
+      },
+      "terra": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "decision_api": {
+        "attempts": 1,
+        "confirmed": 1,
+        "observed": 1,
+        "usage_complete_runs": 1,
+        "calls": 17,
+        "http_errors": 0,
+        "median_wall_ms": 18201,
+        "tokens": {
+          "input_tokens": {
+            "total": 53231,
+            "reported_total": 53231,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 53231,
+            "reported_total": 53231,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 22661,
+            "reported_total": 22661,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "styled_filter": {
+      "jev": {
+        "attempts": 2,
+        "confirmed": 2,
+        "observed": 2,
+        "usage_complete_runs": 2,
+        "calls": 6,
+        "http_errors": 0,
+        "median_wall_ms": 4946.0,
+        "tokens": {
+          "input_tokens": {
+            "total": 15150,
+            "reported_total": 15150,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 1368,
+            "reported_total": 1368,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "terra": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "decision_api": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "hotel": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 3,
+        "calls": 24,
+        "http_errors": 0,
+        "median_wall_ms": 6146,
+        "tokens": {
+          "input_tokens": {
+            "total": 91187,
+            "reported_total": 91187,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 8646,
+            "reported_total": 8646,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 24,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 24,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 24,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 24,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {
+          "limit_exceeded": 3
+        },
+        "unknown_usage_runs": 0
+      },
+      "terra": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "decision_api": {
+        "attempts": 1,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 1,
+        "calls": 6,
+        "http_errors": 0,
+        "median_wall_ms": 7023,
+        "tokens": {
+          "input_tokens": {
+            "total": 15478,
+            "reported_total": 15478,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 15478,
+            "reported_total": 15478,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 3308,
+            "reported_total": 3308,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {
+          "no_progress": 1
+        },
+        "unknown_usage_runs": 0
+      }
+    },
+    "exhibit_planner": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 3,
+        "calls": 55,
+        "http_errors": 0,
+        "median_wall_ms": 18798,
+        "tokens": {
+          "input_tokens": {
+            "total": 227256,
+            "reported_total": 227256,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 16685,
+            "reported_total": 16685,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 55,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 55,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 55,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 55,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {
+          "budget_limit": 2,
+          "failed": 1
+        },
+        "unknown_usage_runs": 0
+      },
+      "terra": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 57,
+        "http_errors": 0,
+        "median_wall_ms": 47198,
+        "tokens": {
+          "input_tokens": {
+            "total": 98934,
+            "reported_total": 98934,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 1212,
+            "reported_total": 1212,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 100146,
+            "reported_total": 100146,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 84621,
+            "reported_total": 84621,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "decision_api": {
+        "attempts": 3,
+        "confirmed": 1,
+        "observed": 1,
+        "usage_complete_runs": 3,
+        "calls": 36,
+        "http_errors": 0,
+        "median_wall_ms": 14262,
+        "tokens": {
+          "input_tokens": {
+            "total": 110249,
+            "reported_total": 110249,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 110249,
+            "reported_total": 110249,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 43917,
+            "reported_total": 43917,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {
+          "verification_failed": 2
+        },
+        "unknown_usage_runs": 0
+      }
+    },
+    "search": {
+      "jev": {
+        "attempts": 1,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 1,
+        "calls": 3,
+        "http_errors": 0,
+        "median_wall_ms": 4629,
+        "tokens": {
+          "input_tokens": {
+            "total": 12470,
+            "reported_total": 12470,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 1031,
+            "reported_total": 1031,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {
+          "failed": 1
+        },
+        "unknown_usage_runs": 0
+      },
+      "terra": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "decision_api": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "navigate": {
+      "jev": {
+        "attempts": 2,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 2,
+        "calls": 4,
+        "http_errors": 0,
+        "median_wall_ms": 2998.5,
+        "tokens": {
+          "input_tokens": {
+            "total": 11565,
+            "reported_total": 11565,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 910,
+            "reported_total": 910,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 4,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 4,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 4,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 4,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {
+          "failed": 2
+        },
+        "unknown_usage_runs": 0
+      },
+      "terra": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "decision_api": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "consent": {
+      "jev": {
+        "attempts": 2,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 2,
+        "calls": 19,
+        "http_errors": 0,
+        "median_wall_ms": 6870.5,
+        "tokens": {
+          "input_tokens": {
+            "total": 62533,
+            "reported_total": 62533,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 5467,
+            "reported_total": 5467,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 19,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 19,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 19,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 19,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {
+          "limit_exceeded": 2
+        },
+        "unknown_usage_runs": 0
+      },
+      "terra": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "decision_api": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "select": {
+      "jev": {
+        "attempts": 2,
+        "confirmed": 1,
+        "observed": 1,
+        "usage_complete_runs": 2,
+        "calls": 6,
+        "http_errors": 0,
+        "median_wall_ms": 3317.0,
+        "tokens": {
+          "input_tokens": {
+            "total": 18453,
+            "reported_total": 18453,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 1604,
+            "reported_total": 1604,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {
+          "failed": 1
+        },
+        "unknown_usage_runs": 0
+      },
+      "terra": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "decision_api": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "loading_overlay": {
+      "jev": {
+        "attempts": 1,
+        "confirmed": 1,
+        "observed": 1,
+        "usage_complete_runs": 1,
+        "calls": 10,
+        "http_errors": 0,
+        "median_wall_ms": 7774,
+        "tokens": {
+          "input_tokens": {
+            "total": 31297,
+            "reported_total": 31297,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 2616,
+            "reported_total": 2616,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 10,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 10,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 10,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 10,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "terra": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "decision_api": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "public_about": {
+      "jev": {
+        "attempts": 2,
+        "confirmed": 2,
+        "observed": 2,
+        "usage_complete_runs": 2,
+        "calls": 3,
+        "http_errors": 0,
+        "median_wall_ms": 5927.5,
+        "tokens": {
+          "input_tokens": {
+            "total": 18656,
+            "reported_total": 18656,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 1876,
+            "reported_total": 1876,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "terra": {
+        "attempts": 0,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 0,
+        "calls": 0,
+        "http_errors": 0,
+        "median_wall_ms": null,
+        "tokens": {
+          "input_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "decision_api": {
+        "attempts": 1,
+        "confirmed": 1,
+        "observed": 1,
+        "usage_complete_runs": 1,
+        "calls": 1,
+        "http_errors": 0,
+        "median_wall_ms": 9283,
+        "tokens": {
+          "input_tokens": {
+            "total": 4130,
+            "reported_total": 4130,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 4130,
+            "reported_total": 4130,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 2030,
+            "reported_total": 2030,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    }
+  }
+}

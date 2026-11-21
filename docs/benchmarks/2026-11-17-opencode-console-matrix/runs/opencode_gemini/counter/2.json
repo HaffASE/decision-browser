@@ -1,0 +1,174 @@
+{
+  "arm": "opencode_gemini",
+  "case": "counter",
+  "repetition": 2,
+  "phase": "finished",
+  "started_at": "2026-11-17T20:34:21.801000+00:00",
+  "record": "runs/opencode_gemini/counter/2.json",
+  "group": "short",
+  "goal_sha256": "83bdd37052779072cf50854a6e3f210a6053a6b3a50af88d4f37168b7c61909a",
+  "limits": {
+    "max_steps": 8,
+    "max_calls": 12,
+    "timeout_s": 75.0,
+    "max_input_bytes": 131072
+  },
+  "confirmed": true,
+  "observed": true,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "verified",
+    "reason": "verified",
+    "functional": "verified",
+    "steps": 4,
+    "native_evidence": [
+      "text:ok",
+      "route:ok"
+    ],
+    "native_timings": {
+      "setup": 0.0001717910636216402,
+      "browser": 4.07724187488202,
+      "verification": 0.06468179204966873,
+      "total": 4.266258916934021
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:60780/r/be6da983b2d140c99e7f883d24a88d36/counter/",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      true,
+      true
+    ],
+    "independent_verification_ms": 3,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "click",
+      "click",
+      "click"
+    ],
+    "arm": "opencode_gemini",
+    "model": "gemini-decision-1",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 2426,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 10265,
+          "duration_ms": 1217,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2539,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 10501,
+          "duration_ms": 518,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2653,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 10739,
+          "duration_ms": 508,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 3,
+      "request_bytes": 31505,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 3,
+        "cached_tokens": 3,
+        "cache_write_tokens": 3,
+        "reasoning_tokens": 3
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": false,
+        "cached_tokens": false,
+        "cache_write_tokens": false,
+        "reasoning_tokens": false
+      },
+      "reported_tokens": {
+        "input_tokens": 7618,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 7618,
+      "output_tokens": 0,
+      "total_tokens": null,
+      "cached_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "returncode": 0,
+    "wall_ms": 4546,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": true,
+    "events": [
+      {
+        "name": "increment",
+        "query": null,
+        "order": null
+      },
+      {
+        "name": "increment",
+        "query": null,
+        "order": null
+      },
+      {
+        "name": "increment",
+        "query": null,
+        "order": null
+      }
+    ],
+    "details_visits": 0,
+    "counter": 3
+  },
+  "finished_at": "2026-11-17T20:34:26.404307+00:00"
+}

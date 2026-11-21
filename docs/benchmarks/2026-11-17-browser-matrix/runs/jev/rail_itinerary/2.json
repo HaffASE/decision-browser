@@ -1,0 +1,228 @@
+{
+  "arm": "jev",
+  "case": "rail_itinerary",
+  "repetition": 2,
+  "phase": "finished",
+  "started_at": "2026-11-17T18:22:26.180578+00:00",
+  "record": "runs/jev/rail_itinerary/2.json",
+  "group": "long",
+  "goal_sha256": "838a0bdb17afbcf5fcfa62452a45f820f892d04a2d6fffa8884da1671d5f24a0",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 24,
+    "timeout_s": 180,
+    "max_input_bytes": 524288
+  },
+  "confirmed": false,
+  "observed": false,
+  "lifecycle_success": true,
+  "native_success": false,
+  "functional_check_passed": false,
+  "result": {
+    "status": "failed",
+    "reason": "failed",
+    "functional": "failed",
+    "steps": 5,
+    "native_evidence": [
+      "provider:rejected_sentinel",
+      "route:mismatch",
+      "text:playwright_error"
+    ],
+    "native_timings": {
+      "setup": 0.00014575000386685133,
+      "browser": 0.0,
+      "verification": 2.590874499990605,
+      "total": 7.214515583007596
+    },
+    "admission_class": "observe_driver",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:50758/rail_itinerary/stage/1",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      false,
+      false
+    ],
+    "independent_verification_ms": 3,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "fill",
+      "fill",
+      "click",
+      "wait"
+    ],
+    "arm": "jev",
+    "model": "jev-latest",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 3308,
+          "output_tokens": 353,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 12976,
+          "duration_ms": 948,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3371,
+          "output_tokens": 353,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 13075,
+          "duration_ms": 271,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3443,
+          "output_tokens": 355,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 13190,
+          "duration_ms": 376,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3189,
+          "output_tokens": 253,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 10784,
+          "duration_ms": 397,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3275,
+          "output_tokens": 252,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 10992,
+          "duration_ms": 610,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 5,
+      "request_bytes": 61017,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 5,
+        "cached_tokens": 5,
+        "cache_write_tokens": 5,
+        "reasoning_tokens": 5
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": false,
+        "cached_tokens": false,
+        "cache_write_tokens": false,
+        "reasoning_tokens": false
+      },
+      "reported_tokens": {
+        "input_tokens": 16586,
+        "output_tokens": 1566,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 16586,
+      "output_tokens": 1566,
+      "total_tokens": null,
+      "cached_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "returncode": 0,
+    "wall_ms": 7464,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": false,
+    "expected": [
+      {
+        "action": "Find trains",
+        "fields": {
+          "From station": "York",
+          "To station": "Durham"
+        }
+      },
+      {
+        "action": "Express 09:20",
+        "fields": {}
+      },
+      {
+        "action": "Apply preferences",
+        "fields": {
+          "Seat": "Window",
+          "Quiet coach": "on"
+        }
+      },
+      {
+        "action": "Add platform",
+        "fields": {
+          "Departure platform": "Platform 4"
+        }
+      },
+      {
+        "action": "Save itinerary",
+        "fields": {}
+      }
+    ],
+    "observed": [
+      {
+        "action": "Find trains",
+        "fields": {
+          "From station": "York",
+          "To station": "Durham"
+        }
+      }
+    ]
+  },
+  "finished_at": "2026-11-17T18:22:34.083656+00:00"
+}

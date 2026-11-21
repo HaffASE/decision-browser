@@ -1,0 +1,368 @@
+{
+  "arm": "decision_api",
+  "case": "rail_itinerary",
+  "repetition": 1,
+  "phase": "finished",
+  "started_at": "2026-11-17T18:16:16.575564+00:00",
+  "record": "runs/decision_api/rail_itinerary/1.json",
+  "group": "long",
+  "goal_sha256": "838a0bdb17afbcf5fcfa62452a45f820f892d04a2d6fffa8884da1671d5f24a0",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 24,
+    "timeout_s": 180,
+    "max_input_bytes": 524288
+  },
+  "confirmed": true,
+  "observed": true,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "verified",
+    "reason": "verified",
+    "functional": "verified",
+    "steps": 13,
+    "native_evidence": [
+      "route:ok",
+      "text:ok"
+    ],
+    "native_timings": {
+      "setup": 0.00020225008483976126,
+      "browser": 13.028682790813036,
+      "verification": 6.18401483411435,
+      "total": 19.30231875006575
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:62948/rail_itinerary/summary",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      true,
+      true
+    ],
+    "independent_verification_ms": 2,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "click",
+      "click",
+      "fill",
+      "fill",
+      "submit",
+      "click",
+      "select",
+      "click",
+      "submit",
+      "select",
+      "submit",
+      "click"
+    ],
+    "arm": "decision_api",
+    "model": "gpt-6-luna",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 2462,
+          "output_tokens": 0,
+          "total_tokens": 2462,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 9962,
+          "duration_ms": 1165,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2534,
+          "output_tokens": 0,
+          "total_tokens": 2534,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 10173,
+          "duration_ms": 582,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2599,
+          "output_tokens": 0,
+          "total_tokens": 2599,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 10388,
+          "duration_ms": 598,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2647,
+          "output_tokens": 0,
+          "total_tokens": 2647,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 10491,
+          "duration_ms": 866,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2699,
+          "output_tokens": 0,
+          "total_tokens": 2699,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 10606,
+          "duration_ms": 703,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2546,
+          "output_tokens": 0,
+          "total_tokens": 2546,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1142,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 9473,
+          "duration_ms": 672,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2815,
+          "output_tokens": 0,
+          "total_tokens": 2815,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1262,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 11259,
+          "duration_ms": 601,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2918,
+          "output_tokens": 0,
+          "total_tokens": 2918,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1329,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 11630,
+          "duration_ms": 551,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2990,
+          "output_tokens": 0,
+          "total_tokens": 2990,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1403,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 11856,
+          "duration_ms": 695,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3166,
+          "output_tokens": 0,
+          "total_tokens": 3166,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1577,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 12625,
+          "duration_ms": 838,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3282,
+          "output_tokens": 0,
+          "total_tokens": 3282,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1658,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 13033,
+          "duration_ms": 624,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2680,
+          "output_tokens": 0,
+          "total_tokens": 2680,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1449,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 10907,
+          "duration_ms": 632,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 12,
+      "request_bytes": 132403,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true,
+        "cached_tokens": true,
+        "cache_write_tokens": true,
+        "reasoning_tokens": true
+      },
+      "reported_tokens": {
+        "input_tokens": 33338,
+        "output_tokens": 0,
+        "total_tokens": 33338,
+        "cached_tokens": 0,
+        "cache_write_tokens": 9820,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 33338,
+      "output_tokens": 0,
+      "total_tokens": 33338,
+      "cached_tokens": 0,
+      "cache_write_tokens": 9820,
+      "reasoning_tokens": 0
+    },
+    "returncode": 0,
+    "wall_ms": 19714,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": true,
+    "expected": [
+      {
+        "action": "Find trains",
+        "fields": {
+          "From station": "York",
+          "To station": "Durham"
+        }
+      },
+      {
+        "action": "Express 09:20",
+        "fields": {}
+      },
+      {
+        "action": "Apply preferences",
+        "fields": {
+          "Seat": "Window",
+          "Quiet coach": "on"
+        }
+      },
+      {
+        "action": "Add platform",
+        "fields": {
+          "Departure platform": "Platform 4"
+        }
+      },
+      {
+        "action": "Save itinerary",
+        "fields": {}
+      }
+    ],
+    "observed": [
+      {
+        "action": "Find trains",
+        "fields": {
+          "From station": "York",
+          "To station": "Durham"
+        }
+      },
+      {
+        "action": "Express 09:20",
+        "fields": {}
+      },
+      {
+        "action": "Apply preferences",
+        "fields": {
+          "Seat": "Window",
+          "Quiet coach": "on"
+        }
+      },
+      {
+        "action": "Add platform",
+        "fields": {
+          "Departure platform": "Platform 4"
+        }
+      },
+      {
+        "action": "Save itinerary",
+        "fields": {}
+      }
+    ]
+  },
+  "finished_at": "2026-11-17T18:16:36.413911+00:00"
+}

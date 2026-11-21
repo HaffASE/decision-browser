@@ -1,0 +1,468 @@
+{
+  "arm": "opencode_jev",
+  "case": "support_handoff",
+  "repetition": 1,
+  "phase": "finished",
+  "started_at": "2026-11-17T20:32:29.984563+00:00",
+  "record": "runs/opencode_jev/support_handoff/1.json",
+  "group": "long",
+  "goal_sha256": "a661b7a4c7cfeef61640276489de01f37476b6c138b2e42a9f9d8af6bceb8c18",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 24,
+    "timeout_s": 180,
+    "max_input_bytes": 524288
+  },
+  "confirmed": true,
+  "observed": true,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "verified",
+    "reason": "verified",
+    "functional": "verified",
+    "steps": 17,
+    "native_evidence": [
+      "route:ok",
+      "text:ok"
+    ],
+    "native_timings": {
+      "setup": 0.0001866249367594719,
+      "browser": 12.989853833219968,
+      "verification": 1.8200342088239267,
+      "total": 14.903041541925631
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:59409/support_handoff/summary",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      true,
+      true
+    ],
+    "independent_verification_ms": 3,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "fill",
+      "select",
+      "click",
+      "click",
+      "click",
+      "select",
+      "select",
+      "click",
+      "select",
+      "click",
+      "click",
+      "fill",
+      "select",
+      "submit",
+      "submit",
+      "click"
+    ],
+    "arm": "opencode_jev",
+    "model": "jev-1.13",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 4312,
+          "output_tokens": 409,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 17818,
+          "duration_ms": 944,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4406,
+          "output_tokens": 407,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 17888,
+          "duration_ms": 342,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4461,
+          "output_tokens": 408,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 17972,
+          "duration_ms": 377,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3343,
+          "output_tokens": 253,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 11886,
+          "duration_ms": 349,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3463,
+          "output_tokens": 266,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 13507,
+          "duration_ms": 384,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4720,
+          "output_tokens": 363,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 18122,
+          "duration_ms": 411,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4827,
+          "output_tokens": 362,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 18218,
+          "duration_ms": 360,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4880,
+          "output_tokens": 363,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 18267,
+          "duration_ms": 458,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4526,
+          "output_tokens": 322,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 17287,
+          "duration_ms": 359,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4602,
+          "output_tokens": 323,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 17544,
+          "duration_ms": 394,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4690,
+          "output_tokens": 323,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 17767,
+          "duration_ms": 328,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 5644,
+          "output_tokens": 409,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 21660,
+          "duration_ms": 433,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 5641,
+          "output_tokens": 407,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 21665,
+          "duration_ms": 432,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 5652,
+          "output_tokens": 408,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 21572,
+          "duration_ms": 354,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4363,
+          "output_tokens": 266,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 16306,
+          "duration_ms": 374,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4439,
+          "output_tokens": 266,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 16607,
+          "duration_ms": 465,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 16,
+      "request_bytes": 284086,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 16,
+        "cached_tokens": 16,
+        "cache_write_tokens": 16,
+        "reasoning_tokens": 16
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": false,
+        "cached_tokens": false,
+        "cache_write_tokens": false,
+        "reasoning_tokens": false
+      },
+      "reported_tokens": {
+        "input_tokens": 73969,
+        "output_tokens": 5555,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 73969,
+      "output_tokens": 5555,
+      "total_tokens": null,
+      "cached_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "returncode": 0,
+    "wall_ms": 15164,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": true,
+    "expected": [
+      {
+        "action": "Search tickets",
+        "fields": {
+          "Queue": "Network",
+          "Ticket number": "R-214"
+        }
+      },
+      {
+        "action": "R-214 edge packet loss",
+        "fields": {}
+      },
+      {
+        "action": "Open activity log",
+        "fields": {}
+      },
+      {
+        "action": "Classify fault",
+        "fields": {
+          "Fault code": "EDGE-72",
+          "Priority": "High"
+        }
+      },
+      {
+        "action": "Apply routing",
+        "fields": {
+          "Receiving team": "Network Operations",
+          "On-call rotation": "on"
+        }
+      },
+      {
+        "action": "Add note",
+        "fields": {
+          "Handoff note": "Compare edge counters",
+          "Note tag": "Diagnosis"
+        }
+      },
+      {
+        "action": "Review handoff",
+        "fields": {}
+      },
+      {
+        "action": "Save handoff draft",
+        "fields": {}
+      }
+    ],
+    "observed": [
+      {
+        "action": "Search tickets",
+        "fields": {
+          "Queue": "Network",
+          "Ticket number": "R-214"
+        }
+      },
+      {
+        "action": "R-214 edge packet loss",
+        "fields": {}
+      },
+      {
+        "action": "Open activity log",
+        "fields": {}
+      },
+      {
+        "action": "Classify fault",
+        "fields": {
+          "Fault code": "EDGE-72",
+          "Priority": "High"
+        }
+      },
+      {
+        "action": "Apply routing",
+        "fields": {
+          "Receiving team": "Network Operations",
+          "On-call rotation": "on"
+        }
+      },
+      {
+        "action": "Add note",
+        "fields": {
+          "Handoff note": "Compare edge counters",
+          "Note tag": "Diagnosis"
+        }
+      },
+      {
+        "action": "Review handoff",
+        "fields": {}
+      },
+      {
+        "action": "Save handoff draft",
+        "fields": {}
+      }
+    ]
+  },
+  "finished_at": "2026-11-17T20:32:45.273222+00:00"
+}

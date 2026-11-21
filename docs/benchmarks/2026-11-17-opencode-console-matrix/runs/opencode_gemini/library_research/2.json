@@ -1,0 +1,384 @@
+{
+  "arm": "opencode_gemini",
+  "case": "library_research",
+  "repetition": 2,
+  "phase": "finished",
+  "started_at": "2026-11-17T20:34:26.405501+00:00",
+  "record": "runs/opencode_gemini/library_research/2.json",
+  "group": "long",
+  "goal_sha256": "ed4e0cab9634fd883d9245ed39567e76f855e36dcb607a14cbf4731283ad5925",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 24,
+    "timeout_s": 180,
+    "max_input_bytes": 524288
+  },
+  "confirmed": true,
+  "observed": true,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "verified",
+    "reason": "verified",
+    "functional": "verified",
+    "steps": 13,
+    "native_evidence": [
+      "route:ok",
+      "text:ok"
+    ],
+    "native_timings": {
+      "setup": 0.0001681250287219882,
+      "browser": 12.688299957895651,
+      "verification": 1.7541945840930566,
+      "total": 14.570026458939537
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:60847/library_research/summary",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      true,
+      true
+    ],
+    "independent_verification_ms": 2,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "fill",
+      "select",
+      "submit",
+      "click",
+      "click",
+      "select",
+      "submit",
+      "click",
+      "fill",
+      "select",
+      "submit",
+      "click"
+    ],
+    "arm": "opencode_gemini",
+    "model": "gemini-decision-1",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 3893,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 17974,
+          "duration_ms": 1579,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3972,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 18119,
+          "duration_ms": 546,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4049,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 18299,
+          "duration_ms": 562,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2967,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 12070,
+          "duration_ms": 557,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3107,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 13650,
+          "duration_ms": 619,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3831,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 16457,
+          "duration_ms": 502,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3940,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 16533,
+          "duration_ms": 515,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3542,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 14079,
+          "duration_ms": 462,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4909,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 21168,
+          "duration_ms": 885,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4987,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 21296,
+          "duration_ms": 578,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 5073,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 21449,
+          "duration_ms": 489,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3963,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 16559,
+          "duration_ms": 540,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 12,
+      "request_bytes": 207653,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 12,
+        "cached_tokens": 12,
+        "cache_write_tokens": 12,
+        "reasoning_tokens": 12
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": false,
+        "cached_tokens": false,
+        "cache_write_tokens": false,
+        "reasoning_tokens": false
+      },
+      "reported_tokens": {
+        "input_tokens": 48233,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 48233,
+      "output_tokens": 0,
+      "total_tokens": null,
+      "cached_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "returncode": 0,
+    "wall_ms": 14845,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": true,
+    "expected": [
+      {
+        "action": "Search catalogue",
+        "fields": {
+          "Catalogue query": "Glacier Atlas",
+          "Collection": "Earth Science"
+        }
+      },
+      {
+        "action": "Glacier Atlas field guide",
+        "fields": {}
+      },
+      {
+        "action": "Read appendix",
+        "fields": {}
+      },
+      {
+        "action": "Look up reference",
+        "fields": {
+          "Companion reference": "GL-42"
+        }
+      },
+      {
+        "action": "Peer-reviewed paper",
+        "fields": {}
+      },
+      {
+        "action": "Preview list",
+        "fields": {
+          "Reading list name": "Ice Notes",
+          "List tag": "Fieldwork"
+        }
+      },
+      {
+        "action": "Save reading list",
+        "fields": {}
+      }
+    ],
+    "observed": [
+      {
+        "action": "Search catalogue",
+        "fields": {
+          "Catalogue query": "Glacier Atlas",
+          "Collection": "Earth Science"
+        }
+      },
+      {
+        "action": "Glacier Atlas field guide",
+        "fields": {}
+      },
+      {
+        "action": "Read appendix",
+        "fields": {}
+      },
+      {
+        "action": "Look up reference",
+        "fields": {
+          "Companion reference": "GL-42"
+        }
+      },
+      {
+        "action": "Peer-reviewed paper",
+        "fields": {}
+      },
+      {
+        "action": "Preview list",
+        "fields": {
+          "Reading list name": "Ice Notes",
+          "List tag": "Fieldwork"
+        }
+      },
+      {
+        "action": "Save reading list",
+        "fields": {}
+      }
+    ]
+  },
+  "finished_at": "2026-11-17T20:34:41.330565+00:00"
+}

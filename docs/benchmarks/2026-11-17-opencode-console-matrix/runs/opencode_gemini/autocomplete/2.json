@@ -1,0 +1,158 @@
+{
+  "arm": "opencode_gemini",
+  "case": "autocomplete",
+  "repetition": 2,
+  "phase": "finished",
+  "started_at": "2026-11-17T20:34:45.328653+00:00",
+  "record": "runs/opencode_gemini/autocomplete/2.json",
+  "group": "short",
+  "goal_sha256": "81f27514224de72d76c78afc44918ef9e0e4d32d093d4344ac866e30bdef4f1c",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 12,
+    "timeout_s": 75.0,
+    "max_input_bytes": 131072
+  },
+  "confirmed": true,
+  "observed": true,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "verified",
+    "reason": "verified",
+    "functional": "verified",
+    "steps": 3,
+    "native_evidence": [
+      "text:ok",
+      "route:ok",
+      "value:ok"
+    ],
+    "native_timings": {
+      "setup": 0.0001608340535312891,
+      "browser": 3.3097036249237135,
+      "verification": 0.06570391601417214,
+      "total": 3.480161082930863
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:61108/autocomplete/",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      true,
+      true,
+      true
+    ],
+    "independent_verification_ms": 2,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "fill",
+      "click"
+    ],
+    "arm": "opencode_gemini",
+    "model": "gemini-decision-1",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 2859,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 13198,
+          "duration_ms": 1146,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3001,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 13470,
+          "duration_ms": 745,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 2,
+      "request_bytes": 26668,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 2,
+        "cached_tokens": 2,
+        "cache_write_tokens": 2,
+        "reasoning_tokens": 2
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": false,
+        "cached_tokens": false,
+        "cache_write_tokens": false,
+        "reasoning_tokens": false
+      },
+      "reported_tokens": {
+        "input_tokens": 5860,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 5860,
+      "output_tokens": 0,
+      "total_tokens": null,
+      "cached_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "returncode": 0,
+    "wall_ms": 3771,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": true,
+    "expected": [
+      {
+        "name": "airport",
+        "data": {
+          "value": "Zurich Airport (ZRH)",
+          "code": "ZRH"
+        }
+      }
+    ],
+    "observed": [
+      {
+        "name": "airport",
+        "data": {
+          "value": "Zurich Airport (ZRH)",
+          "code": "ZRH"
+        }
+      }
+    ]
+  },
+  "finished_at": "2026-11-17T20:34:49.202679+00:00"
+}

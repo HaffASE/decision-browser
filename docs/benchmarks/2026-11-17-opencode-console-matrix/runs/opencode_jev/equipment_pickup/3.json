@@ -1,0 +1,458 @@
+{
+  "arm": "opencode_jev",
+  "case": "equipment_pickup",
+  "repetition": 3,
+  "phase": "finished",
+  "started_at": "2026-11-17T20:36:38.487164+00:00",
+  "record": "runs/opencode_jev/equipment_pickup/3.json",
+  "group": "long",
+  "goal_sha256": "81481f8f391a61a9557fc899195b55de4f9d6b97b8057420f52ce9f384ef3eab",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 24,
+    "timeout_s": 180,
+    "max_input_bytes": 524288
+  },
+  "confirmed": true,
+  "observed": true,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "verified",
+    "reason": "verified",
+    "functional": "verified",
+    "steps": 17,
+    "native_evidence": [
+      "route:ok",
+      "text:ok"
+    ],
+    "native_timings": {
+      "setup": 0.00015058298595249653,
+      "browser": 11.901419540285133,
+      "verification": 1.7880820017307997,
+      "total": 13.790432750014588
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:62451/equipment_pickup/summary",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      true,
+      true
+    ],
+    "independent_verification_ms": 2,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "fill",
+      "select",
+      "click",
+      "click",
+      "select",
+      "click",
+      "wait",
+      "wait",
+      "submit",
+      "click",
+      "select",
+      "select",
+      "click",
+      "fill",
+      "submit",
+      "click"
+    ],
+    "arm": "opencode_jev",
+    "model": "jev-1.13",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 4324,
+          "output_tokens": 409,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 17860,
+          "duration_ms": 837,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4397,
+          "output_tokens": 407,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 17942,
+          "duration_ms": 384,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4463,
+          "output_tokens": 408,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 18030,
+          "duration_ms": 410,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3308,
+          "output_tokens": 253,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 11842,
+          "duration_ms": 312,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4051,
+          "output_tokens": 330,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 15842,
+          "duration_ms": 304,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4143,
+          "output_tokens": 331,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 15972,
+          "duration_ms": 340,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4237,
+          "output_tokens": 331,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 16204,
+          "duration_ms": 398,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4329,
+          "output_tokens": 331,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 16423,
+          "duration_ms": 355,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4443,
+          "output_tokens": 331,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 16759,
+          "duration_ms": 358,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3994,
+          "output_tokens": 253,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 13876,
+          "duration_ms": 337,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 5134,
+          "output_tokens": 354,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 19459,
+          "duration_ms": 440,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 5120,
+          "output_tokens": 354,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 19326,
+          "duration_ms": 391,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 5137,
+          "output_tokens": 355,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 19264,
+          "duration_ms": 354,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 5045,
+          "output_tokens": 345,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 19257,
+          "duration_ms": 402,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 5028,
+          "output_tokens": 344,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 19140,
+          "duration_ms": 396,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4355,
+          "output_tokens": 266,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 16322,
+          "duration_ms": 381,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 16,
+      "request_bytes": 273518,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 16,
+        "cached_tokens": 16,
+        "cache_write_tokens": 16,
+        "reasoning_tokens": 16
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": false,
+        "cached_tokens": false,
+        "cache_write_tokens": false,
+        "reasoning_tokens": false
+      },
+      "reported_tokens": {
+        "input_tokens": 71508,
+        "output_tokens": 5402,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 71508,
+      "output_tokens": 5402,
+      "total_tokens": null,
+      "cached_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "returncode": 0,
+    "wall_ms": 14039,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": true,
+    "expected": [
+      {
+        "action": "Search equipment",
+        "fields": {
+          "Equipment query": "Boreal",
+          "Category": "Cameras"
+        }
+      },
+      {
+        "action": "Boreal WX weatherproof",
+        "fields": {}
+      },
+      {
+        "action": "Add accessories",
+        "fields": {
+          "Lens": "Telephoto",
+          "Protective case": "on"
+        }
+      },
+      {
+        "action": "East depot",
+        "fields": {}
+      },
+      {
+        "action": "Set pickup window",
+        "fields": {
+          "Pickup day": "Friday",
+          "Pickup window": "Afternoon"
+        }
+      },
+      {
+        "action": "Add collector",
+        "fields": {
+          "Collector name": "Lina Cruz"
+        }
+      },
+      {
+        "action": "Save pick list",
+        "fields": {}
+      }
+    ],
+    "observed": [
+      {
+        "action": "Search equipment",
+        "fields": {
+          "Equipment query": "Boreal",
+          "Category": "Cameras"
+        }
+      },
+      {
+        "action": "Boreal WX weatherproof",
+        "fields": {}
+      },
+      {
+        "action": "Add accessories",
+        "fields": {
+          "Lens": "Telephoto",
+          "Protective case": "on"
+        }
+      },
+      {
+        "action": "East depot",
+        "fields": {}
+      },
+      {
+        "action": "Set pickup window",
+        "fields": {
+          "Pickup day": "Friday",
+          "Pickup window": "Afternoon"
+        }
+      },
+      {
+        "action": "Add collector",
+        "fields": {
+          "Collector name": "Lina Cruz"
+        }
+      },
+      {
+        "action": "Save pick list",
+        "fields": {}
+      }
+    ]
+  },
+  "finished_at": "2026-11-17T20:36:52.676609+00:00"
+}

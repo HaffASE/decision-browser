@@ -1,0 +1,424 @@
+{
+  "arm": "opencode_gemini",
+  "case": "equipment_pickup",
+  "repetition": 1,
+  "phase": "finished",
+  "started_at": "2026-11-17T20:31:30.212021+00:00",
+  "record": "runs/opencode_gemini/equipment_pickup/1.json",
+  "group": "long",
+  "goal_sha256": "81481f8f391a61a9557fc899195b55de4f9d6b97b8057420f52ce9f384ef3eab",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 24,
+    "timeout_s": 180,
+    "max_input_bytes": 524288
+  },
+  "confirmed": true,
+  "observed": true,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "verified",
+    "reason": "verified",
+    "functional": "verified",
+    "steps": 15,
+    "native_evidence": [
+      "route:ok",
+      "text:ok"
+    ],
+    "native_timings": {
+      "setup": 0.0002341660438105464,
+      "browser": 14.867011666181497,
+      "verification": 1.775901208864525,
+      "total": 16.782025333028287
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:58642/equipment_pickup/summary",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      true,
+      true
+    ],
+    "independent_verification_ms": 2,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "fill",
+      "select",
+      "submit",
+      "click",
+      "select",
+      "click",
+      "submit",
+      "click",
+      "select",
+      "select",
+      "submit",
+      "fill",
+      "submit",
+      "click"
+    ],
+    "arm": "opencode_gemini",
+    "model": "gemini-decision-1",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 3896,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 17869,
+          "duration_ms": 1118,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3963,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 17951,
+          "duration_ms": 579,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4024,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 18039,
+          "duration_ms": 673,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2943,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 11918,
+          "duration_ms": 649,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3652,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 15918,
+          "duration_ms": 707,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3733,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 16048,
+          "duration_ms": 545,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3821,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 16280,
+          "duration_ms": 461,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3437,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 13514,
+          "duration_ms": 562,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4473,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 19097,
+          "duration_ms": 571,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4544,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 19188,
+          "duration_ms": 560,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4631,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 19346,
+          "duration_ms": 606,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4620,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 19438,
+          "duration_ms": 617,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 4621,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 19334,
+          "duration_ms": 500,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3979,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 16463,
+          "duration_ms": 490,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 14,
+      "request_bytes": 240403,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 14,
+        "cached_tokens": 14,
+        "cache_write_tokens": 14,
+        "reasoning_tokens": 14
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": false,
+        "cached_tokens": false,
+        "cache_write_tokens": false,
+        "reasoning_tokens": false
+      },
+      "reported_tokens": {
+        "input_tokens": 56337,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 56337,
+      "output_tokens": 0,
+      "total_tokens": null,
+      "cached_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "returncode": 0,
+    "wall_ms": 17055,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": true,
+    "expected": [
+      {
+        "action": "Search equipment",
+        "fields": {
+          "Equipment query": "Boreal",
+          "Category": "Cameras"
+        }
+      },
+      {
+        "action": "Boreal WX weatherproof",
+        "fields": {}
+      },
+      {
+        "action": "Add accessories",
+        "fields": {
+          "Lens": "Telephoto",
+          "Protective case": "on"
+        }
+      },
+      {
+        "action": "East depot",
+        "fields": {}
+      },
+      {
+        "action": "Set pickup window",
+        "fields": {
+          "Pickup day": "Friday",
+          "Pickup window": "Afternoon"
+        }
+      },
+      {
+        "action": "Add collector",
+        "fields": {
+          "Collector name": "Lina Cruz"
+        }
+      },
+      {
+        "action": "Save pick list",
+        "fields": {}
+      }
+    ],
+    "observed": [
+      {
+        "action": "Search equipment",
+        "fields": {
+          "Equipment query": "Boreal",
+          "Category": "Cameras"
+        }
+      },
+      {
+        "action": "Boreal WX weatherproof",
+        "fields": {}
+      },
+      {
+        "action": "Add accessories",
+        "fields": {
+          "Lens": "Telephoto",
+          "Protective case": "on"
+        }
+      },
+      {
+        "action": "East depot",
+        "fields": {}
+      },
+      {
+        "action": "Set pickup window",
+        "fields": {
+          "Pickup day": "Friday",
+          "Pickup window": "Afternoon"
+        }
+      },
+      {
+        "action": "Add collector",
+        "fields": {
+          "Collector name": "Lina Cruz"
+        }
+      },
+      {
+        "action": "Save pick list",
+        "fields": {}
+      }
+    ]
+  },
+  "finished_at": "2026-11-17T20:31:47.778360+00:00"
+}

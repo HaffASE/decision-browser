@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "planned_and_verified_cells": 67,
+  "unconfirmed": 45,
+  "baseline_audited_results_sha256": "026d1d55a2eb9b8db9a7131b737497601e6e877725af309a4150b613432e5e07",
+  "source_sha256": "62f8c2bee0c63516f58d32a035560f1719f959be200374793c6e938031656777",
+  "source_delta_paths": [
+    "docs/benchmarks/2026-11-03-terra-medium/agent.py",
+    "scripts/benchmarks/long_scenarios.py",
+    "scripts/run_provider_browser_matrix.py",
+    "src/decision_browser/model_context.py",
+    "src/decision_browser/systemone_provider.py"
+  ],
+  "raw_file_hashes": {
+    "results.json": "e54069675f0e6374244d39a3e1a6943ac88daf58afcaae4b1256f3638da2c471",
+    "summary.json": "082ee61202a0ff974b46279cff2319febd4db544f356bd8cefb8c6c8cb3d9f04",
+    "runs.csv": "a1576625e6c9c656ccd60cbb071c0292e8ddd606ca803ddb575b119b18c94661"
+  }
+}

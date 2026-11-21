@@ -1,0 +1,384 @@
+{
+  "arm": "decision_api",
+  "case": "library_research",
+  "repetition": 2,
+  "phase": "finished",
+  "started_at": "2026-11-17T20:14:32.601311+00:00",
+  "record": "runs/decision_api/library_research/2.json",
+  "group": "long",
+  "goal_sha256": "ed4e0cab9634fd883d9245ed39567e76f855e36dcb607a14cbf4731283ad5925",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 24,
+    "timeout_s": 180,
+    "max_input_bytes": 524288
+  },
+  "confirmed": true,
+  "observed": true,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "verified",
+    "reason": "verified",
+    "functional": "verified",
+    "steps": 13,
+    "native_evidence": [
+      "route:ok",
+      "text:ok"
+    ],
+    "native_timings": {
+      "setup": 0.00015891599468886852,
+      "browser": 17.354256582912058,
+      "verification": 1.7283478340832517,
+      "total": 19.205350707983598
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:53019/library_research/summary",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      true,
+      true
+    ],
+    "independent_verification_ms": 2,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "fill",
+      "select",
+      "submit",
+      "click",
+      "click",
+      "select",
+      "submit",
+      "click",
+      "fill",
+      "select",
+      "submit",
+      "click"
+    ],
+    "arm": "decision_api",
+    "model": "gpt-6-luna",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 2700,
+          "output_tokens": 0,
+          "total_tokens": 2700,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 11627,
+          "duration_ms": 1798,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2759,
+          "output_tokens": 0,
+          "total_tokens": 2759,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 11794,
+          "duration_ms": 480,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2860,
+          "output_tokens": 0,
+          "total_tokens": 2860,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1033,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 12234,
+          "duration_ms": 463,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2383,
+          "output_tokens": 0,
+          "total_tokens": 2383,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 9371,
+          "duration_ms": 705,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2081,
+          "output_tokens": 0,
+          "total_tokens": 2081,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 8970,
+          "duration_ms": 363,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2879,
+          "output_tokens": 0,
+          "total_tokens": 2879,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1287,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 11940,
+          "duration_ms": 598,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3004,
+          "output_tokens": 0,
+          "total_tokens": 3004,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1373,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 12276,
+          "duration_ms": 697,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2858,
+          "output_tokens": 0,
+          "total_tokens": 2858,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1471,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 11380,
+          "duration_ms": 340,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3539,
+          "output_tokens": 0,
+          "total_tokens": 3539,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1765,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 14871,
+          "duration_ms": 565,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3605,
+          "output_tokens": 0,
+          "total_tokens": 3605,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1833,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 15029,
+          "duration_ms": 563,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3720,
+          "output_tokens": 0,
+          "total_tokens": 3720,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1906,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 15442,
+          "duration_ms": 537,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2798,
+          "output_tokens": 0,
+          "total_tokens": 2798,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1564,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 11871,
+          "duration_ms": 5572,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 12,
+      "request_bytes": 146805,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true,
+        "cached_tokens": true,
+        "cache_write_tokens": true,
+        "reasoning_tokens": true
+      },
+      "reported_tokens": {
+        "input_tokens": 35186,
+        "output_tokens": 0,
+        "total_tokens": 35186,
+        "cached_tokens": 0,
+        "cache_write_tokens": 12232,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 35186,
+      "output_tokens": 0,
+      "total_tokens": 35186,
+      "cached_tokens": 0,
+      "cache_write_tokens": 12232,
+      "reasoning_tokens": 0
+    },
+    "returncode": 0,
+    "wall_ms": 19518,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": true,
+    "expected": [
+      {
+        "action": "Search catalogue",
+        "fields": {
+          "Catalogue query": "Glacier Atlas",
+          "Collection": "Earth Science"
+        }
+      },
+      {
+        "action": "Glacier Atlas field guide",
+        "fields": {}
+      },
+      {
+        "action": "Read appendix",
+        "fields": {}
+      },
+      {
+        "action": "Look up reference",
+        "fields": {
+          "Companion reference": "GL-42"
+        }
+      },
+      {
+        "action": "Peer-reviewed paper",
+        "fields": {}
+      },
+      {
+        "action": "Preview list",
+        "fields": {
+          "Reading list name": "Ice Notes",
+          "List tag": "Fieldwork"
+        }
+      },
+      {
+        "action": "Save reading list",
+        "fields": {}
+      }
+    ],
+    "observed": [
+      {
+        "action": "Search catalogue",
+        "fields": {
+          "Catalogue query": "Glacier Atlas",
+          "Collection": "Earth Science"
+        }
+      },
+      {
+        "action": "Glacier Atlas field guide",
+        "fields": {}
+      },
+      {
+        "action": "Read appendix",
+        "fields": {}
+      },
+      {
+        "action": "Look up reference",
+        "fields": {
+          "Companion reference": "GL-42"
+        }
+      },
+      {
+        "action": "Peer-reviewed paper",
+        "fields": {}
+      },
+      {
+        "action": "Preview list",
+        "fields": {
+          "Reading list name": "Ice Notes",
+          "List tag": "Fieldwork"
+        }
+      },
+      {
+        "action": "Save reading list",
+        "fields": {}
+      }
+    ]
+  },
+  "finished_at": "2026-11-17T20:14:52.191247+00:00"
+}

@@ -1,0 +1,38 @@
+{
+  "production_files": [
+    {
+      "path": "src/decision_browser/action_context.py",
+      "before_sha256": "95da1550b545b1a81752a5ac682e1473c5a17ce90812f6bd272125861ae11769",
+      "after_sha256": "a93ec02ef44a6ff0f2c084100ff7df7be551b685f9d79e31d047cfde9bccf8df"
+    },
+    {
+      "path": "src/decision_browser/decision_codec.py",
+      "before_sha256": "9771c2e3161bb4647d552767e4d9609405a104354bbbdbaa177f0cb036630784",
+      "after_sha256": "f24359a4ad102b07a78accc333ac1b1f942952f22bf63ebd4f7d92c9edfcf6e8"
+    },
+    {
+      "path": "src/decision_browser/model_context.py",
+      "before_sha256": "925bc808a61f1b13d2f3f49dfcadd91630d1425ac9d1e8ac4fa0d87b20a26a4c",
+      "after_sha256": "f2c530dd76a6d1578b22be999d6ff6510fc4c11caaafd899039391421918c332"
+    },
+    {
+      "path": "src/decision_browser/provider.py",
+      "before_sha256": "7fe11f154271d68c9491852f12696a337476c6128733d2ea28c918dc22b63954",
+      "after_sha256": "7f0022348bcf7166fd505bb4ebf5376a32ffd97d27c6bf22c3ea2ece6bcb5a5b"
+    },
+    {
+      "path": "src/decision_browser/runner.py",
+      "before_sha256": "5a7b0853ceddf33ef8a95c458664024b0f96526951e822c203907aa155517252",
+      "after_sha256": "1b416a0cc787979dc04b169aaa8df44fba2ece51276a6a84067ec81b9b1d1cd4"
+    }
+  ],
+  "existing_test_files": 107,
+  "existing_test_files_unchanged": true,
+  "baseline_test_count": 2138,
+  "new_tests": [
+    "tests/unit/test_choice_descriptions.py",
+    "tests/unit/test_compact_context_v2.py",
+    "tests/unit/test_lean_context.py",
+    "tests/integration/test_article_choice_grounding.py"
+  ]
+}

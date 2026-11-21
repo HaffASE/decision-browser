@@ -1,0 +1,149 @@
+{
+  "arm": "decision_api",
+  "case": "delayed_menu",
+  "repetition": 3,
+  "phase": "finished",
+  "started_at": "2026-11-17T18:25:47.568672+00:00",
+  "record": "runs/decision_api/delayed_menu/3.json",
+  "group": "short",
+  "goal_sha256": "beb9f42402f8f2af1e23c8b2f9952cc541755b77a30d2f69909c8e7611c21682",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 12,
+    "timeout_s": 75.0,
+    "max_input_bytes": 131072
+  },
+  "confirmed": false,
+  "observed": false,
+  "lifecycle_success": false,
+  "native_success": false,
+  "functional_check_passed": false,
+  "result": {
+    "status": "failed",
+    "reason": "failed",
+    "functional": "failed",
+    "steps": 2,
+    "native_evidence": [
+      "provider:http_error",
+      "http_status:server_error",
+      "text:mismatch",
+      "route:mismatch"
+    ],
+    "native_timings": {
+      "setup": 0.00015145796351134777,
+      "browser": 0.0,
+      "verification": 0.04469699994660914,
+      "total": 2.9511771249817684
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:53269/delayed_menu/",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      false,
+      false
+    ],
+    "independent_verification_ms": 3,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "click"
+    ],
+    "arm": "decision_api",
+    "model": "gpt-6-luna",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 1439,
+          "output_tokens": 0,
+          "total_tokens": 1439,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 6192,
+          "duration_ms": 1264,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": null,
+          "output_tokens": null,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 503,
+          "input_bytes": 6399,
+          "duration_ms": 454,
+          "endpoint": "decisions",
+          "request_model": "gpt-6-luna",
+          "state": "http_error",
+          "usage_reported": false,
+          "error_code": "http_error",
+          "error_type": "ProviderError"
+        }
+      ],
+      "attempts": 2,
+      "request_bytes": 12591,
+      "usage_complete": false,
+      "token_fields_missing": {
+        "input_tokens": 1,
+        "output_tokens": 1,
+        "total_tokens": 1,
+        "cached_tokens": 1,
+        "cache_write_tokens": 1,
+        "reasoning_tokens": 1
+      },
+      "field_complete": {
+        "input_tokens": false,
+        "output_tokens": false,
+        "total_tokens": false,
+        "cached_tokens": false,
+        "cache_write_tokens": false,
+        "reasoning_tokens": false
+      },
+      "reported_tokens": {
+        "input_tokens": 1439,
+        "output_tokens": 0,
+        "total_tokens": 1439,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 1,
+      "transport_errors": 0,
+      "input_tokens": null,
+      "output_tokens": null,
+      "total_tokens": null,
+      "cached_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "returncode": 0,
+    "wall_ms": 3200,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": false,
+    "expected": [
+      {
+        "name": "section",
+        "data": {
+          "section": "society"
+        }
+      }
+    ],
+    "observed": []
+  },
+  "finished_at": "2026-11-17T18:25:51.029758+00:00"
+}

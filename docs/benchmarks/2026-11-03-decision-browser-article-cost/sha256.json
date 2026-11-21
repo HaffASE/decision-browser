@@ -1,0 +1,26 @@
+{
+  "report": {
+    "path": "../2026-11-03-decision-browser-article-cost.md",
+    "sha256": "e27e2869b12c84e533365c43d8d15ea8511205b6b69ec240229d2cab046272fd"
+  },
+  "files": {
+    "before-after.json": "8819d19cce4a62439958a64b98bf218e808e098f811cfb29fbb53bd1ef1299c6",
+    "development/diagnostic-v1.json": "618605f3b0ac0d454b8d1e9a9f86314d58434447b4d38840a8d34bb31424ed19",
+    "development/pilot-v1.json": "dd2cac3abd03dd1ecca4d707037cf41a016378c66ac2245926cf1960e21fa638",
+    "development/pilot-v2.json": "59d28db418c4992b7736387d8e9c947c51b77c181a53de142521bd74c2cceb28",
+    "development/pilot-v3.json": "d6d52bff45028b5aa26e4ca5373f86d40d597d33c209ea91db901f5f6ebf07a8",
+    "development/pilot-v4-lean.json": "7617e35fec7a49e72379f45853a32a4687060609cdb192aaf4bf9da4abf9c92e",
+    "development/pilot-v5-shared.json": "76033ae22413a4aef410efc176566469d5dfbbccc56e1bde960b5522a9f4d51e",
+    "experiment.json": "32995c0235a1ee4f32fc48f8606d5fce6acaaff5b1558d691bc4f1dd1c46874d",
+    "results.json": "c0d2de5d3604af21e3cc9fc4529b08a158a6f63cfcadbf180206393076e391fc",
+    "runs.csv": "4d5917c484fc7cc833ba94706bb5221eae5c824ce11d1eb9dfa42d003bfbdc7b",
+    "source-delta.json": "eccc602a97eafe7c9541c4ebbc2e7fcdd009c40c39459a2d253b8b7865343804",
+    "summary.json": "a87441fb4bd19da835d9df06236a33125731076b92aeacba5e1f8a932ce77912",
+    "tables.md": "46ffdf142f2c0df0b682c684a4d7a3ff4601f01d98e89127f5b332f4d0de49b7",
+    "tested-source-manifest.json": "ae4d07f90c193d6613439b4c6875ec4fef3b35302e3c5bc078784ed66a5e2f39",
+    "verification-summary.json": "2443dd4c1def568879eaded09c85a181e1e42b0f58f9dba38989ab1bbeef21b1",
+    "wire-before.json": "0ecae6a8156415a289dd6e9ee7eeea195de85c609bf0dd4248ed66f20c431f94",
+    "wire-profile-provenance.json": "5368de6724b7241fd63b4126b3e726510ec66e8902e90d052f78a94c59f62349",
+    "wire-v5-shared.json": "f62509bb9ecb0c5be12a80849f4e6109022d49554c9c4faef8b7fa67ab23ebff"
+  }
+}

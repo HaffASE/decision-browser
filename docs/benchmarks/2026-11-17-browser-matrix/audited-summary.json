@@ -1,0 +1,4151 @@
+{
+  "planned_runs": 189,
+  "completed_runs": 189,
+  "verdict": "HAS_FAILURES",
+  "arms": {
+    "jev": {
+      "attempts": 63,
+      "confirmed": 13,
+      "observed": 13,
+      "calls": 530,
+      "usage_complete_runs": 63,
+      "unknown_usage_runs": 0,
+      "tokens": {
+        "input_tokens": {
+          "total": 1810309,
+          "reported_total": 1810309,
+          "missing_calls": 0,
+          "unknown_runs": 0
+        },
+        "output_tokens": {
+          "total": 161088,
+          "reported_total": 161088,
+          "missing_calls": 0,
+          "unknown_runs": 0
+        },
+        "total_tokens": {
+          "total": null,
+          "reported_total": 0,
+          "missing_calls": 530,
+          "unknown_runs": 0
+        },
+        "cached_tokens": {
+          "total": null,
+          "reported_total": 0,
+          "missing_calls": 530,
+          "unknown_runs": 0
+        },
+        "cache_write_tokens": {
+          "total": null,
+          "reported_total": 0,
+          "missing_calls": 530,
+          "unknown_runs": 0
+        },
+        "reasoning_tokens": {
+          "total": null,
+          "reported_total": 0,
+          "missing_calls": 530,
+          "unknown_runs": 0
+        }
+      },
+      "median_wall_ms": 7064,
+      "timed_runs": 63,
+      "errors": {
+        "budget_limit": 14,
+        "limit_exceeded": 10,
+        "failed": 26
+      },
+      "diagnostic_codes": {
+        "route:mismatch": 28,
+        "text:playwright_error": 15,
+        "budget:input_bytes": 10,
+        "text:mismatch": 33,
+        "route:ok": 22,
+        "value:mismatch": 6,
+        "provider:rejected_sentinel": 26
+      },
+      "requested_models": [
+        "jev-latest"
+      ],
+      "resolved_models": {
+        "jev-1.14.0": 530
+      },
+      "http_statuses": {
+        "200": 530
+      }
+    },
+    "decision_api": {
+      "attempts": 63,
+      "confirmed": 52,
+      "observed": 53,
+      "calls": 293,
+      "usage_complete_runs": 62,
+      "unknown_usage_runs": 0,
+      "tokens": {
+        "input_tokens": {
+          "total": null,
+          "reported_total": 738574,
+          "missing_calls": 1,
+          "unknown_runs": 0
+        },
+        "output_tokens": {
+          "total": null,
+          "reported_total": 0,
+          "missing_calls": 1,
+          "unknown_runs": 0
+        },
+        "total_tokens": {
+          "total": null,
+          "reported_total": 738574,
+          "missing_calls": 1,
+          "unknown_runs": 0
+        },
+        "cached_tokens": {
+          "total": null,
+          "reported_total": 4060,
+          "missing_calls": 1,
+          "unknown_runs": 0
+        },
+        "cache_write_tokens": {
+          "total": null,
+          "reported_total": 184441,
+          "missing_calls": 1,
+          "unknown_runs": 0
+        },
+        "reasoning_tokens": {
+          "total": null,
+          "reported_total": 0,
+          "missing_calls": 1,
+          "unknown_runs": 0
+        }
+      },
+      "median_wall_ms": 4766,
+      "timed_runs": 63,
+      "errors": {
+        "no_progress": 2,
+        "verification_failed": 6,
+        "outcome_unknown": 1,
+        "verified": 1,
+        "failed": 1
+      },
+      "diagnostic_codes": {
+        "text:mismatch": 3,
+        "route:ok": 2,
+        "model:unable": 6,
+        "route:mismatch": 9,
+        "text:playwright_error": 6,
+        "text:ok": 1,
+        "provider:http_error": 1,
+        "http_status:server_error": 1
+      },
+      "requested_models": [
+        "gpt-6-luna"
+      ],
+      "resolved_models": {
+        "gpt-6-luna": 292
+      },
+      "http_statuses": {
+        "200": 292,
+        "503": 1
+      }
+    },
+    "terra": {
+      "attempts": 63,
+      "confirmed": 57,
+      "observed": 57,
+      "calls": 384,
+      "usage_complete_runs": 63,
+      "unknown_usage_runs": 0,
+      "tokens": {
+        "input_tokens": {
+          "total": 390682,
+          "reported_total": 390682,
+          "missing_calls": 0,
+          "unknown_runs": 0
+        },
+        "output_tokens": {
+          "total": 9744,
+          "reported_total": 9744,
+          "missing_calls": 0,
+          "unknown_runs": 0
+        },
+        "total_tokens": {
+          "total": 400426,
+          "reported_total": 400426,
+          "missing_calls": 0,
+          "unknown_runs": 0
+        },
+        "cached_tokens": {
+          "total": 7828,
+          "reported_total": 7828,
+          "missing_calls": 0,
+          "unknown_runs": 0
+        },
+        "cache_write_tokens": {
+          "total": 127220,
+          "reported_total": 127220,
+          "missing_calls": 0,
+          "unknown_runs": 0
+        },
+        "reasoning_tokens": {
+          "total": 1970,
+          "reported_total": 1970,
+          "missing_calls": 0,
+          "unknown_runs": 0
+        }
+      },
+      "median_wall_ms": 10781,
+      "timed_runs": 63,
+      "errors": {
+        "Error": 4,
+        "goal_achieved": 2
+      },
+      "diagnostic_codes": {},
+      "requested_models": [
+        "gpt-6.1-terra"
+      ],
+      "resolved_models": {
+        "gpt-6.1-terra": 384
+      },
+      "http_statuses": {
+        "200": 384
+      }
+    }
+  },
+  "cases": {
+    "click": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 9,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 21898,
+            "reported_total": 21898,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 2043,
+            "reported_total": 2043,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 3484,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "jev-latest"
+        ],
+        "resolved_models": {
+          "jev-1.14.0": 9
+        },
+        "http_statuses": {
+          "200": 9
+        }
+      },
+      "decision_api": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 3,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 4578,
+            "reported_total": 4578,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 4578,
+            "reported_total": 4578,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 2854,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6-luna"
+        ],
+        "resolved_models": {
+          "gpt-6-luna": 3
+        },
+        "http_statuses": {
+          "200": 3
+        }
+      },
+      "terra": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 6,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 3699,
+            "reported_total": 3699,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 139,
+            "reported_total": 139,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 3838,
+            "reported_total": 3838,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 40,
+            "reported_total": 40,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 6260,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6.1-terra"
+        ],
+        "resolved_models": {
+          "gpt-6.1-terra": 6
+        },
+        "http_statuses": {
+          "200": 6
+        }
+      }
+    },
+    "search": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 2,
+        "observed": 2,
+        "calls": 9,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 32476,
+            "reported_total": 32476,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 3092,
+            "reported_total": 3092,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 3593,
+        "timed_runs": 3,
+        "errors": {
+          "failed": 1
+        },
+        "diagnostic_codes": {
+          "provider:rejected_sentinel": 1,
+          "text:mismatch": 1,
+          "route:ok": 1
+        },
+        "requested_models": [
+          "jev-latest"
+        ],
+        "resolved_models": {
+          "jev-1.14.0": 9
+        },
+        "http_statuses": {
+          "200": 9
+        }
+      },
+      "decision_api": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 6,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 14499,
+            "reported_total": 14499,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 14499,
+            "reported_total": 14499,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 3819,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6-luna"
+        ],
+        "resolved_models": {
+          "gpt-6-luna": 6
+        },
+        "http_statuses": {
+          "200": 6
+        }
+      },
+      "terra": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 9,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 6231,
+            "reported_total": 6231,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 203,
+            "reported_total": 203,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 6434,
+            "reported_total": 6434,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 32,
+            "reported_total": 32,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 8367,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6.1-terra"
+        ],
+        "resolved_models": {
+          "gpt-6.1-terra": 9
+        },
+        "http_statuses": {
+          "200": 9
+        }
+      }
+    },
+    "select": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 1,
+        "observed": 1,
+        "calls": 9,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 24635,
+            "reported_total": 24635,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 2398,
+            "reported_total": 2398,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 3690,
+        "timed_runs": 3,
+        "errors": {
+          "failed": 2
+        },
+        "diagnostic_codes": {
+          "provider:rejected_sentinel": 2,
+          "text:mismatch": 2,
+          "route:ok": 2
+        },
+        "requested_models": [
+          "jev-latest"
+        ],
+        "resolved_models": {
+          "jev-1.14.0": 9
+        },
+        "http_statuses": {
+          "200": 9
+        }
+      },
+      "decision_api": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 6,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 11853,
+            "reported_total": 11853,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 11853,
+            "reported_total": 11853,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 3533,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6-luna"
+        ],
+        "resolved_models": {
+          "gpt-6-luna": 6
+        },
+        "http_statuses": {
+          "200": 6
+        }
+      },
+      "terra": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 9,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 6138,
+            "reported_total": 6138,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 222,
+            "reported_total": 222,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 6360,
+            "reported_total": 6360,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 50,
+            "reported_total": 50,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 7645,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6.1-terra"
+        ],
+        "resolved_models": {
+          "gpt-6.1-terra": 9
+        },
+        "http_statuses": {
+          "200": 9
+        }
+      }
+    },
+    "navigate": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 1,
+        "observed": 1,
+        "calls": 5,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 13145,
+            "reported_total": 13145,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 1132,
+            "reported_total": 1132,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 5,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 5,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 5,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 5,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 2873,
+        "timed_runs": 3,
+        "errors": {
+          "failed": 2
+        },
+        "diagnostic_codes": {
+          "provider:rejected_sentinel": 2,
+          "text:mismatch": 2,
+          "route:mismatch": 2
+        },
+        "requested_models": [
+          "jev-latest"
+        ],
+        "resolved_models": {
+          "jev-1.14.0": 5
+        },
+        "http_statuses": {
+          "200": 5
+        }
+      },
+      "decision_api": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 3,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 5356,
+            "reported_total": 5356,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 5356,
+            "reported_total": 5356,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 3086,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6-luna"
+        ],
+        "resolved_models": {
+          "gpt-6-luna": 3
+        },
+        "http_statuses": {
+          "200": 3
+        }
+      },
+      "terra": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 6,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 3783,
+            "reported_total": 3783,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 135,
+            "reported_total": 135,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 3918,
+            "reported_total": 3918,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 36,
+            "reported_total": 36,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 5205,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6.1-terra"
+        ],
+        "resolved_models": {
+          "gpt-6.1-terra": 6
+        },
+        "http_statuses": {
+          "200": 6
+        }
+      }
+    },
+    "counter": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "calls": 3,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 7009,
+            "reported_total": 7009,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 675,
+            "reported_total": 675,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 2327,
+        "timed_runs": 3,
+        "errors": {
+          "failed": 3
+        },
+        "diagnostic_codes": {
+          "provider:rejected_sentinel": 3,
+          "text:mismatch": 3,
+          "route:ok": 3
+        },
+        "requested_models": [
+          "jev-latest"
+        ],
+        "resolved_models": {
+          "jev-1.14.0": 3
+        },
+        "http_statuses": {
+          "200": 3
+        }
+      },
+      "decision_api": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 9,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 14496,
+            "reported_total": 14496,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 14496,
+            "reported_total": 14496,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 4280,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6-luna"
+        ],
+        "resolved_models": {
+          "gpt-6-luna": 9
+        },
+        "http_statuses": {
+          "200": 9
+        }
+      },
+      "terra": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 12,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 7717,
+            "reported_total": 7717,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 320,
+            "reported_total": 320,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 8037,
+            "reported_total": 8037,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 105,
+            "reported_total": 105,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 9096,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6.1-terra"
+        ],
+        "resolved_models": {
+          "gpt-6.1-terra": 12
+        },
+        "http_statuses": {
+          "200": 12
+        }
+      }
+    },
+    "public_about": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 1,
+        "observed": 1,
+        "calls": 3,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 17451,
+            "reported_total": 17451,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 1872,
+            "reported_total": 1872,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 6210,
+        "timed_runs": 3,
+        "errors": {
+          "failed": 2
+        },
+        "diagnostic_codes": {
+          "provider:rejected_sentinel": 2,
+          "route:mismatch": 2
+        },
+        "requested_models": [
+          "jev-latest"
+        ],
+        "resolved_models": {
+          "jev-1.14.0": 3
+        },
+        "http_statuses": {
+          "200": 3
+        }
+      },
+      "decision_api": {
+        "attempts": 3,
+        "confirmed": 2,
+        "observed": 3,
+        "calls": 3,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 12388,
+            "reported_total": 12388,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 12388,
+            "reported_total": 12388,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 4060,
+            "reported_total": 4060,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 2030,
+            "reported_total": 2030,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 7257,
+        "timed_runs": 3,
+        "errors": {
+          "outcome_unknown": 1
+        },
+        "diagnostic_codes": {
+          "route:mismatch": 1
+        },
+        "requested_models": [
+          "gpt-6-luna"
+        ],
+        "resolved_models": {
+          "gpt-6-luna": 3
+        },
+        "http_statuses": {
+          "200": 3
+        }
+      },
+      "terra": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 6,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 47175,
+            "reported_total": 47175,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 127,
+            "reported_total": 127,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 47302,
+            "reported_total": 47302,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 7828,
+            "reported_total": 7828,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 38591,
+            "reported_total": 38591,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 28,
+            "reported_total": 28,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 11992,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6.1-terra"
+        ],
+        "resolved_models": {
+          "gpt-6.1-terra": 6
+        },
+        "http_statuses": {
+          "200": 6
+        }
+      }
+    },
+    "hotel": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "calls": 27,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 92894,
+            "reported_total": 92894,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 9721,
+            "reported_total": 9721,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 27,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 27,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 27,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 27,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 7164,
+        "timed_runs": 3,
+        "errors": {
+          "limit_exceeded": 2,
+          "failed": 1
+        },
+        "diagnostic_codes": {
+          "budget:input_bytes": 2,
+          "text:mismatch": 3,
+          "route:mismatch": 3,
+          "provider:rejected_sentinel": 1
+        },
+        "requested_models": [
+          "jev-latest"
+        ],
+        "resolved_models": {
+          "jev-1.14.0": 27
+        },
+        "http_statuses": {
+          "200": 27
+        }
+      },
+      "decision_api": {
+        "attempts": 3,
+        "confirmed": 2,
+        "observed": 2,
+        "calls": 15,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 35218,
+            "reported_total": 35218,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 35218,
+            "reported_total": 35218,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 3247,
+            "reported_total": 3247,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 6648,
+        "timed_runs": 3,
+        "errors": {
+          "verification_failed": 1
+        },
+        "diagnostic_codes": {
+          "model:unable": 1,
+          "text:mismatch": 1,
+          "route:mismatch": 1
+        },
+        "requested_models": [
+          "gpt-6-luna"
+        ],
+        "resolved_models": {
+          "gpt-6-luna": 15
+        },
+        "http_statuses": {
+          "200": 15
+        }
+      },
+      "terra": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 18,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 14133,
+            "reported_total": 14133,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 409,
+            "reported_total": 409,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 14542,
+            "reported_total": 14542,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 61,
+            "reported_total": 61,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 13072,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6.1-terra"
+        ],
+        "resolved_models": {
+          "gpt-6.1-terra": 18
+        },
+        "http_statuses": {
+          "200": 18
+        }
+      }
+    },
+    "profile_form": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 1,
+        "observed": 1,
+        "calls": 20,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 78025,
+            "reported_total": 78025,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 8044,
+            "reported_total": 8044,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 20,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 20,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 20,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 20,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 6393,
+        "timed_runs": 3,
+        "errors": {
+          "limit_exceeded": 1,
+          "failed": 1
+        },
+        "diagnostic_codes": {
+          "budget:input_bytes": 1,
+          "text:mismatch": 2,
+          "route:ok": 2,
+          "provider:rejected_sentinel": 1
+        },
+        "requested_models": [
+          "jev-latest"
+        ],
+        "resolved_models": {
+          "jev-1.14.0": 20
+        },
+        "http_statuses": {
+          "200": 20
+        }
+      },
+      "decision_api": {
+        "attempts": 3,
+        "confirmed": 2,
+        "observed": 2,
+        "calls": 11,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 32065,
+            "reported_total": 32065,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 32065,
+            "reported_total": 32065,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 2153,
+            "reported_total": 2153,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 5321,
+        "timed_runs": 3,
+        "errors": {
+          "no_progress": 1
+        },
+        "diagnostic_codes": {
+          "text:mismatch": 1,
+          "route:ok": 1
+        },
+        "requested_models": [
+          "gpt-6-luna"
+        ],
+        "resolved_models": {
+          "gpt-6-luna": 11
+        },
+        "http_statuses": {
+          "200": 11
+        }
+      },
+      "terra": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 15,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 12012,
+            "reported_total": 12012,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 348,
+            "reported_total": 348,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 12360,
+            "reported_total": 12360,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 34,
+            "reported_total": 34,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 12964,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6.1-terra"
+        ],
+        "resolved_models": {
+          "gpt-6.1-terra": 15
+        },
+        "http_statuses": {
+          "200": 15
+        }
+      }
+    },
+    "autocomplete": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "calls": 33,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 104353,
+            "reported_total": 104353,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 10042,
+            "reported_total": 10042,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 33,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 33,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 33,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 33,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 7359,
+        "timed_runs": 3,
+        "errors": {
+          "limit_exceeded": 3
+        },
+        "diagnostic_codes": {
+          "budget:input_bytes": 3,
+          "text:mismatch": 3,
+          "route:ok": 3,
+          "value:mismatch": 3
+        },
+        "requested_models": [
+          "jev-latest"
+        ],
+        "resolved_models": {
+          "jev-1.14.0": 33
+        },
+        "http_statuses": {
+          "200": 33
+        }
+      },
+      "decision_api": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 6,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 11277,
+            "reported_total": 11277,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 11277,
+            "reported_total": 11277,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 3752,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6-luna"
+        ],
+        "resolved_models": {
+          "gpt-6-luna": 6
+        },
+        "http_statuses": {
+          "200": 6
+        }
+      },
+      "terra": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 12,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 8091,
+            "reported_total": 8091,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 281,
+            "reported_total": 281,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 8372,
+            "reported_total": 8372,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 68,
+            "reported_total": 68,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 9708,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6.1-terra"
+        ],
+        "resolved_models": {
+          "gpt-6.1-terra": 12
+        },
+        "http_statuses": {
+          "200": 12
+        }
+      }
+    },
+    "calendar": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "calls": 9,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 20401,
+            "reported_total": 20401,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 2034,
+            "reported_total": 2034,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 3270,
+        "timed_runs": 3,
+        "errors": {
+          "failed": 3
+        },
+        "diagnostic_codes": {
+          "provider:rejected_sentinel": 3,
+          "text:mismatch": 3,
+          "route:ok": 3,
+          "value:mismatch": 3
+        },
+        "requested_models": [
+          "jev-latest"
+        ],
+        "resolved_models": {
+          "jev-1.14.0": 9
+        },
+        "http_statuses": {
+          "200": 9
+        }
+      },
+      "decision_api": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 9,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 15262,
+            "reported_total": 15262,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 15262,
+            "reported_total": 15262,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 5005,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6-luna"
+        ],
+        "resolved_models": {
+          "gpt-6-luna": 9
+        },
+        "http_statuses": {
+          "200": 9
+        }
+      },
+      "terra": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 12,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 8229,
+            "reported_total": 8229,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 268,
+            "reported_total": 268,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 8497,
+            "reported_total": 8497,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 55,
+            "reported_total": 55,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 11868,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6.1-terra"
+        ],
+        "resolved_models": {
+          "gpt-6.1-terra": 12
+        },
+        "http_statuses": {
+          "200": 12
+        }
+      }
+    },
+    "styled_filter": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 1,
+        "observed": 1,
+        "calls": 7,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 15674,
+            "reported_total": 15674,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 1586,
+            "reported_total": 1586,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 7,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 7,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 7,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 7,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 2874,
+        "timed_runs": 3,
+        "errors": {
+          "failed": 2
+        },
+        "diagnostic_codes": {
+          "provider:rejected_sentinel": 2,
+          "text:mismatch": 2,
+          "route:ok": 2
+        },
+        "requested_models": [
+          "jev-latest"
+        ],
+        "resolved_models": {
+          "jev-1.14.0": 7
+        },
+        "http_statuses": {
+          "200": 7
+        }
+      },
+      "decision_api": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 3,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 4662,
+            "reported_total": 4662,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 4662,
+            "reported_total": 4662,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 2826,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6-luna"
+        ],
+        "resolved_models": {
+          "gpt-6-luna": 3
+        },
+        "http_statuses": {
+          "200": 3
+        }
+      },
+      "terra": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 6,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 3972,
+            "reported_total": 3972,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 132,
+            "reported_total": 132,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 4104,
+            "reported_total": 4104,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 33,
+            "reported_total": 33,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 5802,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6.1-terra"
+        ],
+        "resolved_models": {
+          "gpt-6.1-terra": 6
+        },
+        "http_statuses": {
+          "200": 6
+        }
+      }
+    },
+    "consent": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 1,
+        "observed": 1,
+        "calls": 30,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 88211,
+            "reported_total": 88211,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 8588,
+            "reported_total": 8588,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 30,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 30,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 30,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 30,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 7610,
+        "timed_runs": 3,
+        "errors": {
+          "limit_exceeded": 2
+        },
+        "diagnostic_codes": {
+          "budget:input_bytes": 2,
+          "text:mismatch": 2,
+          "route:ok": 2
+        },
+        "requested_models": [
+          "jev-latest"
+        ],
+        "resolved_models": {
+          "jev-1.14.0": 30
+        },
+        "http_statuses": {
+          "200": 30
+        }
+      },
+      "decision_api": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 9,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 16017,
+            "reported_total": 16017,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 16017,
+            "reported_total": 16017,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 5208,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6-luna"
+        ],
+        "resolved_models": {
+          "gpt-6-luna": 9
+        },
+        "http_statuses": {
+          "200": 9
+        }
+      },
+      "terra": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 12,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 8055,
+            "reported_total": 8055,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 378,
+            "reported_total": 378,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 8433,
+            "reported_total": 8433,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 147,
+            "reported_total": 147,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 10461,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6.1-terra"
+        ],
+        "resolved_models": {
+          "gpt-6.1-terra": 12
+        },
+        "http_statuses": {
+          "200": 12
+        }
+      }
+    },
+    "delayed_menu": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "calls": 36,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 98006,
+            "reported_total": 98006,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 8386,
+            "reported_total": 8386,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 36,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 36,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 36,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 36,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 7774,
+        "timed_runs": 3,
+        "errors": {
+          "budget_limit": 3
+        },
+        "diagnostic_codes": {
+          "text:mismatch": 3,
+          "route:mismatch": 3
+        },
+        "requested_models": [
+          "jev-latest"
+        ],
+        "resolved_models": {
+          "jev-1.14.0": 36
+        },
+        "http_statuses": {
+          "200": 36
+        }
+      },
+      "decision_api": {
+        "attempts": 3,
+        "confirmed": 2,
+        "observed": 2,
+        "calls": 8,
+        "usage_complete_runs": 2,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": null,
+            "reported_total": 11073,
+            "missing_calls": 1,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 1,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 11073,
+            "missing_calls": 1,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 1,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 1,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 1,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 3881,
+        "timed_runs": 3,
+        "errors": {
+          "failed": 1
+        },
+        "diagnostic_codes": {
+          "provider:http_error": 1,
+          "http_status:server_error": 1,
+          "text:mismatch": 1,
+          "route:mismatch": 1
+        },
+        "requested_models": [
+          "gpt-6-luna"
+        ],
+        "resolved_models": {
+          "gpt-6-luna": 7
+        },
+        "http_statuses": {
+          "200": 7,
+          "503": 1
+        }
+      },
+      "terra": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 12,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 7380,
+            "reported_total": 7380,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 317,
+            "reported_total": 317,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 7697,
+            "reported_total": 7697,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 117,
+            "reported_total": 117,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 11158,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6.1-terra"
+        ],
+        "resolved_models": {
+          "gpt-6.1-terra": 12
+        },
+        "http_statuses": {
+          "200": 12
+        }
+      }
+    },
+    "loading_overlay": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 2,
+        "observed": 2,
+        "calls": 33,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 94275,
+            "reported_total": 94275,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 8827,
+            "reported_total": 8827,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 33,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 33,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 33,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 33,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 7516,
+        "timed_runs": 3,
+        "errors": {
+          "budget_limit": 1
+        },
+        "diagnostic_codes": {
+          "text:mismatch": 1,
+          "route:ok": 1
+        },
+        "requested_models": [
+          "jev-latest"
+        ],
+        "resolved_models": {
+          "jev-1.14.0": 33
+        },
+        "http_statuses": {
+          "200": 33
+        }
+      },
+      "decision_api": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 13,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 22336,
+            "reported_total": 22336,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 22336,
+            "reported_total": 22336,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 5474,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6-luna"
+        ],
+        "resolved_models": {
+          "gpt-6-luna": 13
+        },
+        "http_statuses": {
+          "200": 13
+        }
+      },
+      "terra": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 15,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 9957,
+            "reported_total": 9957,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 396,
+            "reported_total": 396,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 10353,
+            "reported_total": 10353,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 117,
+            "reported_total": 117,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 13350,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6.1-terra"
+        ],
+        "resolved_models": {
+          "gpt-6.1-terra": 15
+        },
+        "http_statuses": {
+          "200": 15
+        }
+      }
+    },
+    "below_fold": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "calls": 36,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 83990,
+            "reported_total": 83990,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 6764,
+            "reported_total": 6764,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 36,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 36,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 36,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 36,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 7462,
+        "timed_runs": 3,
+        "errors": {
+          "budget_limit": 3
+        },
+        "diagnostic_codes": {
+          "text:mismatch": 3,
+          "route:ok": 3
+        },
+        "requested_models": [
+          "jev-latest"
+        ],
+        "resolved_models": {
+          "jev-1.14.0": 36
+        },
+        "http_statuses": {
+          "200": 36
+        }
+      },
+      "decision_api": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 9,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 12673,
+            "reported_total": 12673,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 12673,
+            "reported_total": 12673,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 4523,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6-luna"
+        ],
+        "resolved_models": {
+          "gpt-6-luna": 9
+        },
+        "http_statuses": {
+          "200": 9
+        }
+      },
+      "terra": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 9,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 6156,
+            "reported_total": 6156,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 220,
+            "reported_total": 220,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 6376,
+            "reported_total": 6376,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 66,
+            "reported_total": 66,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 9035,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6.1-terra"
+        ],
+        "resolved_models": {
+          "gpt-6.1-terra": 9
+        },
+        "http_statuses": {
+          "200": 9
+        }
+      }
+    },
+    "article": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "calls": 26,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 80381,
+            "reported_total": 80381,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 7915,
+            "reported_total": 7915,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 26,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 26,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 26,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 26,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 7582,
+        "timed_runs": 3,
+        "errors": {
+          "failed": 1,
+          "limit_exceeded": 2
+        },
+        "diagnostic_codes": {
+          "provider:rejected_sentinel": 1,
+          "text:mismatch": 3,
+          "route:mismatch": 3,
+          "budget:input_bytes": 2
+        },
+        "requested_models": [
+          "jev-latest"
+        ],
+        "resolved_models": {
+          "jev-1.14.0": 26
+        },
+        "http_statuses": {
+          "200": 26
+        }
+      },
+      "decision_api": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 9,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 18848,
+            "reported_total": 18848,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 18848,
+            "reported_total": 18848,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 4709,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6-luna"
+        ],
+        "resolved_models": {
+          "gpt-6-luna": 9
+        },
+        "http_statuses": {
+          "200": 9
+        }
+      },
+      "terra": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 12,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 8451,
+            "reported_total": 8451,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 266,
+            "reported_total": 266,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 8717,
+            "reported_total": 8717,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 35,
+            "reported_total": 35,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 9469,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6.1-terra"
+        ],
+        "resolved_models": {
+          "gpt-6.1-terra": 12
+        },
+        "http_statuses": {
+          "200": 12
+        }
+      }
+    },
+    "rail_itinerary": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "calls": 13,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 43886,
+            "reported_total": 43886,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 4396,
+            "reported_total": 4396,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 13,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 13,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 13,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 13,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 6277,
+        "timed_runs": 3,
+        "errors": {
+          "failed": 3
+        },
+        "diagnostic_codes": {
+          "provider:rejected_sentinel": 3,
+          "route:mismatch": 3,
+          "text:playwright_error": 3
+        },
+        "requested_models": [
+          "jev-latest"
+        ],
+        "resolved_models": {
+          "jev-1.14.0": 13
+        },
+        "http_statuses": {
+          "200": 13
+        }
+      },
+      "decision_api": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 33,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 90494,
+            "reported_total": 90494,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 90494,
+            "reported_total": 90494,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 27260,
+            "reported_total": 27260,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 16745,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6-luna"
+        ],
+        "resolved_models": {
+          "gpt-6-luna": 33
+        },
+        "http_statuses": {
+          "200": 33
+        }
+      },
+      "terra": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "calls": 24,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 21891,
+            "reported_total": 21891,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 658,
+            "reported_total": 658,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 22549,
+            "reported_total": 22549,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 133,
+            "reported_total": 133,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 20572,
+        "timed_runs": 3,
+        "errors": {
+          "Error": 3
+        },
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6.1-terra"
+        ],
+        "resolved_models": {
+          "gpt-6.1-terra": 24
+        },
+        "http_statuses": {
+          "200": 24
+        }
+      }
+    },
+    "library_research": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "calls": 56,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 216682,
+            "reported_total": 216682,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 17725,
+            "reported_total": 17725,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 56,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 56,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 56,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 56,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 26794,
+        "timed_runs": 3,
+        "errors": {
+          "failed": 1,
+          "budget_limit": 2
+        },
+        "diagnostic_codes": {
+          "provider:rejected_sentinel": 1,
+          "route:mismatch": 3,
+          "text:playwright_error": 3
+        },
+        "requested_models": [
+          "jev-latest"
+        ],
+        "resolved_models": {
+          "jev-1.14.0": 56
+        },
+        "http_statuses": {
+          "200": 56
+        }
+      },
+      "decision_api": {
+        "attempts": 3,
+        "confirmed": 1,
+        "observed": 1,
+        "calls": 28,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 78036,
+            "reported_total": 78036,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 78036,
+            "reported_total": 78036,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 22606,
+            "reported_total": 22606,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 14822,
+        "timed_runs": 3,
+        "errors": {
+          "verification_failed": 2
+        },
+        "diagnostic_codes": {
+          "model:unable": 2,
+          "route:mismatch": 2,
+          "text:playwright_error": 2
+        },
+        "requested_models": [
+          "gpt-6-luna"
+        ],
+        "resolved_models": {
+          "gpt-6-luna": 28
+        },
+        "http_statuses": {
+          "200": 28
+        }
+      },
+      "terra": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 39,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 39663,
+            "reported_total": 39663,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 870,
+            "reported_total": 870,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 40533,
+            "reported_total": 40533,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 6324,
+            "reported_total": 6324,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 42,
+            "reported_total": 42,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 29008,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6.1-terra"
+        ],
+        "resolved_models": {
+          "gpt-6.1-terra": 39
+        },
+        "http_statuses": {
+          "200": 39
+        }
+      }
+    },
+    "equipment_pickup": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "calls": 67,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 273298,
+            "reported_total": 273298,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 22868,
+            "reported_total": 22868,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 67,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 67,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 67,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 67,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 27537,
+        "timed_runs": 3,
+        "errors": {
+          "budget_limit": 2,
+          "failed": 1
+        },
+        "diagnostic_codes": {
+          "route:mismatch": 3,
+          "text:playwright_error": 3,
+          "provider:rejected_sentinel": 1
+        },
+        "requested_models": [
+          "jev-latest"
+        ],
+        "resolved_models": {
+          "jev-1.14.0": 67
+        },
+        "http_statuses": {
+          "200": 67
+        }
+      },
+      "decision_api": {
+        "attempts": 3,
+        "confirmed": 2,
+        "observed": 2,
+        "calls": 33,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 97941,
+            "reported_total": 97941,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 97941,
+            "reported_total": 97941,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 38257,
+            "reported_total": 38257,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 22423,
+        "timed_runs": 3,
+        "errors": {
+          "no_progress": 1
+        },
+        "diagnostic_codes": {
+          "route:mismatch": 1,
+          "text:playwright_error": 1
+        },
+        "requested_models": [
+          "gpt-6-luna"
+        ],
+        "resolved_models": {
+          "gpt-6-luna": 33
+        },
+        "http_statuses": {
+          "200": 33
+        }
+      },
+      "terra": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 45,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 47346,
+            "reported_total": 47346,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 1042,
+            "reported_total": 1042,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 48388,
+            "reported_total": 48388,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 15801,
+            "reported_total": 15801,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 74,
+            "reported_total": 74,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 33620,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6.1-terra"
+        ],
+        "resolved_models": {
+          "gpt-6.1-terra": 45
+        },
+        "http_statuses": {
+          "200": 45
+        }
+      }
+    },
+    "support_handoff": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "calls": 69,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 286310,
+            "reported_total": 286310,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 22780,
+            "reported_total": 22780,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 69,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 69,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 69,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 69,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 28709,
+        "timed_runs": 3,
+        "errors": {
+          "budget_limit": 3
+        },
+        "diagnostic_codes": {
+          "route:mismatch": 3,
+          "text:playwright_error": 3
+        },
+        "requested_models": [
+          "jev-latest"
+        ],
+        "resolved_models": {
+          "jev-1.14.0": 69
+        },
+        "http_statuses": {
+          "200": 69
+        }
+      },
+      "decision_api": {
+        "attempts": 3,
+        "confirmed": 2,
+        "observed": 2,
+        "calls": 48,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 148437,
+            "reported_total": 148437,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 148437,
+            "reported_total": 148437,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 60667,
+            "reported_total": 60667,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 24923,
+        "timed_runs": 3,
+        "errors": {
+          "verified": 1
+        },
+        "diagnostic_codes": {
+          "route:ok": 1,
+          "text:ok": 1
+        },
+        "requested_models": [
+          "gpt-6-luna"
+        ],
+        "resolved_models": {
+          "gpt-6-luna": 48
+        },
+        "http_statuses": {
+          "200": 48
+        }
+      },
+      "terra": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "calls": 51,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 56358,
+            "reported_total": 56358,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 1147,
+            "reported_total": 1147,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 57505,
+            "reported_total": 57505,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 29766,
+            "reported_total": 29766,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 51,
+            "reported_total": 51,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 39365,
+        "timed_runs": 3,
+        "errors": {},
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6.1-terra"
+        ],
+        "resolved_models": {
+          "gpt-6.1-terra": 51
+        },
+        "http_statuses": {
+          "200": 51
+        }
+      }
+    },
+    "exhibit_planner": {
+      "jev": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "calls": 30,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 117309,
+            "reported_total": 117309,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 10200,
+            "reported_total": 10200,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 30,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 30,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 30,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 30,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 8225,
+        "timed_runs": 3,
+        "errors": {
+          "failed": 3
+        },
+        "diagnostic_codes": {
+          "provider:rejected_sentinel": 3,
+          "route:mismatch": 3,
+          "text:playwright_error": 3
+        },
+        "requested_models": [
+          "jev-latest"
+        ],
+        "resolved_models": {
+          "jev-1.14.0": 30
+        },
+        "http_statuses": {
+          "200": 30
+        }
+      },
+      "decision_api": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "calls": 29,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 81065,
+            "reported_total": 81065,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 81065,
+            "reported_total": 81065,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 28221,
+            "reported_total": 28221,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 17206,
+        "timed_runs": 3,
+        "errors": {
+          "verification_failed": 3
+        },
+        "diagnostic_codes": {
+          "model:unable": 3,
+          "route:mismatch": 3,
+          "text:playwright_error": 3
+        },
+        "requested_models": [
+          "gpt-6-luna"
+        ],
+        "resolved_models": {
+          "gpt-6-luna": 29
+        },
+        "http_statuses": {
+          "200": 29
+        }
+      },
+      "terra": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "calls": 54,
+        "usage_complete_runs": 3,
+        "unknown_usage_runs": 0,
+        "tokens": {
+          "input_tokens": {
+            "total": 64245,
+            "reported_total": 64245,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 1866,
+            "reported_total": 1866,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": 66111,
+            "reported_total": 66111,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": 36738,
+            "reported_total": 36738,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": 646,
+            "reported_total": 646,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          }
+        },
+        "median_wall_ms": 48577,
+        "timed_runs": 3,
+        "errors": {
+          "Error": 1,
+          "goal_achieved": 2
+        },
+        "diagnostic_codes": {},
+        "requested_models": [
+          "gpt-6.1-terra"
+        ],
+        "resolved_models": {
+          "gpt-6.1-terra": 54
+        },
+        "http_statuses": {
+          "200": 54
+        }
+      }
+    }
+  }
+}

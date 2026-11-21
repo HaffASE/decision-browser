@@ -1,0 +1,123 @@
+{
+  "arm": "jev",
+  "case": "counter",
+  "repetition": 3,
+  "phase": "finished",
+  "started_at": "2026-11-17T18:23:46.760058+00:00",
+  "record": "runs/jev/counter/3.json",
+  "group": "short",
+  "goal_sha256": "83bdd37052779072cf50854a6e3f210a6053a6b3a50af88d4f37168b7c61909a",
+  "limits": {
+    "max_steps": 8,
+    "max_calls": 12,
+    "timeout_s": 75.0,
+    "max_input_bytes": 131072
+  },
+  "confirmed": false,
+  "observed": false,
+  "lifecycle_success": true,
+  "native_success": false,
+  "functional_check_passed": false,
+  "result": {
+    "status": "failed",
+    "reason": "failed",
+    "functional": "failed",
+    "steps": 1,
+    "native_evidence": [
+      "provider:rejected_sentinel",
+      "text:mismatch",
+      "route:ok"
+    ],
+    "native_timings": {
+      "setup": 0.00014591601211577654,
+      "browser": 0.0,
+      "verification": 0.029422874911688268,
+      "total": 2.6554254579823464
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:51929/r/20750451ea2e44e58d6ade3fef60946e/counter/",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      false,
+      true
+    ],
+    "independent_verification_ms": 2,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [],
+    "arm": "jev",
+    "model": "jev-latest",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 2328,
+          "output_tokens": 225,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 8551,
+          "duration_ms": 1800,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 1,
+      "request_bytes": 8551,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 1,
+        "cached_tokens": 1,
+        "cache_write_tokens": 1,
+        "reasoning_tokens": 1
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": false,
+        "cached_tokens": false,
+        "cache_write_tokens": false,
+        "reasoning_tokens": false
+      },
+      "reported_tokens": {
+        "input_tokens": 2328,
+        "output_tokens": 225,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 2328,
+      "output_tokens": 225,
+      "total_tokens": null,
+      "cached_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "returncode": 0,
+    "wall_ms": 2913,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": false,
+    "events": [],
+    "details_visits": 0,
+    "counter": 0
+  },
+  "finished_at": "2026-11-17T18:23:49.697306+00:00"
+}

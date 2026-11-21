@@ -1,0 +1,424 @@
+{
+  "arm": "decision_api",
+  "case": "equipment_pickup",
+  "repetition": 1,
+  "phase": "finished",
+  "started_at": "2026-11-17T18:15:15.523029+00:00",
+  "record": "runs/decision_api/equipment_pickup/1.json",
+  "group": "long",
+  "goal_sha256": "81481f8f391a61a9557fc899195b55de4f9d6b97b8057420f52ce9f384ef3eab",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 24,
+    "timeout_s": 180,
+    "max_input_bytes": 524288
+  },
+  "confirmed": true,
+  "observed": true,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "verified",
+    "reason": "verified",
+    "functional": "verified",
+    "steps": 15,
+    "native_evidence": [
+      "route:ok",
+      "text:ok"
+    ],
+    "native_timings": {
+      "setup": 0.00016720802523195744,
+      "browser": 14.875613874639384,
+      "verification": 7.200141292298213,
+      "total": 22.166906084050424
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:62253/equipment_pickup/summary",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      true,
+      true
+    ],
+    "independent_verification_ms": 2,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "fill",
+      "select",
+      "submit",
+      "click",
+      "select",
+      "click",
+      "submit",
+      "click",
+      "select",
+      "select",
+      "submit",
+      "fill",
+      "submit",
+      "click"
+    ],
+    "arm": "decision_api",
+    "model": "gpt-6-luna",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 2717,
+          "output_tokens": 0,
+          "total_tokens": 2717,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 11532,
+          "duration_ms": 2137,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2775,
+          "output_tokens": 0,
+          "total_tokens": 2775,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 11650,
+          "duration_ms": 478,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2634,
+          "output_tokens": 0,
+          "total_tokens": 2634,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1046,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 11998,
+          "duration_ms": 503,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2403,
+          "output_tokens": 0,
+          "total_tokens": 2403,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 9219,
+          "duration_ms": 689,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2756,
+          "output_tokens": 0,
+          "total_tokens": 2756,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1171,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 11368,
+          "duration_ms": 437,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2865,
+          "output_tokens": 0,
+          "total_tokens": 2865,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1248,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 11758,
+          "duration_ms": 582,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2946,
+          "output_tokens": 0,
+          "total_tokens": 2946,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1323,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 11990,
+          "duration_ms": 474,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2811,
+          "output_tokens": 0,
+          "total_tokens": 2811,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1425,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 10815,
+          "duration_ms": 354,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3461,
+          "output_tokens": 0,
+          "total_tokens": 3461,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1774,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 14393,
+          "duration_ms": 472,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3552,
+          "output_tokens": 0,
+          "total_tokens": 3552,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1838,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 14744,
+          "duration_ms": 593,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3622,
+          "output_tokens": 0,
+          "total_tokens": 3622,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1914,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 14902,
+          "duration_ms": 435,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3277,
+          "output_tokens": 0,
+          "total_tokens": 3277,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1757,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 13536,
+          "duration_ms": 397,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3276,
+          "output_tokens": 0,
+          "total_tokens": 3276,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1757,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 13462,
+          "duration_ms": 437,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2825,
+          "output_tokens": 0,
+          "total_tokens": 2825,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1590,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 11781,
+          "duration_ms": 484,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 14,
+      "request_bytes": 173148,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true,
+        "cached_tokens": true,
+        "cache_write_tokens": true,
+        "reasoning_tokens": true
+      },
+      "reported_tokens": {
+        "input_tokens": 41920,
+        "output_tokens": 0,
+        "total_tokens": 41920,
+        "cached_tokens": 0,
+        "cache_write_tokens": 16843,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 41920,
+      "output_tokens": 0,
+      "total_tokens": 41920,
+      "cached_tokens": 0,
+      "cache_write_tokens": 16843,
+      "reasoning_tokens": 0
+    },
+    "returncode": 0,
+    "wall_ms": 22423,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": true,
+    "expected": [
+      {
+        "action": "Search equipment",
+        "fields": {
+          "Equipment query": "Boreal",
+          "Category": "Cameras"
+        }
+      },
+      {
+        "action": "Boreal WX weatherproof",
+        "fields": {}
+      },
+      {
+        "action": "Add accessories",
+        "fields": {
+          "Lens": "Telephoto",
+          "Protective case": "on"
+        }
+      },
+      {
+        "action": "East depot",
+        "fields": {}
+      },
+      {
+        "action": "Set pickup window",
+        "fields": {
+          "Pickup day": "Friday",
+          "Pickup window": "Afternoon"
+        }
+      },
+      {
+        "action": "Add collector",
+        "fields": {
+          "Collector name": "Lina Cruz"
+        }
+      },
+      {
+        "action": "Save pick list",
+        "fields": {}
+      }
+    ],
+    "observed": [
+      {
+        "action": "Search equipment",
+        "fields": {
+          "Equipment query": "Boreal",
+          "Category": "Cameras"
+        }
+      },
+      {
+        "action": "Boreal WX weatherproof",
+        "fields": {}
+      },
+      {
+        "action": "Add accessories",
+        "fields": {
+          "Lens": "Telephoto",
+          "Protective case": "on"
+        }
+      },
+      {
+        "action": "East depot",
+        "fields": {}
+      },
+      {
+        "action": "Set pickup window",
+        "fields": {
+          "Pickup day": "Friday",
+          "Pickup window": "Afternoon"
+        }
+      },
+      {
+        "action": "Add collector",
+        "fields": {
+          "Collector name": "Lina Cruz"
+        }
+      },
+      {
+        "action": "Save pick list",
+        "fields": {}
+      }
+    ]
+  },
+  "finished_at": "2026-11-17T18:15:38.084560+00:00"
+}

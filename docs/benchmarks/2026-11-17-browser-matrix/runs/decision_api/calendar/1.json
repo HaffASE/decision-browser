@@ -1,0 +1,173 @@
+{
+  "arm": "decision_api",
+  "case": "calendar",
+  "repetition": 1,
+  "phase": "finished",
+  "started_at": "2026-11-17T18:15:56.755632+00:00",
+  "record": "runs/decision_api/calendar/1.json",
+  "group": "short",
+  "goal_sha256": "b74e0a6fc3d0a2b2a3d556337fbad944d1f1e97c00e16397026f458d819a8ea1",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 12,
+    "timeout_s": 75.0,
+    "max_input_bytes": 131072
+  },
+  "confirmed": true,
+  "observed": true,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "verified",
+    "reason": "verified",
+    "functional": "verified",
+    "steps": 4,
+    "native_evidence": [
+      "text:ok",
+      "route:ok",
+      "value:ok"
+    ],
+    "native_timings": {
+      "setup": 0.00014295801520347595,
+      "browser": 3.910573040950112,
+      "verification": 0.05958212597761303,
+      "total": 4.059740458033048
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:62635/calendar/",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      true,
+      true,
+      true
+    ],
+    "independent_verification_ms": 2,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "click",
+      "click",
+      "click"
+    ],
+    "arm": "decision_api",
+    "model": "gpt-6-luna",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 1441,
+          "output_tokens": 0,
+          "total_tokens": 1441,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 6234,
+          "duration_ms": 1096,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1781,
+          "output_tokens": 0,
+          "total_tokens": 1781,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 7319,
+          "duration_ms": 571,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1860,
+          "output_tokens": 0,
+          "total_tokens": 1860,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 7553,
+          "duration_ms": 585,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 3,
+      "request_bytes": 21106,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true,
+        "cached_tokens": true,
+        "cache_write_tokens": true,
+        "reasoning_tokens": true
+      },
+      "reported_tokens": {
+        "input_tokens": 5082,
+        "output_tokens": 0,
+        "total_tokens": 5082,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 5082,
+      "output_tokens": 0,
+      "total_tokens": 5082,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0
+    },
+    "returncode": 0,
+    "wall_ms": 4321,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": true,
+    "expected": [
+      {
+        "name": "date",
+        "data": {
+          "date": "2026-09-20"
+        }
+      }
+    ],
+    "observed": [
+      {
+        "name": "date",
+        "data": {
+          "date": "2026-09-20"
+        }
+      }
+    ]
+  },
+  "finished_at": "2026-11-17T18:16:01.214078+00:00"
+}

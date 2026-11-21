@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "tasks": [
+    "click",
+    "search",
+    "select",
+    "navigate",
+    "counter",
+    "public_about",
+    "hotel",
+    "profile_form",
+    "autocomplete",
+    "calendar",
+    "styled_filter",
+    "consent",
+    "delayed_menu",
+    "loading_overlay",
+    "below_fold",
+    "article"
+  ],
+  "scored_attempts": 144,
+  "arms": {
+    "openai": {
+      "scored": 48,
+      "confirmed": 48,
+      "observed": 48,
+      "all_attempt_median_ms": 3231.5,
+      "physical_requests": 123,
+      "http_2xx": 123,
+      "priced_attempts": 48,
+      "estimated_usd": "0.02465086"
+    },
+    "opencode": {
+      "scored": 48,
+      "confirmed": 37,
+      "observed": 37,
+      "all_attempt_median_ms": 3654.0,
+      "physical_requests": 131,
+      "http_2xx": 131,
+      "priced_attempts": 48,
+      "estimated_usd": "0.014375592"
+    },
+    "terra": {
+      "scored": 48,
+      "confirmed": 48,
+      "observed": 48,
+      "all_attempt_median_ms": 7447.5,
+      "physical_requests": 171,
+      "http_2xx": 171,
+      "priced_attempts": 48,
+      "estimated_usd": "0.16624985"
+    }
+  },
+  "per_case": {
+    "click": {
+      "openai": 3,
+      "opencode": 3,
+      "terra": 3
+    },
+    "search": {
+      "openai": 3,
+      "opencode": 3,
+      "terra": 3
+    },
+    "select": {
+      "openai": 3,
+      "opencode": 3,
+      "terra": 3
+    },
+    "navigate": {
+      "openai": 3,
+      "opencode": 3,
+      "terra": 3
+    },
+    "counter": {
+      "openai": 3,
+      "opencode": 3,
+      "terra": 3
+    },
+    "public_about": {
+      "openai": 3,
+      "opencode": 3,
+      "terra": 3
+    },
+    "hotel": {
+      "openai": 3,
+      "opencode": 1,
+      "terra": 3
+    },
+    "profile_form": {
+      "openai": 3,
+      "opencode": 3,
+      "terra": 3
+    },
+    "autocomplete": {
+      "openai": 3,
+      "opencode": 2,
+      "terra": 3
+    },
+    "calendar": {
+      "openai": 3,
+      "opencode": 0,
+      "terra": 3
+    },
+    "styled_filter": {
+      "openai": 3,
+      "opencode": 3,
+      "terra": 3
+    },
+    "consent": {
+      "openai": 3,
+      "opencode": 3,
+      "terra": 3
+    },
+    "delayed_menu": {
+      "openai": 3,
+      "opencode": 3,
+      "terra": 3
+    },
+    "loading_overlay": {
+      "openai": 3,
+      "opencode": 3,
+      "terra": 3
+    },
+    "below_fold": {
+      "openai": 3,
+      "opencode": 0,
+      "terra": 3
+    },
+    "article": {
+      "openai": 3,
+      "opencode": 1,
+      "terra": 3
+    }
+  },
+  "paired_confirmations_against_terra": {
+    "openai": {
+      "both": 48,
+      "terra_only": 0,
+      "baseline_only": 0,
+      "neither": 0
+    },
+    "opencode": {
+      "both": 37,
+      "terra_only": 11,
+      "baseline_only": 0,
+      "neither": 0
+    }
+  },
+  "terra": {
+    "tokens": {
+      "input_tokens": 161369,
+      "cached_tokens": 23292,
+      "cache_write_tokens": 23093,
+      "output_tokens": 4247,
+      "reasoning_tokens": 1103
+    },
+    "scored_http_statuses": {
+      "200": 171
+    },
+    "physical_http_statuses": {
+      "200": 171
+    },
+    "matrix_sha256": "c19a0b4979a930deef720b1cc5768b9759bb32187deb97572cfa0478eee82fad",
+    "fixture_manifest_sha256": "c457be720a928a272d91a2d8eae8bc7bc6ef2ee126111c3f3d2eb4d91fd184e9",
+    "worker_sha256": "a0f84d45001194cef87925fea36e10107d7ded34a11fe3aa6071bef4e159481c",
+    "returned_models": [
+      "gpt-6.1-terra"
+    ],
+    "series_start": "2026-11-03T15:48:08.672993+00:00",
+    "last_attempt_started": "2026-11-03T15:54:08.163491+00:00",
+    "retry503": [],
+    "verification_sha256": "9de624539cb7996b78cc77c3e3577f6768e895553e0e8eb2928c1c1735609a0e"
+  },
+  "historical_source": {
+    "git_commit": "e3f9942d630c61c3d1f6493768d49da29bbe7d79",
+    "source_sha256": "5e0ec6accdce7c7f13ecc22261ae5932d52d4faf5de74f5871efe08d91204f14",
+    "manifest_sha256": "c457be720a928a272d91a2d8eae8bc7bc6ef2ee126111c3f3d2eb4d91fd184e9",
+    "worker_sha256": "628304533c76510d6f7fec74e04e399b7b955334ec55fdfcb397e7baf3d7eabc",
+    "matrix_sha256": "924d65cf3bc5a8bd4975dac5b7eb0cc2c4c8677f278ec3d9cf405c6a1cdb74e8"
+  },
+  "historical_csv_sha256": "812f8b91f2dffdab8d2685c68bc5e9b9fc565852bcdf8065c4b47c0e61575930",
+  "historical_summary_sha256": "1e8dca5c58cdf4144a9a6e635c864418c9b36b65497a81985374e4ccaac60cd6",
+  "previous_terra_series": {
+    "report": "https://github.com/HaffASE/decision-browser-core/blob/3a6548e72c116a5ceda6eefecc857f7c1cf445d1/docs/benchmarks/2026-11-03-terra-medium/report.md",
+    "runs": "https://github.com/HaffASE/decision-browser-core/blob/3a6548e72c116a5ceda6eefecc857f7c1cf445d1/docs/benchmarks/2026-11-03-terra-medium/runs.csv",
+    "worker_sha256": "ef89a2e9ec837a6b54e81bfbb4f5a53e6512c7d22d7f4ec88c3f96c787e19fdc",
+    "scored_attempts": 48,
+    "confirmed": 45
+  },
+  "hotel_diagnostic": {
+    "path": "hotel-rerun.json",
+    "scored_attempts": 3,
+    "included_in_current_matrix": false
+  }
+}

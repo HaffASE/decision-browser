@@ -1,0 +1,131 @@
+{
+  "arm": "opencode_jev",
+  "case": "calendar",
+  "repetition": 2,
+  "phase": "finished",
+  "started_at": "2026-11-17T20:34:18.726416+00:00",
+  "record": "runs/opencode_jev/calendar/2.json",
+  "group": "short",
+  "goal_sha256": "b74e0a6fc3d0a2b2a3d556337fbad944d1f1e97c00e16397026f458d819a8ea1",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 12,
+    "timeout_s": 75.0,
+    "max_input_bytes": 131072
+  },
+  "confirmed": false,
+  "observed": false,
+  "lifecycle_success": true,
+  "native_success": false,
+  "functional_check_passed": false,
+  "result": {
+    "status": "failed",
+    "reason": "failed",
+    "functional": "failed",
+    "steps": 1,
+    "native_evidence": [
+      "provider:rejected_sentinel",
+      "text:mismatch",
+      "route:ok",
+      "value:mismatch"
+    ],
+    "native_timings": {
+      "setup": 0.00019637495279312134,
+      "browser": 0.0,
+      "verification": 0.03584074997343123,
+      "total": 2.4267933750525117
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:60722/calendar/",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      false,
+      true,
+      false
+    ],
+    "independent_verification_ms": 5,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [],
+    "arm": "opencode_jev",
+    "model": "jev-1.13",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 2507,
+          "output_tokens": 226,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 10067,
+          "duration_ms": 1430,
+          "endpoint": "systemone",
+          "model": "jev-1.13",
+          "request_model": "jev-1.13",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 1,
+      "request_bytes": 10067,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 1,
+        "cached_tokens": 1,
+        "cache_write_tokens": 1,
+        "reasoning_tokens": 1
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": false,
+        "cached_tokens": false,
+        "cache_write_tokens": false,
+        "reasoning_tokens": false
+      },
+      "reported_tokens": {
+        "input_tokens": 2507,
+        "output_tokens": 226,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 2507,
+      "output_tokens": 226,
+      "total_tokens": null,
+      "cached_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "returncode": 0,
+    "wall_ms": 2739,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": false,
+    "expected": [
+      {
+        "name": "date",
+        "data": {
+          "date": "2026-09-20"
+        }
+      }
+    ],
+    "observed": []
+  },
+  "finished_at": "2026-11-17T20:34:21.791438+00:00"
+}

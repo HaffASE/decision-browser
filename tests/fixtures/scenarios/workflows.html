@@ -1,0 +1,82 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="icon" href="data:,">
+<style>
+body{font:18px sans-serif;margin:24px}input,select,button,a{margin:8px;padding:8px}
+[hidden]{display:none!important}#overlay{position:fixed;inset:0;background:white;z-index:20;padding:48px}
+.brand{display:inline-block;position:relative;width:180px;height:50px;background:#eee;cursor:pointer}
+.brand input{position:absolute;inset:0;width:100%;height:100%;margin:0}
+.brand span{position:absolute;inset:0;display:grid;place-items:center;background:#eee;pointer-events:none}
+</style></head><body><main id="app"></main><p id="status">Not complete</p>
+<template id="hotel">
+ <label>Destination<input id="destination"></label><button id="search">Find stays</button>
+ <label>Stay category<select id="category" aria-label="Stay category"><option value="standard">Standard</option><option value="design">Design</option></select></label>
+ <label><input id="cancel" type="checkbox">Free cancellation</label>
+ <div id="properties" hidden><a id="flora">Casa Flora</a><a id="marina">Casa Marina</a></div>
+</template>
+<template id="profile_form"><form id="profile">
+ <label>Full name<input id="name" required></label><label>Email<input id="email" type="email" required></label>
+ <label>Delivery<select id="delivery" aria-label="Delivery"><option value="standard">Standard</option><option value="express">Express</option></select></label>
+ <button>Confirm profile</button></form></template>
+<template id="autocomplete"><label>Origin<input id="origin" role="combobox" aria-expanded="false" autocomplete="off"></label><div id="suggestions" role="listbox"></div></template>
+<template id="calendar"><label>Departure<input id="departure" readonly></label><div id="dates" hidden role="grid">
+ <button type="button" aria-label="September 19, 2026" data-date="2026-09-19">19</button>
+ <button type="button" aria-label="August 20, 2026" data-date="2026-08-20">20</button>
+ <button type="button" aria-label="September 20, 2026" data-date="2026-09-20">20</button>
+ <button type="button" aria-label="September 20, 2027" data-date="2027-09-20">20</button>
+ <button id="dateDone" type="button">Done</button></div></template>
+<template id="styled_filter"><label class="brand"><input id="otherBrand" type="checkbox"><span>다른 브랜드</span></label><label class="brand"><input id="brand" type="checkbox"><span>닥터자르트</span></label></template>
+<template id="consent"><label>From<input id="origin"></label><button id="search">Find routes</button>
+ <div id="overlay" role="dialog" aria-modal="true"><p>Optional cookies</p><button id="accept">Accept all</button><button id="reject">Reject all</button></div></template>
+<template id="delayed_menu"><button id="sections">Sections</button><nav id="menu" hidden>
+ <button id="business">Business</button><a href="news/society?genre=society">Society</a></nav></template>
+<template id="loading_overlay"><button id="load">Load services</button><div id="overlay" role="status" hidden>Loading services</div>
+ <div id="serviceForm" hidden><label>Service query<input id="query"></label><button id="search">Search services</button></div></template>
+<template id="below_fold"><h1>Research report</h1><p>Evidence is below the first screen.</p>
+ <div style="height:1250px"></div><section id="evidence"><h2>Evidence</h2><p>Reasonable grounds to believe.</p><button id="mark">Mark evidence as read</button></section></template>
+<template id="article"><label>Search query<input id="query"></label><button id="search">Search articles</button>
+ <div id="results" hidden><a href="article/kurt-godel">Kurt Gödel biography</a><a href="article/godel-incompleteness">Gödel's incompleteness theorems</a><a href="article/godel-completeness">Gödel's completeness theorem</a></div></template>
+<script>
+const caseId='__CASE_ID__';
+app.append(document.getElementById(caseId).content.cloneNode(true));
+const el=id=>document.getElementById(id);
+const record=async(name,data)=>{const response=await fetch('events',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,data})});if(!response.ok)throw Error('oracle unavailable');};
+const complete=async(name,data,text)=>{await record(name,data);el('status').textContent=text;};
+let pendingReveal=null;
+window.__releaseScenarioReveal=()=>{const reveal=pendingReveal;pendingReveal=null;if(reveal)reveal();};
+const revealLater=reveal=>{pendingReveal=reveal;if(!window.__holdScenarioReveal)setTimeout(window.__releaseScenarioReveal,500);};
+if(caseId==='hotel'){
+ let searched='';
+ const links=()=>{const q=new URLSearchParams({destination:searched,category:el('category').value,cancellation:String(el('cancel').checked)});el('flora').href='property/casa-flora?'+q;el('marina').href='property/casa-marina?'+q;};
+ el('search').onclick=async()=>{searched=el('destination').value;await record('search',{destination:searched});el('properties').hidden=false;links();};
+ el('category').onchange=async()=>{await record('category',{category:el('category').value});links();};
+ el('cancel').onchange=async()=>{await record('cancellation',{enabled:el('cancel').checked});links();};
+}else if(caseId==='profile_form'){
+ let pending=false;el('profile').onsubmit=async event=>{event.preventDefault();if(pending)return;pending=true;
+ const data={name:el('name').value,email:el('email').value,delivery:el('delivery').value};
+ await complete('profile',data,'Profile confirmed | '+data.name+' | '+data.email+' | '+el('delivery').selectedOptions[0].textContent);};
+}else if(caseId==='autocomplete'){
+ let timer;el('origin').oninput=()=>{clearTimeout(timer);el('suggestions').replaceChildren();el('origin').setAttribute('aria-expanded','true');
+ timer=setTimeout(()=>{for(const [label,code] of [['Zurich city','CITY'],['Zurich Airport hotel','HOTEL'],['Zurich Airport (ZRH)','ZRH']]){
+ const option=document.createElement('button');option.type='button';option.role='option';option.textContent=label;
+ option.onclick=async()=>{el('origin').value=label;el('origin').setAttribute('aria-expanded','false');el('suggestions').replaceChildren();await complete('airport',{value:label,code},'Selected airport: '+code);};el('suggestions').append(option);}},150);};
+}else if(caseId==='calendar'){
+ let selected='';el('departure').onclick=()=>{el('dates').hidden=false;};
+ for(const button of document.querySelectorAll('[data-date]'))button.onclick=()=>{selected=button.dataset.date;el('departure').value=selected;};
+ el('dateDone').onclick=async()=>{el('dates').hidden=true;await complete('date',{date:selected},'Departure confirmed: '+selected);};
+}else if(caseId==='styled_filter'){
+ el('brand').onchange=async()=>{await complete('filter',{brand:'dr-jart',enabled:el('brand').checked},el('brand').checked?'filtered: dr-jart':'No brand filter');};
+ el('otherBrand').onchange=async()=>{await complete('filter',{brand:'other',enabled:el('otherBrand').checked},'filtered: other');};
+}else if(caseId==='consent'){
+ let choice='';for(const id of ['accept','reject'])el(id).onclick=async()=>{choice=id;await record('consent',{choice});el('overlay').hidden=true;};
+ el('search').onclick=async()=>{const origin=el('origin').value;await complete('routes',{origin,consent:choice},'Routes from '+origin+' | optional cookies '+(choice==='reject'?'rejected':'accepted'));};
+}else if(caseId==='delayed_menu'){
+ el('sections').onclick=()=>{revealLater(()=>{el('menu').hidden=false;});};
+ el('business').onclick=()=>{el('status').textContent='Business preview without navigation';};
+}else if(caseId==='loading_overlay'){
+ el('load').onclick=()=>{el('load').hidden=true;el('overlay').hidden=false;revealLater(()=>{el('overlay').hidden=true;el('serviceForm').hidden=false;});};
+ el('search').onclick=async()=>{const query=el('query').value;await complete('services',{query},'Services for '+query);};
+}else if(caseId==='below_fold'){
+ el('mark').onclick=async()=>{const rect=el('mark').getBoundingClientRect();const data={visible:rect.top>=0&&rect.bottom<=innerHeight,scrolled:scrollY>0};await complete('evidence',data,'Evidence section read');};
+}else if(caseId==='article'){
+ el('search').onclick=async()=>{await record('article_search',{query:el('query').value});el('results').hidden=false;};
+}
+</script></body></html>

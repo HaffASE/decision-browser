@@ -1,0 +1,551 @@
+{
+  "schema_version": 1,
+  "status": "COMPLETE",
+  "sources_unchanged": true,
+  "usage_complete": true,
+  "planned_runs": 144,
+  "attempted_runs": 144,
+  "not_run": 0,
+  "model": "gpt-6-luna",
+  "total_known_estimated_usd": 0.08197214,
+  "engines": {
+    "decision-browser": {
+      "attempted": 48,
+      "planned": 48,
+      "confirmed": 47,
+      "observed": 47,
+      "matched_triples": 25,
+      "matched_cold_wall_median_ms": 3696,
+      "calls": 149,
+      "decisions_calls": 149,
+      "responses_calls": 0,
+      "input_tokens": 340097,
+      "output_tokens": 0,
+      "request_bytes": 1175180,
+      "known_estimated_usd": 0.03552134,
+      "unknown_usage_calls": 0,
+      "estimated_usd_by_endpoint": {
+        "decisions": 0.03552134,
+        "responses": 0
+      },
+      "http_statuses": {
+        "200": 149
+      },
+      "failure_reasons": {
+        "verified": 1
+      },
+      "baseline": {
+        "confirmed": 18,
+        "observed": 18,
+        "attempted": 18
+      },
+      "expanded": {
+        "confirmed": 29,
+        "observed": 29,
+        "attempted": 30
+      }
+    },
+    "jev-ultrafast": {
+      "attempted": 48,
+      "planned": 48,
+      "confirmed": 37,
+      "observed": 37,
+      "matched_triples": 25,
+      "matched_cold_wall_median_ms": 4397,
+      "calls": 213,
+      "decisions_calls": 189,
+      "responses_calls": 24,
+      "input_tokens": 182157,
+      "output_tokens": 791,
+      "request_bytes": 794555,
+      "known_estimated_usd": 0.0186112,
+      "unknown_usage_calls": 0,
+      "estimated_usd_by_endpoint": {
+        "decisions": 0.0177144,
+        "responses": 0.0008968
+      },
+      "http_statuses": {
+        "200": 213
+      },
+      "failure_reasons": {
+        "agent_blocked": 7,
+        "ValueError": 2,
+        "goal_achieved": 2
+      },
+      "baseline": {
+        "confirmed": 16,
+        "observed": 16,
+        "attempted": 18
+      },
+      "expanded": {
+        "confirmed": 21,
+        "observed": 21,
+        "attempted": 30
+      }
+    },
+    "jev-ra": {
+      "attempted": 48,
+      "planned": 48,
+      "confirmed": 34,
+      "observed": 40,
+      "matched_triples": 25,
+      "matched_cold_wall_median_ms": 3869,
+      "calls": 189,
+      "decisions_calls": 189,
+      "responses_calls": 0,
+      "input_tokens": 278396,
+      "output_tokens": 0,
+      "request_bytes": 1057769,
+      "known_estimated_usd": 0.027839600000000003,
+      "unknown_usage_calls": 0,
+      "estimated_usd_by_endpoint": {
+        "decisions": 0.027839600000000003,
+        "responses": 0
+      },
+      "http_statuses": {
+        "200": 189
+      },
+      "failure_reasons": {
+        "stuck_loop": 3,
+        "goal_achieved": 2,
+        "blocked": 3,
+        "invalid_decision": 6
+      },
+      "baseline": {
+        "confirmed": 12,
+        "observed": 18,
+        "attempted": 18
+      },
+      "expanded": {
+        "confirmed": 22,
+        "observed": 22,
+        "attempted": 30
+      }
+    }
+  },
+  "per_case": {
+    "click": {
+      "decision-browser": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ultrafast": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ra": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      }
+    },
+    "search": {
+      "decision-browser": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ultrafast": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ra": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      }
+    },
+    "select": {
+      "decision-browser": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ultrafast": {
+        "confirmed": 1,
+        "observed": 1,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ra": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      }
+    },
+    "navigate": {
+      "decision-browser": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ultrafast": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ra": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      }
+    },
+    "counter": {
+      "decision-browser": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ultrafast": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ra": {
+        "confirmed": 0,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      }
+    },
+    "public_about": {
+      "decision-browser": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ultrafast": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ra": {
+        "confirmed": 0,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      }
+    },
+    "hotel": {
+      "decision-browser": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ultrafast": {
+        "confirmed": 0,
+        "observed": 0,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ra": {
+        "confirmed": 1,
+        "observed": 1,
+        "attempted": 3,
+        "planned": 3
+      }
+    },
+    "profile_form": {
+      "decision-browser": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ultrafast": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ra": {
+        "confirmed": 0,
+        "observed": 0,
+        "attempted": 3,
+        "planned": 3
+      }
+    },
+    "autocomplete": {
+      "decision-browser": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ultrafast": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ra": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      }
+    },
+    "calendar": {
+      "decision-browser": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ultrafast": {
+        "confirmed": 1,
+        "observed": 1,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ra": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      }
+    },
+    "styled_filter": {
+      "decision-browser": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ultrafast": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ra": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      }
+    },
+    "consent": {
+      "decision-browser": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ultrafast": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ra": {
+        "confirmed": 0,
+        "observed": 0,
+        "attempted": 3,
+        "planned": 3
+      }
+    },
+    "delayed_menu": {
+      "decision-browser": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ultrafast": {
+        "confirmed": 2,
+        "observed": 2,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ra": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      }
+    },
+    "loading_overlay": {
+      "decision-browser": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ultrafast": {
+        "confirmed": 2,
+        "observed": 2,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ra": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      }
+    },
+    "below_fold": {
+      "decision-browser": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ultrafast": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ra": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      }
+    },
+    "article": {
+      "decision-browser": {
+        "confirmed": 2,
+        "observed": 2,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ultrafast": {
+        "confirmed": 1,
+        "observed": 1,
+        "attempted": 3,
+        "planned": 3
+      },
+      "jev-ra": {
+        "confirmed": 3,
+        "observed": 3,
+        "attempted": 3,
+        "planned": 3
+      }
+    }
+  },
+  "matched_pairs": [
+    {
+      "case": "article",
+      "repetition": 3
+    },
+    {
+      "case": "autocomplete",
+      "repetition": 1
+    },
+    {
+      "case": "autocomplete",
+      "repetition": 2
+    },
+    {
+      "case": "autocomplete",
+      "repetition": 3
+    },
+    {
+      "case": "below_fold",
+      "repetition": 1
+    },
+    {
+      "case": "below_fold",
+      "repetition": 2
+    },
+    {
+      "case": "below_fold",
+      "repetition": 3
+    },
+    {
+      "case": "calendar",
+      "repetition": 1
+    },
+    {
+      "case": "click",
+      "repetition": 1
+    },
+    {
+      "case": "click",
+      "repetition": 2
+    },
+    {
+      "case": "click",
+      "repetition": 3
+    },
+    {
+      "case": "delayed_menu",
+      "repetition": 2
+    },
+    {
+      "case": "delayed_menu",
+      "repetition": 3
+    },
+    {
+      "case": "loading_overlay",
+      "repetition": 2
+    },
+    {
+      "case": "loading_overlay",
+      "repetition": 3
+    },
+    {
+      "case": "navigate",
+      "repetition": 1
+    },
+    {
+      "case": "navigate",
+      "repetition": 2
+    },
+    {
+      "case": "navigate",
+      "repetition": 3
+    },
+    {
+      "case": "search",
+      "repetition": 1
+    },
+    {
+      "case": "search",
+      "repetition": 2
+    },
+    {
+      "case": "search",
+      "repetition": 3
+    },
+    {
+      "case": "select",
+      "repetition": 1
+    },
+    {
+      "case": "styled_filter",
+      "repetition": 1
+    },
+    {
+      "case": "styled_filter",
+      "repetition": 2
+    },
+    {
+      "case": "styled_filter",
+      "repetition": 3
+    }
+  ],
+  "raw_sha256": "11f90877bce1fb6fac8778b233ef4a19c92b1a3805403741445736fac8fbcb7a"
+}

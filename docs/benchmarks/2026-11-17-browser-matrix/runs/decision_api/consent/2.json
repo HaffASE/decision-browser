@@ -1,0 +1,185 @@
+{
+  "arm": "decision_api",
+  "case": "consent",
+  "repetition": 2,
+  "phase": "finished",
+  "started_at": "2026-11-17T18:20:45.703117+00:00",
+  "record": "runs/decision_api/consent/2.json",
+  "group": "short",
+  "goal_sha256": "3a9987630524f25c2d5100602e0e32f20809db6628d30ff0a2a45a62f48cc288",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 12,
+    "timeout_s": 75.0,
+    "max_input_bytes": 131072
+  },
+  "confirmed": true,
+  "observed": true,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "verified",
+    "reason": "verified",
+    "functional": "verified",
+    "steps": 4,
+    "native_evidence": [
+      "text:ok",
+      "route:ok"
+    ],
+    "native_timings": {
+      "setup": 0.00016316701658070087,
+      "browser": 4.814516332000494,
+      "verification": 0.053011251031421125,
+      "total": 4.96272075001616
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:49473/consent/",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      true,
+      true
+    ],
+    "independent_verification_ms": 2,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "click",
+      "fill",
+      "click"
+    ],
+    "arm": "decision_api",
+    "model": "gpt-6-luna",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 1535,
+          "output_tokens": 0,
+          "total_tokens": 1535,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 6349,
+          "duration_ms": 1619,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1870,
+          "output_tokens": 0,
+          "total_tokens": 1870,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 7789,
+          "duration_ms": 379,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1936,
+          "output_tokens": 0,
+          "total_tokens": 1936,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 8026,
+          "duration_ms": 910,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 3,
+      "request_bytes": 22164,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true,
+        "cached_tokens": true,
+        "cache_write_tokens": true,
+        "reasoning_tokens": true
+      },
+      "reported_tokens": {
+        "input_tokens": 5341,
+        "output_tokens": 0,
+        "total_tokens": 5341,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 5341,
+      "output_tokens": 0,
+      "total_tokens": 5341,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0
+    },
+    "returncode": 0,
+    "wall_ms": 5208,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": true,
+    "expected": [
+      {
+        "name": "consent",
+        "data": {
+          "choice": "reject"
+        }
+      },
+      {
+        "name": "routes",
+        "data": {
+          "origin": "London",
+          "consent": "reject"
+        }
+      }
+    ],
+    "observed": [
+      {
+        "name": "consent",
+        "data": {
+          "choice": "reject"
+        }
+      },
+      {
+        "name": "routes",
+        "data": {
+          "origin": "London",
+          "consent": "reject"
+        }
+      }
+    ]
+  },
+  "finished_at": "2026-11-17T18:20:51.039815+00:00"
+}

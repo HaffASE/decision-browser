@@ -1,0 +1,163 @@
+{
+  "arm": "terra",
+  "case": "below_fold",
+  "repetition": 1,
+  "phase": "finished",
+  "started_at": "2026-11-17T18:16:46.536329+00:00",
+  "record": "runs/terra/below_fold/1.json",
+  "group": "short",
+  "goal_sha256": "fdefecf523e294e9713a78e44a32f0524f0ac6ba0cca7fff5429e35262ae8f78",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 12,
+    "timeout_s": 75.0,
+    "max_input_bytes": 131072
+  },
+  "confirmed": true,
+  "observed": true,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "done",
+    "reason": "goal_achieved",
+    "checks": [
+      true,
+      true
+    ],
+    "final_url": "http://127.0.0.1:63338/below_fold/",
+    "actions": [
+      "scroll",
+      "click",
+      "done"
+    ],
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "cleanup": {
+      "browser": "closed"
+    },
+    "route": "terra",
+    "model": "gpt-6.1-terra",
+    "reasoning_effort": "medium",
+    "calls": 3,
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 668,
+          "output_tokens": 17,
+          "total_tokens": 685,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 3969,
+          "duration_ms": 2180,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 683,
+          "output_tokens": 32,
+          "total_tokens": 715,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 12,
+          "status": 200,
+          "input_bytes": 4035,
+          "duration_ms": 3704,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 701,
+          "output_tokens": 29,
+          "total_tokens": 730,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 14,
+          "status": 200,
+          "input_bytes": 4101,
+          "duration_ms": 1680,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 3,
+      "request_bytes": 12105,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true,
+        "cached_tokens": true,
+        "cache_write_tokens": true,
+        "reasoning_tokens": true
+      },
+      "reported_tokens": {
+        "input_tokens": 2052,
+        "output_tokens": 78,
+        "total_tokens": 2130,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 26
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 2052,
+      "output_tokens": 78,
+      "total_tokens": 2130,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 26
+    },
+    "arm": "terra",
+    "returncode": 0,
+    "wall_ms": 9035,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": true,
+    "expected": [
+      {
+        "name": "evidence",
+        "data": {
+          "visible": true,
+          "scrolled": true
+        }
+      }
+    ],
+    "observed": [
+      {
+        "name": "evidence",
+        "data": {
+          "visible": true,
+          "scrolled": true
+        }
+      }
+    ]
+  },
+  "finished_at": "2026-11-17T18:16:55.656414+00:00"
+}

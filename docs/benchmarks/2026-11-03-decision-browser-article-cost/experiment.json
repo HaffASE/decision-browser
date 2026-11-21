@@ -1,0 +1,59 @@
+{
+  "development_series": [
+    {
+      "file": "pilot-v1.json",
+      "confirmed": 18,
+      "attempted": 21,
+      "estimated_usd": 0.0138002,
+      "http_attempts": 68,
+      "source_sha256": "e4d874672fdb83161858276349bf87201a62340d3ff7a57bb3978e4035a8b6ad"
+    },
+    {
+      "file": "diagnostic-v1.json",
+      "confirmed": 4,
+      "attempted": 6,
+      "estimated_usd": 0.0052202,
+      "http_attempts": 27,
+      "source_sha256": "e4d874672fdb83161858276349bf87201a62340d3ff7a57bb3978e4035a8b6ad"
+    },
+    {
+      "file": "pilot-v2.json",
+      "confirmed": 14,
+      "attempted": 21,
+      "estimated_usd": 0.01710395,
+      "http_attempts": 73,
+      "source_sha256": "6b10aab66ada717413abecdae57211a11eea9dfea7628c9467be0227f3bfab1c"
+    },
+    {
+      "file": "pilot-v3.json",
+      "confirmed": 8,
+      "attempted": 8,
+      "estimated_usd": 0.0063392,
+      "http_attempts": 26,
+      "source_sha256": "7fa5bab346e149c5c5a64119829d057e89e6a6023cc57c2093cd6cd233d946c9"
+    },
+    {
+      "file": "pilot-v4-lean.json",
+      "confirmed": 19,
+      "attempted": 21,
+      "estimated_usd": 0.013893500000000001,
+      "http_attempts": 73,
+      "source_sha256": "733e3ffaf4e9efa703f119dc11a70b99a08a20dcf677e6ddf23fcf0588a8e85a"
+    },
+    {
+      "file": "pilot-v5-shared.json",
+      "confirmed": 21,
+      "attempted": 21,
+      "estimated_usd": 0.011577850000000002,
+      "http_attempts": 56,
+      "source_sha256": "5e0ec6accdce7c7f13ecc22261ae5932d52d4faf5de74f5871efe08d91204f14"
+    }
+  ],
+  "development_estimated_usd": 0.0679349,
+  "main_estimated_usd": 0.07268826999999994,
+  "all_series_estimated_usd": 0.14062316999999996,
+  "overall_estimated_spend_stop_usd": 0.25,
+  "main_estimated_spend_stop_usd": 0.1820651,
+  "usage_complete": true,
+  "failed_primary_attempts_replaced": false
+}

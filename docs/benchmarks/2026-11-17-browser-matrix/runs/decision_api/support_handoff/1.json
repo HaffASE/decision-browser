@@ -1,0 +1,485 @@
+{
+  "arm": "decision_api",
+  "case": "support_handoff",
+  "repetition": 1,
+  "phase": "finished",
+  "started_at": "2026-11-17T18:17:40.824459+00:00",
+  "record": "runs/decision_api/support_handoff/1.json",
+  "group": "long",
+  "goal_sha256": "a661b7a4c7cfeef61640276489de01f37476b6c138b2e42a9f9d8af6bceb8c18",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 24,
+    "timeout_s": 180,
+    "max_input_bytes": 524288
+  },
+  "confirmed": true,
+  "observed": true,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "verified",
+    "reason": "verified",
+    "functional": "verified",
+    "steps": 18,
+    "native_evidence": [
+      "route:ok",
+      "text:ok"
+    ],
+    "native_timings": {
+      "setup": 0.0001522499369457364,
+      "browser": 16.24166512605734,
+      "verification": 8.730490123969503,
+      "total": 25.07267037499696
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:64042/support_handoff/summary",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      true,
+      true
+    ],
+    "independent_verification_ms": 2,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "fill",
+      "select",
+      "submit",
+      "click",
+      "click",
+      "select",
+      "select",
+      "submit",
+      "click",
+      "click",
+      "select",
+      "submit",
+      "fill",
+      "select",
+      "submit",
+      "click",
+      "submit"
+    ],
+    "arm": "decision_api",
+    "model": "gpt-6-luna",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 2709,
+          "output_tokens": 0,
+          "total_tokens": 2709,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 11504,
+          "duration_ms": 1029,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2771,
+          "output_tokens": 0,
+          "total_tokens": 2771,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 11612,
+          "duration_ms": 517,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2614,
+          "output_tokens": 0,
+          "total_tokens": 2614,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1035,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 11956,
+          "duration_ms": 674,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2406,
+          "output_tokens": 0,
+          "total_tokens": 2406,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 9257,
+          "duration_ms": 528,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2092,
+          "output_tokens": 0,
+          "total_tokens": 2092,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 8891,
+          "duration_ms": 482,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3265,
+          "output_tokens": 0,
+          "total_tokens": 3265,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1536,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 13461,
+          "duration_ms": 477,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3381,
+          "output_tokens": 0,
+          "total_tokens": 3381,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1615,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 13817,
+          "duration_ms": 495,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3422,
+          "output_tokens": 0,
+          "total_tokens": 3422,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1671,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 13866,
+          "duration_ms": 541,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3146,
+          "output_tokens": 0,
+          "total_tokens": 3146,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1589,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 12924,
+          "duration_ms": 639,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3217,
+          "output_tokens": 0,
+          "total_tokens": 3217,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1656,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 13145,
+          "duration_ms": 898,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3291,
+          "output_tokens": 0,
+          "total_tokens": 3291,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1726,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 13372,
+          "duration_ms": 429,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3334,
+          "output_tokens": 0,
+          "total_tokens": 3334,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1731,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 13669,
+          "duration_ms": 413,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3796,
+          "output_tokens": 0,
+          "total_tokens": 3796,
+          "cached_tokens": 0,
+          "cache_write_tokens": 2003,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 15602,
+          "duration_ms": 580,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3810,
+          "output_tokens": 0,
+          "total_tokens": 3810,
+          "cached_tokens": 0,
+          "cache_write_tokens": 2004,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 15551,
+          "duration_ms": 803,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3826,
+          "output_tokens": 0,
+          "total_tokens": 3826,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1993,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 15703,
+          "duration_ms": 887,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2857,
+          "output_tokens": 0,
+          "total_tokens": 2857,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1623,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 11810,
+          "duration_ms": 584,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2925,
+          "output_tokens": 0,
+          "total_tokens": 2925,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1697,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 12110,
+          "duration_ms": 404,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 17,
+      "request_bytes": 218250,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true,
+        "cached_tokens": true,
+        "cache_write_tokens": true,
+        "reasoning_tokens": true
+      },
+      "reported_tokens": {
+        "input_tokens": 52862,
+        "output_tokens": 0,
+        "total_tokens": 52862,
+        "cached_tokens": 0,
+        "cache_write_tokens": 21879,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 52862,
+      "output_tokens": 0,
+      "total_tokens": 52862,
+      "cached_tokens": 0,
+      "cache_write_tokens": 21879,
+      "reasoning_tokens": 0
+    },
+    "returncode": 0,
+    "wall_ms": 25304,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": true,
+    "expected": [
+      {
+        "action": "Search tickets",
+        "fields": {
+          "Queue": "Network",
+          "Ticket number": "R-214"
+        }
+      },
+      {
+        "action": "R-214 edge packet loss",
+        "fields": {}
+      },
+      {
+        "action": "Open activity log",
+        "fields": {}
+      },
+      {
+        "action": "Classify fault",
+        "fields": {
+          "Fault code": "EDGE-72",
+          "Priority": "High"
+        }
+      },
+      {
+        "action": "Apply routing",
+        "fields": {
+          "Receiving team": "Network Operations",
+          "On-call rotation": "on"
+        }
+      },
+      {
+        "action": "Add note",
+        "fields": {
+          "Handoff note": "Compare edge counters",
+          "Note tag": "Diagnosis"
+        }
+      },
+      {
+        "action": "Review handoff",
+        "fields": {}
+      },
+      {
+        "action": "Save handoff draft",
+        "fields": {}
+      }
+    ],
+    "observed": [
+      {
+        "action": "Search tickets",
+        "fields": {
+          "Queue": "Network",
+          "Ticket number": "R-214"
+        }
+      },
+      {
+        "action": "R-214 edge packet loss",
+        "fields": {}
+      },
+      {
+        "action": "Open activity log",
+        "fields": {}
+      },
+      {
+        "action": "Classify fault",
+        "fields": {
+          "Fault code": "EDGE-72",
+          "Priority": "High"
+        }
+      },
+      {
+        "action": "Apply routing",
+        "fields": {
+          "Receiving team": "Network Operations",
+          "On-call rotation": "on"
+        }
+      },
+      {
+        "action": "Add note",
+        "fields": {
+          "Handoff note": "Compare edge counters",
+          "Note tag": "Diagnosis"
+        }
+      },
+      {
+        "action": "Review handoff",
+        "fields": {}
+      },
+      {
+        "action": "Save handoff draft",
+        "fields": {}
+      }
+    ]
+  },
+  "finished_at": "2026-11-17T18:18:06.257674+00:00"
+}

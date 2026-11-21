@@ -1,0 +1,349 @@
+{
+  "arm": "terra",
+  "case": "rail_itinerary",
+  "repetition": 1,
+  "phase": "finished",
+  "started_at": "2026-11-17T20:11:50.158343+00:00",
+  "record": "runs/terra/rail_itinerary/1.json",
+  "group": "long",
+  "goal_sha256": "838a0bdb17afbcf5fcfa62452a45f820f892d04a2d6fffa8884da1671d5f24a0",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 24,
+    "timeout_s": 180,
+    "max_input_bytes": 524288
+  },
+  "confirmed": true,
+  "observed": true,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "done",
+    "reason": "goal_achieved",
+    "checks": [
+      true,
+      true
+    ],
+    "final_url": "http://127.0.0.1:51209/rail_itinerary/summary",
+    "actions": [
+      "fill",
+      "fill",
+      "click",
+      "click",
+      "select",
+      "click",
+      "click",
+      "select",
+      "click",
+      "click",
+      "done"
+    ],
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "cleanup": {
+      "browser": "closed"
+    },
+    "route": "terra",
+    "model": "gpt-6.1-terra",
+    "reasoning_effort": "medium",
+    "calls": 11,
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 807,
+          "output_tokens": 22,
+          "total_tokens": 829,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 4571,
+          "duration_ms": 3960,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 833,
+          "output_tokens": 23,
+          "total_tokens": 856,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 4661,
+          "duration_ms": 2194,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 858,
+          "output_tokens": 18,
+          "total_tokens": 876,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 4749,
+          "duration_ms": 2728,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1149,
+          "output_tokens": 20,
+          "total_tokens": 1169,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 5609,
+          "duration_ms": 2607,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1358,
+          "output_tokens": 24,
+          "total_tokens": 1382,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1232,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 6406,
+          "duration_ms": 2732,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1383,
+          "output_tokens": 20,
+          "total_tokens": 1403,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1257,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 6489,
+          "duration_ms": 3200,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1408,
+          "output_tokens": 20,
+          "total_tokens": 1428,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1282,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 6568,
+          "duration_ms": 2184,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1610,
+          "output_tokens": 26,
+          "total_tokens": 1636,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1484,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 7407,
+          "duration_ms": 1909,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1637,
+          "output_tokens": 20,
+          "total_tokens": 1657,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1511,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 7494,
+          "duration_ms": 2775,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1694,
+          "output_tokens": 20,
+          "total_tokens": 1714,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1568,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 7736,
+          "duration_ms": 2580,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1611,
+          "output_tokens": 13,
+          "total_tokens": 1624,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1485,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 7593,
+          "duration_ms": 1658,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 11,
+      "request_bytes": 69283,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true,
+        "cached_tokens": true,
+        "cache_write_tokens": true,
+        "reasoning_tokens": true
+      },
+      "reported_tokens": {
+        "input_tokens": 14348,
+        "output_tokens": 226,
+        "total_tokens": 14574,
+        "cached_tokens": 0,
+        "cache_write_tokens": 9819,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 14348,
+      "output_tokens": 226,
+      "total_tokens": 14574,
+      "cached_tokens": 0,
+      "cache_write_tokens": 9819,
+      "reasoning_tokens": 0
+    },
+    "arm": "terra",
+    "returncode": 0,
+    "wall_ms": 31619,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": true,
+    "expected": [
+      {
+        "action": "Find trains",
+        "fields": {
+          "From station": "York",
+          "To station": "Durham"
+        }
+      },
+      {
+        "action": "Express 09:20",
+        "fields": {}
+      },
+      {
+        "action": "Apply preferences",
+        "fields": {
+          "Seat": "Window",
+          "Quiet coach": "on"
+        }
+      },
+      {
+        "action": "Add platform",
+        "fields": {
+          "Departure platform": "Platform 4"
+        }
+      },
+      {
+        "action": "Save itinerary",
+        "fields": {}
+      }
+    ],
+    "observed": [
+      {
+        "action": "Find trains",
+        "fields": {
+          "From station": "York",
+          "To station": "Durham"
+        }
+      },
+      {
+        "action": "Express 09:20",
+        "fields": {}
+      },
+      {
+        "action": "Apply preferences",
+        "fields": {
+          "Seat": "Window",
+          "Quiet coach": "on"
+        }
+      },
+      {
+        "action": "Add platform",
+        "fields": {
+          "Departure platform": "Platform 4"
+        }
+      },
+      {
+        "action": "Save itinerary",
+        "fields": {}
+      }
+    ]
+  },
+  "finished_at": "2026-11-17T20:12:21.843637+00:00"
+}

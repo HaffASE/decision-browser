@@ -1,0 +1,591 @@
+{
+  "arm": "terra",
+  "case": "exhibit_planner",
+  "repetition": 3,
+  "phase": "finished",
+  "started_at": "2026-11-17T18:23:29.704853+00:00",
+  "record": "runs/terra/exhibit_planner/3.json",
+  "group": "long",
+  "goal_sha256": "ba594b8789d0ef8bffe565f234bfb0b53ccfa73e8afc9371aef8c0439d8833dd",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 24,
+    "timeout_s": 180,
+    "max_input_bytes": 524288
+  },
+  "confirmed": false,
+  "observed": false,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "done",
+    "reason": "goal_achieved",
+    "checks": [
+      true,
+      true
+    ],
+    "final_url": "http://127.0.0.1:51733/exhibit_planner/summary",
+    "actions": [
+      "fill",
+      "select",
+      "click",
+      "click",
+      "select",
+      "click",
+      "click",
+      "press",
+      "press",
+      "press",
+      "click",
+      "click",
+      "select",
+      "click",
+      "click",
+      "fill",
+      "select",
+      "click",
+      "fill",
+      "click",
+      "click",
+      "done"
+    ],
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "cleanup": {
+      "browser": "closed"
+    },
+    "route": "terra",
+    "model": "gpt-6.1-terra",
+    "reasoning_effort": "medium",
+    "calls": 22,
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 828,
+          "output_tokens": 24,
+          "total_tokens": 852,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 4658,
+          "duration_ms": 1945,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 856,
+          "output_tokens": 22,
+          "total_tokens": 878,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 4754,
+          "duration_ms": 1871,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 879,
+          "output_tokens": 18,
+          "total_tokens": 897,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 4836,
+          "duration_ms": 1579,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1005,
+          "output_tokens": 20,
+          "total_tokens": 1025,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 5077,
+          "duration_ms": 1556,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1042,
+          "output_tokens": 24,
+          "total_tokens": 1066,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 5330,
+          "duration_ms": 1405,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1067,
+          "output_tokens": 20,
+          "total_tokens": 1087,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 5414,
+          "duration_ms": 1724,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1092,
+          "output_tokens": 20,
+          "total_tokens": 1112,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 5493,
+          "duration_ms": 1744,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1140,
+          "output_tokens": 53,
+          "total_tokens": 1193,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 24,
+          "status": 200,
+          "input_bytes": 5549,
+          "duration_ms": 1896,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1168,
+          "output_tokens": 73,
+          "total_tokens": 1241,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1042,
+          "reasoning_tokens": 44,
+          "status": 200,
+          "input_bytes": 5636,
+          "duration_ms": 2300,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1196,
+          "output_tokens": 73,
+          "total_tokens": 1269,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1070,
+          "reasoning_tokens": 44,
+          "status": 200,
+          "input_bytes": 5723,
+          "duration_ms": 2200,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1224,
+          "output_tokens": 183,
+          "total_tokens": 1407,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1098,
+          "reasoning_tokens": 161,
+          "status": 200,
+          "input_bytes": 5810,
+          "duration_ms": 5089,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1268,
+          "output_tokens": 20,
+          "total_tokens": 1288,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1142,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 5940,
+          "duration_ms": 1464,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1285,
+          "output_tokens": 26,
+          "total_tokens": 1311,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1159,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 6091,
+          "duration_ms": 1779,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1312,
+          "output_tokens": 20,
+          "total_tokens": 1332,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1186,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 6173,
+          "duration_ms": 1647,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1337,
+          "output_tokens": 20,
+          "total_tokens": 1357,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1211,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 6252,
+          "duration_ms": 3699,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1367,
+          "output_tokens": 26,
+          "total_tokens": 1393,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1241,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 6363,
+          "duration_ms": 1776,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1399,
+          "output_tokens": 25,
+          "total_tokens": 1424,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1273,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 6473,
+          "duration_ms": 1780,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1425,
+          "output_tokens": 20,
+          "total_tokens": 1445,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1299,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 6560,
+          "duration_ms": 1715,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1405,
+          "output_tokens": 26,
+          "total_tokens": 1431,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1279,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 6463,
+          "duration_ms": 1963,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1437,
+          "output_tokens": 20,
+          "total_tokens": 1457,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1311,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 6567,
+          "duration_ms": 1680,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1432,
+          "output_tokens": 20,
+          "total_tokens": 1452,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1306,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 6576,
+          "duration_ms": 2078,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1430,
+          "output_tokens": 13,
+          "total_tokens": 1443,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1304,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 6585,
+          "duration_ms": 1520,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 22,
+      "request_bytes": 128323,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true,
+        "cached_tokens": true,
+        "cache_write_tokens": true,
+        "reasoning_tokens": true
+      },
+      "reported_tokens": {
+        "input_tokens": 26594,
+        "output_tokens": 766,
+        "total_tokens": 27360,
+        "cached_tokens": 0,
+        "cache_write_tokens": 16921,
+        "reasoning_tokens": 273
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 26594,
+      "output_tokens": 766,
+      "total_tokens": 27360,
+      "cached_tokens": 0,
+      "cache_write_tokens": 16921,
+      "reasoning_tokens": 273
+    },
+    "arm": "terra",
+    "returncode": 0,
+    "wall_ms": 48577,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": false,
+    "expected": [
+      {
+        "action": "Explore exhibitions",
+        "fields": {
+          "Museum city": "Bristol",
+          "Season": "Spring"
+        }
+      },
+      {
+        "action": "Tidal Maps",
+        "fields": {}
+      },
+      {
+        "action": "Add first stop",
+        "fields": {
+          "Caption language": "English",
+          "Audio guide": "on"
+        }
+      },
+      {
+        "action": "Copper wing",
+        "fields": {}
+      },
+      {
+        "action": "Fresco Study",
+        "fields": {}
+      },
+      {
+        "action": "Set visit options",
+        "fields": {
+          "Entry slot": "12:30",
+          "Step-free access": "on"
+        }
+      },
+      {
+        "action": "Preview route",
+        "fields": {
+          "Route name": "Harbour Walk",
+          "Route template": "Two stops"
+        }
+      },
+      {
+        "action": "Add owner",
+        "fields": {
+          "Plan owner": "Mira Lane"
+        }
+      },
+      {
+        "action": "Save exhibit route",
+        "fields": {}
+      }
+    ],
+    "observed": [
+      {
+        "action": "Explore exhibitions",
+        "fields": {
+          "Museum city": "Bristol",
+          "Season": "Spring"
+        }
+      },
+      {
+        "action": "Tidal Maps",
+        "fields": {}
+      },
+      {
+        "action": "Add first stop",
+        "fields": {
+          "Caption language": "English",
+          "Audio guide": "on"
+        }
+      },
+      {
+        "action": "Glass wing",
+        "fields": {}
+      },
+      {
+        "action": "Fresco Study",
+        "fields": {}
+      },
+      {
+        "action": "Set visit options",
+        "fields": {
+          "Entry slot": "12:30",
+          "Step-free access": "on"
+        }
+      },
+      {
+        "action": "Preview route",
+        "fields": {
+          "Route name": "Harbour Walk",
+          "Route template": "Two stops"
+        }
+      },
+      {
+        "action": "Add owner",
+        "fields": {
+          "Plan owner": "Mira Lane"
+        }
+      },
+      {
+        "action": "Save exhibit route",
+        "fields": {}
+      }
+    ]
+  },
+  "finished_at": "2026-11-17T18:24:18.474884+00:00"
+}

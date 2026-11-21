@@ -1,0 +1,430 @@
+{
+  "arm": "decision_api",
+  "case": "exhibit_planner",
+  "repetition": 2,
+  "phase": "finished",
+  "started_at": "2026-11-17T20:13:46.427303+00:00",
+  "record": "runs/decision_api/exhibit_planner/2.json",
+  "group": "long",
+  "goal_sha256": "ba594b8789d0ef8bffe565f234bfb0b53ccfa73e8afc9371aef8c0439d8833dd",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 24,
+    "timeout_s": 180,
+    "max_input_bytes": 524288
+  },
+  "confirmed": false,
+  "observed": false,
+  "lifecycle_success": true,
+  "native_success": false,
+  "functional_check_passed": false,
+  "result": {
+    "status": "verification_failed",
+    "reason": "verification_failed",
+    "functional": "failed",
+    "steps": 14,
+    "native_evidence": [
+      "model:unable",
+      "route:mismatch",
+      "text:mismatch"
+    ],
+    "native_timings": {
+      "setup": 0.00015054200775921345,
+      "browser": 12.20081458427012,
+      "verification": 1.7066592486808077,
+      "total": 13.997178000048734
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:52231/exhibit_planner/stage/6",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      false,
+      false
+    ],
+    "independent_verification_ms": 2,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "fill",
+      "select",
+      "submit",
+      "click",
+      "select",
+      "click",
+      "click",
+      "click",
+      "click",
+      "select",
+      "click",
+      "submit",
+      "fill",
+      "UNABLE"
+    ],
+    "arm": "decision_api",
+    "model": "gpt-6-luna",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 2734,
+          "output_tokens": 0,
+          "total_tokens": 2734,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 11578,
+          "duration_ms": 1333,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2791,
+          "output_tokens": 0,
+          "total_tokens": 2791,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 11698,
+          "duration_ms": 391,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2883,
+          "output_tokens": 0,
+          "total_tokens": 2883,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1058,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 12028,
+          "duration_ms": 412,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2408,
+          "output_tokens": 0,
+          "total_tokens": 2408,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 9214,
+          "duration_ms": 381,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2795,
+          "output_tokens": 0,
+          "total_tokens": 2795,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1206,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 11596,
+          "duration_ms": 456,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2658,
+          "output_tokens": 0,
+          "total_tokens": 2658,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1274,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 11967,
+          "duration_ms": 470,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2735,
+          "output_tokens": 0,
+          "total_tokens": 2735,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1349,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 12194,
+          "duration_ms": 368,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2832,
+          "output_tokens": 0,
+          "total_tokens": 2832,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1439,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 10811,
+          "duration_ms": 647,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3000,
+          "output_tokens": 0,
+          "total_tokens": 3000,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1599,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 11466,
+          "duration_ms": 537,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3419,
+          "output_tokens": 0,
+          "total_tokens": 3419,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1807,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 13696,
+          "duration_ms": 429,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3539,
+          "output_tokens": 0,
+          "total_tokens": 3539,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1892,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 14031,
+          "duration_ms": 721,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3551,
+          "output_tokens": 0,
+          "total_tokens": 3551,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1900,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 14043,
+          "duration_ms": 418,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3826,
+          "output_tokens": 0,
+          "total_tokens": 3826,
+          "cached_tokens": 0,
+          "cache_write_tokens": 2043,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 15574,
+          "duration_ms": 444,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 3813,
+          "output_tokens": 0,
+          "total_tokens": 3813,
+          "cached_tokens": 0,
+          "cache_write_tokens": 2035,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 15456,
+          "duration_ms": 678,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 14,
+      "request_bytes": 175352,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true,
+        "cached_tokens": true,
+        "cache_write_tokens": true,
+        "reasoning_tokens": true
+      },
+      "reported_tokens": {
+        "input_tokens": 42984,
+        "output_tokens": 0,
+        "total_tokens": 42984,
+        "cached_tokens": 0,
+        "cache_write_tokens": 17602,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 42984,
+      "output_tokens": 0,
+      "total_tokens": 42984,
+      "cached_tokens": 0,
+      "cache_write_tokens": 17602,
+      "reasoning_tokens": 0
+    },
+    "returncode": 0,
+    "wall_ms": 14262,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": false,
+    "expected": [
+      {
+        "action": "Explore exhibitions",
+        "fields": {
+          "Museum city": "Bristol",
+          "Season": "Spring"
+        }
+      },
+      {
+        "action": "Tidal Maps",
+        "fields": {}
+      },
+      {
+        "action": "Add first stop",
+        "fields": {
+          "Caption language": "English",
+          "Audio guide": "on"
+        }
+      },
+      {
+        "action": "Copper wing",
+        "fields": {}
+      },
+      {
+        "action": "Fresco Study",
+        "fields": {}
+      },
+      {
+        "action": "Set visit options",
+        "fields": {
+          "Entry slot": "12:30",
+          "Step-free access": "on"
+        }
+      },
+      {
+        "action": "Preview route",
+        "fields": {
+          "Route name": "Harbour Walk",
+          "Route template": "Two stops"
+        }
+      },
+      {
+        "action": "Add owner",
+        "fields": {
+          "Plan owner": "Mira Lane"
+        }
+      },
+      {
+        "action": "Save exhibit route",
+        "fields": {}
+      }
+    ],
+    "observed": [
+      {
+        "action": "Explore exhibitions",
+        "fields": {
+          "Museum city": "Bristol",
+          "Season": "Spring"
+        }
+      },
+      {
+        "action": "Tidal Maps",
+        "fields": {}
+      },
+      {
+        "action": "Add first stop",
+        "fields": {
+          "Caption language": "English",
+          "Audio guide": "on"
+        }
+      },
+      {
+        "action": "Copper wing",
+        "fields": {}
+      },
+      {
+        "action": "Fresco Study",
+        "fields": {}
+      },
+      {
+        "action": "Set visit options",
+        "fields": {
+          "Entry slot": "12:30",
+          "Step-free access": "on"
+        }
+      }
+    ]
+  },
+  "finished_at": "2026-11-17T20:14:00.836941+00:00"
+}

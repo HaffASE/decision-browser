@@ -1,0 +1,424 @@
+[
+  {
+    "arm": "opencode_jev",
+    "case": "calendar",
+    "repetition": 1,
+    "record": "runs/opencode_jev/calendar/1.json",
+    "harness_error": null,
+    "categories": [
+      "native_failure",
+      "page_check_failure",
+      "oracle_mismatch"
+    ],
+    "status": "failed",
+    "reason": "failed",
+    "native_evidence": [
+      "provider:rejected_sentinel",
+      "text:mismatch",
+      "route:ok",
+      "value:mismatch"
+    ],
+    "diagnostic_codes": [
+      "provider:rejected_sentinel",
+      "text:mismatch",
+      "route:ok",
+      "value:mismatch"
+    ],
+    "checks": [
+      false,
+      true,
+      false
+    ],
+    "oracle": {
+      "success": false,
+      "expected": [
+        {
+          "name": "date",
+          "data": {
+            "date": "2026-09-20"
+          }
+        }
+      ],
+      "observed": []
+    },
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "http": [
+      {
+        "input_tokens": 2507,
+        "output_tokens": 226,
+        "total_tokens": null,
+        "cached_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null,
+        "status": 200,
+        "input_bytes": 10067,
+        "duration_ms": 965,
+        "endpoint": "systemone",
+        "model": "jev-1.13",
+        "request_model": "jev-1.13",
+        "state": "parsed",
+        "usage_reported": true
+      }
+    ],
+    "usage_complete": true
+  },
+  {
+    "arm": "opencode_jev",
+    "case": "calendar",
+    "repetition": 2,
+    "record": "runs/opencode_jev/calendar/2.json",
+    "harness_error": null,
+    "categories": [
+      "native_failure",
+      "page_check_failure",
+      "oracle_mismatch"
+    ],
+    "status": "failed",
+    "reason": "failed",
+    "native_evidence": [
+      "provider:rejected_sentinel",
+      "text:mismatch",
+      "route:ok",
+      "value:mismatch"
+    ],
+    "diagnostic_codes": [
+      "provider:rejected_sentinel",
+      "text:mismatch",
+      "route:ok",
+      "value:mismatch"
+    ],
+    "checks": [
+      false,
+      true,
+      false
+    ],
+    "oracle": {
+      "success": false,
+      "expected": [
+        {
+          "name": "date",
+          "data": {
+            "date": "2026-09-20"
+          }
+        }
+      ],
+      "observed": []
+    },
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "http": [
+      {
+        "input_tokens": 2507,
+        "output_tokens": 226,
+        "total_tokens": null,
+        "cached_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null,
+        "status": 200,
+        "input_bytes": 10067,
+        "duration_ms": 1430,
+        "endpoint": "systemone",
+        "model": "jev-1.13",
+        "request_model": "jev-1.13",
+        "state": "parsed",
+        "usage_reported": true
+      }
+    ],
+    "usage_complete": true
+  },
+  {
+    "arm": "opencode_jev",
+    "case": "below_fold",
+    "repetition": 2,
+    "record": "runs/opencode_jev/below_fold/2.json",
+    "harness_error": null,
+    "categories": [
+      "native_failure",
+      "page_check_failure",
+      "oracle_mismatch"
+    ],
+    "status": "verification_failed",
+    "reason": "verification_failed",
+    "native_evidence": [
+      "model:unable",
+      "text:mismatch",
+      "route:ok"
+    ],
+    "diagnostic_codes": [
+      "model:unable",
+      "text:mismatch",
+      "route:ok"
+    ],
+    "checks": [
+      false,
+      true
+    ],
+    "oracle": {
+      "success": false,
+      "expected": [
+        {
+          "name": "evidence",
+          "data": {
+            "visible": true,
+            "scrolled": true
+          }
+        }
+      ],
+      "observed": []
+    },
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "http": [
+      {
+        "input_tokens": 2145,
+        "output_tokens": 188,
+        "total_tokens": null,
+        "cached_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null,
+        "status": 200,
+        "input_bytes": 8415,
+        "duration_ms": 795,
+        "endpoint": "systemone",
+        "model": "jev-1.13",
+        "request_model": "jev-1.13",
+        "state": "parsed",
+        "usage_reported": true
+      },
+      {
+        "input_tokens": 2215,
+        "output_tokens": 188,
+        "total_tokens": null,
+        "cached_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null,
+        "status": 200,
+        "input_bytes": 8571,
+        "duration_ms": 376,
+        "endpoint": "systemone",
+        "model": "jev-1.13",
+        "request_model": "jev-1.13",
+        "state": "parsed",
+        "usage_reported": true
+      },
+      {
+        "input_tokens": 2294,
+        "output_tokens": 188,
+        "total_tokens": null,
+        "cached_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null,
+        "status": 200,
+        "input_bytes": 8768,
+        "duration_ms": 381,
+        "endpoint": "systemone",
+        "model": "jev-1.13",
+        "request_model": "jev-1.13",
+        "state": "parsed",
+        "usage_reported": true
+      },
+      {
+        "input_tokens": 2399,
+        "output_tokens": 188,
+        "total_tokens": null,
+        "cached_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null,
+        "status": 200,
+        "input_bytes": 9082,
+        "duration_ms": 391,
+        "endpoint": "systemone",
+        "model": "jev-1.13",
+        "request_model": "jev-1.13",
+        "state": "parsed",
+        "usage_reported": true
+      }
+    ],
+    "usage_complete": true
+  },
+  {
+    "arm": "opencode_jev",
+    "case": "calendar",
+    "repetition": 3,
+    "record": "runs/opencode_jev/calendar/3.json",
+    "harness_error": null,
+    "categories": [
+      "native_failure",
+      "page_check_failure",
+      "oracle_mismatch"
+    ],
+    "status": "failed",
+    "reason": "failed",
+    "native_evidence": [
+      "provider:rejected_sentinel",
+      "text:mismatch",
+      "route:ok",
+      "value:mismatch"
+    ],
+    "diagnostic_codes": [
+      "provider:rejected_sentinel",
+      "text:mismatch",
+      "route:ok",
+      "value:mismatch"
+    ],
+    "checks": [
+      false,
+      true,
+      false
+    ],
+    "oracle": {
+      "success": false,
+      "expected": [
+        {
+          "name": "date",
+          "data": {
+            "date": "2026-09-20"
+          }
+        }
+      ],
+      "observed": []
+    },
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "http": [
+      {
+        "input_tokens": 2507,
+        "output_tokens": 226,
+        "total_tokens": null,
+        "cached_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null,
+        "status": 200,
+        "input_bytes": 10067,
+        "duration_ms": 870,
+        "endpoint": "systemone",
+        "model": "jev-1.13",
+        "request_model": "jev-1.13",
+        "state": "parsed",
+        "usage_reported": true
+      }
+    ],
+    "usage_complete": true
+  },
+  {
+    "arm": "opencode_jev",
+    "case": "below_fold",
+    "repetition": 3,
+    "record": "runs/opencode_jev/below_fold/3.json",
+    "harness_error": null,
+    "categories": [
+      "native_failure",
+      "page_check_failure",
+      "oracle_mismatch"
+    ],
+    "status": "verification_failed",
+    "reason": "verification_failed",
+    "native_evidence": [
+      "model:unable",
+      "text:mismatch",
+      "route:ok"
+    ],
+    "diagnostic_codes": [
+      "model:unable",
+      "text:mismatch",
+      "route:ok"
+    ],
+    "checks": [
+      false,
+      true
+    ],
+    "oracle": {
+      "success": false,
+      "expected": [
+        {
+          "name": "evidence",
+          "data": {
+            "visible": true,
+            "scrolled": true
+          }
+        }
+      ],
+      "observed": []
+    },
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "http": [
+      {
+        "input_tokens": 2145,
+        "output_tokens": 188,
+        "total_tokens": null,
+        "cached_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null,
+        "status": 200,
+        "input_bytes": 8415,
+        "duration_ms": 954,
+        "endpoint": "systemone",
+        "model": "jev-1.13",
+        "request_model": "jev-1.13",
+        "state": "parsed",
+        "usage_reported": true
+      },
+      {
+        "input_tokens": 2215,
+        "output_tokens": 188,
+        "total_tokens": null,
+        "cached_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null,
+        "status": 200,
+        "input_bytes": 8571,
+        "duration_ms": 379,
+        "endpoint": "systemone",
+        "model": "jev-1.13",
+        "request_model": "jev-1.13",
+        "state": "parsed",
+        "usage_reported": true
+      },
+      {
+        "input_tokens": 2296,
+        "output_tokens": 188,
+        "total_tokens": null,
+        "cached_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null,
+        "status": 200,
+        "input_bytes": 8768,
+        "duration_ms": 386,
+        "endpoint": "systemone",
+        "model": "jev-1.13",
+        "request_model": "jev-1.13",
+        "state": "parsed",
+        "usage_reported": true
+      },
+      {
+        "input_tokens": 2403,
+        "output_tokens": 188,
+        "total_tokens": null,
+        "cached_tokens": null,
+        "cache_write_tokens": null,
+        "reasoning_tokens": null,
+        "status": 200,
+        "input_bytes": 9082,
+        "duration_ms": 346,
+        "endpoint": "systemone",
+        "model": "jev-1.13",
+        "request_model": "jev-1.13",
+        "state": "parsed",
+        "usage_reported": true
+      }
+    ],
+    "usage_complete": true
+  }
+]

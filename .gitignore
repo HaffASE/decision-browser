@@ -1,0 +1,45 @@
+# Local runtime, account configuration, and evidence
+.agents/
+.codex/
+.omc/
+.omx-state-locks/
+.omx-state-locks.identity.json
+.omx/
+/docs/benchmarks/**/output/
+
+# Credentials and machine-specific settings
+.env
+.env.*
+!.env.example
+.aws/
+*.pem
+*.key
+
+# Python environments and generated files
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+.coverage
+.coverage.*
+htmlcov/
+dist/
+build/
+
+# Operating-system and editor files
+.DS_Store
+*.swp
+*.swo
+
+# Project-local installer runtime and client configuration
+.decision-browser-install/
+.decision-browser-install.lease
+.decision-browser-stage.lease
+.decision-browser-stage-cleanup-unknown.json
+.claude/
+.mcp.json

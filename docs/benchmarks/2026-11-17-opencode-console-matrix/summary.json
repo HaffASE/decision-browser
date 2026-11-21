@@ -1,0 +1,2214 @@
+{
+  "planned_runs": 126,
+  "completed_runs": 126,
+  "verdict": "HAS_FAILURES",
+  "arms": {
+    "opencode_gemini": {
+      "attempts": 63,
+      "confirmed": 63,
+      "observed": 63,
+      "usage_complete_runs": 63,
+      "calls": 335,
+      "http_errors": 0,
+      "median_wall_ms": 5037,
+      "tokens": {
+        "input_tokens": {
+          "total": 1217843,
+          "reported_total": 1217843,
+          "missing_calls": 0,
+          "unknown_runs": 0
+        },
+        "output_tokens": {
+          "total": 0,
+          "reported_total": 0,
+          "missing_calls": 0,
+          "unknown_runs": 0
+        },
+        "total_tokens": {
+          "total": null,
+          "reported_total": 0,
+          "missing_calls": 335,
+          "unknown_runs": 0
+        },
+        "cached_tokens": {
+          "total": null,
+          "reported_total": 0,
+          "missing_calls": 335,
+          "unknown_runs": 0
+        },
+        "cache_write_tokens": {
+          "total": null,
+          "reported_total": 0,
+          "missing_calls": 335,
+          "unknown_runs": 0
+        },
+        "reasoning_tokens": {
+          "total": null,
+          "reported_total": 0,
+          "missing_calls": 335,
+          "unknown_runs": 0
+        }
+      },
+      "errors": {},
+      "unknown_usage_runs": 0
+    },
+    "opencode_jev": {
+      "attempts": 63,
+      "confirmed": 58,
+      "observed": 58,
+      "usage_complete_runs": 63,
+      "calls": 343,
+      "http_errors": 0,
+      "median_wall_ms": 4123,
+      "tokens": {
+        "input_tokens": {
+          "total": 1370208,
+          "reported_total": 1370208,
+          "missing_calls": 0,
+          "unknown_runs": 0
+        },
+        "output_tokens": {
+          "total": 110282,
+          "reported_total": 110282,
+          "missing_calls": 0,
+          "unknown_runs": 0
+        },
+        "total_tokens": {
+          "total": null,
+          "reported_total": 0,
+          "missing_calls": 343,
+          "unknown_runs": 0
+        },
+        "cached_tokens": {
+          "total": null,
+          "reported_total": 0,
+          "missing_calls": 343,
+          "unknown_runs": 0
+        },
+        "cache_write_tokens": {
+          "total": null,
+          "reported_total": 0,
+          "missing_calls": 343,
+          "unknown_runs": 0
+        },
+        "reasoning_tokens": {
+          "total": null,
+          "reported_total": 0,
+          "missing_calls": 343,
+          "unknown_runs": 0
+        }
+      },
+      "errors": {
+        "failed": 3,
+        "verification_failed": 2
+      },
+      "unknown_usage_runs": 0
+    }
+  },
+  "cases": {
+    "equipment_pickup": {
+      "opencode_gemini": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 42,
+        "http_errors": 0,
+        "median_wall_ms": 17624,
+        "tokens": {
+          "input_tokens": {
+            "total": 169043,
+            "reported_total": 169043,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 42,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 42,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 42,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 42,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "opencode_jev": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 46,
+        "http_errors": 0,
+        "median_wall_ms": 15573,
+        "tokens": {
+          "input_tokens": {
+            "total": 206226,
+            "reported_total": 206226,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 15698,
+            "reported_total": 15698,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 46,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 46,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 46,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 46,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "autocomplete": {
+      "opencode_gemini": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 6,
+        "http_errors": 0,
+        "median_wall_ms": 3653,
+        "tokens": {
+          "input_tokens": {
+            "total": 17573,
+            "reported_total": 17573,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "opencode_jev": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 6,
+        "http_errors": 0,
+        "median_wall_ms": 3535,
+        "tokens": {
+          "input_tokens": {
+            "total": 19729,
+            "reported_total": 19729,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 1877,
+            "reported_total": 1877,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "delayed_menu": {
+      "opencode_gemini": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 10,
+        "http_errors": 0,
+        "median_wall_ms": 4894,
+        "tokens": {
+          "input_tokens": {
+            "total": 22908,
+            "reported_total": 22908,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 10,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 10,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 10,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 10,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "opencode_jev": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 12,
+        "http_errors": 0,
+        "median_wall_ms": 4047,
+        "tokens": {
+          "input_tokens": {
+            "total": 31467,
+            "reported_total": 31467,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 2754,
+            "reported_total": 2754,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 12,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 12,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 12,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 12,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "calendar": {
+      "opencode_gemini": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 9,
+        "http_errors": 0,
+        "median_wall_ms": 5707,
+        "tokens": {
+          "input_tokens": {
+            "total": 21801,
+            "reported_total": 21801,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "opencode_jev": {
+        "attempts": 3,
+        "confirmed": 0,
+        "observed": 0,
+        "usage_complete_runs": 3,
+        "calls": 3,
+        "http_errors": 0,
+        "median_wall_ms": 2424,
+        "tokens": {
+          "input_tokens": {
+            "total": 7521,
+            "reported_total": 7521,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 678,
+            "reported_total": 678,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {
+          "failed": 3
+        },
+        "unknown_usage_runs": 0
+      }
+    },
+    "consent": {
+      "opencode_gemini": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 9,
+        "http_errors": 0,
+        "median_wall_ms": 4952,
+        "tokens": {
+          "input_tokens": {
+            "total": 23552,
+            "reported_total": 23552,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "opencode_jev": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 9,
+        "http_errors": 0,
+        "median_wall_ms": 3868,
+        "tokens": {
+          "input_tokens": {
+            "total": 26463,
+            "reported_total": 26463,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 2515,
+            "reported_total": 2515,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "counter": {
+      "opencode_gemini": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 9,
+        "http_errors": 0,
+        "median_wall_ms": 4546,
+        "tokens": {
+          "input_tokens": {
+            "total": 22798,
+            "reported_total": 22798,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "opencode_jev": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 9,
+        "http_errors": 0,
+        "median_wall_ms": 3849,
+        "tokens": {
+          "input_tokens": {
+            "total": 25532,
+            "reported_total": 25532,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 2043,
+            "reported_total": 2043,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "rail_itinerary": {
+      "opencode_gemini": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 30,
+        "http_errors": 0,
+        "median_wall_ms": 12971,
+        "tokens": {
+          "input_tokens": {
+            "total": 108134,
+            "reported_total": 108134,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 30,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 30,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 30,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 30,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "opencode_jev": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 30,
+        "http_errors": 0,
+        "median_wall_ms": 10733,
+        "tokens": {
+          "input_tokens": {
+            "total": 118778,
+            "reported_total": 118778,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 9586,
+            "reported_total": 9586,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 30,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 30,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 30,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 30,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "article": {
+      "opencode_gemini": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 9,
+        "http_errors": 0,
+        "median_wall_ms": 4648,
+        "tokens": {
+          "input_tokens": {
+            "total": 27408,
+            "reported_total": 27408,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "opencode_jev": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 11,
+        "http_errors": 0,
+        "median_wall_ms": 4307,
+        "tokens": {
+          "input_tokens": {
+            "total": 38606,
+            "reported_total": 38606,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 3559,
+            "reported_total": 3559,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 11,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 11,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 11,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 11,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "below_fold": {
+      "opencode_gemini": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 9,
+        "http_errors": 0,
+        "median_wall_ms": 3850,
+        "tokens": {
+          "input_tokens": {
+            "total": 18615,
+            "reported_total": 18615,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 9,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "opencode_jev": {
+        "attempts": 3,
+        "confirmed": 1,
+        "observed": 1,
+        "usage_complete_runs": 3,
+        "calls": 13,
+        "http_errors": 0,
+        "median_wall_ms": 3632,
+        "tokens": {
+          "input_tokens": {
+            "total": 29999,
+            "reported_total": 29999,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 2483,
+            "reported_total": 2483,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 13,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 13,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 13,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 13,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {
+          "verification_failed": 2
+        },
+        "unknown_usage_runs": 0
+      }
+    },
+    "library_research": {
+      "opencode_gemini": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 36,
+        "http_errors": 0,
+        "median_wall_ms": 14845,
+        "tokens": {
+          "input_tokens": {
+            "total": 144608,
+            "reported_total": 144608,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 36,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 36,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 36,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 36,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "opencode_jev": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 36,
+        "http_errors": 0,
+        "median_wall_ms": 11784,
+        "tokens": {
+          "input_tokens": {
+            "total": 158568,
+            "reported_total": 158568,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 12315,
+            "reported_total": 12315,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 36,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 36,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 36,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 36,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "loading_overlay": {
+      "opencode_gemini": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 13,
+        "http_errors": 0,
+        "median_wall_ms": 5517,
+        "tokens": {
+          "input_tokens": {
+            "total": 32929,
+            "reported_total": 32929,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 13,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 13,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 13,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 13,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "opencode_jev": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 15,
+        "http_errors": 0,
+        "median_wall_ms": 4928,
+        "tokens": {
+          "input_tokens": {
+            "total": 42393,
+            "reported_total": 42393,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 3751,
+            "reported_total": 3751,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 15,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 15,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 15,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 15,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "profile_form": {
+      "opencode_gemini": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 12,
+        "http_errors": 0,
+        "median_wall_ms": 6132,
+        "tokens": {
+          "input_tokens": {
+            "total": 45200,
+            "reported_total": 45200,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 12,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 12,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 12,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 12,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "opencode_jev": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 12,
+        "http_errors": 0,
+        "median_wall_ms": 5417,
+        "tokens": {
+          "input_tokens": {
+            "total": 49315,
+            "reported_total": 49315,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 4832,
+            "reported_total": 4832,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 12,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 12,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 12,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 12,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "public_about": {
+      "opencode_gemini": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 3,
+        "http_errors": 0,
+        "median_wall_ms": 6181,
+        "tokens": {
+          "input_tokens": {
+            "total": 17346,
+            "reported_total": 17346,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "opencode_jev": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 3,
+        "http_errors": 0,
+        "median_wall_ms": 6347,
+        "tokens": {
+          "input_tokens": {
+            "total": 18588,
+            "reported_total": 18588,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 1879,
+            "reported_total": 1879,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "support_handoff": {
+      "opencode_gemini": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 48,
+        "http_errors": 0,
+        "median_wall_ms": 21985,
+        "tokens": {
+          "input_tokens": {
+            "total": 205441,
+            "reported_total": 205441,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 48,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 48,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 48,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 48,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "opencode_jev": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 48,
+        "http_errors": 0,
+        "median_wall_ms": 15164,
+        "tokens": {
+          "input_tokens": {
+            "total": 222026,
+            "reported_total": 222026,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 16665,
+            "reported_total": 16665,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 48,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 48,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 48,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 48,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "navigate": {
+      "opencode_gemini": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 3,
+        "http_errors": 0,
+        "median_wall_ms": 2695,
+        "tokens": {
+          "input_tokens": {
+            "total": 7619,
+            "reported_total": 7619,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "opencode_jev": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 3,
+        "http_errors": 0,
+        "median_wall_ms": 2634,
+        "tokens": {
+          "input_tokens": {
+            "total": 8498,
+            "reported_total": 8498,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 684,
+            "reported_total": 684,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "click": {
+      "opencode_gemini": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 3,
+        "http_errors": 0,
+        "median_wall_ms": 2722,
+        "tokens": {
+          "input_tokens": {
+            "total": 7222,
+            "reported_total": 7222,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "opencode_jev": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 3,
+        "http_errors": 0,
+        "median_wall_ms": 2328,
+        "tokens": {
+          "input_tokens": {
+            "total": 8091,
+            "reported_total": 8091,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 681,
+            "reported_total": 681,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "search": {
+      "opencode_gemini": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 6,
+        "http_errors": 0,
+        "median_wall_ms": 3796,
+        "tokens": {
+          "input_tokens": {
+            "total": 22446,
+            "reported_total": 22446,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "opencode_jev": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 6,
+        "http_errors": 0,
+        "median_wall_ms": 3182,
+        "tokens": {
+          "input_tokens": {
+            "total": 24395,
+            "reported_total": 24395,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 2067,
+            "reported_total": 2067,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "select": {
+      "opencode_gemini": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 6,
+        "http_errors": 0,
+        "median_wall_ms": 3773,
+        "tokens": {
+          "input_tokens": {
+            "total": 16325,
+            "reported_total": 16325,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "opencode_jev": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 6,
+        "http_errors": 0,
+        "median_wall_ms": 3207,
+        "tokens": {
+          "input_tokens": {
+            "total": 18043,
+            "reported_total": 18043,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 1608,
+            "reported_total": 1608,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 6,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "styled_filter": {
+      "opencode_gemini": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 3,
+        "http_errors": 0,
+        "median_wall_ms": 2978,
+        "tokens": {
+          "input_tokens": {
+            "total": 6465,
+            "reported_total": 6465,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "opencode_jev": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 3,
+        "http_errors": 0,
+        "median_wall_ms": 2578,
+        "tokens": {
+          "input_tokens": {
+            "total": 7311,
+            "reported_total": 7311,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 684,
+            "reported_total": 684,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 3,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "hotel": {
+      "opencode_gemini": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 15,
+        "http_errors": 0,
+        "median_wall_ms": 6295,
+        "tokens": {
+          "input_tokens": {
+            "total": 50910,
+            "reported_total": 50910,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 15,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 15,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 15,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 15,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "opencode_jev": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 15,
+        "http_errors": 0,
+        "median_wall_ms": 5134,
+        "tokens": {
+          "input_tokens": {
+            "total": 57836,
+            "reported_total": 57836,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 5568,
+            "reported_total": 5568,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 15,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 15,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 15,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 15,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    },
+    "exhibit_planner": {
+      "opencode_gemini": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 54,
+        "http_errors": 0,
+        "median_wall_ms": 19875,
+        "tokens": {
+          "input_tokens": {
+            "total": 229500,
+            "reported_total": 229500,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 0,
+            "reported_total": 0,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 54,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 54,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 54,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 54,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      },
+      "opencode_jev": {
+        "attempts": 3,
+        "confirmed": 3,
+        "observed": 3,
+        "usage_complete_runs": 3,
+        "calls": 54,
+        "http_errors": 0,
+        "median_wall_ms": 19036,
+        "tokens": {
+          "input_tokens": {
+            "total": 250823,
+            "reported_total": 250823,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "output_tokens": {
+            "total": 18355,
+            "reported_total": 18355,
+            "missing_calls": 0,
+            "unknown_runs": 0
+          },
+          "total_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 54,
+            "unknown_runs": 0
+          },
+          "cached_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 54,
+            "unknown_runs": 0
+          },
+          "cache_write_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 54,
+            "unknown_runs": 0
+          },
+          "reasoning_tokens": {
+            "total": null,
+            "reported_total": 0,
+            "missing_calls": 54,
+            "unknown_runs": 0
+          }
+        },
+        "errors": {},
+        "unknown_usage_runs": 0
+      }
+    }
+  }
+}

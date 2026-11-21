@@ -1,0 +1,203 @@
+{
+  "kind": "matched decision probe, no scored browser trials",
+  "commits": {
+    "intermediate": "a5c22bb8d58aedcedefff29e6073b98bd346a823",
+    "final": "0ccf42c65baf609369124bf721a9311406fecc97"
+  },
+  "conditions": "Fresh 1280x720 Chromium, scripted successful native Core traversal. Both historical source versions compiled the identical frozen state. Every listed target instruction differed only by the sentence Reject the sole target only if it is unsuitable for the chosen operation. No other field changed. Chronological ordering alternated within each case. Original benchmark cases did not retain whole model input; these are reconstructed pages, not an exact replay of historic network requests.",
+  "api_calls": 12,
+  "recorded_http": {
+    "200": 12
+  },
+  "cases": {
+    "exhibit_planner": {
+      "state_sha256": "177f4914537234a9c4a5ce5382dd8dbd896e896f4d1ebbdc425b66bf2d8b703b",
+      "changed_heads": [
+        "target_fill",
+        "target_enter",
+        "target_submit",
+        "target_navigate"
+      ],
+      "payload_sha256": {
+        "intermediate": "36126e61198ee2fabb709a8cfa646c8f47aff5ca63c8656daf4c066bbaa61013",
+        "final": "984493cb1c223b559ab42d06cb1639e0ad843ba98ce0bca82287de58a7de8cac"
+      }
+    },
+    "rail_itinerary": {
+      "state_sha256": "69696f0911cb1e0e60f5cc91eec812be451a7ca30801feb20fd7dc5ed6eb91d7",
+      "changed_heads": [
+        "target_submit",
+        "target_navigate"
+      ],
+      "payload_sha256": {
+        "intermediate": "dfa8046e18b94a2ef2cc2c3242bc4b10a58652eb8367184657a6e1d461283b47",
+        "final": "c70be1cae5e81ba4e1883a3be9c9cd74495bfc37e21cd43886a3d9073255d2dd"
+      }
+    }
+  },
+  "observations": [
+    {
+      "timestamp": "2026-11-03T18:18:28.484008+00:00",
+      "case": "exhibit_planner",
+      "pair": 1,
+      "version": "intermediate",
+      "operation": "select",
+      "target_name": "Route template",
+      "target_confidence": 0.33,
+      "native_result": "accepted",
+      "selected_now": [
+        "Two stops"
+      ],
+      "chosen_option": {
+        "label": "Choose an option",
+        "value": ""
+      }
+    },
+    {
+      "timestamp": "2026-11-03T18:18:30.427691+00:00",
+      "case": "exhibit_planner",
+      "pair": 1,
+      "version": "final",
+      "operation": "select",
+      "target_name": "Route template",
+      "target_confidence": 0.33,
+      "native_result": "accepted",
+      "selected_now": [
+        "Two stops"
+      ],
+      "chosen_option": {
+        "label": "Choose an option",
+        "value": ""
+      }
+    },
+    {
+      "timestamp": "2026-11-03T18:18:30.896789+00:00",
+      "case": "rail_itinerary",
+      "pair": 1,
+      "version": "final",
+      "operation": "fill",
+      "target_name": "From station",
+      "target_confidence": 0.94,
+      "native_result": "accepted"
+    },
+    {
+      "timestamp": "2026-11-03T18:18:31.327926+00:00",
+      "case": "rail_itinerary",
+      "pair": 1,
+      "version": "intermediate",
+      "operation": "fill",
+      "target_name": "From station",
+      "target_confidence": 0.94,
+      "native_result": "accepted"
+    },
+    {
+      "timestamp": "2026-11-03T18:18:32.489962+00:00",
+      "case": "exhibit_planner",
+      "pair": 2,
+      "version": "final",
+      "operation": "select",
+      "target_name": "Route template",
+      "target_confidence": 0.33,
+      "native_result": "accepted",
+      "selected_now": [
+        "Two stops"
+      ],
+      "chosen_option": {
+        "label": "Choose an option",
+        "value": ""
+      }
+    },
+    {
+      "timestamp": "2026-11-03T18:18:32.857518+00:00",
+      "case": "exhibit_planner",
+      "pair": 2,
+      "version": "intermediate",
+      "operation": "select",
+      "target_name": "Route template",
+      "target_confidence": 0.33,
+      "native_result": "accepted",
+      "selected_now": [
+        "Two stops"
+      ],
+      "chosen_option": {
+        "label": "Choose an option",
+        "value": ""
+      }
+    },
+    {
+      "timestamp": "2026-11-03T18:18:33.324839+00:00",
+      "case": "rail_itinerary",
+      "pair": 2,
+      "version": "intermediate",
+      "operation": "fill",
+      "target_name": "From station",
+      "target_confidence": 0.94,
+      "native_result": "accepted"
+    },
+    {
+      "timestamp": "2026-11-03T18:18:33.685919+00:00",
+      "case": "rail_itinerary",
+      "pair": 2,
+      "version": "final",
+      "operation": "fill",
+      "target_name": "From station",
+      "target_confidence": 0.94,
+      "native_result": "accepted"
+    },
+    {
+      "timestamp": "2026-11-03T18:18:34.377055+00:00",
+      "case": "exhibit_planner",
+      "pair": 3,
+      "version": "intermediate",
+      "operation": "select",
+      "target_name": "Route template",
+      "target_confidence": 0.33,
+      "native_result": "accepted",
+      "selected_now": [
+        "Two stops"
+      ],
+      "chosen_option": {
+        "label": "Choose an option",
+        "value": ""
+      }
+    },
+    {
+      "timestamp": "2026-11-03T18:18:34.894152+00:00",
+      "case": "exhibit_planner",
+      "pair": 3,
+      "version": "final",
+      "operation": "select",
+      "target_name": "Route template",
+      "target_confidence": 0.33,
+      "native_result": "accepted",
+      "selected_now": [
+        "Two stops"
+      ],
+      "chosen_option": {
+        "label": "Choose an option",
+        "value": ""
+      }
+    },
+    {
+      "timestamp": "2026-11-03T18:18:35.848668+00:00",
+      "case": "rail_itinerary",
+      "pair": 3,
+      "version": "final",
+      "operation": "fill",
+      "target_name": "From station",
+      "target_confidence": 0.94,
+      "native_result": "accepted"
+    },
+    {
+      "timestamp": "2026-11-03T18:18:36.466885+00:00",
+      "case": "rail_itinerary",
+      "pair": 3,
+      "version": "intermediate",
+      "operation": "fill",
+      "target_name": "From station",
+      "target_confidence": 0.94,
+      "native_result": "accepted"
+    }
+  ],
+  "estimated_usd": "0.00312865"
+}

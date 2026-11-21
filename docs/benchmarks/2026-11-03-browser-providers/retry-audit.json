@@ -1,0 +1,115 @@
+{
+  "scoring": "Only the retry enters the scored matrix. The original HTTP 503 is excluded from completion, timings, HTTP usage and cost estimates.",
+  "excluded": {
+    "phase": "finished",
+    "case": "profile_form",
+    "repetition": 3,
+    "engine": "decision-browser",
+    "route": "openai",
+    "started": "2026-11-03T09:49:48.229472+00:00",
+    "finished": "2026-11-03T09:49:49.684346+00:00",
+    "wall_ms": 1451,
+    "goal_sha256": "4eca2825499cbdf7d0046c27824c3325a59dd736f9a56173059cade2fad14dcb",
+    "worker_sha256": "628304533c76510d6f7fec74e04e399b7b955334ec55fdfcb397e7baf3d7eabc",
+    "confirmed": false,
+    "observed": false,
+    "native_success": false,
+    "functional_check_passed": false,
+    "status": "failed",
+    "reason": "failed",
+    "functional": "failed",
+    "checks": [
+      false,
+      true
+    ],
+    "page_oracle": false,
+    "calls": 1,
+    "http": [
+      {
+        "endpoint": "decisions",
+        "input_bytes": 8610,
+        "state": "response",
+        "status": 503
+      }
+    ]
+  },
+  "scored_retry": {
+    "phase": "finished",
+    "case": "profile_form",
+    "repetition": 3,
+    "engine": "decision-browser",
+    "route": "openai",
+    "started": "2026-11-03T10:16:56.334199+00:00",
+    "finished": "2026-11-03T10:17:02.668083+00:00",
+    "wall_ms": 6320,
+    "goal_sha256": "4eca2825499cbdf7d0046c27824c3325a59dd736f9a56173059cade2fad14dcb",
+    "worker_sha256": "628304533c76510d6f7fec74e04e399b7b955334ec55fdfcb397e7baf3d7eabc",
+    "confirmed": true,
+    "observed": true,
+    "native_success": true,
+    "functional_check_passed": true,
+    "status": "verified",
+    "reason": "verified",
+    "functional": "verified",
+    "checks": [
+      true,
+      true
+    ],
+    "page_oracle": true,
+    "calls": 4,
+    "http": [
+      {
+        "endpoint": "decisions",
+        "input_bytes": 8610,
+        "state": "response",
+        "status": 200,
+        "usage_reported": true,
+        "input_tokens": 2484,
+        "output_tokens": 0,
+        "total_tokens": 2484,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "model": "gpt-6-luna"
+      },
+      {
+        "endpoint": "decisions",
+        "input_bytes": 8862,
+        "state": "response",
+        "status": 200,
+        "usage_reported": true,
+        "input_tokens": 2562,
+        "output_tokens": 0,
+        "total_tokens": 2562,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "model": "gpt-6-luna"
+      },
+      {
+        "endpoint": "decisions",
+        "input_bytes": 9073,
+        "state": "response",
+        "status": 200,
+        "usage_reported": true,
+        "input_tokens": 2624,
+        "output_tokens": 0,
+        "total_tokens": 2624,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "model": "gpt-6-luna"
+      },
+      {
+        "endpoint": "decisions",
+        "input_bytes": 9337,
+        "state": "response",
+        "status": 200,
+        "usage_reported": true,
+        "input_tokens": 2522,
+        "output_tokens": 0,
+        "total_tokens": 2522,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "model": "gpt-6-luna"
+      }
+    ]
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "arm": "jev",
+  "case": "select",
+  "repetition": 2,
+  "phase": "finished",
+  "started_at": "2026-11-17T18:20:54.658184+00:00",
+  "record": "runs/jev/select/2.json",
+  "group": "short",
+  "goal_sha256": "2ab7ae4271e78a41f3b17016a7ef30cff3604157b4ec44f0cf55591283d81cd1",
+  "limits": {
+    "max_steps": 8,
+    "max_calls": 12,
+    "timeout_s": 75.0,
+    "max_input_bytes": 131072
+  },
+  "confirmed": false,
+  "observed": false,
+  "lifecycle_success": true,
+  "native_success": false,
+  "functional_check_passed": false,
+  "result": {
+    "status": "failed",
+    "reason": "failed",
+    "functional": "failed",
+    "steps": 3,
+    "native_evidence": [
+      "provider:rejected_sentinel",
+      "text:mismatch",
+      "route:ok"
+    ],
+    "native_timings": {
+      "setup": 0.0001694160746410489,
+      "browser": 0.0,
+      "verification": 0.04469779203645885,
+      "total": 2.9062049170024693
+    },
+    "admission_class": "observe_driver",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:49625/r/02c0ca65716b441d8d43fe3054cfa670/select/",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      false,
+      true
+    ],
+    "independent_verification_ms": 4,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "select",
+      "wait"
+    ],
+    "arm": "jev",
+    "model": "jev-latest",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 2628,
+          "output_tokens": 265,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 9803,
+          "duration_ms": 830,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2739,
+          "output_tokens": 267,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 10048,
+          "duration_ms": 319,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2849,
+          "output_tokens": 266,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 10276,
+          "duration_ms": 376,
+          "endpoint": "systemone",
+          "model": "jev-1.14.0",
+          "request_model": "jev-latest",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 3,
+      "request_bytes": 30127,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 3,
+        "cached_tokens": 3,
+        "cache_write_tokens": 3,
+        "reasoning_tokens": 3
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": false,
+        "cached_tokens": false,
+        "cache_write_tokens": false,
+        "reasoning_tokens": false
+      },
+      "reported_tokens": {
+        "input_tokens": 8216,
+        "output_tokens": 798,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 8216,
+      "output_tokens": 798,
+      "total_tokens": null,
+      "cached_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "returncode": 0,
+    "wall_ms": 3209,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": false,
+    "events": [],
+    "details_visits": 0,
+    "counter": 0
+  },
+  "finished_at": "2026-11-17T18:20:58.113892+00:00"
+}

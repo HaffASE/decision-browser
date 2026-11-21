@@ -1,0 +1,121 @@
+{
+  "arm": "opencode_gemini",
+  "case": "public_about",
+  "repetition": 2,
+  "phase": "finished",
+  "started_at": "2026-11-17T20:34:37.341094+00:00",
+  "record": "runs/opencode_gemini/public_about/2.json",
+  "group": "short",
+  "goal_sha256": "6a35a60d066d5d9ee7e326cb3aba56d8f2243d0bc742697aa15c220e21b7a26f",
+  "limits": {
+    "max_steps": 8,
+    "max_calls": 12,
+    "timeout_s": 75.0,
+    "max_input_bytes": 131072
+  },
+  "confirmed": true,
+  "observed": true,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "verified",
+    "reason": "verified",
+    "functional": "verified",
+    "steps": 2,
+    "native_evidence": [
+      "route:ok"
+    ],
+    "native_timings": {
+      "setup": 0.0001695409882813692,
+      "browser": 6.632460834109224,
+      "verification": 0.0006348328897729516,
+      "total": 6.732788749970496
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "https://www.python.org/about/",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      true
+    ],
+    "independent_verification_ms": 3,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "navigate"
+    ],
+    "arm": "opencode_gemini",
+    "model": "gemini-decision-1",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 5782,
+          "output_tokens": 0,
+          "total_tokens": null,
+          "cached_tokens": null,
+          "cache_write_tokens": null,
+          "reasoning_tokens": null,
+          "status": 200,
+          "input_bytes": 23698,
+          "duration_ms": 1662,
+          "endpoint": "systemone",
+          "model": "gemini-decision-1",
+          "request_model": "gemini-decision-1",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 1,
+      "request_bytes": 23698,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 1,
+        "cached_tokens": 1,
+        "cache_write_tokens": 1,
+        "reasoning_tokens": 1
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": false,
+        "cached_tokens": false,
+        "cache_write_tokens": false,
+        "reasoning_tokens": false
+      },
+      "reported_tokens": {
+        "input_tokens": 5782,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 5782,
+      "output_tokens": 0,
+      "total_tokens": null,
+      "cached_tokens": null,
+      "cache_write_tokens": null,
+      "reasoning_tokens": null
+    },
+    "returncode": 0,
+    "wall_ms": 6998,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": true,
+    "expected_url": "https://www.python.org/about/",
+    "observed_url": "https://www.python.org/about/"
+  },
+  "finished_at": "2026-11-17T20:34:44.341123+00:00"
+}

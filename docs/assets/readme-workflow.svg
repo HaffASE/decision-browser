@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="610" viewBox="0 0 1120 610" role="img" aria-labelledby="title description">
+<title id="title">From browser goal to checked outcome</title>
+<desc id="description">The coding agent supplies URL, goal, field values, checks and budgets. Under the installed standard-form policy the client presents scope admission. Decision Browser observes controls, asks the model to choose an action and target, rechecks the target, executes and repeats within limits. Final checks establish the outcome. The agent receives status, usage and evidence; approval is not proof of zero site effects.</desc>
+<g font-family="Arial, Helvetica, sans-serif">
+<rect x="0" y="0" width="1120" height="610" rx="20" fill="#0E1D27" />
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#7CE4C1"/></marker></defs>
+<text x="40" y="49" fill="#7CE4C1" font-size="17" font-weight="700" text-anchor="start">DECISION BROWSER</text>
+<text x="40" y="103" fill="#F3F7FA" font-size="40" font-weight="700" text-anchor="start">A goal in. A checked outcome out.</text>
+<text x="40" y="141" fill="#B8C9D3" font-size="21" font-weight="400" text-anchor="start">Your coding agent plans the task. The MCP server runs the bounded browser loop.</text>
+<rect x="40" y="193" width="224" height="236" rx="15" fill="#152B37" />
+<text x="60" y="230" fill="#7CE4C1" font-size="18" font-weight="700" text-anchor="start">01</text>
+<text x="60" y="269" fill="#F3F7FA" font-size="21" font-weight="700" text-anchor="start">Define the task</text>
+<text x="60" y="313" fill="#B8C9D3" font-size="18" font-weight="400" text-anchor="start">URL + goal</text>
+<text x="60" y="345" fill="#B8C9D3" font-size="18" font-weight="400" text-anchor="start">Field values</text>
+<text x="60" y="377" fill="#B8C9D3" font-size="18" font-weight="400" text-anchor="start">Checks + limits</text>
+<path d="M272 306 H300" fill="none" stroke="#7CE4C1" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="312" y="193" width="224" height="236" rx="15" fill="#152B37" />
+<text x="332" y="230" fill="#7CE4C1" font-size="18" font-weight="700" text-anchor="start">02</text>
+<text x="332" y="269" fill="#F3F7FA" font-size="21" font-weight="700" text-anchor="start">Review the scope</text>
+<text x="332" y="313" fill="#B8C9D3" font-size="18" font-weight="400" text-anchor="start">Client admission form</text>
+<text x="332" y="345" fill="#B8C9D3" font-size="18" font-weight="400" text-anchor="start">User reviews the scope</text>
+<text x="332" y="377" fill="#B8C9D3" font-size="18" font-weight="400" text-anchor="start">Installed default policy</text>
+<path d="M544 306 H572" fill="none" stroke="#7CE4C1" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="584" y="193" width="224" height="236" rx="15" fill="#152B37" />
+<text x="604" y="230" fill="#7CE4C1" font-size="18" font-weight="700" text-anchor="start">03</text>
+<text x="604" y="269" fill="#F3F7FA" font-size="21" font-weight="700" text-anchor="start">Run the browser</text>
+<text x="604" y="313" fill="#B8C9D3" font-size="18" font-weight="400" text-anchor="start">Observe → choose</text>
+<text x="604" y="345" fill="#B8C9D3" font-size="18" font-weight="400" text-anchor="start">Recheck → act → repeat</text>
+<text x="604" y="377" fill="#B8C9D3" font-size="18" font-weight="400" text-anchor="start">Stop within task limits</text>
+<path d="M816 306 H844" fill="none" stroke="#7CE4C1" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="856" y="193" width="224" height="236" rx="15" fill="#152B37" />
+<text x="876" y="230" fill="#7CE4C1" font-size="18" font-weight="700" text-anchor="start">04</text>
+<text x="876" y="269" fill="#F3F7FA" font-size="21" font-weight="700" text-anchor="start">Check the outcome</text>
+<text x="876" y="313" fill="#B8C9D3" font-size="18" font-weight="400" text-anchor="start">Inspect final page state</text>
+<text x="876" y="345" fill="#B8C9D3" font-size="18" font-weight="400" text-anchor="start">Apply declared checks</text>
+<text x="876" y="377" fill="#B8C9D3" font-size="18" font-weight="400" text-anchor="start">Return result + evidence</text>
+<rect x="40" y="459" width="1040" height="105" rx="12" fill="#1B3542" />
+<text x="64" y="495" fill="#F3F7FA" font-size="23" font-weight="700" text-anchor="start">The result keeps success, uncertainty and visual diagnostics separate.</text>
+<text x="64" y="532" fill="#B8C9D3" font-size="20" font-weight="400" text-anchor="start">Only declared functional checks can establish “verified”. Model completion alone cannot.</text>
+<text x="40" y="592" fill="#B8C9D3" font-size="17" font-weight="400" text-anchor="start">Admission does not guarantee zero site effects. Review security and privacy boundaries before use.</text>
+</g>
+</svg>

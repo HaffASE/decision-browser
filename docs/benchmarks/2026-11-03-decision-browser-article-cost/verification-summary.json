@@ -1,0 +1,147 @@
+{
+  "kind": "explicit checks of intended sources; original verification failures preserved",
+  "status": "FAIL",
+  "all_check_stages_passed": true,
+  "pytest_counts": {
+    "tests": 2242,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0
+  },
+  "baseline_tests": 2138,
+  "added_tests": 104,
+  "original_test_files_unchanged": true,
+  "pytest_xml_sha256": "80ef4bdfa9529b78f0f8d6ab21e1a85fb87096782fbf9a95499cdd3bca5404aa",
+  "raw_check_result_sha256": "86ce005a9dd827545da9f638f4138f3a435d10d62ab51122afa3c970b1162eb2",
+  "whole_tree_source_unchanged_during_checks": false,
+  "changed_documentation_during_checks": {
+    "README.md": {
+      "before": "e981acc2f989abd59b4b7f87126cbed9d8b82d276b81084216c0b737996c2bb0",
+      "after": "864b36a135e4fe673e398c36fbe54a5429b165ac88c650f8e60cd8edc1777db5"
+    },
+    "docs/assets/browser-providers.gif": {
+      "before": "940795bd1ef82c45dc4482a80bfcf5b6a08a68ac24674e3731639f0b71f80aad",
+      "after": "76d9a8a72f41185b4714e7af3bc11b3b565ec0b3c85bc06304f3685eed07aea2"
+    }
+  },
+  "production_tests_scripts_and_locks_unchanged": true,
+  "tested_source_manifest_sha256": "ae4d07f90c193d6613439b4c6875ec4fef3b35302e3c5bc078784ed66a5e2f39",
+  "packaging_audit": {
+    "wheel_matches_all_benchmarked_production_files": 37,
+    "sdist_includes_comparison_patch_and_new_regressions": true,
+    "published_secret_pattern_hits": 0
+  },
+  "stages": {
+    "lock_check": {
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.134,
+      "log_sha256": "c4e4f8f48680f604720600545920f51d068bad06ee91130fb002f29028a5a001"
+    },
+    "frozen_sync": {
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.349,
+      "log_sha256": "9fc4c20b31319f6cb6cb6d47241e503921874023b7ff734d97b7bb3fcb80c712"
+    },
+    "build": {
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 4.476,
+      "log_sha256": "b158122cd07174511f7c2cb690b42ff83db8d2cb4278de24d94975d844cd2609"
+    },
+    "install_wheel": {
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.406,
+      "log_sha256": "ab19b17b11e1fc8118f0d425d64d1918809fbded24b64eb501a7c76dc9d21517"
+    },
+    "ruff": {
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.135,
+      "log_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    "mypy": {
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.456,
+      "log_sha256": "32c1f154f636757bc9df6843701b18b495673a7cf2e0f68b592d2055d6ae6c07"
+    },
+    "environment": {
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.132,
+      "log_sha256": "066d3abd3653cecf3db195549dcdb406327c5716b65e064489579e95733bc31a"
+    },
+    "dependency_check": {
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.246,
+      "log_sha256": "bda9c546385191b004902074b201bfee8f837bab149f3e4b7926e053f911a1bd"
+    },
+    "smoke_import": {
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.729,
+      "log_sha256": "43237c7eadf012176751d273f76a2d0473aaa8d34faab0dd05b87847480918fc"
+    },
+    "node_version": {
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.079,
+      "log_sha256": "748eb133647756c1f6659600e99aef70247f4e62e6e86390400e67967fb69e52"
+    },
+    "node_syntax_collector": {
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.078,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "node_syntax_snapshot": {
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.081,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "node_syntax_viewport_text": {
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.081,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "browser_preflight": {
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 0.832,
+      "log_sha256": "569bd654af7023b4d303247c8404b45f1c88f652b5deefb3ffe3a3fead89714c"
+    },
+    "pytest_full": {
+      "status": "PASS",
+      "returncode": 0,
+      "seconds": 466.684,
+      "log_sha256": "3e37bed438ef74c6d23d0eb62cb9721345c9ec72b1d6268b1f80fffe7d7f50d4"
+    }
+  },
+  "built_artifacts": [
+    {
+      "name": "decision_browser-0.1.0-py3-none-any.whl",
+      "sha256": "a9e33d524074451e623dad228490425e2aa4642423afd0ddc5805c003ff40830"
+    },
+    {
+      "name": "decision_browser-0.1.0.tar.gz",
+      "sha256": "8381fcfd98b7a2f3f8a03f7ab7ab8f3aead9b58baeff33fbab22c7d08964f316"
+    }
+  ],
+  "canonical_verifier": {
+    "status": "FAIL",
+    "source_scope": {
+      "reason": "unverified_untracked_files; commit intended source before verification",
+      "status": "FAIL"
+    },
+    "full_suite_passed": false,
+    "result_sha256": "6f750a9b810d26e68118a6bc28385905757da3f3ff59ad42ae6f4cf2a33bf2d9"
+  },
+  "conclusion": "2242 tests and all15 stages pass on current production code; whole-tree freeze fails only for README and provider GIF; canonical Git gate fails for untracked sources",
+  "publication_note": "Report and verification artifacts finalized after checks; no production/test edits"
+}

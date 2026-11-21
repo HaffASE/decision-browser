@@ -1,0 +1,242 @@
+{
+  "arm": "decision_api",
+  "case": "hotel",
+  "repetition": 2,
+  "phase": "finished",
+  "started_at": "2026-11-17T18:22:21.705835+00:00",
+  "record": "runs/decision_api/hotel/2.json",
+  "group": "short",
+  "goal_sha256": "e0757567904613af8b2982587133186b91de220b7e63d25aaa1ecd79b4f1be63",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 12,
+    "timeout_s": 75.0,
+    "max_input_bytes": 131072
+  },
+  "confirmed": false,
+  "observed": false,
+  "lifecycle_success": true,
+  "native_success": false,
+  "functional_check_passed": false,
+  "result": {
+    "status": "verification_failed",
+    "reason": "verification_failed",
+    "functional": "failed",
+    "steps": 5,
+    "native_evidence": [
+      "model:unable",
+      "text:mismatch",
+      "route:mismatch"
+    ],
+    "native_timings": {
+      "setup": 0.0001557499635964632,
+      "browser": 5.871554917190224,
+      "verification": 0.1005708328448236,
+      "total": 6.0755870409775525
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:50694/hotel/property/casa-flora?destination=Lisbon&category=standard&cancellation=true",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      false,
+      false
+    ],
+    "independent_verification_ms": 3,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "fill",
+      "click",
+      "click",
+      "click",
+      "UNABLE"
+    ],
+    "arm": "decision_api",
+    "model": "gpt-6-luna",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 2172,
+          "output_tokens": 0,
+          "total_tokens": 2172,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 9156,
+          "duration_ms": 1820,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2239,
+          "output_tokens": 0,
+          "total_tokens": 2239,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 9397,
+          "duration_ms": 387,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2313,
+          "output_tokens": 0,
+          "total_tokens": 2313,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 9607,
+          "duration_ms": 657,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2852,
+          "output_tokens": 0,
+          "total_tokens": 2852,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1044,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 11476,
+          "duration_ms": 491,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1607,
+          "output_tokens": 0,
+          "total_tokens": 1607,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 6597,
+          "duration_ms": 490,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 5,
+      "request_bytes": 46233,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true,
+        "cached_tokens": true,
+        "cache_write_tokens": true,
+        "reasoning_tokens": true
+      },
+      "reported_tokens": {
+        "input_tokens": 11183,
+        "output_tokens": 0,
+        "total_tokens": 11183,
+        "cached_tokens": 0,
+        "cache_write_tokens": 1044,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 11183,
+      "output_tokens": 0,
+      "total_tokens": 11183,
+      "cached_tokens": 0,
+      "cache_write_tokens": 1044,
+      "reasoning_tokens": 0
+    },
+    "returncode": 0,
+    "wall_ms": 6338,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": false,
+    "expected": [
+      {
+        "name": "search",
+        "data": {
+          "destination": "Lisbon"
+        }
+      },
+      {
+        "name": "category",
+        "data": {
+          "category": "design"
+        }
+      },
+      {
+        "name": "cancellation",
+        "data": {
+          "enabled": true
+        }
+      },
+      {
+        "name": "property",
+        "data": {
+          "property": "casa-flora",
+          "destination": "Lisbon",
+          "category": "design",
+          "cancellation": "true"
+        }
+      }
+    ],
+    "observed": [
+      {
+        "name": "cancellation",
+        "data": {
+          "enabled": true
+        }
+      },
+      {
+        "name": "search",
+        "data": {
+          "destination": "Lisbon"
+        }
+      },
+      {
+        "name": "property",
+        "data": {
+          "property": "casa-flora",
+          "destination": "Lisbon",
+          "category": "standard",
+          "cancellation": "true"
+        }
+      }
+    ]
+  },
+  "finished_at": "2026-11-17T18:22:28.176620+00:00"
+}

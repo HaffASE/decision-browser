@@ -1,0 +1,165 @@
+{
+  "arm": "decision_api",
+  "case": "delayed_menu",
+  "repetition": 3,
+  "phase": "finished",
+  "started_at": "2026-11-17T20:16:23.119558+00:00",
+  "record": "runs/decision_api/delayed_menu/3.json",
+  "group": "short",
+  "goal_sha256": "beb9f42402f8f2af1e23c8b2f9952cc541755b77a30d2f69909c8e7611c21682",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 12,
+    "timeout_s": 75.0,
+    "max_input_bytes": 131072
+  },
+  "confirmed": false,
+  "observed": false,
+  "lifecycle_success": true,
+  "native_success": false,
+  "functional_check_passed": false,
+  "result": {
+    "status": "verification_failed",
+    "reason": "verification_failed",
+    "functional": "failed",
+    "steps": 3,
+    "native_evidence": [
+      "model:unable",
+      "text:mismatch",
+      "route:mismatch"
+    ],
+    "native_timings": {
+      "setup": 0.00016612501349300146,
+      "browser": 3.9085459992056713,
+      "verification": 0.05867791688069701,
+      "total": 4.065650208038278
+    },
+    "admission_class": "observe_driver",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:55123/delayed_menu/",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      false,
+      false
+    ],
+    "independent_verification_ms": 2,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "click",
+      "wait",
+      "UNABLE"
+    ],
+    "arm": "decision_api",
+    "model": "gpt-6-luna",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 1437,
+          "output_tokens": 0,
+          "total_tokens": 1437,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 6192,
+          "duration_ms": 1534,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1508,
+          "output_tokens": 0,
+          "total_tokens": 1508,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 6399,
+          "duration_ms": 453,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1882,
+          "output_tokens": 0,
+          "total_tokens": 1882,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 7300,
+          "duration_ms": 671,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 3,
+      "request_bytes": 19891,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true,
+        "cached_tokens": true,
+        "cache_write_tokens": true,
+        "reasoning_tokens": true
+      },
+      "reported_tokens": {
+        "input_tokens": 4827,
+        "output_tokens": 0,
+        "total_tokens": 4827,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 4827,
+      "output_tokens": 0,
+      "total_tokens": 4827,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0
+    },
+    "returncode": 0,
+    "wall_ms": 4331,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": false,
+    "expected": [
+      {
+        "name": "section",
+        "data": {
+          "section": "society"
+        }
+      }
+    ],
+    "observed": []
+  },
+  "finished_at": "2026-11-17T20:16:27.618763+00:00"
+}

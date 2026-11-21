@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "created_at": "2026-11-17T18:31:57.088432+00:00",
+  "raw_file_hashes": {
+    "results.json": "a205135eea916494bf12a93fce8624cd9a7ddfac67eb52ce520665914a2648d6",
+    "summary.json": "1cb4291fe5affaf46a333ec6cc5c8d5ffec4d488a722625bdd017b2e7c6f729a",
+    "runs.csv": "b542d33ac9b04cb0a9068b72281a297aac35f97cf4fd670181c42c5fbcbcdfa7"
+  },
+  "output_file_hashes": {
+    "audited-results.json": "026d1d55a2eb9b8db9a7131b737497601e6e877725af309a4150b613432e5e07",
+    "audited-summary.json": "45d98bb0f0f9d936a4f6c28b2d6be1a5371b46349d8165a959c45bb9bf548b22",
+    "audited-runs.csv": "32b77e1ad6a3377a7fd4a8b7becf215e0bd60d73744f622266947d94bfefd93c",
+    "errors.json": "6ab43593d9fe881c62cfa1d2a83a75755bb685bb865243eaf1df90396a67ba67",
+    "report.md": "8b97e5928bd503326c07920737cf4182edbb67713652b873a1bbe886d81083e4"
+  },
+  "source_capture": {
+    "files": 67,
+    "sha256": "98a0103c1ba9c81c415eaad38f4a9379e8509cb56adcbe70d4bac97f4e6a38cb",
+    "launcher_sha256": "5616e33f3bcc95aa7977355d45d85793f54804b752261da0bd21306169e992d2",
+    "worker_sha256": "429a74ec7e00a42961e53a7618ef44643647cf032ab7937c0c29ee87020feb5d"
+  },
+  "reporting_correction": "The capture launcher aliased remaining to its plan. Removing completed cells therefore shrank progress denominators and summary domains. All futures had already been queued; immutable reconstruction and the per-attempt records restore reporting without changing outcomes or making paid reruns.",
+  "paid_reruns": 0,
+  "expected_cells": 189,
+  "verified_attempt_records": 189,
+  "unconfirmed_attempts": 67,
+  "generator_sha256": "ca63302519378ef4923c8ece7694881534dcc377f64ede878808ed0af2dcc849"
+}

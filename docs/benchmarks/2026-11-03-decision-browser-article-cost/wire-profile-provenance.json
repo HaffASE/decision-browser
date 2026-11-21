@@ -1,0 +1,30 @@
+{
+  "measurement": "UTF-8 bytes of json.dumps(compile_questions(prepared_questions, prepared_input), ensure_ascii=False, allow_nan=False)",
+  "included_payload_members": [
+    "model",
+    "input",
+    "questions"
+  ],
+  "model_http_requests": 0,
+  "fixtures": [
+    "article",
+    "profile_form"
+  ],
+  "plans": "unchanged ScriptedScenarioProvider plans from tests/integration/browser_scenarios.py",
+  "baseline_prepare_options": "default legacy projection",
+  "final_prepare_options": {
+    "compact": true,
+    "lean": true
+  },
+  "program_sha256": {
+    "baseline": "fc19602a0aeb5cde35c9d70646c824be3af683c30c97c890bdf42b3314eec87e",
+    "final": "566956a2198b9c4e6151e19429114d2b7914f11b947b97d4f4467969b878b76e"
+  },
+  "outputs": {
+    "baseline": "wire-before.json",
+    "final": "wire-v5-shared.json"
+  },
+  "different_profiler_output_metadata": "final records also include context_format; this metadata is outside the measured request payload",
+  "all_step_choice_counts_equal": true,
+  "program_hashes_recorded_after_measurements": true
+}

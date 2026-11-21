@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Overlap</title>
+  <style>
+    body { margin: 0; font-family: system-ui, sans-serif; background: #fff; color: #444; }
+    /* Defect class: overlap. Absolute buttons share 30px (left 20px width 100px, and left 90px). */
+    #stage { position: relative; height: 80px; }
+    #real-a, #real-b {
+      position: absolute;
+      top: 16px;
+      width: 100px;
+      height: 36px;
+      border: 1px solid #ccc;
+      background: #f4f4f4;
+    }
+    #real-a { left: 20px; }
+    #real-b { left: 90px; }
+    /* Trusted owned fixture annotation. data-visual-ignore=true suppresses this overlapping subtree only. */
+    #ignored {
+      position: relative;
+      height: 70px;
+      margin-top: 12px;
+    }
+    #ignored button {
+      position: absolute;
+      top: 8px;
+      width: 100px;
+      height: 36px;
+    }
+    #ignored .one { left: 20px; }
+    #ignored .two { left: 50px; }
+  </style>
+</head>
+<body>
+  <div id="stage">
+    <button id="real-a" type="button">Alpha</button>
+    <button id="real-b" type="button">Beta</button>
+  </div>
+  <div id="ignored" data-visual-ignore="true">
+    <button class="one" type="button">Ignore A</button>
+    <button class="two" type="button">Ignore B</button>
+  </div>
+</body>
+</html>

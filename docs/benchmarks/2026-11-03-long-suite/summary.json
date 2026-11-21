@@ -1,0 +1,473 @@
+{
+  "cohort": "long",
+  "scored": 105,
+  "limits": {
+    "max_calls": 24,
+    "max_steps": 24,
+    "max_input_bytes": 524288,
+    "timeout_s": 180
+  },
+  "fixture_sha256": "02a07257a2cedaf26ff674c3abb4069e8552810f56dd9d4e0a9c5bc61b410980",
+  "measurement_commit": "bf83535a10b3a9fb4cf3e58f3974a7f96d391406",
+  "excluded_503_attempts": 1,
+  "preflight": {
+    "issued": 75,
+    "recorded_requests": 498,
+    "known_estimated_usd": "0.101409323",
+    "billing_complete": false
+  },
+  "cases": {
+    "rail_itinerary": {
+      "title": "Rail itinerary",
+      "goal": "Save a rail itinerary from York to Durham. Pick the earliest direct train after 09:00, choose a Window seat in the Quiet coach, and use that train's listed platform.",
+      "min_actions": 10,
+      "sections": 5,
+      "goal_sha256": "838a0bdb17afbcf5fcfa62452a45f820f892d04a2d6fffa8884da1671d5f24a0"
+    },
+    "library_research": {
+      "title": "Reading list",
+      "goal": "Find the Glacier Atlas field guide in the Earth Science collection. Follow its appendix reference to the matching companion work, choose the peer-reviewed edition, and save both works in a reading list named Ice Notes tagged Fieldwork.",
+      "min_actions": 12,
+      "sections": 7,
+      "goal_sha256": "ed4e0cab9634fd883d9245ed39567e76f855e36dcb607a14cbf4731283ad5925"
+    },
+    "equipment_pickup": {
+      "title": "Equipment pick list",
+      "goal": "Prepare a local equipment pick list for the Boreal weatherproof camera, with a Telephoto lens and Protective case. Choose the depot with both items in stock, Friday Afternoon, for collector Lina Cruz, and save the list.",
+      "min_actions": 14,
+      "sections": 7,
+      "goal_sha256": "81481f8f391a61a9557fc899195b55de4f9d6b97b8057420f52ce9f384ef3eab"
+    },
+    "support_handoff": {
+      "title": "Support handoff draft",
+      "goal": "Prepare a handoff draft for ticket R-214 in the Network queue. Inspect the activity log and classify the most recent fault as High priority. Route it to Network Operations and include the On-call rotation. Add note 'Compare edge counters' tagged Diagnosis and save the draft.",
+      "min_actions": 16,
+      "sections": 8,
+      "goal_sha256": "a661b7a4c7cfeef61640276489de01f37476b6c138b2e42a9f9d8af6bceb8c18"
+    },
+    "exhibit_planner": {
+      "title": "Exhibit route",
+      "goal": "Plan a Bristol museum visit in Spring. Start with Tidal Maps, turn on English captions and Audio guide, then follow its linked wing to the Fresco Study. Choose the earliest slot after noon with Step-free access. Name the route Harbour Walk, use the Two stops template, set owner Mira Lane and save the plan.",
+      "min_actions": 18,
+      "sections": 9,
+      "goal_sha256": "ba594b8789d0ef8bffe565f234bfb0b53ccfa73e8afc9371aef8c0439d8833dd"
+    }
+  },
+  "arms": {
+    "terra/responses": {
+      "attempts": 15,
+      "confirmed": 9,
+      "median_wall_ms": 20662,
+      "priced": 15,
+      "estimated_usd": "0.22552325",
+      "known_estimated_usd": "0.22552325",
+      "model": "gpt-6.1-terra",
+      "worker_sha256": "472370fff43a29f1addb464f50b52a0f2d6fefbcc9b68e8091ebf11718fa3534",
+      "observed": 9,
+      "calls": 184,
+      "unpriced_calls": 0,
+      "helper_calls": 0,
+      "median_confirmed_wall_ms": 27499,
+      "per_case": {
+        "rail_itinerary": 0,
+        "library_research": 3,
+        "equipment_pickup": 3,
+        "support_handoff": 3,
+        "exhibit_planner": 0
+      },
+      "stop_reasons": {
+        "Error": 6
+      }
+    },
+    "decision-browser/openai": {
+      "attempts": 15,
+      "confirmed": 14,
+      "median_wall_ms": 22430,
+      "priced": 15,
+      "estimated_usd": "0.062332525",
+      "known_estimated_usd": "0.062332525",
+      "model": "gpt-6-luna",
+      "worker_sha256": "1effc5f381528e4a043f59db37c800ee2c3cb408b26a346c9f19484facc57f7e",
+      "observed": 14,
+      "calls": 205,
+      "unpriced_calls": 0,
+      "helper_calls": 0,
+      "median_confirmed_wall_ms": 22522.5,
+      "per_case": {
+        "rail_itinerary": 3,
+        "library_research": 3,
+        "equipment_pickup": 2,
+        "support_handoff": 3,
+        "exhibit_planner": 3
+      },
+      "stop_reasons": {
+        "no_progress": 1
+      }
+    },
+    "decision-browser/opencode": {
+      "attempts": 15,
+      "confirmed": 15,
+      "median_wall_ms": 20375,
+      "priced": 15,
+      "estimated_usd": "0.033413688",
+      "known_estimated_usd": "0.033413688",
+      "model": "jev-1.13",
+      "worker_sha256": "1effc5f381528e4a043f59db37c800ee2c3cb408b26a346c9f19484facc57f7e",
+      "observed": 15,
+      "calls": 210,
+      "unpriced_calls": 0,
+      "helper_calls": 0,
+      "median_confirmed_wall_ms": 20375,
+      "per_case": {
+        "rail_itinerary": 3,
+        "library_research": 3,
+        "equipment_pickup": 3,
+        "support_handoff": 3,
+        "exhibit_planner": 3
+      },
+      "stop_reasons": {}
+    },
+    "jev-ultrafast/openai": {
+      "attempts": 15,
+      "confirmed": 0,
+      "median_wall_ms": 15848,
+      "priced": 15,
+      "estimated_usd": "0.0547960",
+      "known_estimated_usd": "0.0547960",
+      "model": "gpt-6-luna",
+      "worker_sha256": "9cbed6f7c1ccb0fd09ca25e8f1f3ecea840eacb8f9b9848401e2f62caad79d80",
+      "observed": 0,
+      "calls": 291,
+      "unpriced_calls": 0,
+      "helper_calls": 15,
+      "median_confirmed_wall_ms": null,
+      "per_case": {
+        "rail_itinerary": 0,
+        "library_research": 0,
+        "equipment_pickup": 0,
+        "support_handoff": 0,
+        "exhibit_planner": 0
+      },
+      "stop_reasons": {
+        "ValueError": 3,
+        "agent_blocked": 2,
+        "call_limit": 10
+      }
+    },
+    "jev-ultrafast/opencode": {
+      "attempts": 15,
+      "confirmed": 1,
+      "median_wall_ms": 12305,
+      "priced": 15,
+      "estimated_usd": "0.015116552",
+      "known_estimated_usd": "0.015116552",
+      "model": "jev-1.13",
+      "worker_sha256": "9cbed6f7c1ccb0fd09ca25e8f1f3ecea840eacb8f9b9848401e2f62caad79d80",
+      "observed": 1,
+      "calls": 159,
+      "unpriced_calls": 0,
+      "helper_calls": 14,
+      "median_confirmed_wall_ms": 14774,
+      "per_case": {
+        "rail_itinerary": 0,
+        "library_research": 1,
+        "equipment_pickup": 0,
+        "support_handoff": 0,
+        "exhibit_planner": 0
+      },
+      "stop_reasons": {
+        "agent_blocked": 12,
+        "native_done_checks_failed": 2
+      }
+    },
+    "jev-ra/openai": {
+      "attempts": 15,
+      "confirmed": 5,
+      "median_wall_ms": 7507,
+      "priced": 15,
+      "estimated_usd": "0.0412979",
+      "known_estimated_usd": "0.0412979",
+      "model": "gpt-6-luna",
+      "worker_sha256": "9cbed6f7c1ccb0fd09ca25e8f1f3ecea840eacb8f9b9848401e2f62caad79d80",
+      "observed": 5,
+      "calls": 164,
+      "unpriced_calls": 0,
+      "helper_calls": 0,
+      "median_confirmed_wall_ms": 10683,
+      "per_case": {
+        "rail_itinerary": 0,
+        "library_research": 3,
+        "equipment_pickup": 0,
+        "support_handoff": 2,
+        "exhibit_planner": 0
+      },
+      "stop_reasons": {
+        "blocked": 1,
+        "invalid_decision": 3,
+        "native_done_checks_failed": 1,
+        "needs_value": 1,
+        "stuck_loop": 4
+      }
+    },
+    "jev-ra/opencode": {
+      "attempts": 15,
+      "confirmed": 4,
+      "median_wall_ms": 8463,
+      "priced": 15,
+      "estimated_usd": "0.016374834",
+      "known_estimated_usd": "0.016374834",
+      "model": "jev-1.13",
+      "worker_sha256": "9cbed6f7c1ccb0fd09ca25e8f1f3ecea840eacb8f9b9848401e2f62caad79d80",
+      "observed": 4,
+      "calls": 147,
+      "unpriced_calls": 0,
+      "helper_calls": 0,
+      "median_confirmed_wall_ms": 11406.5,
+      "per_case": {
+        "rail_itinerary": 0,
+        "library_research": 1,
+        "equipment_pickup": 0,
+        "support_handoff": 3,
+        "exhibit_planner": 0
+      },
+      "stop_reasons": {
+        "blocked": 3,
+        "needs_value": 2,
+        "stuck_loop": 6
+      }
+    }
+  },
+  "core_rerun": {
+    "measurement_commit": "f3ba534d0540bb00f3229b792636c85f8772f898",
+    "previous_publication": "75807ce56fbc2fac571f67f7a8dd08a7ca538585",
+    "previous_arms": {
+      "decision-browser/openai": {
+        "attempts": 15,
+        "confirmed": 11,
+        "median_wall_ms": 19715,
+        "priced": 15,
+        "estimated_usd": "0.065950475",
+        "known_estimated_usd": "0.065950475",
+        "model": "gpt-6-luna",
+        "worker_sha256": "1effc5f381528e4a043f59db37c800ee2c3cb408b26a346c9f19484facc57f7e",
+        "observed": 11,
+        "calls": 194,
+        "unpriced_calls": 0,
+        "helper_calls": 0,
+        "median_confirmed_wall_ms": 20863,
+        "per_case": {
+          "rail_itinerary": 2,
+          "library_research": 3,
+          "equipment_pickup": 3,
+          "support_handoff": 3,
+          "exhibit_planner": 0
+        },
+        "stop_reasons": {
+          "failed": 2,
+          "refusal": 2
+        }
+      },
+      "decision-browser/opencode": {
+        "attempts": 15,
+        "confirmed": 15,
+        "median_wall_ms": 21195,
+        "priced": 15,
+        "estimated_usd": "0.033975564",
+        "known_estimated_usd": "0.033975564",
+        "model": "jev-1.13",
+        "worker_sha256": "1effc5f381528e4a043f59db37c800ee2c3cb408b26a346c9f19484facc57f7e",
+        "observed": 15,
+        "calls": 213,
+        "unpriced_calls": 0,
+        "helper_calls": 0,
+        "median_confirmed_wall_ms": 21195,
+        "per_case": {
+          "rail_itinerary": 3,
+          "library_research": 3,
+          "equipment_pickup": 3,
+          "support_handoff": 3,
+          "exhibit_planner": 3
+        },
+        "stop_reasons": {}
+      }
+    },
+    "unconfirmed": [
+      {
+        "route": "openai",
+        "case": "equipment_pickup",
+        "repetition": "2",
+        "reason": "no_progress",
+        "correct_sections": "0/7",
+        "calls": "4",
+        "native_evidence": [
+          "route:mismatch",
+          "text:playwright_error"
+        ]
+      }
+    ],
+    "retry_usage": {
+      "requests": 12,
+      "unpriced_calls": 1,
+      "known_estimated_usd": "0.003169400",
+      "known_physical_estimated_usd": "0.098915613"
+    }
+  },
+  "core_history": [
+    {
+      "measurement_commit": "bf83535a10b3a9fb4cf3e58f3974a7f96d391406",
+      "publication": "869e12559077b086a210fb5ef57c5907caa57340",
+      "arms": {
+        "openai": {
+          "confirmed": 4,
+          "attempts": 15,
+          "median_wall_ms": 19625,
+          "estimated_usd": "0.061617725",
+          "known_estimated_usd": "0.061617725"
+        },
+        "opencode": {
+          "confirmed": 2,
+          "attempts": 15,
+          "median_wall_ms": 13733,
+          "estimated_usd": "0.016123128",
+          "known_estimated_usd": "0.016123128"
+        }
+      }
+    },
+    {
+      "measurement_commit": "a5c22bb8d58aedcedefff29e6073b98bd346a823",
+      "publication": "75807ce56fbc2fac571f67f7a8dd08a7ca538585",
+      "arms": {
+        "openai": {
+          "confirmed": 14,
+          "attempts": 15,
+          "median_wall_ms": 20829,
+          "estimated_usd": "0.076662200",
+          "known_estimated_usd": "0.076662200"
+        },
+        "opencode": {
+          "confirmed": 14,
+          "attempts": 15,
+          "median_wall_ms": 24475,
+          "estimated_usd": "0.034352094",
+          "known_estimated_usd": "0.034352094"
+        }
+      }
+    },
+    {
+      "measurement_commit": "0ccf42c65baf609369124bf721a9311406fecc97",
+      "publication": "75807ce56fbc2fac571f67f7a8dd08a7ca538585",
+      "arms": {
+        "openai": {
+          "confirmed": 11,
+          "attempts": 15,
+          "median_wall_ms": 19715,
+          "estimated_usd": "0.065950475",
+          "known_estimated_usd": "0.065950475"
+        },
+        "opencode": {
+          "confirmed": 15,
+          "attempts": 15,
+          "median_wall_ms": 21195,
+          "estimated_usd": "0.033975564",
+          "known_estimated_usd": "0.033975564"
+        }
+      }
+    },
+    {
+      "measurement_commit": "ff2cf08138427fb82c990f81335612d0dc20aa01",
+      "publication": null,
+      "arms": {
+        "openai": {
+          "confirmed": 11,
+          "attempts": 15,
+          "median_wall_ms": 20410,
+          "estimated_usd": "0.069265450",
+          "known_estimated_usd": "0.069265450"
+        },
+        "opencode": {
+          "confirmed": 15,
+          "attempts": 15,
+          "median_wall_ms": 20890,
+          "estimated_usd": "0.033588366",
+          "known_estimated_usd": "0.033588366"
+        }
+      }
+    },
+    {
+      "measurement_commit": "dd7ea91c51879a8afcb9c8d4a89c94bd18e68d69",
+      "publication": null,
+      "arms": {
+        "openai": {
+          "confirmed": 11,
+          "attempts": 15,
+          "median_wall_ms": 20813,
+          "estimated_usd": "0.061742175",
+          "known_estimated_usd": "0.061742175"
+        },
+        "opencode": {
+          "confirmed": 15,
+          "attempts": 15,
+          "median_wall_ms": 19862,
+          "estimated_usd": "0.033969768",
+          "known_estimated_usd": "0.033969768"
+        }
+      }
+    }
+  ],
+  "intermediate_core_run": {
+    "measurement_commit": "a5c22bb8d58aedcedefff29e6073b98bd346a823",
+    "scored": 30,
+    "arms": {
+      "decision-browser/openai": {
+        "attempts": 15,
+        "confirmed": 14,
+        "median_wall_ms": 20829,
+        "priced": 15,
+        "estimated_usd": "0.076662200",
+        "known_estimated_usd": "0.076662200",
+        "model": "gpt-6-luna",
+        "worker_sha256": "1effc5f381528e4a043f59db37c800ee2c3cb408b26a346c9f19484facc57f7e",
+        "observed": 14,
+        "calls": 226,
+        "unpriced_calls": 0,
+        "helper_calls": 0,
+        "median_confirmed_wall_ms": 20823.0,
+        "per_case": {
+          "rail_itinerary": 3,
+          "library_research": 3,
+          "equipment_pickup": 3,
+          "support_handoff": 3,
+          "exhibit_planner": 2
+        },
+        "stop_reasons": {
+          "failed": 1
+        }
+      },
+      "decision-browser/opencode": {
+        "attempts": 15,
+        "confirmed": 14,
+        "median_wall_ms": 24475,
+        "priced": 15,
+        "estimated_usd": "0.034352094",
+        "known_estimated_usd": "0.034352094",
+        "model": "jev-1.13",
+        "worker_sha256": "1effc5f381528e4a043f59db37c800ee2c3cb408b26a346c9f19484facc57f7e",
+        "observed": 14,
+        "calls": 217,
+        "unpriced_calls": 0,
+        "helper_calls": 0,
+        "median_confirmed_wall_ms": 23673.5,
+        "per_case": {
+          "rail_itinerary": 3,
+          "library_research": 3,
+          "equipment_pickup": 3,
+          "support_handoff": 2,
+          "exhibit_planner": 3
+        },
+        "stop_reasons": {
+          "budget_limit": 1
+        }
+      }
+    }
+  }
+}

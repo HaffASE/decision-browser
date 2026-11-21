@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="838" viewBox="0 0 1120 838" role="img" aria-labelledby="title description">
+<title id="title">Short tasks · historical browser-agent comparison</title>
+<desc id="description">Archived 3 November 2026 measurements. All seven configurations are visible without animation. Bars show confirmed attempts out of 48; time is the median across all attempts, including failures. Costs estimate scored calls. These are not results for the current release candidate.</desc>
+<g font-family="Arial, Helvetica, sans-serif">
+<rect x="0" y="0" width="1120" height="838" rx="20" fill="#0E1D27" />
+<text x="40" y="49" fill="#7CE4C1" font-size="17" font-weight="700" text-anchor="start">HISTORICAL BENCHMARK</text>
+<text x="1080" y="49" fill="#B8C9D3" font-size="17" font-weight="700" text-anchor="end">03 NOV 2026</text>
+<text x="40" y="103" fill="#F3F7FA" font-size="43" font-weight="700" text-anchor="start">Short tasks</text>
+<text x="40" y="140" fill="#B8C9D3" font-size="22" font-weight="400" text-anchor="start">16 short tasks × 3 repetitions per configuration</text>
+<text x="40" y="180" fill="#B8C9D3" font-size="18" font-weight="400" text-anchor="start">Read completion first. A fast early stop is still an unsuccessful attempt.</text>
+<rect x="40" y="203" width="1040" height="1" rx="0" fill="#314854" />
+<text x="40" y="236" fill="#B8C9D3" font-size="16" font-weight="700" text-anchor="start">AGENT / MODEL</text>
+<text x="395" y="236" fill="#B8C9D3" font-size="16" font-weight="700" text-anchor="start">CONFIRMED OUTCOMES</text>
+<text x="905" y="230" fill="#B8C9D3" font-size="16" font-weight="700" text-anchor="end">MEDIAN TIME</text>
+<text x="905" y="251" fill="#B8C9D3" font-size="15" font-weight="400" text-anchor="end">per attempt</text>
+<text x="1080" y="230" fill="#B8C9D3" font-size="16" font-weight="700" text-anchor="end">EST. COST</text>
+<text x="1080" y="251" fill="#B8C9D3" font-size="15" font-weight="400" text-anchor="end">for 48 attempts</text>
+<g data-engine="terra" data-route="responses" data-confirmed="48" data-attempts="48" data-median-ms="7447.5" data-cost-usd="0.16624985">
+<rect x="32" y="264" width="1056" height="58" rx="7" fill="#152B37" />
+<text x="48" y="288" fill="#F3F7FA" font-size="22" font-weight="700" text-anchor="start">Standalone Terra</text>
+<text x="48" y="311" fill="#B8C9D3" font-size="17" font-weight="400" text-anchor="start">GPT-6.1 Terra · medium</text>
+<rect x="395" y="285" width="235" height="14" rx="7" fill="#314854" />
+<rect x="395" y="285" width="235.0" height="14" rx="7" fill="#7CE4C1" />
+<text x="743" y="301" fill="#F3F7FA" font-size="23" font-weight="700" text-anchor="end">48 / 48</text>
+<text x="905" y="301" fill="#F3F7FA" font-size="23" font-weight="400" text-anchor="end">7.45 s</text>
+<text x="1080" y="301" fill="#F3F7FA" font-size="22" font-weight="400" text-anchor="end">$0.16625</text>
+</g>
+<g data-engine="decision-browser" data-route="openai" data-confirmed="48" data-attempts="48" data-median-ms="2955.5" data-cost-usd="0.02518907000000000071">
+<rect x="32" y="326" width="1056" height="58" rx="7" fill="#0E1D27" />
+<text x="48" y="350" fill="#F3F7FA" font-size="22" font-weight="700" text-anchor="start">Decision Browser Core</text>
+<text x="48" y="373" fill="#B8C9D3" font-size="17" font-weight="400" text-anchor="start">GPT-6 Luna · OpenAI</text>
+<rect x="395" y="347" width="235" height="14" rx="7" fill="#314854" />
+<rect x="395" y="347" width="235.0" height="14" rx="7" fill="#7CE4C1" />
+<text x="743" y="363" fill="#F3F7FA" font-size="23" font-weight="700" text-anchor="end">48 / 48</text>
+<text x="905" y="363" fill="#F3F7FA" font-size="23" font-weight="400" text-anchor="end">2.96 s</text>
+<text x="1080" y="363" fill="#F3F7FA" font-size="22" font-weight="400" text-anchor="end">$0.02519</text>
+</g>
+<g data-engine="decision-browser" data-route="opencode" data-confirmed="37" data-attempts="48" data-median-ms="3654.0" data-cost-usd="0.014375592">
+<rect x="32" y="388" width="1056" height="58" rx="7" fill="#152B37" />
+<text x="48" y="412" fill="#F3F7FA" font-size="22" font-weight="700" text-anchor="start">Decision Browser Core</text>
+<text x="48" y="435" fill="#B8C9D3" font-size="17" font-weight="400" text-anchor="start">Jev 1.13 · OpenCode</text>
+<rect x="395" y="409" width="235" height="14" rx="7" fill="#314854" />
+<rect x="395" y="409" width="181.14583333333334" height="14" rx="7" fill="#7CE4C1" />
+<text x="743" y="425" fill="#F3F7FA" font-size="23" font-weight="700" text-anchor="end">37 / 48</text>
+<text x="905" y="425" fill="#F3F7FA" font-size="23" font-weight="400" text-anchor="end">3.65 s</text>
+<text x="1080" y="425" fill="#F3F7FA" font-size="22" font-weight="400" text-anchor="end">$0.01438</text>
+</g>
+<g data-engine="jev-ultrafast" data-route="openai" data-confirmed="36" data-attempts="48" data-median-ms="3992.0" data-cost-usd="0.01924740000000000090">
+<rect x="32" y="450" width="1056" height="58" rx="7" fill="#0E1D27" />
+<text x="48" y="474" fill="#F3F7FA" font-size="22" font-weight="700" text-anchor="start">jev-ultrafast</text>
+<text x="48" y="497" fill="#B8C9D3" font-size="17" font-weight="400" text-anchor="start">GPT-6 Luna · OpenAI</text>
+<rect x="395" y="471" width="235" height="14" rx="7" fill="#314854" />
+<rect x="395" y="471" width="176.25" height="14" rx="7" fill="#7CE4C1" />
+<text x="743" y="487" fill="#F3F7FA" font-size="23" font-weight="700" text-anchor="end">36 / 48</text>
+<text x="905" y="487" fill="#F3F7FA" font-size="23" font-weight="400" text-anchor="end">3.99 s</text>
+<text x="1080" y="487" fill="#F3F7FA" font-size="22" font-weight="400" text-anchor="end">$0.01925</text>
+</g>
+<g data-engine="jev-ultrafast" data-route="opencode" data-confirmed="38" data-attempts="48" data-median-ms="3669.0" data-cost-usd="0.012034838">
+<rect x="32" y="512" width="1056" height="58" rx="7" fill="#152B37" />
+<text x="48" y="536" fill="#F3F7FA" font-size="22" font-weight="700" text-anchor="start">jev-ultrafast</text>
+<text x="48" y="559" fill="#B8C9D3" font-size="17" font-weight="400" text-anchor="start">Jev 1.13 · OpenCode</text>
+<rect x="395" y="533" width="235" height="14" rx="7" fill="#314854" />
+<rect x="395" y="533" width="186.04166666666666" height="14" rx="7" fill="#7CE4C1" />
+<text x="743" y="549" fill="#F3F7FA" font-size="23" font-weight="700" text-anchor="end">38 / 48</text>
+<text x="905" y="549" fill="#F3F7FA" font-size="23" font-weight="400" text-anchor="end">3.67 s</text>
+<text x="1080" y="549" fill="#F3F7FA" font-size="22" font-weight="400" text-anchor="end">$0.01203</text>
+</g>
+<g data-engine="jev-ra" data-route="openai" data-confirmed="34" data-attempts="48" data-median-ms="3179.0" data-cost-usd="0.02825180000000000161">
+<rect x="32" y="574" width="1056" height="58" rx="7" fill="#0E1D27" />
+<text x="48" y="598" fill="#F3F7FA" font-size="22" font-weight="700" text-anchor="start">jev-ra</text>
+<text x="48" y="621" fill="#B8C9D3" font-size="17" font-weight="400" text-anchor="start">GPT-6 Luna · OpenAI</text>
+<rect x="395" y="595" width="235" height="14" rx="7" fill="#314854" />
+<rect x="395" y="595" width="166.45833333333334" height="14" rx="7" fill="#7CE4C1" />
+<text x="743" y="611" fill="#F3F7FA" font-size="23" font-weight="700" text-anchor="end">34 / 48</text>
+<text x="905" y="611" fill="#F3F7FA" font-size="23" font-weight="400" text-anchor="end">3.18 s</text>
+<text x="1080" y="611" fill="#F3F7FA" font-size="22" font-weight="400" text-anchor="end">$0.02825</text>
+</g>
+<g data-engine="jev-ra" data-route="opencode" data-confirmed="32" data-attempts="48" data-median-ms="3614.0" data-cost-usd="0.011801076">
+<rect x="32" y="636" width="1056" height="58" rx="7" fill="#152B37" />
+<text x="48" y="660" fill="#F3F7FA" font-size="22" font-weight="700" text-anchor="start">jev-ra</text>
+<text x="48" y="683" fill="#B8C9D3" font-size="17" font-weight="400" text-anchor="start">Jev 1.13 · OpenCode</text>
+<rect x="395" y="657" width="235" height="14" rx="7" fill="#314854" />
+<rect x="395" y="657" width="156.66666666666666" height="14" rx="7" fill="#7CE4C1" />
+<text x="743" y="673" fill="#F3F7FA" font-size="23" font-weight="700" text-anchor="end">32 / 48</text>
+<text x="905" y="673" fill="#F3F7FA" font-size="23" font-weight="400" text-anchor="end">3.61 s</text>
+<text x="1080" y="673" fill="#F3F7FA" font-size="22" font-weight="400" text-anchor="end">$0.01180</text>
+</g>
+<rect x="40" y="720" width="1040" height="1" rx="0" fill="#314854" />
+<rect x="40" y="742" width="18" height="10" rx="5" fill="#7CE4C1" />
+<text x="66" y="753" fill="#B8C9D3" font-size="17" font-weight="400" text-anchor="start">Confirmed</text>
+<rect x="195" y="742" width="18" height="10" rx="5" fill="#314854" />
+<text x="221" y="753" fill="#B8C9D3" font-size="17" font-weight="400" text-anchor="start">Unconfirmed</text>
+<text x="1080" y="753" fill="#B8C9D3" font-size="17" font-weight="400" text-anchor="end">Archived data, not the current release candidate</text>
+<text x="40" y="785" fill="#B8C9D3" font-size="17" font-weight="400" text-anchor="start">Medians include failures and early stops. Costs cover scored calls, not total experiment spending.</text>
+<text x="40" y="811" fill="#B8C9D3" font-size="17" font-weight="400" text-anchor="start">Configurations were measured in separate series. Do not compare these medians with the long suite.</text>
+</g>
+</svg>

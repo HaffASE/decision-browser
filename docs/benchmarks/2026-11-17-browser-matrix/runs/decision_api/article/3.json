@@ -1,0 +1,183 @@
+{
+  "arm": "decision_api",
+  "case": "article",
+  "repetition": 3,
+  "phase": "finished",
+  "started_at": "2026-11-17T18:25:09.681717+00:00",
+  "record": "runs/decision_api/article/3.json",
+  "group": "short",
+  "goal_sha256": "b46ae3d40160598dd24d905a4c7e02868192efe82629ab231307b980a057244c",
+  "limits": {
+    "max_steps": 24,
+    "max_calls": 12,
+    "timeout_s": 75.0,
+    "max_input_bytes": 131072
+  },
+  "confirmed": true,
+  "observed": true,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "verified",
+    "reason": "verified",
+    "functional": "verified",
+    "steps": 4,
+    "native_evidence": [
+      "text:ok",
+      "route:ok"
+    ],
+    "native_timings": {
+      "setup": 0.00015316600911319256,
+      "browser": 4.252252000151202,
+      "verification": 0.08963533386122435,
+      "total": 4.446123541914858
+    },
+    "admission_class": "ordinary_task_scoped",
+    "development_only": false,
+    "final_url": "http://127.0.0.1:52594/article/article/godel-incompleteness",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "checks": [
+      true,
+      true
+    ],
+    "independent_verification_ms": 2,
+    "cleanup": {
+      "driver_state": "closed",
+      "errors": []
+    },
+    "actions": [
+      "fill",
+      "click",
+      "click"
+    ],
+    "arm": "decision_api",
+    "model": "gpt-6-luna",
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 1824,
+          "output_tokens": 0,
+          "total_tokens": 1824,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 7724,
+          "duration_ms": 1437,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 1916,
+          "output_tokens": 0,
+          "total_tokens": 1916,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 8066,
+          "duration_ms": 527,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 2547,
+          "output_tokens": 0,
+          "total_tokens": 2547,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 10323,
+          "duration_ms": 421,
+          "endpoint": "decisions",
+          "model": "gpt-6-luna",
+          "request_model": "gpt-6-luna",
+          "state": "parsed",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 3,
+      "request_bytes": 26113,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true,
+        "cached_tokens": true,
+        "cache_write_tokens": true,
+        "reasoning_tokens": true
+      },
+      "reported_tokens": {
+        "input_tokens": 6287,
+        "output_tokens": 0,
+        "total_tokens": 6287,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 6287,
+      "output_tokens": 0,
+      "total_tokens": 6287,
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0
+    },
+    "returncode": 0,
+    "wall_ms": 4709,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": true,
+    "expected": [
+      {
+        "name": "article_search",
+        "data": {
+          "query": "Godel incompleteness"
+        }
+      },
+      {
+        "name": "article",
+        "data": {
+          "slug": "godel-incompleteness"
+        }
+      }
+    ],
+    "observed": [
+      {
+        "name": "article_search",
+        "data": {
+          "query": "Godel incompleteness"
+        }
+      },
+      {
+        "name": "article",
+        "data": {
+          "slug": "godel-incompleteness"
+        }
+      }
+    ]
+  },
+  "finished_at": "2026-11-17T18:25:14.519198+00:00"
+}

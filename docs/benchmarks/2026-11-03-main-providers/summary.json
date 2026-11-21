@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "commit": "e3f9942d630c61c3d1f6493768d49da29bbe7d79",
+  "source": {
+    "git_commit": "e3f9942d630c61c3d1f6493768d49da29bbe7d79",
+    "source_sha256": "5e0ec6accdce7c7f13ecc22261ae5932d52d4faf5de74f5871efe08d91204f14",
+    "manifest_sha256": "c457be720a928a272d91a2d8eae8bc7bc6ef2ee126111c3f3d2eb4d91fd184e9",
+    "worker_sha256": "628304533c76510d6f7fec74e04e399b7b955334ec55fdfcb397e7baf3d7eabc",
+    "matrix_sha256": "924d65cf3bc5a8bd4975dac5b7eb0cc2c4c8677f278ec3d9cf405c6a1cdb74e8"
+  },
+  "tasks": [
+    "click",
+    "search",
+    "select",
+    "navigate",
+    "counter",
+    "public_about",
+    "hotel",
+    "profile_form",
+    "autocomplete",
+    "calendar",
+    "styled_filter",
+    "consent",
+    "delayed_menu",
+    "loading_overlay",
+    "below_fold",
+    "article"
+  ],
+  "planned_cells": 96,
+  "scored_cells": 96,
+  "physical_attempts": 96,
+  "arms": {
+    "openai": {
+      "attempts": 48,
+      "confirmed": 48,
+      "observed": 48,
+      "all_attempt_median_ms": 3231.5,
+      "decision_requests": 123,
+      "text_requests": 0,
+      "http_2xx": 123,
+      "priced_attempts": 48,
+      "estimated_usd": "0.02465086",
+      "excluded_503_attempts": 0,
+      "physical_attempts": 48,
+      "requests_in_excluded_attempts": 0,
+      "estimated_usd_all_physical_attempts": "0.02465086",
+      "physical_http_requests": 123
+    },
+    "opencode": {
+      "attempts": 48,
+      "confirmed": 37,
+      "observed": 37,
+      "all_attempt_median_ms": 3654.0,
+      "decision_requests": 131,
+      "text_requests": 0,
+      "http_2xx": 131,
+      "priced_attempts": 48,
+      "estimated_usd": "0.014375592",
+      "excluded_503_attempts": 0,
+      "physical_attempts": 48,
+      "requests_in_excluded_attempts": 0,
+      "estimated_usd_all_physical_attempts": "0.014375592",
+      "physical_http_requests": 131
+    }
+  },
+  "paired_confirmations": {
+    "both": 37,
+    "openai_only": 11,
+    "opencode_only": 0,
+    "neither": 0
+  },
+  "per_case": {
+    "click": {
+      "openai": 3,
+      "opencode": 3
+    },
+    "search": {
+      "openai": 3,
+      "opencode": 3
+    },
+    "select": {
+      "openai": 3,
+      "opencode": 3
+    },
+    "navigate": {
+      "openai": 3,
+      "opencode": 3
+    },
+    "counter": {
+      "openai": 3,
+      "opencode": 3
+    },
+    "public_about": {
+      "openai": 3,
+      "opencode": 3
+    },
+    "hotel": {
+      "openai": 3,
+      "opencode": 1
+    },
+    "profile_form": {
+      "openai": 3,
+      "opencode": 3
+    },
+    "autocomplete": {
+      "openai": 3,
+      "opencode": 2
+    },
+    "calendar": {
+      "openai": 3,
+      "opencode": 0
+    },
+    "styled_filter": {
+      "openai": 3,
+      "opencode": 3
+    },
+    "consent": {
+      "openai": 3,
+      "opencode": 3
+    },
+    "delayed_menu": {
+      "openai": 3,
+      "opencode": 3
+    },
+    "loading_overlay": {
+      "openai": 3,
+      "opencode": 3
+    },
+    "below_fold": {
+      "openai": 3,
+      "opencode": 0
+    },
+    "article": {
+      "openai": 3,
+      "opencode": 1
+    }
+  },
+  "unconfirmed": [
+    {
+      "case": "hotel",
+      "repetition": 1,
+      "route": "opencode",
+      "status": "failed",
+      "reason": "failed",
+      "native_success": false,
+      "functional_check_passed": false,
+      "page_oracle": false
+    },
+    {
+      "case": "hotel",
+      "repetition": 2,
+      "route": "opencode",
+      "status": "failed",
+      "reason": "failed",
+      "native_success": false,
+      "functional_check_passed": false,
+      "page_oracle": false
+    },
+    {
+      "case": "autocomplete",
+      "repetition": 2,
+      "route": "opencode",
+      "status": "failed",
+      "reason": "failed",
+      "native_success": false,
+      "functional_check_passed": false,
+      "page_oracle": false
+    },
+    {
+      "case": "calendar",
+      "repetition": 1,
+      "route": "opencode",
+      "status": "verification_failed",
+      "reason": "verification_failed",
+      "native_success": false,
+      "functional_check_passed": false,
+      "page_oracle": false
+    },
+    {
+      "case": "calendar",
+      "repetition": 2,
+      "route": "opencode",
+      "status": "failed",
+      "reason": "failed",
+      "native_success": false,
+      "functional_check_passed": false,
+      "page_oracle": false
+    },
+    {
+      "case": "calendar",
+      "repetition": 3,
+      "route": "opencode",
+      "status": "failed",
+      "reason": "failed",
+      "native_success": false,
+      "functional_check_passed": false,
+      "page_oracle": false
+    },
+    {
+      "case": "below_fold",
+      "repetition": 1,
+      "route": "opencode",
+      "status": "failed",
+      "reason": "failed",
+      "native_success": false,
+      "functional_check_passed": false,
+      "page_oracle": false
+    },
+    {
+      "case": "below_fold",
+      "repetition": 2,
+      "route": "opencode",
+      "status": "failed",
+      "reason": "failed",
+      "native_success": false,
+      "functional_check_passed": false,
+      "page_oracle": false
+    },
+    {
+      "case": "below_fold",
+      "repetition": 3,
+      "route": "opencode",
+      "status": "failed",
+      "reason": "failed",
+      "native_success": false,
+      "functional_check_passed": false,
+      "page_oracle": false
+    },
+    {
+      "case": "article",
+      "repetition": 2,
+      "route": "opencode",
+      "status": "verified",
+      "reason": "verified",
+      "native_success": true,
+      "functional_check_passed": true,
+      "page_oracle": false
+    },
+    {
+      "case": "article",
+      "repetition": 3,
+      "route": "opencode",
+      "status": "verified",
+      "reason": "verified",
+      "native_success": true,
+      "functional_check_passed": true,
+      "page_oracle": false
+    }
+  ],
+  "source_manifest_verified_after": true,
+  "verified_at": "2026-11-03T12:51:25.881024+00:00",
+  "excluded_interrupted_series": {
+    "last_observed_completed_cells": 23,
+    "last_observed_http_200_calls": 58,
+    "final_attempt_count": null,
+    "billed_cost": null
+  }
+}

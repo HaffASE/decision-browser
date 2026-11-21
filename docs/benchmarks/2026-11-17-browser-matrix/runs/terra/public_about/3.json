@@ -1,0 +1,128 @@
+{
+  "arm": "terra",
+  "case": "public_about",
+  "repetition": 3,
+  "phase": "finished",
+  "started_at": "2026-11-17T18:22:53.522986+00:00",
+  "record": "runs/terra/public_about/3.json",
+  "group": "short",
+  "goal_sha256": "6a35a60d066d5d9ee7e326cb3aba56d8f2243d0bc742697aa15c220e21b7a26f",
+  "limits": {
+    "max_steps": 8,
+    "max_calls": 12,
+    "timeout_s": 75.0,
+    "max_input_bytes": 131072
+  },
+  "confirmed": true,
+  "observed": true,
+  "lifecycle_success": true,
+  "native_success": true,
+  "functional_check_passed": true,
+  "result": {
+    "status": "done",
+    "reason": "goal_achieved",
+    "checks": [
+      true
+    ],
+    "final_url": "https://www.python.org/about/",
+    "actions": [
+      "click",
+      "done"
+    ],
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "cleanup": {
+      "browser": "closed"
+    },
+    "route": "terra",
+    "model": "gpt-6.1-terra",
+    "reasoning_effort": "medium",
+    "calls": 2,
+    "usage": {
+      "calls": [
+        {
+          "input_tokens": 7771,
+          "output_tokens": 18,
+          "total_tokens": 7789,
+          "cached_tokens": 0,
+          "cache_write_tokens": 7645,
+          "reasoning_tokens": 0,
+          "status": 200,
+          "input_bytes": 29648,
+          "duration_ms": 2259,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        },
+        {
+          "input_tokens": 7954,
+          "output_tokens": 25,
+          "total_tokens": 7979,
+          "cached_tokens": 0,
+          "cache_write_tokens": 7828,
+          "reasoning_tokens": 10,
+          "status": 200,
+          "input_bytes": 28716,
+          "duration_ms": 1698,
+          "endpoint": "responses",
+          "model": "gpt-6.1-terra",
+          "request_model": "gpt-6.1-terra",
+          "reasoning_effort": "medium",
+          "state": "response",
+          "usage_reported": true
+        }
+      ],
+      "attempts": 2,
+      "request_bytes": 58364,
+      "usage_complete": true,
+      "token_fields_missing": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "field_complete": {
+        "input_tokens": true,
+        "output_tokens": true,
+        "total_tokens": true,
+        "cached_tokens": true,
+        "cache_write_tokens": true,
+        "reasoning_tokens": true
+      },
+      "reported_tokens": {
+        "input_tokens": 15725,
+        "output_tokens": 43,
+        "total_tokens": 15768,
+        "cached_tokens": 0,
+        "cache_write_tokens": 15473,
+        "reasoning_tokens": 10
+      },
+      "non_2xx": 0,
+      "transport_errors": 0,
+      "input_tokens": 15725,
+      "output_tokens": 43,
+      "total_tokens": 15768,
+      "cached_tokens": 0,
+      "cache_write_tokens": 15473,
+      "reasoning_tokens": 10
+    },
+    "arm": "terra",
+    "returncode": 0,
+    "wall_ms": 10781,
+    "stderr": "",
+    "stderr_bytes": 0
+  },
+  "oracle": {
+    "success": true,
+    "expected_url": "https://www.python.org/about/",
+    "observed_url": "https://www.python.org/about/"
+  },
+  "finished_at": "2026-11-17T18:23:04.308423+00:00"
+}

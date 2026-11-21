@@ -1,0 +1,18 @@
+{
+  "goal": "Increase the count from 0 to exactly 3 by clicking inc three times. Never click reset. Use DOM controls only; do not take screenshots. Finish when the visible count is 3.",
+  "start_url": "http://127.0.0.1:8765/counter.html",
+  "mode": "isolated",
+  "values": {},
+  "checks": [{"kind": "text", "target": "#count", "expected": "3"}],
+  "viewports": [{"width": 1280, "height": 720}],
+  "limits": {
+    "max_steps": 4,
+    "max_seconds": 120.0,
+    "max_provider_calls": 4,
+    "max_input_bytes": 262144,
+    "max_output_bytes": 262144,
+    "max_stored_bytes": 1048576
+  },
+  "privacy": {"blocked_literals": [], "send_images": false},
+  "visual": false
+}

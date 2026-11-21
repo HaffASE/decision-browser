@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Clipping</title>
+  <style>
+    body { margin: 0; font-family: system-ui, sans-serif; background: #fff; color: #444; }
+    /* Defect class: clipping. The 80px overflow:hidden ancestor clips a 160px button. Both sit inside every owned viewport. */
+    #clip-box {
+      width: 80px;
+      height: 48px;
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background: #f4f4f4;
+    }
+    #clipped {
+      width: 160px;
+      height: 32px;
+      margin: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div id="clip-box">
+    <button id="clipped" type="button">Clipped action</button>
+  </div>
+</body>
+</html>

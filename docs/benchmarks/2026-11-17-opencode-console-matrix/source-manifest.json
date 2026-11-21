@@ -1,0 +1,273 @@
+{
+  "sha256": "e10b6d73068694198f553ce426e89c6e72d54d04bc1e8a30f1af3b29fe2acec4",
+  "files": [
+    {
+      "path": "docs/benchmarks/2026-11-03-terra-medium/agent.py",
+      "sha256": "b37bd892b7189396aba5703fa1e6f286e6d5c158112aa6f0d898a8557b0d71ce"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "f270caeeeae5adad8b210c8186a6c68806cc76bc1ef0e2c0dcff75710106f83e"
+    },
+    {
+      "path": "scripts/benchmarks/__init__.py",
+      "sha256": "a95ae957dc952541123f7e9a928bc5287f030079b8cade8b9f40497bedd19af3"
+    },
+    {
+      "path": "scripts/benchmarks/baseline_site.py",
+      "sha256": "63c2a1c009325f20b16499ebda24fd27d35d7d66116c68cad1a6c8fb2c69d1f6"
+    },
+    {
+      "path": "scripts/benchmarks/common.py",
+      "sha256": "18af959a1035104ecc4abbb6d06930b1f571fd51ac87a2e74def80ea6395afad"
+    },
+    {
+      "path": "scripts/benchmarks/dbc_runner.py",
+      "sha256": "3389fd75451713d14e8f23e1e8b21d029fad9b319e9d0768ca3146e30640fdb9"
+    },
+    {
+      "path": "scripts/benchmarks/jev_runner.py",
+      "sha256": "88d7cbb4adb7c1b07ba45fdf332ffdfe0179af70342b45f7787688bb912434e6"
+    },
+    {
+      "path": "scripts/benchmarks/long_core.py",
+      "sha256": "1effc5f381528e4a043f59db37c800ee2c3cb408b26a346c9f19484facc57f7e"
+    },
+    {
+      "path": "scripts/benchmarks/long_external.py",
+      "sha256": "ac8f9beb316b09c88dd0b80f035831d8850b76268b466cc44ee0d9aad853c176"
+    },
+    {
+      "path": "scripts/benchmarks/long_protocol.py",
+      "sha256": "2cc9a4dd21927b35b644437fa9bae65a886947fc3b804f4d9cae89de70dfcd59"
+    },
+    {
+      "path": "scripts/benchmarks/long_run.py",
+      "sha256": "6aa18b261c2c5dde5eec3c1d0801c28c2cb47cfe18fc084ef1cf82c24a6518db"
+    },
+    {
+      "path": "scripts/benchmarks/long_scenarios.py",
+      "sha256": "ac7c034cc9bc395e0b2cc9504162b5e8c01328252ee438ea2ffa700c70e0d8dd"
+    },
+    {
+      "path": "scripts/benchmarks/long_terra.py",
+      "sha256": "0db9c4a4086d39ddc62f0575612a127208b8a945701877e331ca4794854e9bdc"
+    },
+    {
+      "path": "scripts/benchmarks/openai_transport.py",
+      "sha256": "da22350a50b4315e8dc2f11c3236e1d8dc654a4943be24f771bc3856a5f8fa06"
+    },
+    {
+      "path": "scripts/benchmarks/provider_matrix_worker.py",
+      "sha256": "eccfb961cf9977ff409351f4cf76d2ba378ff2829a76b95e1a73477878840bbc"
+    },
+    {
+      "path": "scripts/benchmarks/publish_long_suite.py",
+      "sha256": "950bd919f72874997c0dbf81775d575a9ae79f943d053e971ae5edb790a70ea9"
+    },
+    {
+      "path": "scripts/benchmarks/render_long_comparison.py",
+      "sha256": "76950327c5c648d147cf10004ef66a66780fada4bcf7b59aed0aef1ce8d9712e"
+    },
+    {
+      "path": "scripts/benchmarks/ultrafast_runner.py",
+      "sha256": "6fc76a40faa2c1270a72b73382798e8277173c72f5111ae1453f504327c32194"
+    },
+    {
+      "path": "scripts/compare_browser_libraries.py",
+      "sha256": "26f65ae661dbc418df8500443b8581de85670a705846ca7a557ebcc8105985b5"
+    },
+    {
+      "path": "scripts/run_provider_browser_matrix.py",
+      "sha256": "7cda74b8aea1bbdaf942ba36c474701023f11865596e30b3d0d8f23ddc62b50a"
+    },
+    {
+      "path": "src/decision_browser/__init__.py",
+      "sha256": "ac65d6fe256fea6ae4a66e80a6041869c1c6776fc8f8f8451afd633ebdf21f1f"
+    },
+    {
+      "path": "src/decision_browser/action_context.py",
+      "sha256": "7352778caa2623e291c1da08dbfb733663f568171081ac1b5aae781361663d6e"
+    },
+    {
+      "path": "src/decision_browser/admission.py",
+      "sha256": "8584ed739502d7c60b5f56e0b77b1a6faa2a225ceec45c4781cd9d689a1706d8"
+    },
+    {
+      "path": "src/decision_browser/artifacts.py",
+      "sha256": "ecb09aaf991bb8d44cf3198d0c51e917e95e8227daf9ccc9517b68939f0e9f3d"
+    },
+    {
+      "path": "src/decision_browser/browser.py",
+      "sha256": "bbd142ce048435404aa8a550b6671422d42861d331bef40092246000ea1244ce"
+    },
+    {
+      "path": "src/decision_browser/budget.py",
+      "sha256": "27fe257f589a512e1a6ba3306b0cba40753eeea3a93d5a9c04c3277a297e6545"
+    },
+    {
+      "path": "src/decision_browser/check_validation.py",
+      "sha256": "1df76dd30dc4aeee602c64cd74f486e4d1ae9319119de32ba51057241ffa38ea"
+    },
+    {
+      "path": "src/decision_browser/cli.py",
+      "sha256": "6b70e7a1aa1a5e8ed8042c9a34dbde85c732e27de14d8881235ae73647ab3d71"
+    },
+    {
+      "path": "src/decision_browser/collector.js",
+      "sha256": "e225323ff59ba11a413061327fe2c6b3fb265979d33312bfe717e5294f8b8212"
+    },
+    {
+      "path": "src/decision_browser/committed_navigation_capture.py",
+      "sha256": "ad0005f390ca4b771fc8cf33071ffcd37b42972ea9a07f8f305a1780d23e0701"
+    },
+    {
+      "path": "src/decision_browser/contracts.py",
+      "sha256": "458ea824739df1aa9ee76a3f2ddc75e57150eb33312ba4339ecda4013a9bbc3f"
+    },
+    {
+      "path": "src/decision_browser/counter_acceptance.py",
+      "sha256": "fc2d52baff419bceaacaf35ffe0cdf8e7698f539241d94e5d3d8d26f2b1940bb"
+    },
+    {
+      "path": "src/decision_browser/decision_codec.py",
+      "sha256": "5a7a200deeebc3dd231d20d3319d2dcf22e32976e3799ee23001ae1deefed82e"
+    },
+    {
+      "path": "src/decision_browser/desk.py",
+      "sha256": "c713917221124642190f4c321cbeaab379e590b763ce7f95cc52b834b8162125"
+    },
+    {
+      "path": "src/decision_browser/diagnostics.py",
+      "sha256": "72b25a9257de05361e73c1e9f562d9545d55965b95fe85d1d3afff05af90852b"
+    },
+    {
+      "path": "src/decision_browser/dom.py",
+      "sha256": "9660d242881519f45dfbf3062179ffc2e0e4e06d60f1ba4849018c7ad5e0e3a1"
+    },
+    {
+      "path": "src/decision_browser/experiment_budget.py",
+      "sha256": "c73f1d61711754c8422b521d4af11f21c5156e4f6a4738221d73678754e4cda7"
+    },
+    {
+      "path": "src/decision_browser/experiment_operator.py",
+      "sha256": "bb6947480bef963fd11486bfa850cbd75767906c9b5228bb2f23220ee5f8a2c0"
+    },
+    {
+      "path": "src/decision_browser/flights_context.py",
+      "sha256": "000c5d8b98c68580b4367036170590196a694cf17b84777ef559ba9eb4c9d16a"
+    },
+    {
+      "path": "src/decision_browser/flights_continuation.py",
+      "sha256": "2f730cedbbd63073aeb87b11463e5ee7d867063c4d8dda85265eb919d28f98b4"
+    },
+    {
+      "path": "src/decision_browser/flights_evidence.py",
+      "sha256": "679fa769dbcaf233c35a5076acfb434144baafe9fb32ce5927afe74b9584b5ca"
+    },
+    {
+      "path": "src/decision_browser/flights_pilot.py",
+      "sha256": "f5c775140952e7f23441f267c0b364965565215588181c77b47647d991e9304c"
+    },
+    {
+      "path": "src/decision_browser/flights_provider.py",
+      "sha256": "2efbbf5cf14ec3be3e3773e1ae73feb1014c48dd7d30bdb41840a46428e56a33"
+    },
+    {
+      "path": "src/decision_browser/flights_query.py",
+      "sha256": "0a50d7d8ea9f9db2f869663c2451076dc9b12398e89c3d9b1fb83c82b8027331"
+    },
+    {
+      "path": "src/decision_browser/keychain_entry.py",
+      "sha256": "d480e30e1541853f135ddc31c1e27c0754672c56da0a0d8d7e385270654b575d"
+    },
+    {
+      "path": "src/decision_browser/mcp_compat.py",
+      "sha256": "134a018ff9bae8f6755d4035b92568f2eb5af0f51b5ed6ebf1ba12418ac944ce"
+    },
+    {
+      "path": "src/decision_browser/model_context.py",
+      "sha256": "7733d00335f8127758cf07efda9e2d524410efc017d4df1d203cf8f3d3b33a45"
+    },
+    {
+      "path": "src/decision_browser/onboarding.py",
+      "sha256": "192985572402f5aeb73a2f9954502348350969a7c25725c47aac9b450cbad19a"
+    },
+    {
+      "path": "src/decision_browser/owned_fixture.py",
+      "sha256": "875a83ee8961ae366a91eeb4fadf19f9f3b786c0a4a5193ab1ab4519f559d3f5"
+    },
+    {
+      "path": "src/decision_browser/owned_fixture_frame.py",
+      "sha256": "4860e839a6f5e4e90aae1abadc32fc959a52ca3f69ecbb8d07f74f90f1c1e233"
+    },
+    {
+      "path": "src/decision_browser/owned_fixture_server.py",
+      "sha256": "c4e71fa15740c5068e23001e84f7d8b203b16320300b6ff10c548a144306282b"
+    },
+    {
+      "path": "src/decision_browser/policy.py",
+      "sha256": "464be6bb722ce36a255aa30f9f997a62fafc1da142e87d209ea4b1a694270c79"
+    },
+    {
+      "path": "src/decision_browser/privacy.py",
+      "sha256": "eabc7336113680445f72df48f2a5a26b7c3fabe149e1d34f45027953002e4187"
+    },
+    {
+      "path": "src/decision_browser/provider.py",
+      "sha256": "4fcf1791247160376cdfee603f6d71dfc2dbf7ba8fb78f892ecb9e4c09639e53"
+    },
+    {
+      "path": "src/decision_browser/provider_config.py",
+      "sha256": "b4061174d0cacafd7d048d4231040719360c82a3d131e769e60b65695c8d6299"
+    },
+    {
+      "path": "src/decision_browser/provider_http.py",
+      "sha256": "c35ae9c71e20b77ad41705b41261480391eab1f71821f702540a43c0d3eab9df"
+    },
+    {
+      "path": "src/decision_browser/provider_values.py",
+      "sha256": "4c4fe987742536b1f8d9e7e458071b30e8d5eff461a825e79c3a46b44d128350"
+    },
+    {
+      "path": "src/decision_browser/runner.py",
+      "sha256": "b838fa90f0aa025c5a198a567e4d34e0a9876a8b6f7dc4cf1f4b1c52d047be43"
+    },
+    {
+      "path": "src/decision_browser/server.py",
+      "sha256": "53fc0e216c9668b949caa0df7fa9ec74eefd4901b0b18acbd8e18abd5332835f"
+    },
+    {
+      "path": "src/decision_browser/snapshot.js",
+      "sha256": "8bcdf2165e9f5a0c96b5a56c072aa1b103debb4d4066964b1197e77f6dbe6937"
+    },
+    {
+      "path": "src/decision_browser/systemone_provider.py",
+      "sha256": "7c18d2a6fdac2e94fb933143d2b6fe85cdd563b09437a09e0771dc2d42587309"
+    },
+    {
+      "path": "src/decision_browser/text_provider.py",
+      "sha256": "34e209f4ce73aba09c40636e49a72e39deede6fbb57b1397713b5aa5f4728451"
+    },
+    {
+      "path": "src/decision_browser/user_config.py",
+      "sha256": "3bcf4fe0c6100f39a1bc4b9d6d43c4b7d54cfc8ebd0c1b2c43886a3ebb8be9a8"
+    },
+    {
+      "path": "src/decision_browser/verification.py",
+      "sha256": "3086881ff669a3422006088240f30b6b8397b188b9597ca122f5a6b300ad5d1e"
+    },
+    {
+      "path": "src/decision_browser/viewport_text.js",
+      "sha256": "a92e93e4e7ed3cd8d599dc29b66e8f31b3011f751a1116adb5ec852787192e45"
+    },
+    {
+      "path": "tests/fixtures/scenarios/workflows.html",
+      "sha256": "c2a24e876e6d99b0c417792c47027f6f00a7e6eca73b71ef8706e1727f0e2503"
+    },
+    {
+      "path": "tests/integration/browser_scenarios.py",
+      "sha256": "f1bb311bb2817b5282e7bd67828114e19858a9a1eaeac3ec207483258260d32a"
+    }
+  ]
+}
