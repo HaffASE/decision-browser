@@ -130,6 +130,51 @@ def test_successful_stage_intent_is_visible_then_cleared_after_quiescence(tmp_pa
         validate()
 
 
+@pytest.mark.skipif(os.name == "nt", reason="POSIX process-group absence probe")
+def test_successful_stage_without_ps_clears_lease_when_group_is_gone(tmp_path, monkeypatch):
+    def missing_ps(*args, **kwargs):
+        raise FileNotFoundError(2, "No such file or directory", "ps")
+
+    monkeypatch.setattr(installer.subprocess, "run", missing_ps)
+    with installer.held_lock(tmp_path, "lease"):
+        installer.run([sys.executable, "-I", "-c", "pass"], {}, "fixture", tmp_path)
+        assert (tmp_path / "lease").read_bytes() == installer._LEASE
+        assert not (tmp_path / installer._RESIDUAL).exists()
+    with installer.held_lock(tmp_path, "lease") as validate:
+        validate()
+
+
+@pytest.mark.skipif(os.name == "nt", reason="POSIX process-group absence probe")
+@pytest.mark.parametrize("group_state", ["present", "permission_denied"])
+def test_missing_ps_with_unproven_group_retains_lease_and_procps_hint(
+    tmp_path, monkeypatch, capsys, group_state
+):
+    killpg = installer.os.killpg
+
+    def probe(pgid, sig):
+        if sig != 0:
+            return killpg(pgid, sig)
+        if group_state == "permission_denied":
+            raise PermissionError("synthetic inaccessible group")
+        return None
+
+    def missing_ps(*args, **kwargs):
+        raise FileNotFoundError(2, "No such file or directory", "ps")
+
+    monkeypatch.setattr(installer.os, "killpg", probe)
+    monkeypatch.setattr(installer.subprocess, "run", missing_ps)
+    with installer.held_lock(tmp_path, "lease"):
+        with pytest.raises(installer.InstallError, match="install_procps"):
+            installer.run([sys.executable, "-I", "-c", "pass"], {}, "fixture", tmp_path)
+        assert (tmp_path / "lease").read_bytes() == installer._POISON
+        assert (tmp_path / installer._RESIDUAL).exists()
+    report = json.loads(capsys.readouterr().err)
+    assert report["hint"] == "install_procps"
+    assert report["cleanup"] == "unknown_retained"
+    with pytest.raises(installer.InstallError, match="stage_cleanup_unknown"), installer.held_lock(tmp_path, "lease"):
+        pytest.fail("unproven group was allowed to reuse the lease")
+
+
 def test_timeout_retains_barrier_even_when_original_group_is_gone(tmp_path, monkeypatch, capsys):
     class Child:
         pid = 12345

@@ -407,6 +407,11 @@ readback; short writes or failed persistence abort launch. Only a successfully
 completed stage with observed original-group/output quiescence returns it idle.
 Private standalone stage calls acquire the same lifecycle lease automatically.
 
+On minimal Linux images, install `procps` to provide `ps` for inspecting remaining
+process-group members. When `ps` is absent, the installer can confirm an already
+vanished group with a POSIX process-group probe. A group that still exists or
+cannot be probed retains the blocked lease and reports `install_procps`.
+
 If stage/group/output completion is uncertain, preparation retains a blocked lease and
 `.decision-browser-stage-cleanup-unknown.json`; another install/prepare refuses to
 start. ACTIVE or blocked lease state is authoritative for retaining the runtime,

@@ -56,6 +56,10 @@ class InstallError(Exception):
     """Only fixed, credential-free diagnostics reach the user."""
 
 
+class _ProcessInspectionUnavailable(InstallError):
+    """The owned POSIX group needs ps inspection before cleanup is known."""
+
+
 _LEASE = b'{"owner":"decision-browser-lease-v1"}\n'
 _ACTIVE_INTENT = b'{"active":"stage-lifecycle-v1"}\n'
 _POISON = b'{"blocked":"stage-cleanup-unknown"}\n'
@@ -254,8 +258,19 @@ def clean_environment() -> dict[str, str]:
 
 def _live_group(pgid: int) -> bool:
     """A killed zombie cannot execute or hold a stage's output pipe open."""
-    rows = subprocess.run(["ps", "-A", "-o", "pgid=,stat="], capture_output=True,
-                          text=True, timeout=1, check=False, env={})
+    try:
+        rows = subprocess.run(["ps", "-A", "-o", "pgid=,stat="], capture_output=True,
+                              text=True, timeout=1, check=False, env={})
+    except FileNotFoundError:
+        try:
+            os.killpg(pgid, 0)
+        except ProcessLookupError:
+            return False
+        except OSError:
+            pass
+        raise _ProcessInspectionUnavailable(
+            "stage_cleanup_unknown: process inspection requires ps; install procps on Linux."
+        ) from None
     if rows.returncode:
         raise InstallError("stage_cleanup_unknown: could not inspect owned process group.")
     return any(len(parts := line.split()) == 2 and parts[0] == str(pgid)
@@ -422,6 +437,9 @@ def _run_stage(command: list[str], env: dict[str, str], stage: str, cwd: Path) -
         finally:
             try:
                 _stop_stage(child, timed_out=code == "stage_timeout")
+            except _ProcessInspectionUnavailable:
+                cleanup_unknown = True
+                hint = "install_procps"
             except (InstallError, OSError, subprocess.TimeoutExpired):
                 cleanup_unknown = True
         reader.join(timeout=_CLEANUP_TIMEOUT)
@@ -440,11 +458,14 @@ def _run_stage(command: list[str], env: dict[str, str], stage: str, cwd: Path) -
         if child is not None:
             try:
                 _stop_stage(child)
+            except _ProcessInspectionUnavailable:
+                hint = "install_procps"
             except (InstallError, OSError, subprocess.TimeoutExpired):
                 pass
     if code == "ok" and cleanup_unknown:
         code = "stage_cleanup_unknown"
-    hint = _stage_hint(bytes(tail)) if code != "ok" else "none"
+    if hint == "none" and code != "ok":
+        hint = _stage_hint(bytes(tail))
     retained = code != "ok" or cleanup_unknown
     retention_failed = False
     if retained:
