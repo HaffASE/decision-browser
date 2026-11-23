@@ -278,10 +278,11 @@ async def test_luna_form_hints_preserve_the_requested_clear_action(scenario):
     assert decision == Decision("select_group0", "clear", 1.0)
     assert len(seen) == 1
     options = {}
+    guidance = json.loads(seen[0]["input"]).get("operation_guidance", {})
     for row in seen[0]["questions"][0]["choices"]:
         description = row.get("description", "")
         key = json.loads(description)["operation"] if row["value"].startswith("action_") else row["value"]
-        options[key] = description
+        options[key] = guidance.get(key, description)
     assert tuple(options) == choices
     if scenario == "selected":
         assert ("Change a control to a different value required by the goal. "
@@ -304,7 +305,8 @@ async def test_luna_form_hints_preserve_the_requested_clear_action(scenario):
     ("unknown_target", "unknown_choice"), ("missing_probability", "incomplete_distribution"),
     ("extra_answer", "extra_answer"),
 ])
-async def test_native_explicit_pair_and_conditional_target_share_a_validated_decision(selection, error):
+@pytest.mark.parametrize("operation_head", ["operation", "legacy_operation"])
+async def test_native_explicit_pair_and_conditional_target_share_a_validated_decision(selection, error, operation_head):
     from test_compact_context_v2 import standard_questions
     from test_lean_context import native
     from test_model_context import context
@@ -313,12 +315,38 @@ async def test_native_explicit_pair_and_conditional_target_share_a_validated_dec
                   "fill": {"room": native("Room"), "guest": native("Guest")}}
     questions, heads = standard_questions(candidates)
     op = questions[0]
-    questions = (ChoiceQuestion(op.name, op.instructions, (*op.choices, "UNABLE")), *questions[1:])
+    questions = (ChoiceQuestion(operation_head, op.instructions, (*op.choices, "UNABLE")), *questions[1:])
 
     def handler(request):
         body = json.loads(request.content)
+        if operation_head == "operation":
+            assert len(body["questions"]) == 1
+            operation = body["questions"][0]
+            actions = [row for row in operation["choices"] if row["value"].startswith("action_")]
+            decoded = [json.loads(row["description"]) for row in actions]
+            assert {(row["operation"], row["target"]) for row in decoded} == {
+                ("click", "1"), ("fill", "room"), ("fill", "guest"),
+            }
+            click = next(row["value"] for row in actions if json.loads(row["description"])["operation"] == "click")
+            guest = next(row["value"] for row in actions
+                         if json.loads(row["description"])["operation"] == "fill"
+                         and json.loads(row["description"])["target"] == "guest")
+            assert decoded[0]["evidence"].startswith('"Preview route"')
+            assert TOKEN not in request.content.decode()
+            assert "Operation: click" in operation["instructions"]
+            picked = {"pair": click, "multiple": guest, "refuse_target": guest,
+                      "unknown_target": "action_foreign", "missing_probability": click,
+                      "extra_answer": click}.get(selection, selection)
+            reply = json.loads(_wire_answers(body, {operation_head: picked}))
+            if selection in {"refuse_operation", "refuse_target"}:
+                reply["answers"][0] = {"name": operation_head, "type": "refusal"}
+            elif selection == "missing_probability":
+                reply["answers"][0]["probabilities"].pop()
+            elif selection == "extra_answer":
+                reply["answers"].append({"name": "target_click", "type": "refusal"})
+            return httpx.Response(200, json=reply)
         operation, target = body["questions"]
-        assert (operation["name"], target["name"]) == ("operation", "target_fill")
+        assert (operation["name"], target["name"]) == (operation_head, "target_fill")
         choices = operation["choices"]
         token = choices[1]["value"]
         assert token.startswith("action_") and token not in {*heads, TOKEN, "1"}
@@ -332,9 +360,9 @@ async def test_native_explicit_pair_and_conditional_target_share_a_validated_dec
         assert TOKEN not in request.content.decode()
         picked = {"pair": token, "multiple": "fill", "refuse_target": "fill",
                   "unknown_target": "fill", "missing_probability": token, "extra_answer": token}.get(selection, selection)
-        reply = json.loads(_wire_answers(body, {"operation": picked, "target_fill": "guest"}))
+        reply = json.loads(_wire_answers(body, {operation_head: picked, "target_fill": "guest"}))
         if selection == "refuse_operation":
-            reply["answers"][0] = {"name": "operation", "type": "refusal"}
+            reply["answers"][0] = {"name": operation_head, "type": "refusal"}
         elif selection == "refuse_target":
             reply["answers"][1] = {"name": "target_fill", "type": "refusal"}
         elif selection == "unknown_target":
@@ -348,7 +376,8 @@ async def test_native_explicit_pair_and_conditional_target_share_a_validated_dec
     provider = OpenAIProvider("fixture", transport=httpx.MockTransport(handler))
     budget = _budget()
     try:
-        call = provider.decide(questions, json.dumps(context(candidates)), budget=budget, privacy=_gate(), target_heads=heads)
+        call = provider.decide(questions, json.dumps(context(candidates)), budget=budget, privacy=_gate(),
+                               operation_head=operation_head, target_heads=heads)
         if error:
             with pytest.raises(ProviderError) as caught:
                 await call
@@ -412,9 +441,13 @@ async def test_luna_standalone_native_select_has_operation_guidance_and_observed
     def handler(request):
         body = json.loads(request.content)
         seen.append(body)
-        target = next(q for q in body["questions"] if q["name"] == "target_select")
-        design = next(row["value"] for row in target["choices"] if "Design" in row.get("description", ""))
-        return httpx.Response(200, content=_wire_answers(body, {"operation": "select", "target_select": design}))
+        assert len(body["questions"]) == 1
+        actions = body["questions"][0]["choices"]
+        design = next(row["value"] for row in actions
+                      if row["value"].startswith("action_")
+                      and json.loads(row["description"])["operation"] == "select"
+                      and "Design" in json.loads(row["description"])["evidence"])
+        return httpx.Response(200, content=_wire_answers(body, {"operation": design}))
 
     provider = OpenAIProvider("fixture", transport=httpx.MockTransport(handler))
     try:
@@ -425,12 +458,17 @@ async def test_luna_standalone_native_select_has_operation_guidance_and_observed
     assert len(seen) == 1
     body = seen[0]
     operation = body["questions"][0]
-    select = next(row for row in operation["choices"] if row["value"] == "select")
+    guidance = json.loads(body["input"])["operation_guidance"]
     if availability == "editable":
-        assert "Change a control" in select["description"]
-        assert "current value with offered option labels and values" in select["description"]
+        assert "Change a control" in guidance["select"]
+        assert "current value with offered option labels and values" in guidance["select"]
     else:
-        assert "description" not in select
+        assert "select" not in guidance
+    actions = [json.loads(row["description"]) for row in operation["choices"]
+               if row["value"].startswith("action_")]
+    assert {(row["operation"], row["target"]) for row in actions} == {
+        ("select", "standard"), ("select", "design"), ("click", "open"),
+    }
     state = json.loads(body["input"])
     assert state["goal"] == data["goal"]
     entries = state["candidates"]["select"]
