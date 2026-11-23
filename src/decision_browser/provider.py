@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping, Sequence
+from dataclasses import replace
 
 import httpx
 
@@ -18,6 +19,7 @@ from .decision_codec import (
     compile_questions,
 )
 from .model_context import bind_openai_singletons, prepare_context
+from .openai_context import action_evidence
 from .privacy import CaptureEvidence, PrivacyError, PrivacyGate
 from .provider_config import ProviderConfigError, validate_api_key
 from .provider_http import ProviderError, post_json
@@ -28,6 +30,29 @@ __all__ = ["OpenAIProvider", "ProviderError"]
 
 _ORIGIN = "https://api.openai.com"
 _PATHS = frozenset({"/v1/decisions", "/v1/responses"})
+
+
+_NATIVE_OPERATIONS = {
+    "UNABLE": (
+        "Stop only when no offered safe operation and target can advance the remaining goal. "
+        "A long goal need not be completed in one action or on the current page. "
+        "An observed link or editable control supporting the next step remains useful."
+    ),
+    "click": (
+        "Click an observed control or link that advances the next unfinished requirement, "
+        "including opening the requested result or the next page of a multi-step workflow. "
+        "Use fill for an editable text field. A click only focuses that field. "
+        "Use acknowledged history: change the target or operation after a click leaves the page unchanged."
+    ),
+    "fill": (
+        "Fill the editable field whose requested value is still missing or differs. "
+        "A matching supplied value needs no further fill or focus click."
+    ),
+    "navigate": (
+        "Follow the offered destination that advances the next unfinished requirement. "
+        "Use the goal, visible link details and previous_pages to select the exact requested result."
+    ),
+}
 
 
 # JSON Schema maxLength counts Unicode characters, matching ModelFinding.
@@ -214,6 +239,21 @@ class OpenAIProvider:
                 operation_head=operation_head, target_heads=target_heads,
                 privacy=privacy, compact=True, lean=True, provider="openai",
             )
+            if (aliases and not any(question.descriptions for question in original)
+                    and _loads(wire_input.encode()).get("context_format") == "decision-browser-choice-table-v3"):
+                wire_questions = tuple(
+                    replace(question, descriptions=tuple(
+                        existing if existing is not None else _NATIVE_OPERATIONS.get(str(choice).split("_group", 1)[0])
+                        for choice, existing in zip(
+                            question.choices, question.descriptions or (None,) * len(question.choices), strict=True,
+                        )
+                    )) if question.name == operation_head else question
+                    for question in wire_questions
+                )
+                wire_questions = action_evidence(
+                    wire_questions, _loads(input_text.encode()), aliases,
+                    operation_head=operation_head, target_heads=target_heads or {},
+                )
             wire_questions, wire_heads, bound_targets = bind_openai_singletons(
                 wire_questions, wire_input, aliases, operation_head=operation_head, target_heads=target_heads,
             )
