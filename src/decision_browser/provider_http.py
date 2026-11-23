@@ -27,6 +27,7 @@ class ProviderError(Exception):
 
     def __init__(self, code: str) -> None:
         self.code = code
+        self.http_status: int | None = None
         self.diagnostics: tuple[str, ...] = ()
         super().__init__(code)
 
@@ -256,7 +257,9 @@ async def post_json(
                 if response.status_code == 200:
                     parts.append(chunk)
             if response.status_code != 200:
-                raise ProviderError("http_error")
+                http_error = ProviderError("http_error")
+                http_error.http_status = response.status_code
+                raise http_error
             parsed = load_json(b"".join(parts))
             budget.remaining()
             return parsed
