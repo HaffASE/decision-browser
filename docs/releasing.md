@@ -43,9 +43,9 @@ downstream **Release candidate gate** must succeed before publication. The verif
 creates a GitHub Release, uploads to PyPI, changes repository visibility or uses
 publish credentials. Publication is a separate, reviewed step.
 
-The first public release remains blocked until the public-readiness review and
-explicit publication approval are complete. The current `0.1.1` metadata is not evidence that
-any public release already exists.
+Review the release artifacts and obtain explicit publication approval for each
+version. The version in the source tree identifies the candidate being prepared;
+verify the published tag and registry package when checking release availability.
 
 ## Build locally
 
@@ -75,7 +75,7 @@ Reference: [uv package building and version updates](https://docs.astral.sh/uv/g
 After the verifier builds and tests a wheel, create the checkout-free installer:
 
 ```sh
-python3.12 scripts/build_installer.py --wheel /path/to/decision_browser-0.1.1-py3-none-any.whl --output /path/to/decision-browser-0.1.1.pyz
+python3.12 scripts/build_installer.py --wheel /path/to/decision_browser-0.1.2-py3-none-any.whl --output /path/to/decision-browser-0.1.2.pyz
 ```
 
 Use the actual selected version in both names. The builder refuses to overwrite
@@ -96,10 +96,10 @@ availability before approving any publication. There are no npm dependencies or
 lifecycle hooks. Build only from the wheel that passed the release checks:
 
 ```sh
-python3 -I scripts/build_npm.py --wheel /path/to/tested/decision_browser-0.1.1-py3-none-any.whl --output /path/to/new/npm-candidate
+python3 -I scripts/build_npm.py --wheel /path/to/tested/decision_browser-0.1.2-py3-none-any.whl --output /path/to/new/npm-candidate
 cd /path/to/new/npm-candidate
 npm pack --offline --ignore-scripts --pack-destination /path/to/artifacts
-npm exec --offline --yes --package=/path/to/artifacts/haffa-decision-browser-0.1.1.tgz -- decision-browser --help
+npm exec --offline --yes --package=/path/to/artifacts/haffa-decision-browser-0.1.2.tgz -- decision-browser --help
 ```
 
 The builder refuses an existing output directory and mismatched wheel/launcher
@@ -124,9 +124,9 @@ install, repeat, upgrade, removal and interrupted setup on every claimed OS,
 with project paths containing spaces, before publishing. Client trust and native
 admission must be reviewed normally. Do not use real model keys for setup tests.
 
-## First public npm install
+## Publish and verify the npm release
 
-For `@haffa/decision-browser@0.1.1`, confirm write access to the npm
+For `@haffa/decision-browser@0.1.2`, confirm write access to the npm
 scope and complete the [public-release checklist](public-release-checklist.md).
 After publication approval and a passing tag matrix and release-candidate gate,
 publish the reviewed tarball from that tag. Compare the full `integrity` in
@@ -134,21 +134,21 @@ the dry-run JSON for that exact tarball with the registry's `dist.integrity`.
 See the [npm guide to scoped public packages](https://docs.npmjs.com/creating-and-publishing-scoped-public-packages/).
 
 ```sh
-tarball="/path/to/haffa-decision-browser-0.1.1.tgz"
+tarball="/path/to/haffa-decision-browser-0.1.2.tgz"
 npm publish "$tarball" --access public
 npm pack --offline --ignore-scripts --dry-run --json "$tarball"
-npm view @haffa/decision-browser@0.1.1 dist.integrity
+npm view @haffa/decision-browser@0.1.2 dist.integrity
 ```
 
 After the exact version is available in the registry, verify this command in an
 empty test project, then use it in the public quick start:
 
 ```sh
-npx --yes @haffa/decision-browser@0.1.1 setup codex
+npx --yes @haffa/decision-browser@0.1.2 setup codex
 ```
 
 The user needs Node.js 20+ and the Codex CLI on PATH. Guided setup installs the
 runtime, Chromium, MCP registration and skill, then asks for a provider. Use
 `setup claude` or `setup both` for the other client choices. Restart the client
 after setup and review its trust, MCP and task-admission prompts as they appear.
-Until the registry version is available, use the [local artifact](installation.md#guided-setup).
+For a reviewed tarball, use the [local artifact installation commands](installation.md#guided-setup).

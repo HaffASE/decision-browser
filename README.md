@@ -35,7 +35,7 @@ among observed controls; the runner rechecks the target before acting.
 | Functional checks | Checks against the resulting page | Verified, failed or unverified outcome |
 | Step, time, call and byte limits | Budget enforcement and cleanup | Usage counters, timings and evidence artifacts |
 
-> **Experimental, version 0.1.1.**
+> **Experimental, version 0.1.2.**
 
 ## Quick start
 
@@ -45,7 +45,7 @@ Open a terminal in your project with Node.js 20+ (including npm/npx) and your
 client CLI on `PATH`, then run the pinned npm package.
 
 ```sh
-npx --yes @haffa/decision-browser@0.1.1 setup codex
+npx --yes @haffa/decision-browser@0.1.2 setup codex
 ```
 
 Use `setup claude` for Claude Code or `setup both` for both clients. Plain `setup`
@@ -79,8 +79,8 @@ The server reads your saved profile automatically. To change providers or run an
 optional local diagnostic, use the same reviewed package:
 
 ```sh
-npx --yes @haffa/decision-browser@0.1.1 configure
-npx --yes @haffa/decision-browser@0.1.1 doctor --json
+npx --yes @haffa/decision-browser@0.1.2 configure
+npx --yes @haffa/decision-browser@0.1.2 doctor --json
 ```
 
 These commands reuse a cached package runtime and do not reinstall Chromium.

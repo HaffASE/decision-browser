@@ -6,7 +6,7 @@ On macOS/Linux, with Node.js 20+ and your client CLI on PATH, run the versioned
 npm package in an interactive terminal:
 
 ```sh
-npx --yes @haffa/decision-browser@0.1.1 setup
+npx --yes @haffa/decision-browser@0.1.2 setup
 ```
 
 Choose Codex, Claude Code or both. Setup reuses the installer below, then asks
@@ -33,7 +33,7 @@ resume. Use `install` for unattended installation; `setup --uninstall` is invali
 Windows profile-key persistence is not supported yet; use environment settings.
 The client and Linux host-library prerequisites below still apply. If you already
 use uv, the Python-wheel alternative is
-`uvx --python 3.12 --from /path/to/decision_browser-0.1.1-py3-none-any.whl decision-browser setup`.
+`uvx --python 3.12 --from /path/to/decision_browser-0.1.2-py3-none-any.whl decision-browser setup`.
 
 ## Unattended install
 
@@ -45,7 +45,7 @@ uvx/npm cache path in client settings.
 With uv 0.13.7+ and your client CLI on `PATH`, run from the project directory:
 
 ```sh
-uvx --python 3.12 --from /path/to/decision_browser-0.1.1-py3-none-any.whl decision-browser install codex
+uvx --python 3.12 --from /path/to/decision_browser-0.1.2-py3-none-any.whl decision-browser install codex
 ```
 
 Use a reviewed local wheel from the [build procedure](releasing.md). Replace
@@ -68,7 +68,7 @@ With Node.js 20+, npm/npx and your client CLI on PATH, run this
 from the project you want to configure:
 
 ```sh
-npx --yes @haffa/decision-browser@0.1.1 install both
+npx --yes @haffa/decision-browser@0.1.2 install both
 ```
 
 Use `decision-browser setup` instead of `decision-browser install both` to choose
@@ -77,7 +77,7 @@ the client and provider interactively in the same flow.
 To use the downloaded release tarball instead of the registry, run:
 
 ```sh
-npx --offline --yes --package=/absolute/path/haffa-decision-browser-0.1.1.tgz decision-browser install both
+npx --offline --yes --package=/absolute/path/haffa-decision-browser-0.1.2.tgz decision-browser install both
 ```
 
 Choose `codex`, `claude` or `both`. The default project is the current directory;
@@ -121,8 +121,8 @@ unchanged.
 Use the same reviewed artifact, without finding a Python environment manually:
 
 ```sh
-npx --yes @haffa/decision-browser@0.1.1 configure
-npx --yes @haffa/decision-browser@0.1.1 doctor --json
+npx --yes @haffa/decision-browser@0.1.2 configure
+npx --yes @haffa/decision-browser@0.1.2 doctor --json
 ```
 
 `configure [provider]` needs a terminal and changes the shared user profile.
@@ -359,7 +359,7 @@ results or the provenance of archived reports.
 See [release builds](releasing.md). The `.pyz` starts using Python's standard library,
 so it needs no temporary uvx environment or global package installation. It still
 requires Python, uv and the chosen client CLIs. Download `decision-browser.pyz` and `SHA256SUMS` from the
-[versioned GitHub release](https://github.com/HaffASE/decision-browser/releases/tag/v0.1.1)
+[versioned GitHub release](https://github.com/HaffASE/decision-browser/releases/tag/v0.1.2)
 and verify the archive checksum before execution.
 
 For development, from a checkout use:
