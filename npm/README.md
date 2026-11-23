@@ -14,14 +14,14 @@ Chromium sandbox. No sudo or security-setting changes are performed.
 Start guided setup from your project:
 
 ```sh
-npx --yes @haffa/decision-browser@0.1.1 setup codex
+npx --yes @haffa/decision-browser@0.1.2 setup codex
 ```
 
 Use `setup claude` or `setup both` for the other client choices. To install from the
 release tarball you downloaded, run:
 
 ```sh
-npx --offline --yes --package="/absolute/path/haffa-decision-browser-0.1.1.tgz" decision-browser setup
+npx --offline --yes --package="/absolute/path/haffa-decision-browser-0.1.2.tgz" decision-browser setup
 ```
 
 Plain `setup` prompts for the client. Select a provider and enter its key through
@@ -33,9 +33,9 @@ key entry retains the installation and prints an exact resume command.
 For unattended installation without provider prompts:
 
 ```sh
-npx --yes @haffa/decision-browser@0.1.1 install codex
-npx --yes @haffa/decision-browser@0.1.1 install claude
-npx --yes @haffa/decision-browser@0.1.1 install both
+npx --yes @haffa/decision-browser@0.1.2 install codex
+npx --yes @haffa/decision-browser@0.1.2 install claude
+npx --yes @haffa/decision-browser@0.1.2 install both
 ```
 
 `--offline` prevents npm from substituting a registry package. It does **not**
@@ -52,8 +52,8 @@ registrations without uv when a suitable Python is already available.
 Change your provider or inspect the current project using the same package:
 
 ```sh
-npx --yes @haffa/decision-browser@0.1.1 configure
-npx --yes @haffa/decision-browser@0.1.1 doctor --json
+npx --yes @haffa/decision-browser@0.1.2 configure
+npx --yes @haffa/decision-browser@0.1.2 doctor --json
 ```
 
 `configure [provider]` needs an interactive terminal. `doctor --project /path`

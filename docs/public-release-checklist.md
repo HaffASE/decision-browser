@@ -1,7 +1,7 @@
 # Public-release checklist
 
-This branch prepares a release; it does not publish one. Review the exact commit
-and built artifacts that will be distributed. A draft PR is not release approval.
+Use this checklist for each public release. Review the exact commit and built
+artifacts that will be distributed, and record the publication approval.
 
 The [public-release delivery plan](public-release-plan.md) tracks the simplified
 user journey and remaining implementation stages. Guided provider setup is an

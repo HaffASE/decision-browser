@@ -5,6 +5,24 @@ Versions follow the policy in [Releasing](docs/releasing.md).
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-11-23
+
+- **Jev can choose an action and its target together.** For example, it can
+  choose to fill the origin field in one decision. When the page stays the
+  same after repeated waits, Jev gets another chance to choose an interaction.
+- **Luna sees what a form will submit.** It can see the current dropdown
+  selection, which boxes are checked, and what a click would change. This
+  helps when a task asks for an option the website marks as optional.
+- **Models get clearer scroll information.** Luna sees which links it can click
+  and whether scrolling can reveal more content. Jev can see whether its last
+  scroll moved the page and whether more content remains in that direction.
+- **A temporary OpenAI outage can recover within the same task.** When the
+  Decisions API returns HTTP 503, the browser can retry the request once per
+  task. The retry counts toward the original time, call and byte limits.
+- **The counter setup check shows the model its progress.** After each click,
+  the model can see both the current count and the requested count. A separate
+  check reads the page to verify the final result.
+
 ## [0.1.1] - 2026-11-21
 
 - Install the npm launcher from `@haffa/decision-browser`. The quick start pins

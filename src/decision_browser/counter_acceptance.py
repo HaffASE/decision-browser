@@ -255,23 +255,25 @@ class RecordingDriver(BrowserDriver):
         self.count_error: str | None = None
         self.close_completed = False
 
+    async def read_count(self) -> str:
+        async with asyncio.timeout(0.5):
+            # Bind the selector value to its document in one evaluation.
+            reading = await self.page.locator("#count").evaluate(
+                "node => ({url: location.href, count: node.innerText})", timeout=400,
+            )
+            if _object(reading).get("url") != self._expected_url:
+                raise ValueError("unexpected_count_url")
+            value = reading.get("count")
+            if value not in {"0", "1", "2", "3", "4"}:
+                raise ValueError("unexpected_count")
+            return value
+
     async def close(self) -> None:
         if self.close_completed:
             return
         try:
-            async with asyncio.timeout(0.5):
-                # Read both in one document evaluation: a navigation between
-                # separate page.url and locator reads cannot bind foreign text.
-                reading = await self.page.locator("#count").evaluate(
-                    "node => ({url: location.href, count: node.innerText})", timeout=400,
-                )
-                if _object(reading).get("url") != self._expected_url:
-                    raise ValueError("unexpected_count_url")
-                value = reading.get("count")
-                if value not in {"0", "1", "2", "3", "4"}:
-                    raise ValueError("unexpected_count")
-                self.count = value
-                self.count_url = self._expected_url
+            self.count = await self.read_count()
+            self.count_url = self._expected_url
         except asyncio.CancelledError:
             self.count_error = "count_read_cancelled"
             raise
@@ -298,8 +300,13 @@ class RecordingDriver(BrowserDriver):
 class DecisionsOnlyProvider:
     """Offer counter actions through the production provider and validate its choice."""
 
-    def __init__(self, provider: ProviderPort, url: str) -> None:
+    def __init__(
+        self, provider: ProviderPort, url: str, driver: RecordingDriver | None = None,
+        check: Check | None = None,
+    ) -> None:
         self._provider = provider
+        self._driver = driver
+        self._check = check if check is not None else counter_request(url).checks[0]
         self._url = url
         self.calls = 0
         self.returned = 0
@@ -313,6 +320,14 @@ class DecisionsOnlyProvider:
         # that operation domain before inference, retaining every click target
         # so the provider still has to distinguish inc from reset.
         if questions:
+            progress = ""
+            if self._driver is not None:
+                current = await self._driver.read_count()
+                check = self._check
+                progress = (
+                    f' Counter progress for {check.target}: current="{current}", expected="{check.expected}".'
+                    " Repeated clicks are useful while the count is below the expected value."
+                )
             heads = {op: head for op, head in (target_heads or {}).items() if op == "click"}
             scoped = []
             for question in questions:
@@ -332,6 +347,8 @@ class DecisionsOnlyProvider:
                     scoped.append(question)
             payload = _object(json.loads(input_text))
             candidates = _object(payload["candidates"])
+            if progress:
+                payload["text"] = progress.strip() + "\n" + payload["text"]
             payload["candidates"] = {op: candidates[op] for op in heads}
             questions = tuple(scoped)
             target_heads = heads
@@ -600,7 +617,9 @@ class CounterAcceptanceManager(RunManager):
         if (run is not None and isinstance(run.alpha, AlphaProposal)
                 and run.admission_accepted and self._admission.is_live(run.alpha.proposal_id)):
             self.admission_proposal = run.alpha
-        self.recording_provider = DecisionsOnlyProvider(production_factory(), self.request.start_url)
+        self.recording_provider = DecisionsOnlyProvider(
+            production_factory(), self.request.start_url, self.recording_driver, self.request.checks[0],
+        )
         return self.recording_provider
 
     def start_task(self, request: TaskRequest) -> str:

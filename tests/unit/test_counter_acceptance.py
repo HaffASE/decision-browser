@@ -294,7 +294,11 @@ async def test_provider_rejects_unwanted_decisions_before_dispatch(choice):
 
 
 @pytest.mark.parametrize("stop", ["DONE", "UNABLE"])
-async def test_counter_offers_click_and_stops_before_model_inference(stop):
+@pytest.mark.parametrize("text,current", [
+    ("0 inc reset", "0"), ("1\ninc\nreset", "1"), ("2\ninc\nreset", "2"),
+    ("untrusted prose inc reset", None),
+])
+async def test_counter_offers_click_and_stops_before_model_inference(stop, text, current):
     request, _, artifacts, _, _ = evidence()
     node = json.loads(json.loads(artifacts[4].content)["semantic_fingerprint"])["semantic"]["node"]
     calls = []
@@ -309,10 +313,17 @@ async def test_counter_offers_click_and_stops_before_model_inference(stop):
         assert set(candidates) == {"click"}
         assert set(candidates["click"]) == {"inc-token", "reset-token"}
         for provider in ("openai", "systemone"):
-            prepare_context(
+            prepared, state, _ = prepare_context(
                 questions, input_text, operation_head="action",
                 target_heads=kwargs["target_heads"], compact=True, lean=True, provider=provider,
             )
+            observed_text = json.loads(state)["text"]
+            if current is None:
+                assert "Counter progress" not in observed_text
+            else:
+                assert f'Counter progress for #count: current="{current}", expected="3".' in observed_text
+                assert json.loads(state)["goal"] == request.goal
+                assert "UNABLE" in prepared[0].choices
         calls.append(True)
         return Decision(stop, None, 1.0)
 
@@ -332,12 +343,17 @@ async def test_counter_offers_click_and_stops_before_model_inference(stop):
     }
     for binding in candidates["click"].values():
         binding.update(form={}, context={})
-    wrapper = counter.DecisionsOnlyProvider(SimpleNamespace(decide=decide), request.start_url)
+    async def read_count():
+        assert current is not None
+        return current
+
+    driver = SimpleNamespace(read_count=read_count) if current is not None else None
+    wrapper = counter.DecisionsOnlyProvider(SimpleNamespace(decide=decide), request.start_url, driver)
     result = await wrapper.decide(
         questions, json.dumps({
             "context_format": "decision-browser-context-v1", "candidates": candidates,
             "goal": request.goal, "origin": "http://127.0.0.1:12345",
-            "url": request.start_url, "text": "0 inc reset",
+            "url": request.start_url, "text": text,
             "recent_actions": [], "excluded_mechanisms": [],
         }), budget=None, privacy=None,
         operation_head="action", target_heads={"click": "button", "wait": "pause"},

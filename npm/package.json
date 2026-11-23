@@ -1,6 +1,6 @@
 {
   "name": "@haffa/decision-browser",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Project installer for Decision Browser, without manual Python setup",
   "license": "MIT",
   "engines": { "node": ">=20" },
