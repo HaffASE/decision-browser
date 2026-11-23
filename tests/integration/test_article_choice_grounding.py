@@ -52,6 +52,36 @@ def _name(context, group, value, questions):
     return label
 
 
+
+def _offered_targets(context, group, questions):
+    """Normalize the two encodings while checking each observed target alias."""
+    if "target_" + group in questions:
+        options = [
+            {"value": row["value"], "target": row["value"], "evidence": row.get("description"),
+             "selection": {"operation": group, "target_" + group: row["value"]}}
+            for row in questions["target_" + group]["choices"] if isinstance(row["value"], str)
+        ]
+    else:
+        options = []
+        for row in questions["operation"]["choices"]:
+            if not isinstance(row["value"], str) or not row["value"].startswith("action_"):
+                continue
+            decoded = json.loads(row["description"])
+            if decoded["operation"] == group:
+                description = _bound_description(row)
+                options.append({
+                    "value": row["value"], "target": description["target"], "evidence": description["evidence"],
+                    "selection": {"operation": row["value"]},
+                })
+    assert options
+    assert len({row["target"] for row in options}) == len(options)
+    for option in options:
+        row = context["candidates"][group][option["target"]]
+        element = context.get("elements", {}).get(row.get("element"), row)
+        option["label"] = _evidence_label(option["evidence"])
+        assert option["label"] == element.get("name", element.get("node", {}).get("name"))
+    return options
+
 def _answer(body, selections):
     return {"model": "gpt-6-luna", "usage": {}, "answers": [
         {"name": question["name"], "type": "choice",
@@ -66,7 +96,10 @@ def _answer(body, selections):
     ]}
 
 
-async def test_native_article_run_grounds_choice_in_all_observed_link_descriptions():
+@pytest.mark.parametrize("encoding", ["complete", "legacy"])
+async def test_native_article_run_grounds_choice_in_all_observed_link_descriptions(encoding, monkeypatch):
+    if encoding == "legacy":
+        monkeypatch.setattr("decision_browser.provider.bind_complete_actions", lambda *args, **kwargs: None)
     spec = CASES["article"]
     goal = spec.goal + "\n\nProvided field values: " + json.dumps(
         spec.values, ensure_ascii=False, sort_keys=True, separators=(",", ":"),
@@ -91,32 +124,35 @@ async def test_native_article_run_grounds_choice_in_all_observed_link_descriptio
             assert context["candidates"]["fill"][field]["name"] == "Search query"
             pairs = [(option, _bound_description(option))
                      for option in questions["operation"]["choices"]
-                     if isinstance(option["value"], str) and option["value"].startswith("action_")]
+                     if isinstance(option["value"], str) and option["value"].startswith("action_")
+                     and json.loads(option["description"])["operation"] == "fill"]
             pair, = [option for option, description in pairs
                      if description["operation"] == "fill" and description["target"] == field
                      and _evidence_label(description["evidence"]) == "Search query"]
-            assert pair["value"] in questions["operation"]["instructions"]
+            if encoding == "legacy":
+                assert pair["value"] in questions["operation"]["instructions"]
+            else:
+                assert len(questions) == 1
+                assert "binds its operation and target together" in questions["operation"]["instructions"]
             selection = {"operation": pair["value"]}
         elif step == 1:
-            button = next(option["value"] for option in questions["target_click"]["choices"]
-                          if type(option["value"]) is str
-                          and _name(context, "click", option["value"], questions) == "Search articles")
-            selection = {"operation": "click", "target_click": button}
+            buttons = _offered_targets(context, "click", questions)
+            assert {row["target"] for row in buttons} == set(context["candidates"]["click"])
+            matching = [option for option in buttons if option["label"] == "Search articles"]
+            assert len(matching) == 1
+            selection = matching[0]["selection"]
         else:
             for group in ("click", "navigate"):
-                options = questions["target_" + group]["choices"]
-                offered_domains[group] = {option["value"] for option in options
-                                          if type(option["value"]) is str}
+                options = _offered_targets(context, group, questions)
+                offered_domains[group] = {option["target"] for option in options}
                 assert offered_domains[group] == set(context["candidates"][group])
-                grounded_links[group] = [option["description"] for option in options
-                                         if isinstance(option.get("description"), str)]
+                grounded_links[group] = [option["evidence"] for option in options]
             # This mock is a model substitute, not a production target filter.
             # Both excluded and desired links must reach it in the offered domain.
-            matching = [option["value"] for option in questions["target_navigate"]["choices"]
-                        if type(option["value"]) is str
-                        and _name(context, "navigate", option["value"], questions) == "Gödel's incompleteness theorems"]
-            selection = ({"operation": "navigate", "target_navigate": matching[0]}
-                         if len(matching) == 1 else {"operation": "DONE"})
+            matching = [option for option in _offered_targets(context, "navigate", questions)
+                        if option["label"] == "Gödel's incompleteness theorems"]
+            assert len(matching) == 1
+            selection = matching[0]["selection"]
         return httpx.Response(200, json=_answer(body, selection))
 
     provider = OpenAIProvider("test-only-no-paid-credential", transport=httpx.MockTransport(handle))

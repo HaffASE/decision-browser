@@ -35,8 +35,17 @@ async def test_native_continuation_guidance_preserves_choices_and_stop(choice, c
     def handler(request):
         body = json.loads(request.content)
         seen.append(body)
-        target = next(q for q in body["questions"] if q["name"] == "target_click")["choices"][0]["value"]
-        return httpx.Response(200, content=_wire_answers(body, {"operation": choice, "target_click": target}))
+        if custom:
+            target = next(q for q in body["questions"] if q["name"] == "target_click")["choices"][0]["value"]
+            selection = {"operation": choice, "target_click": target}
+        else:
+            actions = body["questions"][0]["choices"]
+            selected = next(row["value"] for row in actions
+                            if row["value"].startswith("action_")
+                            and json.loads(row["description"])["operation"] == "click"
+                            and json.loads(row["description"])["target"] == "paper")
+            selection = {"operation": selected if choice == "click" else choice}
+        return httpx.Response(200, content=_wire_answers(body, selection))
 
     provider = OpenAIProvider("fixture", transport=httpx.MockTransport(handler))
     try:
@@ -47,18 +56,26 @@ async def test_native_continuation_guidance_preserves_choices_and_stop(choice, c
     body = seen[0]
     operations = body["questions"][0]["choices"]
     by_choice = {row["value"]: row.get("description", "") for row in operations}
-    assert "UNABLE" in by_choice and "click" in by_choice
-    assert json.loads(body["input"])["goal"] == data["goal"]
+    assert "UNABLE" in by_choice
+    packed = json.loads(body["input"])
+    assert packed["goal"] == data["goal"]
     if custom:
+        assert "click" in by_choice
         assert tuple(by_choice.values()) == descriptions
+        assert {q["name"] for q in body["questions"]} == {"operation", "target_click", "target_fill"}
     else:
-        assert "next unfinished requirement" in by_choice["click"]
+        assert len(body["questions"]) == 1
+        assert "next unfinished requirement" in packed["operation_guidance"]["click"]
         assert "no offered safe operation and target" in by_choice["UNABLE"]
-        bound_fill = next(row for row in operations if row["value"].startswith("action_"))
-        description = json.loads(bound_fill["description"])
-        assert description["operation"] == "fill"
-        assert "matching supplied value" in description["operation_hint"]
-        assert "fill=matches" in description["evidence"]
+        bound_fill = next(json.loads(row["description"]) for row in operations
+                          if row["value"].startswith("action_")
+                          and json.loads(row["description"])["operation"] == "fill")
+        assert "matching supplied value" in packed["operation_guidance"]["fill"]
+        assert "fill=matches" in bound_fill["evidence"]
+        assert {(row["operation"], row["target"]) for row in
+                (json.loads(c["description"]) for c in operations if c["value"].startswith("action_"))} == {
+                    ("click", "paper"), ("click", "abstract"), ("fill", "reference"),
+                }
 
 
 @pytest.mark.parametrize("operation", ["click", "click_implicit", "submit", "enter"])
@@ -106,13 +123,16 @@ async def test_native_submission_evidence_uses_only_its_form(operation, already_
     finally:
         await provider.aclose()
     body = seen[0]
-    if operation in {"submit", "enter"}:
-        bound = next(c for c in body["questions"][0]["choices"]
-                     if c["value"].startswith("action_") and json.loads(c["description"])["operation"] == operation)
-        description = json.loads(bound["description"])["evidence"]
+    if evidence_size > 2048 and operation in {"submit", "enter"}:
+        assert [q["name"] for q in body["questions"]] == ["operation", "target_click"]
+        assert body["questions"][1]["choices"][-1] == {"value": False}
     else:
-        description = next(c["description"] for q in body["questions"] if q["name"] == "target_click"
-                           for c in q["choices"] if "Save" in c.get("description", ""))
+        assert len(body["questions"]) == 1
+    bound = next(json.loads(c["description"]) for c in body["questions"][0]["choices"]
+                 if c["value"].startswith("action_")
+                 and json.loads(c["description"])["operation"] == operation
+                 and "Save" in json.loads(c["description"])["evidence"])
+    description = bound["evidence"]
     if evidence_size > 2048:
         assert "Observed form fields" not in description
         return
@@ -151,23 +171,26 @@ async def test_scroll_boundaries_and_click_names_describe_their_own_operation(si
         await provider.decide(questions, json.dumps(data), budget=_budget(), privacy=_gate(), target_heads=heads)
     finally:
         await provider.aclose()
+    assert len(seen[0]["questions"]) == 1
     operation = seen[0]["questions"][0]
-    descriptions = [c.get("description", "") for c in operation["choices"]]
-    evidence = [d for d in descriptions if "Observed evidence" in d]
-    assert len(evidence) == 1
-    content = evidence[0]
-    if content.startswith("{"):
-        content = json.loads(content)["evidence"]
+    actions = [json.loads(c["description"]) for c in operation["choices"]
+               if c["value"].startswith("action_")]
+    assert {(row["operation"], row["target"]) for row in actions} == {
+        ("click", "first"), ("click", "second"), ("scroll", "down"),
+    }
+    scroll_action = next(row for row in actions if row["operation"] == "scroll")
+    content = scroll_action["evidence"]
     observed = json.loads(content.split("Observed evidence: ", 1)[1])
     assert observed == {"scroll": scroll}
     assert first["name"] not in content and second["name"] not in content
     assert ("Neither direction can move" in content) == (not any(scroll.values()))
-    click = next(c for c in operation["choices"] if c["value"] == "click")
+    guidance = json.loads(seen[0]["input"])["operation_guidance"]
+    assert first["name"] not in guidance["scroll"] and second["name"] not in guidance["scroll"]
     if size == 20:
-        names = json.loads(click["description"].split("Observed click controls: ", 1)[1])
+        names = json.loads(guidance["click"].split("Observed click controls: ", 1)[1])
         assert names == [first["name"], second["name"]]
     else:
-        assert "Observed click controls" not in click["description"]
+        assert "Observed click controls" not in guidance["click"]
 
 
 @pytest.mark.parametrize("checked", [False, True])
@@ -255,7 +278,11 @@ async def test_split_click_groups_describe_only_their_own_targets():
         await provider.decide(questions, json.dumps(data), budget=_budget(), privacy=_gate(), target_heads=heads)
     finally:
         await provider.aclose()
-    operations = {c["value"]: c.get("description", "") for c in seen[0]["questions"][0]["choices"]}
+    assert len(seen[0]["questions"]) == 1
+    guidance = json.loads(seen[0]["input"])["operation_guidance"]
+    actions = [json.loads(c["description"]) for c in seen[0]["questions"][0]["choices"]
+               if c["value"].startswith("action_")]
     for group, rows in candidates.items():
-        names = json.loads(operations[group].split("Observed click controls: ", 1)[1])
+        assert {row["target"] for row in actions if row["operation"] == group} == set(rows)
+        names = json.loads(guidance[group].split("Observed click controls: ", 1)[1])
         assert names == [row["name"] for row in rows.values()]

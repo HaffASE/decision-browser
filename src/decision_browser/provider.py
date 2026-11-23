@@ -20,6 +20,7 @@ from .decision_codec import (
     compile_questions,
 )
 from .model_context import bind_openai_singletons, prepare_context
+from .openai_actions import bind_complete_actions
 from .openai_context import action_evidence
 from .privacy import CaptureEvidence, PrivacyError, PrivacyGate
 from .provider_config import ProviderConfigError, validate_api_key
@@ -255,9 +256,16 @@ class OpenAIProvider:
                     wire_questions, _loads(input_text.encode()), aliases,
                     operation_head=operation_head, target_heads=target_heads or {},
                 )
-            wire_questions, wire_heads, bound_targets = bind_openai_singletons(
-                wire_questions, wire_input, aliases, operation_head=operation_head, target_heads=target_heads,
+            complete = bind_complete_actions(
+                original, wire_questions, wire_input, aliases,
+                operation_head=operation_head, target_heads=target_heads,
             )
+            if complete is None:
+                wire_questions, wire_heads, bound_targets = bind_openai_singletons(
+                    wire_questions, wire_input, aliases, operation_head=operation_head, target_heads=target_heads,
+                )
+            else:
+                wire_questions, wire_heads, bound_targets, wire_input = complete
             payload = compile_questions(wire_questions, wire_input)
         except CodecError as exc:
             raise ProviderError(exc.reason) from None
