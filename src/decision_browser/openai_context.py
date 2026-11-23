@@ -52,14 +52,14 @@ def action_evidence(
 ) -> tuple[ChoiceQuestion, ...]:
     """Supplement validated native choices without truncating any evidence group."""
     fields: dict[tuple[str, str, str], dict[str, dict[str, Any]]] = {}
-    visible: dict[str, None] = {}
-    for rows in source["candidates"].values():
+    visible: dict[str, dict[str, None]] = {}
+    for group, rows in source["candidates"].items():
         for row in rows.values():
             operation, node = row["operation"], row["node"]
             state = node.get("state", {})
-            if (not state.get("disabled") and operation in {"click", "fill", "select", "enter", "submit"}
+            if (not state.get("disabled") and operation == "click"
                     and row["name"]):
-                visible[row["name"]] = None
+                visible.setdefault(group, {})[row["name"]] = None
             owner = _owner(row)
             if owner is None:
                 continue
@@ -76,15 +76,27 @@ def action_evidence(
                 fields.setdefault(owner, {})[json.dumps(item, sort_keys=True)] = item
     summaries = {owner: _bounded(list(items.values())) for owner, items in fields.items()}
     scroll = source.get("scroll")
-    scrolling = _bounded({"scroll": scroll, "visible_controls": list(visible)}) if scroll is not None else None
+    scrolling = _bounded({"scroll": scroll}) if scroll is not None else None
+    clicking = {group: _bounded(list(names)) for group, names in visible.items()}
+    scroll_rule = _SCROLL_RULE
+    if scroll == {"up": False, "down": False}:
+        scroll_rule += (
+            " Neither direction can move the observed page. Scrolling again leaves this viewport unchanged. "
+            "Compare the offered visible controls with the next unfinished requirement in the goal."
+        )
     groups = {head: group for group, head in target_heads.items()}
     rewritten = []
     for question in questions:
         if question.name == operation_head:
             descriptions = list(question.descriptions or (None,) * len(question.choices))
             for index, choice in enumerate(question.choices):
+                controls = clicking.get(str(choice))
+                if choice in aliases and str(choice).split("_group", 1)[0] == "click" and controls:
+                    descriptions[index] = " ".join(filter(None, (descriptions[index],
+                        "Compare these observed clickable controls with the next unfinished requirement in the goal.",
+                        "Observed click controls: " + controls)))
                 if choice in aliases and str(choice).split("_group", 1)[0] == "scroll" and scrolling:
-                    descriptions[index] = " ".join(filter(None, (descriptions[index], _SCROLL_RULE,
+                    descriptions[index] = " ".join(filter(None, (descriptions[index], scroll_rule,
                                                                   "Observed evidence: " + scrolling)))
             rewritten.append(replace(question, descriptions=tuple(descriptions)))
             continue
@@ -104,7 +116,7 @@ def action_evidence(
             if _submits(row) and evidence:
                 description = (description or "") + " " + _FORM_RULE + " Observed form fields: " + evidence
             if row["operation"] == "scroll" and scrolling:
-                description = (description or "") + " " + _SCROLL_RULE + " Observed evidence: " + scrolling
+                description = (description or "") + " " + scroll_rule + " Observed evidence: " + scrolling
             descriptions.append(description)
         rewritten.append(replace(question, descriptions=tuple(descriptions)))
     return tuple(rewritten)
