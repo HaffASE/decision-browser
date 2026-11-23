@@ -24,7 +24,6 @@ from decision_browser.action_context import (
     context_payload,
     observation_signature,
     recent_context,
-    repeated_unchanged_waits,
 )
 from decision_browser.admission import (
     AdmissionStore,
@@ -1791,7 +1790,7 @@ class RunManager:
                 "value": 100,
                 "destination": None,
                 "semantic": {},
-                "name": "Observe pending change for up to one second" if repeated_unchanged_waits(run.recent_actions) else "short",
+                "name": "short",
             }
         }
         bindings["screenshot"] = {
@@ -2447,23 +2446,6 @@ class RunManager:
                 if self.admission_mode == "task_scope":
                     await self._settle(run, dom, action)
                 post = await self._wait(run, dom.observe())
-                if (action.operation == "wait" and not post.unsupported
-                        and post.document_id == obs.document_id and post.origin == obs.origin
-                        and post.url == obs.url and run.driver.page.url == obs.url):
-                    record["page_changed"] = observation_signature(obs) != observation_signature(post)
-                    if repeated_unchanged_waits(run.recent_actions):
-                        # Settle the already selected wait before its final
-                        # observation, including marker-free delayed updates.
-                        signature = observation_signature(post)
-                        until = time.monotonic() + 0.9
-                        while (remaining := until - time.monotonic()) > 0:
-                            await self._wait(run, asyncio.sleep(min(0.1, remaining)))
-                            post = await self._refresh_stale(run, post)
-                            if any(isinstance(reason, str) and reason.startswith("popup")
-                                   for reason in post.unsupported):
-                                raise RunnerError("outcome_unknown")
-                            if observation_signature(post) != signature:
-                                break
             except BaseException as error:  # noqa: BLE001 — post boundary; privacy and unknown priority; no raw error logging
                 self._record_error(run, error)
                 self._audit_unknown(run, post_observe=True)

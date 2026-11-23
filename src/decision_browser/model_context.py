@@ -13,13 +13,7 @@ from collections.abc import Mapping, Sequence
 from typing import Any, Literal
 from urllib.parse import urlsplit
 
-from .action_context import (
-    NEXT_ACTION,
-    PAGE_EXCERPT_BYTES,
-    PAGE_HISTORY_LIMIT,
-    TARGET,
-    repeated_unchanged_waits,
-)
+from .action_context import NEXT_ACTION, PAGE_EXCERPT_BYTES, PAGE_HISTORY_LIMIT, TARGET
 from .decision_codec import ChoiceQuestion, CodecError
 from .flights_context import FLIGHTS_FORMAT, validate_context
 from .privacy import PrivacyGate
@@ -282,7 +276,6 @@ def _project(
         )
         if provider == "systemone":
             by_head = {question.name: question for question in wire_questions}
-            stalled = native and repeated_unchanged_waits(data["recent_actions"])
 
             def operation_description(choice: str | bool, existing: str | None) -> str | None:
                 if existing is not None:
@@ -293,14 +286,6 @@ def _project(
                 if (description and target is not None and len(target.choices) == 1
                         and target.descriptions and description_truncation.get(str(choice)) is False):
                     description += " Offered target for this operation: " + str(target.descriptions[0])
-                elif (stalled and description and choice in {"click", "fill", "select", "submit"}
-                      and target is not None and 2 <= len(target.choices) <= 4 and target.descriptions):
-                    # The operation and target are separate decisions. Show every option in
-                    # small groups, without favoring the first few in a large group.
-                    labels = [label for label in target.descriptions if label]
-                    preview = " | ".join(labels)
-                    if len(labels) == len(target.choices) and len(preview.encode("utf-8")) <= 256:
-                        description += " Offered targets: " + preview
                 return description
 
             wire_questions = tuple(
@@ -550,7 +535,11 @@ def _compact_projection(
         if question.name == operation_head:
             instructions = _COMPACT_ACTION
             descriptions = question.descriptions
-            if not descriptions and "wait" in question.choices and repeated_unchanged_waits(source["recent_actions"]):
+            recent = source["recent_actions"][-2:]
+            if not descriptions and "wait" in question.choices and len(recent) == 2 and all(
+                row.get("operation") == "wait" and row.get("acknowledged") is True
+                and row.get("page_changed") is False for row in recent
+            ):
                 feedback = (
                     "The last two waits left the observed page unchanged. If the next needed control "
                     "is ready, use it. Wait again only for a specific missing, disabled or loading result."

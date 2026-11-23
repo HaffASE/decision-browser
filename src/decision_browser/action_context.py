@@ -77,15 +77,6 @@ def action_record(action: Action) -> dict[str, Any]:
     }
 
 
-def repeated_unchanged_waits(history: Sequence[Mapping[str, Any]]) -> bool:
-    """Two acknowledged waits produced no observable progress."""
-    recent = history[-2:]
-    return len(recent) == 2 and all(
-        row.get("operation") == "wait" and row.get("acknowledged") is True
-        and row.get("page_changed") is False for row in recent
-    )
-
-
 def recent_context(history: Sequence[Mapping[str, Any]]) -> list[dict[str, Any]]:
     rows = [dict(row) for row in history[-10:]]
     while rows and len(json.dumps(rows, ensure_ascii=False).encode()) > 8192:
