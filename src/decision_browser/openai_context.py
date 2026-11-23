@@ -11,6 +11,9 @@ from .decision_codec import ChoiceQuestion
 _FORM_RULE = (
     "Before submitting, compare these observed fields with the goal. Complete missing required "
     "fields using fill or select. Check requested checkbox states; unchecked may be correct. "
+    "A checkbox state requested by the user must be satisfied even if the HTML field is optional. "
+    "If its observed state differs from the requested state, choose the offered checkbox click "
+    "before submitting. If its state already matches the request, leave it unchanged. "
     "Submission uses the current checkbox states shown here and does not toggle those controls."
 )
 _SCROLL_RULE = (

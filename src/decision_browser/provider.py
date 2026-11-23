@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 from collections.abc import Mapping, Sequence
 from dataclasses import replace
 
@@ -408,8 +409,25 @@ class OpenAIProvider:
     ) -> dict[str, object]:
         if path not in _PATHS:
             raise ProviderError("invalid_path")
-        return await post_json(
-            self._client, _ORIGIN + path, self._api_key, payload,
-            budget=budget, privacy=privacy, capture=capture,
-            contains_image=contains_image,
-        )
+        for attempt in range(2):
+            try:
+                return await post_json(
+                    self._client, _ORIGIN + path, self._api_key, payload,
+                    budget=budget, privacy=privacy, capture=capture,
+                    contains_image=contains_image,
+                )
+            except ProviderError as error:
+                if (attempt or path != "/v1/decisions" or error.code != "http_error"
+                        or error.http_status != 503
+                        or error.diagnostics != ("http_status:server_error",)
+                        or error.__dict__.get("residual_tasks")
+                        or not budget.claim_provider_retry()):
+                    raise
+                # Repeat inference before any browser action, using the same
+                # budget and individually metered HTTP boundary for each POST.
+                try:
+                    async with asyncio.timeout(budget.remaining()):
+                        await asyncio.sleep(0.25)
+                except TimeoutError:
+                    raise BudgetExceeded("deadline_expired") from None
+        raise AssertionError("unreachable")

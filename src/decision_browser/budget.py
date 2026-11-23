@@ -103,6 +103,7 @@ class Budget:
         "_input",
         "_limits",
         "_output",
+        "_provider_retry_used",
         "_steps",
         "_stored",
     )
@@ -117,6 +118,7 @@ class Budget:
         self._deadline = start + self._limits.max_seconds
         self._calls = self._input = self._output = self._steps = self._stored = 0
         self._held_steps = self._held_stored = 0
+        self._provider_retry_used = False
 
     @property
     def deadline(self) -> float:
@@ -181,6 +183,17 @@ class Budget:
             raise BudgetExceeded("input_bytes")
         self._calls += 1
         self._input += n
+
+    def claim_provider_retry(self) -> bool:
+        """Allow one service recovery across calls sharing this task budget.
+
+        The subsequent physical request must still reserve its calls and bytes.
+        """
+        self._ensure_time()
+        if self._provider_retry_used:
+            return False
+        self._provider_retry_used = True
+        return True
 
     def consume_output(self, chunk_bytes: int) -> None:
         n = _count(chunk_bytes, "chunk_bytes")
