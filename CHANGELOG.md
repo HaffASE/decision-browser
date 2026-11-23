@@ -10,6 +10,10 @@ Versions follow the policy in [Releasing](docs/releasing.md).
 - **Jev can choose an action and its target together.** For example, it can
   choose to fill the origin field in one decision. When the page stays the
   same after repeated waits, Jev gets another chance to choose an interaction.
+- **Luna can choose a click and its target in one question.** For small sets
+  of available actions, Luna gets one question per decision. In ten recorded
+  page states, this reduced 33 questions to 10 across the same ten requests.
+  The effect on live response time is still unmeasured.
 - **Luna sees what a form will submit.** It can see the current dropdown
   selection, which boxes are checked, and what a click would change. This
   helps when a task asks for an option the website marks as optional.
