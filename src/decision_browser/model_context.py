@@ -305,14 +305,17 @@ def _project(
 
 _SELECT_HINT = (
     "Change a control to a different value required by the goal. "
-    "An empty option clears the field; leave a matching value in place."
+    "An empty option clears the field; leave a matching value in place. "
+    "Compare the current value with offered option labels and values before "
+    "opening a result or submitting."
 )
 _SUBMIT_HINT = "Advance the visible form when its current fields and selections match the requested values."
 
 
 def _form_operation_hints(candidates: dict[str, Any]) -> dict[str | bool, str]:
-    """Describe only offered select and submit groups belonging to the same native form."""
-    selects: dict[tuple[str, str, str], set[str]] = {}
+    """Describe editable selects, and submits associated with their native form."""
+    hints: dict[str | bool, str] = {}
+    selects: set[tuple[str, str, str]] = set()
     submits: dict[tuple[str, str, str], set[str]] = {}
     for group, rows in candidates.items():
         operation = re.sub(r"_group\d+$", "", group)
@@ -320,16 +323,20 @@ def _form_operation_hints(candidates: dict[str, Any]) -> dict[str | bool, str]:
             continue
         for row in rows.values():
             node, form = row["node"], row["form"]
-            if row["operation"] != operation or not form or node["state"]["disabled"]:
+            if row["operation"] != operation or node["state"]["disabled"]:
+                continue
+            editable_select = (operation == "select" and node["state"]["tag"] == "select"
+                               and not node["state"]["readonly"])
+            if editable_select:
+                hints[group] = _SELECT_HINT
+            if not form:
                 continue
             owner = (row["origin"], row["url"], form["path"])
             if operation == "submit":
                 submits.setdefault(owner, set()).add(group)
-            elif node["state"]["tag"] == "select" and not node["state"]["readonly"] and any(node.get("selected", ())):
-                selects.setdefault(owner, set()).add(group)
-    hints: dict[str | bool, str] = {}
-    for owner in selects.keys() & submits.keys():
-        hints.update(dict.fromkeys(selects[owner], _SELECT_HINT))
+            elif editable_select and any(node.get("selected", ())):
+                selects.add(owner)
+    for owner in selects & submits.keys():
         hints.update(dict.fromkeys(submits[owner], _SUBMIT_HINT))
     return hints
 

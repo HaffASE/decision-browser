@@ -288,7 +288,9 @@ async def test_luna_form_hints_preserve_the_requested_clear_action(scenario):
                                             "An empty option clears the field; leave a matching value in place.") in options["select_group0"]
         assert "Advance the visible form when its current fields and selections match the requested values." in options["submit"]
     else:
-        assert "Change a control" not in options["select_group0"] and "Advance the visible form" not in options["submit"]
+        assert "Advance the visible form" not in options["submit"]
+    if scenario != "custom_description":
+        assert "Change a control" in options["select_group0"]
     if custom:
         assert options["DONE"] == custom[0] and options["wait"] == ""
     else:
@@ -385,3 +387,54 @@ async def test_ineligible_singleton_keeps_an_explicit_rejectable_target(scenario
         assert caught.value.code == "rejected_sentinel"
     finally:
         await provider.aclose()
+
+
+@pytest.mark.parametrize("availability", ["editable", "disabled", "readonly"])
+async def test_luna_standalone_native_select_has_operation_guidance_and_observed_options(availability):
+    from test_compact_context_v2 import standard_questions
+    from test_lean_context import native
+    from test_model_context import context
+
+    candidates = {"select": {}}
+    for label, value in (("Standard", "standard"), ("Design", "design")):
+        row = native("Stay category", "select")
+        row["form"] = {}
+        row["node"].update(role="combobox", value="standard", selected=["Standard"],
+                            option={"label": label, "value": value})
+        row["node"]["state"].update(tag="select", type="select-one",
+                                    disabled=availability == "disabled", readonly=availability == "readonly")
+        candidates["select"][value] = row
+    candidates["click"] = {"open": native("Open result", "click")}
+    data = context(candidates, goal="Choose Design, then open the requested result.")
+    questions, heads = standard_questions(candidates)
+    seen = []
+
+    def handler(request):
+        body = json.loads(request.content)
+        seen.append(body)
+        target = next(q for q in body["questions"] if q["name"] == "target_select")
+        design = next(row["value"] for row in target["choices"] if "Design" in row.get("description", ""))
+        return httpx.Response(200, content=_wire_answers(body, {"operation": "select", "target_select": design}))
+
+    provider = OpenAIProvider("fixture", transport=httpx.MockTransport(handler))
+    try:
+        decision = await provider.decide(questions, json.dumps(data), budget=_budget(), privacy=_gate(), target_heads=heads)
+    finally:
+        await provider.aclose()
+    assert decision == Decision("select", "design", 1.0)
+    assert len(seen) == 1
+    body = seen[0]
+    operation = body["questions"][0]
+    select = next(row for row in operation["choices"] if row["value"] == "select")
+    if availability == "editable":
+        assert "Change a control" in select["description"]
+        assert "current value with offered option labels and values" in select["description"]
+    else:
+        assert "description" not in select
+    state = json.loads(body["input"])
+    assert state["goal"] == data["goal"]
+    entries = state["candidates"]["select"]
+    assert len(entries) == 2
+    for entry in entries.values():
+        assert entry["value"] == "standard" and entry["selected"] == ["Standard"]
+    assert {row["option"]["value"] for row in entries.values()} == {"standard", "design"}

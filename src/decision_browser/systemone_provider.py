@@ -35,6 +35,7 @@ from .provider_config import (
     validate_text_settings,
 )
 from .provider_http import ProviderError, post_json
+from .systemone_actions import action_plan, reassessment_questions
 from .verification import ModelVisualReport
 
 _MAX_QUESTIONS = 64
@@ -252,6 +253,52 @@ class SystemOneProvider:
         except (ValueError, TypeError, UnicodeError):
             raise ProviderError("invalid_request") from None
         privacy.check_payload(choice_bytes)
+        if (self._endpoint == "https://api.typesafe.ai/v1/systemone"
+                and self._model in {"jev-latest", "jev-1.14.0"}):
+            plan = action_plan(original, input_text, state, prepared, operation_head,
+                               target_heads, self._max_choices)
+            if plan is not None:
+                question, action_state, bindings = plan
+                followups = reassessment_questions(question, action_state, bindings)
+                all_questions = (question, *followups)
+                privacy.check_payload(action_state.encode("utf-8"))
+                privacy.check_payload(json.dumps(
+                    [q.descriptions for q in all_questions], ensure_ascii=False,
+                ).encode("utf-8"))
+                action_wires = {}
+                for item in all_questions:
+                    item_wire = _wire(item, item.choices, self._max_choices)
+                    descriptions = dict(zip(item.choices, item.descriptions, strict=True))
+                    # Native Jev consumes direct action descriptions as its criteria.
+                    for key, members in item_wire.members.items():
+                        if members:
+                            item_wire.criteria[key] = cast(str, descriptions[members[0]])
+                    action_wires[item.name] = item_wire
+                answers = await self._ask(
+                    tuple(action_wires.values()), action_state, budget=budget, privacy=privacy,
+                )
+                selected, confidence = await self._resolve(
+                    question, action_wires[question.name], answers[question.name], action_state,
+                    budget=budget, privacy=privacy,
+                )
+                action_operation, action_target = bindings[str(selected)]
+                if action_operation in {"wait", "screenshot"} and followups:
+                    mode, mode_confidence = await self._resolve(
+                        followups[0], action_wires["progress_mode"], answers["progress_mode"],
+                        action_state, budget=budget, privacy=privacy,
+                    )
+                    if mode == "interact":
+                        alternative, alternative_confidence = await self._resolve(
+                            followups[1], action_wires["next_interaction"], answers["next_interaction"],
+                            action_state, budget=budget, privacy=privacy,
+                        )
+                        action_operation, action_target = bindings[str(alternative)]
+                        confidence = min(confidence, mode_confidence, alternative_confidence)
+                action_mapping = aliases.get(action_operation)
+                if action_target is not None and action_mapping is not None:
+                    action_target = action_mapping[action_target]
+                budget.remaining()
+                return Decision(action_operation, action_target, confidence)
         # Oversized speculative fan-out asks only the operation first. The one
         # selected target is requested later; no domain or candidate is pruned.
         initial = prepared if len(prepared) <= _MAX_QUESTIONS else (operation,)
