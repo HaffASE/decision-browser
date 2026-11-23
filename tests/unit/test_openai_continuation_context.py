@@ -127,13 +127,17 @@ async def test_native_submission_evidence_uses_only_its_form(operation, already_
 
 
 @pytest.mark.parametrize("size", [20, 3000])
-async def test_scroll_evidence_is_complete_or_omitted(size):
+@pytest.mark.parametrize("scroll", [
+    {"up": False, "down": False}, {"up": False, "down": True},
+    {"up": True, "down": False}, {"up": True, "down": True},
+])
+async def test_scroll_boundaries_and_click_names_describe_their_own_operation(size, scroll):
     first = native("A" * size, "click")
     second = native("B" * size, "click")
     scrolling = native("down", "scroll")
     scrolling["node"] = {}
     data = context({"click": {"first": first, "second": second}, "scroll": {"down": scrolling}},
-                   goal="Open the requested result.", scroll={"up": False, "down": False})
+                   goal="Open the requested result.", scroll=scroll)
     questions, heads = standard_questions(data["candidates"])
     seen = []
 
@@ -150,15 +154,20 @@ async def test_scroll_evidence_is_complete_or_omitted(size):
     operation = seen[0]["questions"][0]
     descriptions = [c.get("description", "") for c in operation["choices"]]
     evidence = [d for d in descriptions if "Observed evidence" in d]
+    assert len(evidence) == 1
+    content = evidence[0]
+    if content.startswith("{"):
+        content = json.loads(content)["evidence"]
+    observed = json.loads(content.split("Observed evidence: ", 1)[1])
+    assert observed == {"scroll": scroll}
+    assert first["name"] not in content and second["name"] not in content
+    assert ("Neither direction can move" in content) == (not any(scroll.values()))
+    click = next(c for c in operation["choices"] if c["value"] == "click")
     if size == 20:
-        assert len(evidence) == 1
-        content = evidence[0]
-        if content.startswith("{"):
-            content = json.loads(content)["evidence"]
-        observed = json.loads(content.split("Observed evidence: ", 1)[1])
-        assert observed == {"scroll": {"up": False, "down": False}, "visible_controls": ["A" * size, "B" * size]}
+        names = json.loads(click["description"].split("Observed click controls: ", 1)[1])
+        assert names == [first["name"], second["name"]]
     else:
-        assert not evidence
+        assert "Observed click controls" not in click["description"]
 
 
 @pytest.mark.parametrize("checked", [False, True])
@@ -186,3 +195,67 @@ async def test_native_checkbox_click_describes_toggle_effect_under_negative_goal
     assert ("currently checked checkbox off" if checked else "currently unchecked checkbox on") in evidence
     assert json.loads(body["input"])["goal"] == data["goal"]
     assert data["candidates"]["click"]["coverage"]["node"]["state"]["checked"] == checked
+
+
+@pytest.mark.parametrize("checked", [False, True])
+@pytest.mark.parametrize("requested", ["enable", "disable"])
+async def test_optional_checkbox_submission_retains_user_requirement(checked, requested):
+    form = {"path": "0/1", "id": None, "name": None, "action": "https://example.test/next", "method": "post",
+            "formAction": None, "formMethod": None, "formTarget": None}
+    checkbox = native("Audio description", "click")
+    checkbox["form"] = {**form, "submits": False}
+    checkbox["node"].update(role="checkbox")
+    checkbox["node"]["state"].update(tag="input", type="checkbox", checked=checked)
+    submit = native("Continue", "submit")
+    submit["form"] = {**form, "submits": True}
+    submit["node"]["state"].update(tag="form", type=None)
+    data = context({"click": {"audio": checkbox}, "submit": {"next": submit}},
+                   goal=f"{requested.capitalize()} Audio description and continue.")
+    questions, heads = standard_questions(data["candidates"])
+    seen = []
+
+    def handler(request):
+        body = json.loads(request.content)
+        seen.append(body)
+        return httpx.Response(200, content=_wire_answers(body, {"operation": "DONE"}))
+
+    provider = OpenAIProvider("fixture", transport=httpx.MockTransport(handler))
+    try:
+        await provider.decide(questions, json.dumps(data), budget=_budget(), privacy=_gate(), target_heads=heads)
+    finally:
+        await provider.aclose()
+    choices = seen[0]["questions"][0]["choices"]
+    submission = next(json.loads(c["description"]) for c in choices if c["value"].startswith("action_")
+                      and json.loads(c["description"])["operation"] == "submit")
+    evidence = submission["evidence"]
+    fields = json.loads(evidence.split("Observed form fields: ", 1)[1])
+    assert fields == [{"name": "Audio description", "checked": checked}]
+    assert "must be satisfied even if the HTML field is optional" in evidence
+    assert "If its state already matches the request, leave it unchanged" in evidence
+    assert "choose the offered checkbox click before submitting" in evidence
+    assert json.loads(seen[0]["input"])["goal"] == data["goal"]
+
+
+async def test_split_click_groups_describe_only_their_own_targets():
+    candidates = {
+        "click_group0": {f"a{i}": native(f"First link {i}", "click") for i in range(2)},
+        "click_group1": {f"b{i}": native(f"Second link {i}", "click") for i in range(2)},
+    }
+    data = context(candidates, goal="Open the requested link.")
+    questions, heads = standard_questions(candidates)
+    seen = []
+
+    def handler(request):
+        body = json.loads(request.content)
+        seen.append(body)
+        return httpx.Response(200, content=_wire_answers(body, {"operation": "DONE"}))
+
+    provider = OpenAIProvider("fixture", transport=httpx.MockTransport(handler))
+    try:
+        await provider.decide(questions, json.dumps(data), budget=_budget(), privacy=_gate(), target_heads=heads)
+    finally:
+        await provider.aclose()
+    operations = {c["value"]: c.get("description", "") for c in seen[0]["questions"][0]["choices"]}
+    for group, rows in candidates.items():
+        names = json.loads(operations[group].split("Observed click controls: ", 1)[1])
+        assert names == [row["name"] for row in rows.values()]
