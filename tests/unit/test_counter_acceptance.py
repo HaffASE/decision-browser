@@ -18,7 +18,8 @@ import decision_browser.counter_acceptance as counter
 from decision_browser.artifacts import Artifact
 from decision_browser.browser import BrowserDriver
 from decision_browser.contracts import TaskResult, UsageCounters
-from decision_browser.decision_codec import Decision
+from decision_browser.decision_codec import ChoiceQuestion, Decision
+from decision_browser.model_context import prepare_context
 from decision_browser.runner import RunManager, RunnerError
 from decision_browser.server import StandardFormDesk, _mcp_ctx, create_server
 
@@ -290,6 +291,58 @@ async def test_provider_rejects_unwanted_decisions_before_dispatch(choice):
         await wrapper.decide([], raw, budget=None, privacy=None)
     with pytest.raises(RunnerError, match="counter_text_helper_disabled"):
         await wrapper.generate_text("", budget=None, privacy=None)
+
+
+@pytest.mark.parametrize("stop", ["DONE", "UNABLE"])
+async def test_counter_offers_click_and_stops_before_model_inference(stop):
+    request, _, artifacts, _, _ = evidence()
+    node = json.loads(json.loads(artifacts[4].content)["semantic_fingerprint"])["semantic"]["node"]
+    calls = []
+
+    async def decide(questions, input_text, **kwargs):
+        operation, target = questions
+        assert operation.choices == ("DONE", "UNABLE", "click")
+        assert operation.descriptions == ("done", "unable", "click")
+        assert target.choices == ("inc-token", "reset-token")
+        assert kwargs["target_heads"] == {"click": "button"}
+        candidates = json.loads(input_text)["candidates"]
+        assert set(candidates) == {"click"}
+        assert set(candidates["click"]) == {"inc-token", "reset-token"}
+        for provider in ("openai", "systemone"):
+            prepare_context(
+                questions, input_text, operation_head="action",
+                target_heads=kwargs["target_heads"], compact=True, lean=True, provider=provider,
+            )
+        calls.append(True)
+        return Decision(stop, None, 1.0)
+
+    questions = (
+        ChoiceQuestion("action", "Choose", ("DONE", "UNABLE", "click", "wait"),
+                       ("done", "unable", "click", "wait")),
+        ChoiceQuestion("button", "Choose target", ("inc-token", "reset-token")),
+        ChoiceQuestion("pause", "Choose wait", ("short",)),
+    )
+    candidates = {
+        "click": {
+            "inc-token": {"operation": "click", "node": node, "url": request.start_url},
+            "reset-token": {"operation": "click", "node": {**node, "name": "reset"},
+                            "url": request.start_url},
+        },
+        "wait": {"short": {"operation": "wait"}},
+    }
+    wrapper = counter.DecisionsOnlyProvider(SimpleNamespace(decide=decide), request.start_url)
+    result = await wrapper.decide(
+        questions, json.dumps({
+            "context_format": "decision-browser-context-v1", "candidates": candidates,
+            "goal": request.goal, "origin": "http://127.0.0.1:12345",
+            "url": request.start_url, "text": "0 inc reset",
+            "recent_actions": [], "excluded_mechanisms": [],
+        }), budget=None, privacy=None,
+        operation_head="action", target_heads={"click": "button", "wait": "pause"},
+    )
+    assert result.operation == stop and calls == [True]
+    assert questions[0].choices == ("DONE", "UNABLE", "click", "wait")
+    assert "wait" in candidates
 
 
 async def test_observer_waits_finality_exports_and_drains(tmp_path, monkeypatch):

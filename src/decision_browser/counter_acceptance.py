@@ -15,6 +15,7 @@ import sys
 import time
 import uuid
 from collections.abc import Mapping, Sequence
+from dataclasses import replace
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlsplit
@@ -308,6 +309,33 @@ class DecisionsOnlyProvider:
         budget: Budget, privacy: PrivacyGate, operation_head: str = "operation",
         target_heads: Mapping[str, str] | None = None,
     ) -> Decision:
+        # The counter accepts only increment clicks and explicit stops. Offer
+        # that operation domain before inference, retaining every click target
+        # so the provider still has to distinguish inc from reset.
+        if questions:
+            heads = {op: head for op, head in (target_heads or {}).items() if op == "click"}
+            scoped = []
+            for question in questions:
+                if question.name == operation_head:
+                    indices = [
+                        index for index, choice in enumerate(question.choices)
+                        if choice in TERMINAL_OPERATIONS or choice in heads
+                    ]
+                    question = replace(
+                        question,
+                        choices=tuple(question.choices[index] for index in indices),
+                        descriptions=tuple(question.descriptions[index] for index in indices)
+                        if question.descriptions else (),
+                    )
+                    scoped.append(question)
+                elif question.name in heads.values():
+                    scoped.append(question)
+            payload = _object(json.loads(input_text))
+            candidates = _object(payload["candidates"])
+            payload["candidates"] = {op: candidates[op] for op in heads}
+            questions = tuple(scoped)
+            target_heads = heads
+            input_text = json.dumps(payload)
         self.calls += 1
         value = await self._provider.decide(
             questions, input_text, budget=budget, privacy=privacy,
