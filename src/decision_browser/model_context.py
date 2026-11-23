@@ -13,7 +13,13 @@ from collections.abc import Mapping, Sequence
 from typing import Any, Literal
 from urllib.parse import urlsplit
 
-from .action_context import NEXT_ACTION, PAGE_EXCERPT_BYTES, PAGE_HISTORY_LIMIT, TARGET
+from .action_context import (
+    NEXT_ACTION,
+    PAGE_EXCERPT_BYTES,
+    PAGE_HISTORY_LIMIT,
+    TARGET,
+    repeated_unchanged_waits,
+)
 from .decision_codec import ChoiceQuestion, CodecError
 from .flights_context import FLIGHTS_FORMAT, validate_context
 from .privacy import PrivacyGate
@@ -276,6 +282,7 @@ def _project(
         )
         if provider == "systemone":
             by_head = {question.name: question for question in wire_questions}
+            stalled = native and repeated_unchanged_waits(data["recent_actions"])
 
             def operation_description(choice: str | bool, existing: str | None) -> str | None:
                 if existing is not None:
@@ -286,6 +293,14 @@ def _project(
                 if (description and target is not None and len(target.choices) == 1
                         and target.descriptions and description_truncation.get(str(choice)) is False):
                     description += " Offered target for this operation: " + str(target.descriptions[0])
+                elif (stalled and description and choice in {"click", "fill", "select", "submit"}
+                      and target is not None and 2 <= len(target.choices) <= 4 and target.descriptions):
+                    # The operation and target are separate decisions. Show every option in
+                    # small groups, without favoring the first few in a large group.
+                    labels = [label for label in target.descriptions if label]
+                    preview = " | ".join(labels)
+                    if len(labels) == len(target.choices) and len(preview.encode("utf-8")) <= 256:
+                        description += " Offered targets: " + preview
                 return description
 
             wire_questions = tuple(
@@ -305,14 +320,17 @@ def _project(
 
 _SELECT_HINT = (
     "Change a control to a different value required by the goal. "
-    "An empty option clears the field; leave a matching value in place."
+    "An empty option clears the field; leave a matching value in place. "
+    "Compare the current value with offered option labels and values before "
+    "opening a result or submitting."
 )
 _SUBMIT_HINT = "Advance the visible form when its current fields and selections match the requested values."
 
 
 def _form_operation_hints(candidates: dict[str, Any]) -> dict[str | bool, str]:
-    """Describe only offered select and submit groups belonging to the same native form."""
-    selects: dict[tuple[str, str, str], set[str]] = {}
+    """Describe editable selects, and submits associated with their native form."""
+    hints: dict[str | bool, str] = {}
+    selects: set[tuple[str, str, str]] = set()
     submits: dict[tuple[str, str, str], set[str]] = {}
     for group, rows in candidates.items():
         operation = re.sub(r"_group\d+$", "", group)
@@ -320,16 +338,20 @@ def _form_operation_hints(candidates: dict[str, Any]) -> dict[str | bool, str]:
             continue
         for row in rows.values():
             node, form = row["node"], row["form"]
-            if row["operation"] != operation or not form or node["state"]["disabled"]:
+            if row["operation"] != operation or node["state"]["disabled"]:
+                continue
+            editable_select = (operation == "select" and node["state"]["tag"] == "select"
+                               and not node["state"]["readonly"])
+            if editable_select:
+                hints[group] = _SELECT_HINT
+            if not form:
                 continue
             owner = (row["origin"], row["url"], form["path"])
             if operation == "submit":
                 submits.setdefault(owner, set()).add(group)
-            elif node["state"]["tag"] == "select" and not node["state"]["readonly"] and any(node.get("selected", ())):
-                selects.setdefault(owner, set()).add(group)
-    hints: dict[str | bool, str] = {}
-    for owner in selects.keys() & submits.keys():
-        hints.update(dict.fromkeys(selects[owner], _SELECT_HINT))
+            elif editable_select and any(node.get("selected", ())):
+                selects.add(owner)
+    for owner in selects & submits.keys():
         hints.update(dict.fromkeys(submits[owner], _SUBMIT_HINT))
     return hints
 
@@ -528,11 +550,7 @@ def _compact_projection(
         if question.name == operation_head:
             instructions = _COMPACT_ACTION
             descriptions = question.descriptions
-            recent = source["recent_actions"][-2:]
-            if not descriptions and "wait" in question.choices and len(recent) == 2 and all(
-                row.get("operation") == "wait" and row.get("acknowledged") is True
-                and row.get("page_changed") is False for row in recent
-            ):
+            if not descriptions and "wait" in question.choices and repeated_unchanged_waits(source["recent_actions"]):
                 feedback = (
                     "The last two waits left the observed page unchanged. If the next needed control "
                     "is ready, use it. Wait again only for a specific missing, disabled or loading result."

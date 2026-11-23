@@ -302,3 +302,30 @@ def test_systemone_grouped_operation_preserves_explicit_description(existing):
     else:
         assert 'repetitions' in wire[0].descriptions[1]
     assert aliases[group]['1'] == TOKEN
+
+
+@pytest.mark.parametrize(("waits", "names", "shown"), [
+    (2, ["Zurich city", "Zurich Airport"], True),
+    (1, ["Zurich city", "Zurich Airport"], False),
+    (2, ["Long option label " * 9, "Another option " * 12], False),
+    (2, ["One", "Two", "Three", "Four", "Five"], False),
+])
+def test_systemone_offers_bounded_visible_alternatives_after_unchanged_waits(waits, names, shown):
+    from test_compact_context_v2 import standard_questions
+    from test_lean_context import native
+
+    from decision_browser.model_context import prepare_context
+
+    rows = {str(i): native(name, operation="click") for i, name in enumerate(names)}
+    waits_history = [{"operation": "wait", "acknowledged": True, "page_changed": False}] * waits
+    source = context({"click": rows, "wait": {"short": native("short", operation="wait")}},
+                     recent_actions=waits_history)
+    bundle, heads = standard_questions(source["candidates"])
+    wire, _, aliases = prepare_context(bundle, json.dumps(source), target_heads=heads,
+                                       compact=True, lean=True, provider="systemone")
+    operation = wire[0]
+    hint = dict(zip(operation.choices, operation.descriptions))["click"]
+    assert ("Offered targets:" in hint) is shown
+    if shown:
+        assert all(name in hint for name in names)
+    assert set(aliases["click"].values()) == set(rows)
