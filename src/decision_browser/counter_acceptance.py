@@ -296,7 +296,7 @@ class RecordingDriver(BrowserDriver):
 
 
 class DecisionsOnlyProvider:
-    """Preserve production Decisions behavior; never invoke the Responses helper."""
+    """Offer counter actions through the production provider and validate its choice."""
 
     def __init__(self, provider: ProviderPort, url: str) -> None:
         self._provider = provider

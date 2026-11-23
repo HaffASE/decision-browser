@@ -330,6 +330,8 @@ async def test_counter_offers_click_and_stops_before_model_inference(stop):
         },
         "wait": {"short": {"operation": "wait"}},
     }
+    for binding in candidates["click"].values():
+        binding.update(form={}, context={})
     wrapper = counter.DecisionsOnlyProvider(SimpleNamespace(decide=decide), request.start_url)
     result = await wrapper.decide(
         questions, json.dumps({
