@@ -64,6 +64,12 @@ Existing settings are preserved; conflicts stop setup. Nothing changes global
 client settings or grants project trust. Linux needs Playwright's host libraries
 and a working Chromium sandbox. Downloads require network access.
 
+If uv reports `UnknownIssuer` for a Python package and your organization’s CA
+is already trusted by macOS, a launcher built from this checkout can use that
+trust store with `UV_SYSTEM_CERTS=true`. The published 0.1.2 launcher drops
+this setting. Chromium downloads use Playwright’s Node client and have their
+own CA configuration. See [restricted networks and blocked installs](docs/installation.md#restricted-networks-and-diagnostics).
+
 On macOS/Linux, provider selection and its key are saved outside projects in
 `~/.config/decision-browser/provider.json`, with private file permissions. This
 is a local file, not encrypted storage. Windows key persistence is not supported

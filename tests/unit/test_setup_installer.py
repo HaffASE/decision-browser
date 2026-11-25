@@ -146,6 +146,7 @@ def test_unfinished_provider_keeps_installation_and_reports_resume(
     error = capsys.readouterr().err
     assert "Installation retained" in error
     assert "decision_browser.cli configure" in error
+    assert "Client settings were not changed" not in error
 
 
 @pytest.mark.parametrize("error,expected", [(OSError("CANARY-PRIVATE"), 1), (KeyboardInterrupt(), 130)])

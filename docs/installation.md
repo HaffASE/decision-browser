@@ -218,6 +218,20 @@ client's project trust decision.
 
 ## Restricted networks and diagnostics
 
+If uv reports `invalid peer certificate: UnknownIssuer`, confirm with your
+administrator that the issuing CA is trusted by the operating system. With a
+launcher built from this checkout, opt in to the system trust store for uv in
+a fresh project. For example, from that project on macOS or Linux, run
+
+```sh
+UV_SYSTEM_CERTS=true npx --offline --yes --package=/absolute/path/to/reviewed-launcher.tgz -- decision-browser setup codex
+```
+
+Use the path to the tarball containing the fix. The published 0.1.2 launcher
+filters out this variable. Leaving it unset keeps uv’s default trust settings.
+Explicit values reach uv for managed Python and locked packages, including
+downloads through a configured mirror. TLS certificate verification stays enabled.
+
 For a reviewed HTTPS package mirror, set `DECISION_BROWSER_INSTALL_INDEX_URL`
 in the environment of the installer. For example:
 
@@ -234,7 +248,7 @@ the standalone archive to avoid an extra package-resolution stage.
 
 Setup forwards `HTTPS_PROXY`, `HTTP_PROXY`, `ALL_PROXY`, `NO_PROXY` (and lowercase
 variants), `SSL_CERT_FILE`, `SSL_CERT_DIR` and `NODE_EXTRA_CA_CERTS`.
-For Chromium downloads through a proxy with a custom CA, set `NODE_EXTRA_CA_CERTS`
+Playwright downloads Chromium with its own Node client. For that stage, set `NODE_EXTRA_CA_CERTS`
 to the PEM certificate file, as described in the
 [Playwright proxy instructions](https://playwright.dev/python/docs/browsers#install-behind-a-firewall-or-a-proxy).
 Provider credentials are excluded.
@@ -249,12 +263,21 @@ always enabled. The first bootstrap also needs access to
 not replace this uv download or uv's managed Python download.
 
 Setup prints the selected uv path/version. If it reports an older uv after an
-update, fix PATH order in the shell launching the installer. Every preparation
-stage emits a JSON diagnostic on stderr with `stage`, `code`, `exit_code`, and
-`duration_seconds`. Codes distinguish failure, timeout and failure to start;
-raw child output and environment values are not logged. Installer stage diagnostics
-do not yet classify individual DNS/TLS failures; the npm uv downloader does
-distinguish DNS, TLS and timeout failures. Retrying preserves active registrations.
+update, fix PATH order in the shell launching the installer. Each project
+runtime preparation stage emits a JSON diagnostic on stderr. Read `stage` and
+`code` for the operation and its outcome. On failure, `hint` identifies the
+cause when known, `target` identifies the download service when known, and
+`next_action` suggests what to check. For example,
+`tls_unknown_issuer` on `locked Python package` points to uv’s certificate
+check. A public download host may be named. The installer labels a private
+index as “configured mirror” and suppresses child logs.
+
+If the diagnostic reports `cleanup: unknown_retained`, the project is blocked.
+Leave `.decision-browser-install.lease`, `.decision-browser-stage-cleanup-unknown.json`
+(if present), and the runtime in place. Correcting a CA or proxy setting does
+not clear the block. Use a fresh project to check the correction. There is no
+supported in-place recovery command for this state. The mere presence of a
+lease file is normal even after a successful install.
 
 The doctor also reports registration, runtime-file and skill presence separately
 for Codex/Claude. These are on-disk observations, not proof of client trust,
@@ -310,10 +333,9 @@ The wheel includes `decision-browser-install` and its lockfile/build inputs. No
 archive extracts the same inputs into a private temporary directory, removes them
 after setup, and leaves registrations pointing only at the persistent project runtime.
 
-Download/browser failures leave registrations untouched. A stage that never
-started can be attempted again after its prerequisites are fixed. A failed,
-timed-out or interrupted owned stage retains a refusal barrier and its runtime;
-inspect that evidence before another preparation.
+Download/browser failures happen before registration changes. A failed,
+timed-out or interrupted owned stage retains its lease and runtime. Follow
+the [blocked-project guidance](#restricted-networks-and-diagnostics).
 Caught write failures roll back files changed by that attempt, unless another writer
 has since modified them. Close clients while changing registrations. Multi-file writes
 are not crash-atomic: after power loss or forced termination, review partial entries
