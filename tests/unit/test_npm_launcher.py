@@ -50,6 +50,9 @@ def test_npm_bundle_is_self_contained_and_never_overwritten(tmp_path):
     output = tmp_path / "output with spaces"
     wheel = fixture_wheel(tmp_path)
     builder.build(wheel, output)
+    for helper in ("install-recovery.py", "install_recovery_evidence.py"):
+        assert (output / "bin" / helper).read_bytes() == (ROOT / "npm/bin" / helper).read_bytes()
+    assert not list((output / "bin").rglob("*.py[co]"))
     manifest = json.loads((output / "installer/manifest.json").read_text())
     assert manifest["sha256"] == hashlib.sha256((output / "installer/decision-browser.pyz").read_bytes()).hexdigest()
     assert (output / "LICENSE").read_text() == "fixture license"

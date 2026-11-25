@@ -70,6 +70,10 @@ trust store with `UV_SYSTEM_CERTS=true`. The published 0.1.2 launcher drops
 this setting. Chromium downloads use Playwright’s Node client and have their
 own CA configuration. See [restricted networks and blocked installs](docs/installation.md#restricted-networks-and-diagnostics).
 
+If setup leaves a blocked project, a launcher built from this checkout can
+run `install-status --json` without preparing a runtime. See the
+[recovery procedure and local TLS test](docs/installation.md#inspect-and-recover-a-blocked-first-install).
+
 On macOS/Linux, provider selection and its key are saved outside projects in
 `~/.config/decision-browser/provider.json`, with private file permissions. This
 is a local file, not encrypted storage. Windows key persistence is not supported

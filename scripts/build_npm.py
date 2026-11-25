@@ -27,7 +27,7 @@ def build(wheel: Path, output: Path, root: Path = ROOT) -> None:
     installer_builder["bootstrap_payload"](wheel)
     # Never overwrite a previously reviewed candidate.
     output.mkdir(parents=True, exist_ok=False)
-    shutil.copytree(root / "npm/bin", output / "bin")
+    shutil.copytree(root / "npm/bin", output / "bin", ignore=shutil.ignore_patterns("__pycache__", "*.py[co]"))
     for name in ("package.json", "README.md"):
         shutil.copyfile(root / "npm" / name, output / name)
     for name, data in notices.items():
