@@ -5,6 +5,24 @@ Versions follow the policy in [Releasing](docs/releasing.md).
 
 ## [Unreleased]
 
+## [0.1.3] - 2026-11-25
+
+- Forward explicitly configured `UV_SYSTEM_CERTS` through the npm launcher and
+  Python installer to uv, including locked package downloads through a configured
+  mirror. Preserve custom CA settings and certificate verification. Chromium
+  downloads continue to use Playwright's Node client and its CA configuration.
+- Report installer failures with the stage, a bounded reason code, a recognized
+  public download host or configured-mirror label, and a next action. Keep child
+  output, private URLs and CA paths out of diagnostics. Report retained project
+  blocks separately and track whether client settings were written.
+- Add `install-status` and a recovery preview using an existing Python 3.11+
+  interpreter. These commands inspect a blocked project without preparing a
+  runtime. Explicit `recover-install --apply` can record signed boot evidence for
+  an eligible failed first install, then release the lease after a later boot
+  of the same machine and repeated checks of the lease, retained files,
+  registrations and process use. Uncertain evidence keeps the block in place.
+  Recovery retains runtimes and existing client registrations.
+
 ## [0.1.2] - 2026-11-23
 
 - **Jev can choose an action and its target together.** For example, it can

@@ -35,7 +35,7 @@ among observed controls; the runner rechecks the target before acting.
 | Functional checks | Checks against the resulting page | Verified, failed or unverified outcome |
 | Step, time, call and byte limits | Budget enforcement and cleanup | Usage counters, timings and evidence artifacts |
 
-> **Experimental, version 0.1.2.**
+> **Experimental, version 0.1.3.**
 
 ## Quick start
 
@@ -45,7 +45,7 @@ Open a terminal in your project with Node.js 20+ (including npm/npx) and your
 client CLI on `PATH`, then run the pinned npm package.
 
 ```sh
-npx --yes @haffa/decision-browser@0.1.2 setup codex
+npx --yes @haffa/decision-browser@0.1.3 setup codex
 ```
 
 Use `setup claude` for Claude Code or `setup both` for both clients. Plain `setup`
@@ -65,13 +65,14 @@ client settings or grants project trust. Linux needs Playwright's host libraries
 and a working Chromium sandbox. Downloads require network access.
 
 If uv reports `UnknownIssuer` for a Python package and your organization’s CA
-is already trusted by macOS, a launcher built from this checkout can use that
-trust store with `UV_SYSTEM_CERTS=true`. The published 0.1.2 launcher drops
-this setting. Chromium downloads use Playwright’s Node client and have their
+is already trusted by macOS, opt in to that trust store with
+`UV_SYSTEM_CERTS=true npx --yes @haffa/decision-browser@0.1.3 setup codex`.
+Chromium downloads use Playwright’s Node client and have their
 own CA configuration. See [restricted networks and blocked installs](docs/installation.md#restricted-networks-and-diagnostics).
 
-If setup leaves a blocked project, a launcher built from this checkout can
-run `install-status --json` without preparing a runtime. See the
+If setup leaves a blocked project, run
+`npx --yes @haffa/decision-browser@0.1.3 install-status --json` to inspect it
+using an existing Python 3.11+ interpreter. See the
 [recovery procedure and local TLS test](docs/installation.md#inspect-and-recover-a-blocked-first-install).
 
 On macOS/Linux, provider selection and its key are saved outside projects in
@@ -89,8 +90,8 @@ The server reads your saved profile automatically. To change providers or run an
 optional local diagnostic, use the same reviewed package:
 
 ```sh
-npx --yes @haffa/decision-browser@0.1.2 configure
-npx --yes @haffa/decision-browser@0.1.2 doctor --json
+npx --yes @haffa/decision-browser@0.1.3 configure
+npx --yes @haffa/decision-browser@0.1.3 doctor --json
 ```
 
 These commands reuse a cached package runtime and do not reinstall Chromium.
