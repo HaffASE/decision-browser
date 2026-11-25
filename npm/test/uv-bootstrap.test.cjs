@@ -37,6 +37,22 @@ test('supported installed uv needs no download or cache writes', async (t) => {
   assert.deepEqual(fs.readdirSync(f.cache), []);
 });
 
+test('managed uv preparation and cache reuse preserve the explicit certificate choice', async (t) => {
+  const f = fixture(t);
+  f.options.env.UV_SYSTEM_CERTS = 'false';
+  f.options.env.SSL_CERT_FILE = '/private/corporate-ca.pem';
+  const prepared = await ensureUv(f.options);
+  const cached = await ensureUv(f.options);
+  for (const result of [prepared, cached]) {
+    assert.equal(result.env.UV_SYSTEM_CERTS, 'false');
+    assert.equal(result.env.SSL_CERT_FILE, '/private/corporate-ca.pem');
+  }
+  for (const call of f.calls) {
+    assert.equal(call.opts.env.UV_SYSTEM_CERTS, 'false');
+    assert.equal(call.opts.env.SSL_CERT_FILE, '/private/corporate-ca.pem');
+  }
+});
+
 for (const result of [{ error: Error('missing') }, { status: 0, stdout: 'uv 0.12.0' }]) {
   test('missing or old uv is downloaded once and reused from private cache', async (t) => {
     const f = fixture(t, result);

@@ -77,6 +77,13 @@ default to `~/Library/Caches/decision-browser` on macOS,
 `DECISION_BROWSER_CACHE_DIR` overrides this location. uv manages its Python cache
 separately. A modified tool/runtime cache is rejected rather than executed.
 
+For Python downloads behind a corporate proxy, set `UV_SYSTEM_CERTS=true`
+when the issuing CA is trusted by the operating system. This launcher forwards
+the explicit value to uv for both the frozen lockfile and a configured mirror.
+For the Chromium download, Playwright’s Node client accepts an additional CA
+bundle via `NODE_EXTRA_CA_CERTS`. If setup reports a blocked project, keep the
+lease and runtime in place and use a fresh project to test the corrected settings.
+
 The package contains a checked `.pyz` installer and SHA-256 manifest. It never
 looks up a Python package by name on PyPI, and has no npm runtime dependencies or
 lifecycle hooks. Runtime Python dependencies come from the embedded lockfile.
@@ -84,7 +91,7 @@ MCP settings point to a persistent project runtime, never to the npm/uv cache.
 The hash detects a broken package; it is not publisher authentication.
 
 Unattended installation does not require a model key. Inherited model credentials
-and Python/uv environment overrides are not passed to bootstrap children. Only
+and unrelated Python/uv environment overrides are not passed to bootstrap children. Only
 the prepared configure/doctor process receives supported provider overrides. Guided
 setup asks for credentials only after installation; the MCP server then reads
 the saved profile automatically. Advanced environment configuration remains

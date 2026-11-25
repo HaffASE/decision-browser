@@ -4,7 +4,7 @@
 // No npm dependencies, install scripts, shell interpolation, or unpinned PyPI lookup.
 const { spawnSync } = require('node:child_process');
 const { createHash } = require('node:crypto');
-const { readFileSync, lstatSync } = require('node:fs');
+const { readFileSync, lstatSync, statSync } = require('node:fs');
 const path = require('node:path');
 const pkg = require('../package.json');
 const { BootstrapError, ensureUv, supportedUv, cacheDirectory, privateDirectory } = require('./uv-bootstrap.cjs');
@@ -40,7 +40,7 @@ install client CLIs, invoke sudo, change project trust, or call a model API.
 function cleanEnvironment(env, platform = process.platform) {
   const allowed = new Set(['PATH', 'HOME', 'USERPROFILE', 'SYSTEMROOT', 'WINDIR',
     'TMPDIR', 'TMP', 'TEMP', 'LANG', 'LC_ALL', 'SSL_CERT_FILE', 'SSL_CERT_DIR', 'HTTPS_PROXY', 'HTTP_PROXY', 'ALL_PROXY', 'NO_PROXY',
-    'DECISION_BROWSER_INSTALL_INDEX_URL', 'DECISION_BROWSER_CONFIG_FILE', 'NODE_EXTRA_CA_CERTS',
+    'DECISION_BROWSER_INSTALL_INDEX_URL', 'DECISION_BROWSER_CONFIG_FILE', 'NODE_EXTRA_CA_CERTS', 'UV_SYSTEM_CERTS',
     'DECISION_BROWSER_CACHE_DIR', 'XDG_CACHE_HOME', 'LOCALAPPDATA']);
   const result = {};
   for (const [key, value] of Object.entries(env)) {
@@ -132,9 +132,8 @@ function archivePath(root) {
   return file;
 }
 
-function uvArgs(archive, options) {
-  const args = ['--no-config', 'run', '--no-project', '--managed-python', '--python', '3.12',
-    '--', 'python', '-I', archive];
+function installerArgs(archive, options) {
+  const args = ['-I', archive];
   if (options.client) args.push('--client', options.client);
   args.push('--project', options.project);
   if (options.setup) args.push('--setup');
@@ -143,26 +142,53 @@ function uvArgs(archive, options) {
   return args;
 }
 
+function preparePython(uv, run, cwd) {
+  const args = ['--no-config', 'run', '--no-project', '--managed-python', '--python', '3.12',
+    '--', 'python', '-I', '-c', 'import sys; print(sys.executable)'];
+  // uv can report environment values and download URLs before Python starts.
+  // Capture this preparation separately so the installer can retain its terminal.
+  const result = run(uv.command, args, { env: uv.env, cwd, encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'pipe'], shell: false, timeout: 900000, maxBuffer: 65536 });
+  if (result.error || result.signal || result.status !== 0) {
+    if (typeof result.stderr === 'string' && result.stderr.includes('Failed to parse environment variable `UV_SYSTEM_CERTS`')) {
+      throw new SetupError('uv_system_certs_invalid: managed Python preparation failed. Set UV_SYSTEM_CERTS to a supported boolean value or unset it. Client settings were not changed.');
+    }
+    const code = result.error?.code === 'ETIMEDOUT' ? 'managed_python_timeout'
+      : result.signal ? 'managed_python_interrupted'
+        : result.error ? 'managed_python_start_failed' : 'managed_python_failed';
+    throw new SetupError(`${code}: managed Python preparation failed. Check uv availability, network access and explicit CA settings, including UV_SYSTEM_CERTS. Client settings were not changed.`);
+  }
+  const python = typeof result.stdout === 'string' ? result.stdout.trim() : '';
+  let usable = false;
+  if (path.isAbsolute(python) && !/[\r\n\x00]/.test(python)) {
+    try { usable = statSync(python).isFile(); } catch { /* fixed diagnostic below */ }
+  }
+  if (!usable) {
+    throw new SetupError('managed_python_invalid: uv did not provide a usable Python executable. Check the managed Python installation. Client settings were not changed.');
+  }
+  return python;
+}
+
 function prepareRuntime(uv, archive, cache, run, cwd) {
   privateDirectory(cache);
-  const args = ['--no-config', 'run', '--no-project', '--managed-python', '--python', '3.12',
-    '--', 'python', '-I', archive, '--prepare-runtime', '--cache', cache];
-  const result = run(uv.command, args, { env: uv.env, cwd, encoding: 'utf8',
+  const python = preparePython(uv, run, cwd);
+  const args = ['-I', archive, '--prepare-runtime', '--cache', cache];
+  const result = run(python, args, { env: uv.env, cwd, encoding: 'utf8',
     stdio: ['ignore', 'pipe', 'inherit'], shell: false, timeout: 900000, maxBuffer: 65536 });
   if (result.error || result.signal || result.status !== 0) {
-    throw new SetupError('Command runtime preparation failed. Check the diagnostic above and retry; project settings were not changed.');
+    throw new SetupError('Command runtime preparation failed. Follow the diagnostic above. Project settings were not changed.');
   }
   let response;
   try { response = JSON.parse(result.stdout); } catch { /* fixed diagnostic below */ }
-  const python = response?.python;
-  const relative = typeof python === 'string' && path.isAbsolute(python)
-    ? path.relative(path.join(cache, 'runtimes'), python) : '..';
+  const runtimePython = response?.python;
+  const relative = typeof runtimePython === 'string' && path.isAbsolute(runtimePython)
+    ? path.relative(path.join(cache, 'runtimes'), runtimePython) : '..';
   const suffix = process.platform === 'win32' ? path.join('venv', 'Scripts', 'python.exe') : path.join('venv', 'bin', 'python');
   if (!relative || relative.startsWith('..') || path.isAbsolute(relative)
-      || !relative.endsWith(path.sep + suffix) || !require('node:fs').statSync(python).isFile()) {
+      || !relative.endsWith(path.sep + suffix) || !statSync(runtimePython).isFile()) {
     throw new SetupError('Invalid prepared runtime; no project-supplied executable was started.');
   }
-  return python;
+  return runtimePython;
 }
 
 async function main(argv = process.argv.slice(2), deps = {}) {
@@ -184,7 +210,7 @@ async function main(argv = process.argv.slice(2), deps = {}) {
     const archive = archivePath(root);
     const sourceEnv = deps.env || process.env;
     const uv = await (deps.ensureUv || ensureUv)({ run, env: cleanEnvironment(sourceEnv), cwd, err });
-    let command = uv.command, args = uvArgs(archive, options), env = uv.env;
+    let command, args, env = uv.env;
     if (options.command) {
       command = (deps.prepareRuntime || prepareRuntime)(uv, archive, cacheDirectory(uv.env), run, cwd);
       args = ['-I', '-B', '-m', 'decision_browser.cli', options.command];
@@ -193,10 +219,12 @@ async function main(argv = process.argv.slice(2), deps = {}) {
       env = runtimeEnvironment({ ...sourceEnv, ...uv.env });
     } else {
       out.write('Preparing Decision Browser with uv-managed Python 3.12. Downloads may be needed.\n');
+      command = preparePython(uv, run, options.project);
+      args = installerArgs(archive, options);
     }
     const result = run(command, args, { env, cwd: options.project, stdio: 'inherit', shell: false });
     if (result.error || result.signal || result.status === null) {
-      err.write('Setup interrupted or failed to start. Inspect the project before retrying.\n');
+      err.write('Setup interrupted or failed to start. Inspect the project and any retained installer lease before another preparation.\n');
       return 1;
     }
     if (options.setup && result.status === 0) {
@@ -216,5 +244,5 @@ async function main(argv = process.argv.slice(2), deps = {}) {
   }
 }
 
-module.exports = { main, parseArgs, uvArgs, supportedUv, cleanEnvironment, runtimeEnvironment, archivePath, prepareRuntime };
+module.exports = { main, parseArgs, installerArgs, supportedUv, cleanEnvironment, runtimeEnvironment, archivePath, preparePython, prepareRuntime };
 if (require.main === module) main().then(code => { process.exitCode = code; });

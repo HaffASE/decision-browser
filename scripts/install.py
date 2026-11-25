@@ -68,6 +68,14 @@ _STAGE_TIMEOUT = 900.0
 _CLEANUP_TIMEOUT = 5.0
 _MANIFEST_LIMIT = 1024 * 1024
 _RESIDUAL = ".decision-browser-stage-cleanup-unknown.json"
+_BLOCKED_GUIDANCE = (
+    "stage_cleanup_unknown.\nPreparation blocked. Preserve the retained blocked lease and runtime. "
+    "Do not repeat setup in this directory. "
+    "Recovery requires confirming that the previous run ended and its retained resources are unused."
+)
+_UV_STAGES = {"locked dependency export", "Python environment", "locked Python package",
+              "package build", "wheel installation"}
+_DOWNLOAD_URL = re.compile(rb"""https?://[^\s<>"'`]+""", re.IGNORECASE)
 
 
 @contextmanager
@@ -116,7 +124,7 @@ def held_lock(root: Path, relative: str) -> Iterator[Callable[[], None]]:
         validate()
         body = os.read(fd, 129)
         if body in {_ACTIVE_INTENT, _POISON}:
-            raise InstallError("stage_cleanup_unknown: inspect the retained blocked lease before retrying.")
+            raise InstallError(_BLOCKED_GUIDANCE)
         if body not in (b"", _LEASE):
             raise InstallError("Unrecognized installation lease; no foreign lock was changed.")
         if not body:
@@ -242,7 +250,8 @@ def clean_environment() -> dict[str, str]:
     # Network settings are explicit; model credentials never reach setup children.
     env = {key: os.environ[key] for key in (
         "PATH", "HOME", "USERPROFILE", "SYSTEMROOT", "WINDIR", "TMPDIR", "TMP", "TEMP",
-        "LANG", "LC_ALL", "SSL_CERT_FILE", "SSL_CERT_DIR", "NODE_EXTRA_CA_CERTS", "HTTPS_PROXY", "HTTP_PROXY",
+        "LANG", "LC_ALL", "SSL_CERT_FILE", "SSL_CERT_DIR", "NODE_EXTRA_CA_CERTS", "UV_SYSTEM_CERTS",
+        "HTTPS_PROXY", "HTTP_PROXY",
         "ALL_PROXY", "NO_PROXY", "https_proxy", "http_proxy", "all_proxy", "no_proxy",
     ) if key in os.environ}
     index = os.environ.get("DECISION_BROWSER_INSTALL_INDEX_URL")
@@ -312,18 +321,108 @@ def _stop_stage(child: subprocess.Popen[bytes], *, timed_out: bool = False,
         time.sleep(0.02)
 
 
-def _stage_hint(tail: bytes) -> str:
-    lowered = tail.lower()
-    for needles, code in [
-        ((b"certificate", b"ssl", b"tls"), "tls_certificate"),
+def _stage_hint(tail: bytes, stage: str) -> str:
+    # Package names, query parameters and paths inside URLs are not evidence of
+    # the failure cause. Classify only the surrounding diagnostic text.
+    lowered = _DOWNLOAD_URL.sub(b"", tail).lower()
+    if any(needle in lowered for needle in (
+        b"certificate has expired", b"certificate expired", b"cert_has_expired",
+        b"invalid peer certificate: expired", b"invalid peer certificate: certificateexpired",
+    )):
+        return "tls_certificate_expired"
+    if any(needle in lowered for needle in (
+        b"hostname mismatch", b"cert_altname_invalid", b"certificate name mismatch",
+        b"certificate is not valid for", b"certificate not valid for",
+        b"invalid peer certificate: notvalidforname",
+    )):
+        return "tls_hostname_mismatch"
+    if stage in _UV_STAGES and any(needle in lowered for needle in (
+        b"invalid peer certificate: unknownissuer", b"invalid peer certificate: unknown issuer",
+        b"certificate verify failed: unable to get local issuer certificate",
+    )):
+        return "tls_unknown_issuer"
+    for needles, reason in (
+        ((b"invalid peer certificate", b"certificate verify failed", b"certificate_verify_failed",
+          b"unable_to_get_issuer_cert_locally", b"self_signed_cert_in_chain",
+          b"tls handshake", b"ssl handshake"), "tls_certificate"),
+        ((b"timed out", b"request timeout", b"connect timeout", b"etimedout"), "timeout"),
+        ((b"name resolution", b"resolve host", b"getaddrinfo", b"dns error", b"enotfound"), "dns_resolution"),
+        ((b"connection refused",
+          b"connection reset", b"network is unreachable", b"network unreachable",
+          b"error sending request", b"failed to connect", b"econnreset"), "network_error"),
+        ((b"no solution found", b"no matching distribution", b"failed to build",
+          b"hash mismatch", b"does not match the expected hash", b"incompatible wheel"), "package_error"),
         ((b"no space left", b"enospc"), "disk_space"),
         ((b"permission denied", b"eacces"), "permissions"),
-        ((b"name resolution", b"resolve host", b"getaddrinfo"), "dns_resolution"),
         ((b"host dependencies", b"missing libraries"), "host_libraries"),
-    ]:
+    ):
         if any(needle in lowered for needle in needles):
-            return code
+            return reason
     return "check_prerequisites"
+
+
+def _stage_target(tail: bytes, env: dict[str, str], stage: str) -> str:
+    if stage in _UV_STAGES and "UV_DEFAULT_INDEX" in env:
+        return "configured mirror"
+    if stage in _UV_STAGES:
+        public_hosts = {"pypi.org", "files.pythonhosted.org"}
+    elif stage == "Chromium download":
+        public_hosts = {"cdn.playwright.dev", "playwright.download.prss.microsoft.com", "playwright.azureedge.net"}
+    else:
+        return "unknown"
+    # Parse in memory and return an allowlisted hostname only. Child output,
+    # including URL credentials, queries and private hosts, never leaves here.
+    lines = tail.splitlines()
+    for index in reversed(range(len(lines))):
+        if re.search(rb"failed to (?:download|fetch|connect|request)|download failed|error sending request|request failed",
+                     lines[index], re.IGNORECASE):
+            # uv may wrap the failing URL onto the following indented line.
+            match = _DOWNLOAD_URL.search(lines[index])
+            if match is None and index + 1 < len(lines):
+                match = _DOWNLOAD_URL.search(lines[index + 1])
+            if match:
+                break
+    else:
+        urls = _DOWNLOAD_URL.finditer(tail)
+        match = next(urls, None)
+        if next(urls, None) is not None:
+            return "unknown"
+    if match:
+        try:
+            host = urlsplit(match.group().decode("utf-8").rstrip(").,")).hostname
+        except (ValueError, UnicodeError):
+            return "unknown"
+        if host in public_hosts:
+            return host
+    return "unknown"
+
+
+def _stage_next_action(reason: str, stage: str) -> str:
+    if reason == "tls_certificate_expired":
+        return "Ask the service or mirror administrator to renew the expired certificate."
+    if reason == "tls_hostname_mismatch":
+        return "Check the configured host and ask its administrator to provide a certificate valid for that host."
+    if reason in {"tls_unknown_issuer", "tls_certificate"}:
+        if stage == "Chromium download":
+            return ("Verify the download certificate chain and configure the trusted CA for "
+                    "Playwright's Node client using NODE_EXTRA_CA_CERTS. UV_SYSTEM_CERTS applies to uv only.")
+        if stage in _UV_STAGES:
+            return ("Verify the certificate chain. If your organization's CA is already trusted by the "
+                    "system, explicitly set UV_SYSTEM_CERTS=true for uv, or configure SSL_CERT_FILE/SSL_CERT_DIR.")
+        return "Verify the certificate chain and configure the trusted CA for the failing client."
+    return {
+        "timeout": "Check connectivity and the service availability for this stage.",
+        "network_error": "Check DNS, network access and the configured proxy for this stage.",
+        "dns_resolution": "Check DNS resolution and the configured proxy for this stage.",
+        "package_error": "Check the locked package availability and hashes in the selected package index.",
+        "disk_space": "Free disk space on the installation and cache volumes.",
+        "permissions": "Check write and execute permissions for the installation and cache.",
+        "host_libraries": "Install the host libraries required by Playwright Chromium.",
+        "process_start_failed": "Check that this stage's executable is installed and executable.",
+        "interrupted": "Confirm that the interrupted run and its child processes have ended.",
+        "cleanup_unknown": "Confirm that the previous run ended and its retained resources are unused.",
+        "install_procps": "Install procps on Linux so the owned process group can be inspected.",
+    }.get(reason, "Check the prerequisites for the reported stage.")
 
 
 def _lease_state(root: Path) -> bytes | None:
@@ -362,7 +461,7 @@ def stage_uncertain(root: Path) -> bool:
 
 def ensure_no_residual(root: Path) -> None:
     if stage_uncertain(root):
-        raise InstallError("stage_cleanup_unknown: inspect the retained owned-stage residual before retrying.")
+        raise InstallError(_BLOCKED_GUIDANCE)
 
 
 def _retain_stage_residual(root: Path, child: subprocess.Popen[bytes] | None, reason: str) -> None:
@@ -464,8 +563,15 @@ def _run_stage(command: list[str], env: dict[str, str], stage: str, cwd: Path) -
                 pass
     if code == "ok" and cleanup_unknown:
         code = "stage_cleanup_unknown"
-    if hint == "none" and code != "ok":
-        hint = _stage_hint(bytes(tail))
+    if code == "stage_failed":
+        classified = _stage_hint(bytes(tail), stage)
+        if hint == "none" or classified != "check_prerequisites":
+            hint = classified
+    elif code != "ok" and hint == "none":
+        hint = {"stage_timeout": "timeout", "stage_start_failed": "process_start_failed",
+                "stage_interrupted": "interrupted", "stage_cleanup_unknown": "cleanup_unknown"}[code]
+    target = _stage_target(bytes(tail), env, stage) if code != "ok" else "none"
+    next_action = _stage_next_action(hint, stage) if code != "ok" else "none"
     retained = code != "ok" or cleanup_unknown
     retention_failed = False
     if retained:
@@ -482,13 +588,14 @@ def _run_stage(command: list[str], env: dict[str, str], stage: str, cwd: Path) -
         _set_lease_state(cwd, _LEASE)
     print(json.dumps({"stage": stage, "code": code, "exit_code": exit_code,
                       "hint": hint, "cleanup": "unknown_retained" if retained else "complete",
+                      "target": target, "next_action": next_action,
                       "residual_write": "failed" if retention_failed else "retained" if retained else "not_needed",
                       "duration_seconds": round(time.monotonic() - started, 3)}), file=sys.stderr)
     if retained:
-        primary = f"{code}: {stage} failed; exit={exit_code}; hint={hint}. "
-        raise InstallError(primary + "stage_cleanup_unknown: retained blocked lease and owned runtime; "
-                           + ("residual write failed; " if retention_failed else "")
-                           + "inspect the owned stage before another preparation. Raw child output is suppressed for privacy.")
+        primary = (f"{code}: {stage} failed (hint={hint}, target={target}, "
+                   f"exit={exit_code}).\nNext action: {next_action}\n")
+        raise InstallError(primary + _BLOCKED_GUIDANCE
+                           + (" The residual write failed." if retention_failed else ""))
 
 
 def check_uv(uv: str) -> None:
@@ -1035,7 +1142,10 @@ def install(source: Path, project: Path, clients: list[str], upgrade: bool = Fal
             atomic_write(marker, b'{"owner":"decision-browser-installer-v1"}\n')
         if not uninstall:
             assert uv is not None
-            prepare(source, project, runtime, uv)
+            try:
+                prepare(source, project, runtime, uv)
+            except InstallError as exc:
+                raise InstallError(str(exc) + "\nClient settings were not changed.") from None
             if source_id(source) != fingerprint:
                 raise InstallError("Source changed during installation; retry with a stable checkout.")
         validate_lease()
