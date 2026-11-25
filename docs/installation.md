@@ -272,16 +272,89 @@ cause when known, `target` identifies the download service when known, and
 check. A public download host may be named. The installer labels a private
 index as “configured mirror” and suppresses child logs.
 
-If the diagnostic reports `cleanup: unknown_retained`, the project is blocked.
-Leave `.decision-browser-install.lease`, `.decision-browser-stage-cleanup-unknown.json`
-(if present), and the runtime in place. Correcting a CA or proxy setting does
-not clear the block. Use a fresh project to check the correction. There is no
-supported in-place recovery command for this state. The mere presence of a
-lease file is normal even after a successful install.
+If setup reports `cleanup: unknown_retained`, fix the underlying CA or proxy
+problem and inspect the block separately. An idle lease file is normal after
+a successful install. Keep the lease, residual and runtimes in place. See
+[inspecting and recovering a blocked first install](#inspect-and-recover-a-blocked-first-install).
 
 The doctor also reports registration, runtime-file and skill presence separately
 for Codex/Claude. These are on-disk observations, not proof of client trust,
 connection or provider entitlement; its next steps identify those remaining checks.
+
+### Inspect and recover a blocked first install
+
+Use a tarball built from this change. The published 0.1.2 launcher predates
+these commands. They can inspect an affected 0.1.2 project using an existing
+Python 3.11+ interpreter, including a locally installed uv-managed Python.
+They do not prepare a command runtime, install dependencies or start Chromium.
+
+```sh
+package=/absolute/path/to/reviewed-launcher.tgz
+project=/absolute/path/to/affected-project
+npm exec --offline --yes --package="$package" -- decision-browser install-status --project "$project" --json
+```
+
+`install-status` and `recover-install` without `--apply` are read-only.
+The JSON fields `status`, `reason`, and `recovery` describe the block and the
+available action. A blocked result exits with code 1, including when the
+command successfully records evidence and the block remains in effect.
+
+A 0.1.2 failure receipt records a PID but cannot identify detached descendants
+or the boot in which the failure happened. A disappeared PID or an old file
+is insufficient to release the lease. For an eligible failed first install
+on a supported local filesystem, use the following sequence:
+
+1. Close clients and processes using the retained installation. When the
+   report shows `recovery=record_reboot_witness`, explicitly record the
+   current boot and project evidence. Run
+   `npm exec --offline --yes --package="$package" -- decision-browser recover-install --project "$project" --apply --json`.
+   The block stays in place. On first use, this creates a private signing
+   key under the account’s home at `.local/state/decision-browser/recovery/key`.
+   Keep that key and the project’s recovery record through the reboot.
+   A missing key or an edited record leaves the block in place.
+2. After the next full restart of the **same machine**, inspect the project
+   again. Restarting a terminal or a coding client does not change the boot.
+3. If the report shows `recovery=ready`, issue the same `--apply` command.
+   It repeats the checks under the installation lease. Success reports
+   `status=recovered`. It archives the residual and returns the existing
+   lease inode to idle. The failed runtime remains on disk and existing
+   registration files are preserved. You can now run setup with the corrected
+   network settings.
+
+Recovery targets macOS and Linux projects on supported local volumes. The
+legacy receipt cannot identify a single failed runtime, so an existing
+installation manifest or a local MCP launcher with unknown dependencies
+keeps the block in place. Unrelated remote HTTP MCP registrations can stay.
+An active installer, changed files, a busy runtime or incomplete process
+visibility also prevents release. Container and restricted inspection
+environments may report that recovery is unavailable. Current process checks
+are observations under the installer lease. Keep clients closed throughout
+recovery. Use a fresh project to test corrected TLS settings while a block
+remains. The commands never signal a recorded PID.
+
+#### Reproduce locally with a private mirror
+
+Use a disposable local **persistent** directory if you plan to test across a
+reboot. From the PR checkout, with Node.js 20+, OpenSSL, Python 3.11+, uv
+0.13.7+ and the Codex CLI available, build a local launcher and run:
+
+```sh
+artifacts=$(mktemp -d "$HOME/decision-browser-artifacts.XXXXXX")
+uv build --wheel --no-sources --build-constraints scripts/build-constraints.txt --out-dir "$artifacts"
+python3.12 -I scripts/build_npm.py --wheel "$artifacts"/*.whl --output "$artifacts/package"
+(cd "$artifacts/package" && npm pack --offline --ignore-scripts --pack-destination "$artifacts")
+python3.12 -I tests/native/installer_recovery_smoke.py --package "$artifacts"/*.tgz --work-dir "$HOME/decision-browser-recovery-test"
+```
+
+Choose a new work directory. The fixture runs the packed `install codex`
+with `UV_SYSTEM_CERTS=true` and a loopback HTTPS mirror signed by an
+untrusted test CA. This exercises the same locked dependency stage as
+`setup codex` without a provider prompt. It leaves system trust intact,
+checks the read-only commands, records the boot witness and verifies that
+same-boot recovery stays blocked. To generate the failure with the original
+0.1.2 installer, also pass `--installer-package /path/to/0.1.2.tgz`.
+Keep the reviewed tarball somewhere persistent and use the printed project
+path for the post-reboot steps above.
 
 ## Credentials and first real use
 

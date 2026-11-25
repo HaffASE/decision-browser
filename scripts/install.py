@@ -71,7 +71,8 @@ _RESIDUAL = ".decision-browser-stage-cleanup-unknown.json"
 _BLOCKED_GUIDANCE = (
     "stage_cleanup_unknown.\nPreparation blocked. Preserve the retained blocked lease and runtime. "
     "Do not repeat setup in this directory. "
-    "Recovery requires confirming that the previous run ended and its retained resources are unused."
+    "Recovery requires confirming that the previous run ended and its retained resources are unused. "
+    "For a project installation, inspect the barrier with decision-browser install-status."
 )
 _UV_STAGES = {"locked dependency export", "Python environment", "locked Python package",
               "package build", "wheel installation"}

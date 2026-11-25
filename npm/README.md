@@ -84,6 +84,12 @@ For the Chromium download, Playwright’s Node client accepts an additional CA
 bundle via `NODE_EXTRA_CA_CERTS`. If setup reports a blocked project, keep the
 lease and runtime in place and use a fresh project to test the corrected settings.
 
+Run `decision-browser install-status --project /path/to/project --json` with
+this launcher to inspect an installation block using an existing Python 3.11+.
+`recover-install` previews recovery. The explicit `--apply` option records
+boot evidence or completes recovery after verification. See the
+[blocked-install procedure](https://github.com/HaffASE/decision-browser/blob/main/docs/installation.md#inspect-and-recover-a-blocked-first-install).
+
 The package contains a checked `.pyz` installer and SHA-256 manifest. It never
 looks up a Python package by name on PyPI, and has no npm runtime dependencies or
 lifecycle hooks. Runtime Python dependencies come from the embedded lockfile.
