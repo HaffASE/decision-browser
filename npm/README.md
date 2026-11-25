@@ -14,14 +14,14 @@ Chromium sandbox. No sudo or security-setting changes are performed.
 Start guided setup from your project:
 
 ```sh
-npx --yes @haffa/decision-browser@0.1.2 setup codex
+npx --yes @haffa/decision-browser@0.1.3 setup codex
 ```
 
 Use `setup claude` or `setup both` for the other client choices. To install from the
 release tarball you downloaded, run:
 
 ```sh
-npx --offline --yes --package="/absolute/path/haffa-decision-browser-0.1.2.tgz" decision-browser setup
+npx --offline --yes --package="/absolute/path/haffa-decision-browser-0.1.3.tgz" decision-browser setup
 ```
 
 Plain `setup` prompts for the client. Select a provider and enter its key through
@@ -33,9 +33,9 @@ key entry retains the installation and prints an exact resume command.
 For unattended installation without provider prompts:
 
 ```sh
-npx --yes @haffa/decision-browser@0.1.2 install codex
-npx --yes @haffa/decision-browser@0.1.2 install claude
-npx --yes @haffa/decision-browser@0.1.2 install both
+npx --yes @haffa/decision-browser@0.1.3 install codex
+npx --yes @haffa/decision-browser@0.1.3 install claude
+npx --yes @haffa/decision-browser@0.1.3 install both
 ```
 
 `--offline` prevents npm from substituting a registry package. It does **not**
@@ -52,8 +52,8 @@ registrations without uv when a suitable Python is already available.
 Change your provider or inspect the current project using the same package:
 
 ```sh
-npx --yes @haffa/decision-browser@0.1.2 configure
-npx --yes @haffa/decision-browser@0.1.2 doctor --json
+npx --yes @haffa/decision-browser@0.1.3 configure
+npx --yes @haffa/decision-browser@0.1.3 doctor --json
 ```
 
 `configure [provider]` needs an interactive terminal. `doctor --project /path`
@@ -84,10 +84,17 @@ For the Chromium download, Playwright’s Node client accepts an additional CA
 bundle via `NODE_EXTRA_CA_CERTS`. If setup reports a blocked project, keep the
 lease and runtime in place and use a fresh project to test the corrected settings.
 
-Run `decision-browser install-status --project /path/to/project --json` with
-this launcher to inspect an installation block using an existing Python 3.11+.
-`recover-install` previews recovery. The explicit `--apply` option records
-boot evidence or completes recovery after verification. See the
+Inspect an installation block using an existing Python 3.11+ interpreter:
+
+```sh
+npx --yes @haffa/decision-browser@0.1.3 install-status --project /path/to/project --json
+npx --yes @haffa/decision-browser@0.1.3 recover-install --project /path/to/project --json
+```
+
+These commands inspect local state without preparing a runtime. `recover-install`
+previews recovery. The explicit `--apply` option records boot evidence or completes
+recovery after verification on a later boot of the same machine. Uncertain
+process or file state keeps the block in place. See the
 [blocked-install procedure](https://github.com/HaffASE/decision-browser/blob/main/docs/installation.md#inspect-and-recover-a-blocked-first-install).
 
 The package contains a checked `.pyz` installer and SHA-256 manifest. It never

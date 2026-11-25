@@ -6,7 +6,7 @@ On macOS/Linux, with Node.js 20+ and your client CLI on PATH, run the versioned
 npm package in an interactive terminal:
 
 ```sh
-npx --yes @haffa/decision-browser@0.1.2 setup
+npx --yes @haffa/decision-browser@0.1.3 setup
 ```
 
 Choose Codex, Claude Code or both. Setup reuses the installer below, then asks
@@ -33,7 +33,7 @@ resume. Use `install` for unattended installation; `setup --uninstall` is invali
 Windows profile-key persistence is not supported yet; use environment settings.
 The client and Linux host-library prerequisites below still apply. If you already
 use uv, the Python-wheel alternative is
-`uvx --python 3.12 --from /path/to/decision_browser-0.1.2-py3-none-any.whl decision-browser setup`.
+`uvx --python 3.12 --from /path/to/decision_browser-0.1.3-py3-none-any.whl decision-browser setup`.
 
 ## Unattended install
 
@@ -45,7 +45,7 @@ uvx/npm cache path in client settings.
 With uv 0.13.7+ and your client CLI on `PATH`, run from the project directory:
 
 ```sh
-uvx --python 3.12 --from /path/to/decision_browser-0.1.2-py3-none-any.whl decision-browser install codex
+uvx --python 3.12 --from /path/to/decision_browser-0.1.3-py3-none-any.whl decision-browser install codex
 ```
 
 Use a reviewed local wheel from the [build procedure](releasing.md). Replace
@@ -68,7 +68,7 @@ With Node.js 20+, npm/npx and your client CLI on PATH, run this
 from the project you want to configure:
 
 ```sh
-npx --yes @haffa/decision-browser@0.1.2 install both
+npx --yes @haffa/decision-browser@0.1.3 install both
 ```
 
 Use `decision-browser setup` instead of `decision-browser install both` to choose
@@ -77,7 +77,7 @@ the client and provider interactively in the same flow.
 To use the downloaded release tarball instead of the registry, run:
 
 ```sh
-npx --offline --yes --package=/absolute/path/haffa-decision-browser-0.1.2.tgz decision-browser install both
+npx --offline --yes --package=/absolute/path/haffa-decision-browser-0.1.3.tgz decision-browser install both
 ```
 
 Choose `codex`, `claude` or `both`. The default project is the current directory;
@@ -121,8 +121,8 @@ unchanged.
 Use the same reviewed artifact, without finding a Python environment manually:
 
 ```sh
-npx --yes @haffa/decision-browser@0.1.2 configure
-npx --yes @haffa/decision-browser@0.1.2 doctor --json
+npx --yes @haffa/decision-browser@0.1.3 configure
+npx --yes @haffa/decision-browser@0.1.3 doctor --json
 ```
 
 `configure [provider]` needs a terminal and changes the shared user profile.
@@ -220,15 +220,15 @@ client's project trust decision.
 
 If uv reports `invalid peer certificate: UnknownIssuer`, confirm with your
 administrator that the issuing CA is trusted by the operating system. With a
-launcher built from this checkout, opt in to the system trust store for uv in
-a fresh project. For example, from that project on macOS or Linux, run
+launcher version 0.1.3, opt in to the system trust store for uv in a fresh
+project. For example, from that project on macOS or Linux, run
 
 ```sh
-UV_SYSTEM_CERTS=true npx --offline --yes --package=/absolute/path/to/reviewed-launcher.tgz -- decision-browser setup codex
+UV_SYSTEM_CERTS=true npx --yes @haffa/decision-browser@0.1.3 setup codex
 ```
 
-Use the path to the tarball containing the fix. The published 0.1.2 launcher
-filters out this variable. Leaving it unset keeps uv’s default trust settings.
+The 0.1.2 launcher filters out this variable. Leaving it unset keeps uv’s
+default trust settings.
 Explicit values reach uv for managed Python and locked packages, including
 downloads through a configured mirror. TLS certificate verification stays enabled.
 
@@ -283,15 +283,17 @@ connection or provider entitlement; its next steps identify those remaining chec
 
 ### Inspect and recover a blocked first install
 
-Use a tarball built from this change. The published 0.1.2 launcher predates
-these commands. They can inspect an affected 0.1.2 project using an existing
+Use launcher version 0.1.3. The 0.1.2 launcher predates these commands.
+They can inspect an affected 0.1.2 project using an existing
 Python 3.11+ interpreter, including a locally installed uv-managed Python.
-They do not prepare a command runtime, install dependencies or start Chromium.
+The commands use that interpreter directly. npm may download the launcher
+package on first use. They do not prepare a command runtime, install Python
+dependencies or start Chromium.
 
 ```sh
-package=/absolute/path/to/reviewed-launcher.tgz
+package=@haffa/decision-browser@0.1.3
 project=/absolute/path/to/affected-project
-npm exec --offline --yes --package="$package" -- decision-browser install-status --project "$project" --json
+npm exec --yes --package="$package" -- decision-browser install-status --project "$project" --json
 ```
 
 `install-status` and `recover-install` without `--apply` are read-only.
@@ -307,7 +309,7 @@ on a supported local filesystem, use the following sequence:
 1. Close clients and processes using the retained installation. When the
    report shows `recovery=record_reboot_witness`, explicitly record the
    current boot and project evidence. Run
-   `npm exec --offline --yes --package="$package" -- decision-browser recover-install --project "$project" --apply --json`.
+   `npm exec --yes --package="$package" -- decision-browser recover-install --project "$project" --apply --json`.
    The block stays in place. On first use, this creates a private signing
    key under the account’s home at `.local/state/decision-browser/recovery/key`.
    Keep that key and the project’s recovery record through the reboot.
@@ -335,7 +337,7 @@ remains. The commands never signal a recorded PID.
 #### Reproduce locally with a private mirror
 
 Use a disposable local **persistent** directory if you plan to test across a
-reboot. From the PR checkout, with Node.js 20+, OpenSSL, Python 3.11+, uv
+reboot. From the v0.1.3 checkout, with Node.js 20+, OpenSSL, Python 3.11+, uv
 0.13.7+ and the Codex CLI available, build a local launcher and run:
 
 ```sh
@@ -454,7 +456,7 @@ results or the provenance of archived reports.
 See [release builds](releasing.md). The `.pyz` starts using Python's standard library,
 so it needs no temporary uvx environment or global package installation. It still
 requires Python, uv and the chosen client CLIs. Download `decision-browser.pyz` and `SHA256SUMS` from the
-[versioned GitHub release](https://github.com/HaffASE/decision-browser/releases/tag/v0.1.2)
+[versioned GitHub release](https://github.com/HaffASE/decision-browser/releases/tag/v0.1.3)
 and verify the archive checksum before execution.
 
 For development, from a checkout use:
