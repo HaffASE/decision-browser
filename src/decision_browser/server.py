@@ -17,6 +17,7 @@ from mcp.types import (
     EmbeddedResource,
     FormElicitationCapability,
     TextContent,
+    ToolAnnotations,
 )
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
@@ -31,6 +32,7 @@ from decision_browser.contracts import (
 )
 from decision_browser.desk import DeskUnavailable, Proposal, describe
 from decision_browser.mcp_compat import close_tool_arguments
+from decision_browser.mcp_outputs import ArtifactBody, CapabilityFacts, TaskSnapshot
 from decision_browser.provider import OpenAIProvider
 from decision_browser.provider_config import (
     ProviderConfigError,
@@ -44,7 +46,9 @@ SafeId = Annotated[str, Field(pattern=r"^[A-Za-z0-9_-]{1,128}$", strict=True)]
 Digest = Annotated[str, Field(pattern=r"^[a-f0-9]{64}$", strict=True)]
 Offset = Annotated[int, Field(strict=True, ge=0)]
 ReadLimit = Annotated[int, Field(strict=True, ge=1, le=ARTIFACT_READ_MAX_BYTES)]
-MCPReply = Annotated[CallToolResult, dict[str, Any]]
+TaskReply = Annotated[CallToolResult, TaskSnapshot]
+ArtifactReply = Annotated[CallToolResult, ArtifactBody]
+CapabilitiesReply = Annotated[CallToolResult, CapabilityFacts]
 _RANGE_FORMAT = "decision-browser-artifact-range-v1"
 
 _mcp_ctx: ContextVar[Context[Any, Any] | None] = ContextVar(
@@ -248,28 +252,80 @@ def create_server(
         "decision-browser", version=__version__, log_level="WARNING", lifespan=lifespan
     )
 
-    @server.tool()
-    async def start_task(request: TaskRequest) -> MCPReply:
-        """Start one task. Strict args. No automatic retry."""
+    @server.tool(annotations=ToolAnnotations(
+        read_only_hint=False, destructive_hint=True, idempotent_hint=False, open_world_hint=True,
+    ))
+    async def start_task(
+        request: Annotated[TaskRequest, Field(description="Bounded browser task: goal/start URL, input values, independent checks, budgets and privacy policy. No caller-supplied approval or grant fields.")],
+    ) -> TaskReply:
+        """Start one asynchronous browser task that can interact with external pages.
+
+        Call once for a new task, after checking capabilities and agreeing the scope
+        with the user. This launches real work; it is not a preview or an approval.
+        Returns result (including run_id) and pending_proposal, initially often null
+        with reason preparing_admission. Poll get_task; when awaiting_human_admission
+        with a pending proposal, use present_admission with its exact identifiers.
+        If the start response is lost, call get_task without run_id to recover the
+        single retained run. Never retry start_task automatically: a retry can start
+        new work after retention expires. busy means a run is still retained.
+        Tool errors use isError=true and {"error": code}; inspect them before acting.
+        """
         return _guard(lambda: _result(active, active.start_task(request)))
 
-    @server.tool()
-    async def get_task(run_id: SafeId | None = None) -> MCPReply:
-        """Read one task. Strict args. Read only."""
+    @server.tool(annotations=ToolAnnotations(read_only_hint=True, open_world_hint=False))
+    async def get_task(
+        run_id: Annotated[SafeId | None, Field(description="Exact result.run_id from a task response. Omit or pass JSON null to recover the single retained run after a lost start response; the string 'null' is an ordinary ID.")] = None,
+    ) -> TaskReply:
+        """Read the current snapshot of one retained task without starting work.
+
+        Supply run_id to poll that run; omit it (or pass JSON null) to recover the
+        single retained run after a lost start_task response. Returns result and
+        pending_proposal. queued, awaiting_human_admission and running are not final;
+        reason finalizing means cleanup is still in progress. Present a pending
+        admission only with its exact identifiers; read result.artifact_ids with
+        read_artifact. A terminal outcome_unknown/cleanup_unknown is not proof of
+        successful cleanup. unknown/expired errors mean no matching retained run,
+        not evidence that no browser action occurred. Do not restart automatically.
+        """
         return _guard(lambda: _result(active, run_id))
 
-    @server.tool()
-    async def cancel_task(run_id: SafeId) -> MCPReply:
-        """Cancel one task. Strict args."""
+    @server.tool(annotations=ToolAnnotations(
+        read_only_hint=False, destructive_hint=True, idempotent_hint=True, open_world_hint=True,
+    ))
+    async def cancel_task(
+        run_id: Annotated[SafeId, Field(description="Exact result.run_id of the retained run to stop; obtain it with get_task if the start response was lost.")],
+    ) -> TaskReply:
+        """Request cancellation of a retained browser run and revoke its admission.
+
+        Use when the user wants the run stopped. Returns result and pending_proposal;
+        cancellation is a request, not an immediate cleanup receipt or rollback of
+        earlier page changes. Poll get_task until finalization/cleanup finishes.
+        outcome_unknown with cleanup_unknown requires inspection, not a success claim
+        or automatic restart. Repeated cancellation of the same retained run adds no
+        new work; unknown/expired returns isError=true with {"error": code}.
+        """
         return _guard(lambda: _result(active, result=active.cancel_task(run_id)))
 
-    @server.tool()
+    @server.tool(annotations=ToolAnnotations(read_only_hint=True, open_world_hint=False))
     async def read_artifact(
-        run_id: SafeId, artifact_id: SafeId, offset: Offset = 0,
-        limit: ReadLimit = ARTIFACT_READ_MAX_BYTES,
-        channel: Literal["legacy", "structured", "resource"] = "legacy",
-    ) -> MCPReply:
-        """Read bounded artifact bytes. Legacy small reads retain both envelopes; explicit channels page without duplicate base64."""
+        run_id: Annotated[SafeId, Field(description="Exact result.run_id owning the retained artifact.")],
+        artifact_id: Annotated[SafeId, Field(description="One ID from result.artifact_ids, not a filesystem path or URL.")],
+        offset: Annotated[Offset, Field(description="Zero-based byte offset in the original artifact, not a base64 character offset. For pagination, copy next_offset from the prior response.")] = 0,
+        limit: Annotated[ReadLimit, Field(description="Maximum original bytes per chunk (1..65536), before base64 encoding.")] = ARTIFACT_READ_MAX_BYTES,
+        channel: Annotated[Literal["legacy", "structured", "resource"], Field(description="legacy: small whole artifact in text and structuredContent; structured: chunk base64 only in structuredContent; resource: chunk base64 in an embedded resource, metadata in structuredContent.")] = "legacy",
+    ) -> ArtifactReply:
+        """Read retained evidence bytes by server-issued run and artifact IDs.
+
+        Use result.artifact_ids from get_task, never a local path. Default legacy is
+        only for a whole artifact fitting one chunk at offset 0; otherwise it returns
+        artifact_range_required. Choose structured or resource for large artifacts.
+        Follow next_offset with the same IDs/channel until eof=true; offset and limit
+        count original bytes, not base64 characters. Explicit channels include total_bytes,
+        sha256 (whole artifact) and chunk_sha256. structured returns base64 in
+        structuredContent.content; resource returns it in content's embedded blob.
+        Errors retain isError=true and {"error": code}, including bad_range for an
+        offset beyond EOF; unknown/expired runs cannot supply retained artifacts.
+        """
 
         def _do() -> CallToolResult:
             artifact = active.read_artifact_range(run_id, artifact_id, offset=offset, limit=limit)
@@ -307,9 +363,18 @@ def create_server(
 
         return _guard(_do)
 
-    @server.tool()
-    async def capabilities() -> MCPReply:
-        """Report capability facts. Strict args. Read only."""
+    @server.tool(annotations=ToolAnnotations(read_only_hint=True, open_world_hint=False))
+    async def capabilities() -> CapabilitiesReply:
+        """Inspect local prerequisites and supported operations before starting a task.
+
+        Takes no arguments. Returns browser modes, operations, admission classes/mode,
+        artifact chunk limits/channels and selected-provider configuration status.
+        provider_ready and PREREQUISITES_PRESENT describe configuration only: no API,
+        browser, entitlement or human approval is tested. production_ready remains
+        false and live/native evidence remains NOT_RUN. A configured provider does
+        not guarantee successful execution; resolve BLOCKED prerequisites before use.
+        No credentials are returned and this call does not grant admission.
+        """
         status = provider_status()
         return _guard(
             lambda: {
@@ -335,14 +400,27 @@ def create_server(
             }
         )
 
-    @server.tool()
+    @server.tool(annotations=ToolAnnotations(
+        read_only_hint=False, destructive_hint=True, idempotent_hint=False, open_world_hint=True,
+    ))
     async def present_admission(
-        run_id: SafeId,
-        proposal_id: SafeId,
-        digest: Digest,
+        run_id: Annotated[SafeId, Field(description="Copy pending_proposal.run_id exactly from the latest task snapshot.")],
+        proposal_id: Annotated[SafeId, Field(description="Copy pending_proposal.proposal_id exactly; do not reuse an old or resolved proposal.")],
+        digest: Annotated[Digest, Field(description="Copy pending_proposal.digest verbatim: 64 lowercase hexadecimal characters binding the displayed scope. Never calculate or guess it.")],
         ctx: Context[Any, Any],
-    ) -> MCPReply:
-        """Offer one admission. Strict args. Standard MCP form can record; it is not native-human proof."""
+    ) -> TaskReply:
+        """Present a pending action scope through the client's Standard MCP form.
+
+        Call only when get_task reports awaiting_human_admission and a non-null
+        pending_proposal. Copy run_id, proposal_id and digest from that same proposal.
+        The tool presents a form; calling it does not itself grant permission. Only
+        the supported form response may record admission, and a host accept is not
+        proof of a native human click. Never fabricate reviewed/approval/grant fields.
+        Returns the updated result and pending_proposal; continue with get_task.
+        Unsupported form clients fail closed. Stale, resolved or concurrent requests
+        may return isError=true with unknown, presentation_resolved or presentation_busy;
+        refresh get_task instead of blindly repeating a prompt.
+        """
         token = _mcp_ctx.set(ctx)
         try:
             result = await active.present_admission(run_id, proposal_id, digest)

@@ -107,14 +107,14 @@ class StrictModel(BaseModel):
 
 
 class Viewport(StrictModel):
-    width: int = Field(ge=100, le=4096)
-    height: int = Field(ge=100, le=4096)
+    width: int = Field(ge=100, le=4096, description="Viewport width in CSS pixels.")
+    height: int = Field(ge=100, le=4096, description="Viewport height in CSS pixels.")
 
 
 class Check(StrictModel):
-    kind: CheckKind
-    target: str = Field(default="", max_length=TARGET_BYTES)
-    expected: Expected
+    kind: CheckKind = Field(description="Independent check: route/text/value expect a string, visible a boolean, count a nonnegative integer. fixture_state is reserved for trusted adapters and rejected in public requests.")
+    target: str = Field(default="", max_length=TARGET_BYTES, description="Empty for route; otherwise a supported CSS selector (up to 512 UTF-8 bytes). XPath and Playwright selector engines are rejected.")
+    expected: Expected = Field(description="Exact expected value for the check kind; string, boolean or integer, never a caller assertion that verification passed.")
 
     @model_validator(mode="after")
     def _check_fields(self) -> Check:
@@ -125,12 +125,12 @@ class Check(StrictModel):
 
 
 class Limits(StrictModel):
-    max_steps: int = Field(default=12, gt=0, le=1000)
-    max_seconds: float = Field(default=120.0, gt=0, le=600)
-    max_provider_calls: int = Field(default=12, gt=0, le=1000)
-    max_input_bytes: int = Field(default=262144, gt=0, le=16777216)
-    max_output_bytes: int = Field(default=262144, gt=0, le=16777216)
-    max_stored_bytes: int = Field(default=10485760, gt=0, le=104857600)
+    max_steps: int = Field(default=12, gt=0, le=1000, description="Maximum browser action steps.")
+    max_seconds: float = Field(default=120.0, gt=0, le=600, description="Finite wall-clock task budget in seconds.")
+    max_provider_calls: int = Field(default=12, gt=0, le=1000, description="Maximum model-provider requests.")
+    max_input_bytes: int = Field(default=262144, gt=0, le=16777216, description="Cumulative provider input budget in bytes.")
+    max_output_bytes: int = Field(default=262144, gt=0, le=16777216, description="Cumulative provider output budget in bytes.")
+    max_stored_bytes: int = Field(default=10485760, gt=0, le=104857600, description="Maximum retained artifact storage in bytes.")
 
     @field_validator("max_seconds")
     @classmethod
@@ -143,8 +143,8 @@ class Limits(StrictModel):
 class PrivacyPolicy(StrictModel):
     """Local filter. Do not send or log blocked_literals."""
 
-    blocked_literals: list[str] = Field(default_factory=list, max_length=32)
-    send_images: bool = False
+    blocked_literals: list[str] = Field(default_factory=list, max_length=32, description="Local payload denylist: up to 32 nonempty literals of 1..256 characters. Never send or log these values.")
+    send_images: bool = Field(default=False, description="Whether image payloads may be sent to the provider; does not guarantee privacy or grant admission.")
 
     @field_validator("blocked_literals")
     @classmethod
@@ -172,17 +172,18 @@ def _default_viewports() -> list[Viewport]:
 
 
 class TaskRequest(StrictModel):
-    goal: str = Field(min_length=1, max_length=4000)
-    start_url: str
-    mode: Mode = "isolated"
-    values: dict[str, str]
-    checks: list[Check] = Field(max_length=MAX_CHECKS)
+    goal: str = Field(min_length=1, max_length=4000, description="User-agreed browser goal; nonempty after trimming. A goal is not approval for consequential actions.")
+    start_url: str = Field(description="Absolute HTTP(S) starting URL, without userinfo, whitespace or control characters.")
+    mode: Mode = Field(default="isolated", description="isolated creates an owned browser session; existing_chrome uses the supported existing-browser attachment. Check capabilities.modes first.")
+    values: dict[str, str] = Field(description="Task input values: at most 32 string entries, keys <=128 characters and values <=4000. Use an empty object when no inputs are needed.")
+    checks: list[Check] = Field(max_length=MAX_CHECKS, description="Up to 32 independent completion checks. An empty list cannot establish verified functional completion.")
     viewports: list[Viewport] = Field(
-        default_factory=_default_viewports, min_length=1, max_length=3
+        default_factory=_default_viewports, min_length=1, max_length=3,
+        description="One to three CSS-pixel viewport sizes for visual diagnostics."
     )
-    limits: Limits
-    privacy: PrivacyPolicy
-    visual: bool = False
+    limits: Limits = Field(description="Required execution and byte budgets; an empty object uses bounded defaults.")
+    privacy: PrivacyPolicy = Field(description="Required local privacy controls; an empty object uses defaults with image sending disabled.")
+    visual: bool = Field(default=False, description="Request visual diagnostics at the selected viewports; separate from functional verification.")
 
     @field_validator("goal", mode="before")
     @classmethod
