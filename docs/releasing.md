@@ -1,5 +1,23 @@
 # Versioning and release builds
 
+## Next native release
+
+Before preparing a tag, run `sh scripts/check-python-free.sh` and verify the
+native installer, upgrade, uninstall, six MCP tool contracts and timed browser
+matrix on the reviewed candidate. Exercise the packaged installation on a
+clean machine with Python and uv unavailable. The current Rust candidate uses
+the crate version in `prototypes/rust-cdp-counter/Cargo.toml`.
+
+Update the crate version and lockfile together, and add a dated changelog
+heading for the exact version. `check-native-release --tag vVERSION` checks
+that metadata and the MIT license. A tag in CI first checks the tracked tree,
+then builds and verifies a native Linux x64 archive. It uploads an Actions
+artifact for review. Run the installer and browser acceptance on each target
+platform before including that platform in a published release. See
+[Native installation](native-installation.md) for local candidate builds.
+
+## Published Python versions
+
 `project.version` in `pyproject.toml` is the source of truth. The package's
 `__version__` reads installed distribution metadata; an uninstalled source tree
 reports `0+unknown`. `uv.lock` must record the same project version. CI checks
@@ -18,15 +36,7 @@ equivalence between [PEP 440](https://peps.python.org/pep-0440/) and
 [SemVer](https://semver.org/#spec-item-9). Versions are chosen deliberately by a
 maintainer rather than inferred from every commit message.
 
-## Python-free release gate
-
-The Rust migration requires the release tree to pass
-`sh scripts/check-python-free.sh` before the next tag is published. Verify the
-native installer, upgrade, uninstall, the six MCP tool contracts, and the timed
-live browser matrix on the release candidate. A clean-machine smoke test must
-exercise the published installation with Python and uv unavailable.
-
-## Prepare a release
+### Reproduce a published Python release
 
 1. Review public-readiness findings, tracked files and Git history. Preserve the
    owner-selected MIT license, SPDX metadata and third-party notices; confirm
@@ -40,20 +50,8 @@ exercise the published installation with Python and uv unavailable.
 4. Run `python -I scripts/check_release.py --tag v0.2.0`, then the full verifier
    from [Verification](verification.md). Commit the reviewed changes and obtain
    a successful hosted Verify run on that exact commit before tagging it.
-5. Only when publication is explicitly authorized, create and push an annotated
-   `v<version>` tag. Do not move or overwrite an existing release tag.
-
-Tag pushes run the same full verification workflow as pull requests. The tag
-must match metadata, with a license and dated changelog entry. Only a successful
-Python 3.12 tag build uploads the tested wheel and sdist as a separate `release-candidate-*` Actions
-artifact. That artifact alone is not release approval: all matrix jobs and the
-downstream **Release candidate gate** must succeed before publication. The verifier's `result.json` records their SHA-256 checksums. No job
-creates a GitHub Release, uploads to PyPI, changes repository visibility or uses
-publish credentials. Publication is a separate, reviewed step.
-
-Review the release artifacts and obtain explicit publication approval for each
-version. The version in the source tree identifies the candidate being prepared;
-verify the published tag and registry package when checking release availability.
+Use the original tag to reproduce a historical build. Verify the published tag
+and registry package when checking release availability.
 
 ## Build locally
 

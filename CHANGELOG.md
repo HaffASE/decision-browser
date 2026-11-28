@@ -5,6 +5,11 @@ Versions follow the policy in [Releasing](docs/releasing.md).
 
 ## [Unreleased]
 
+- Add a six-tool native Rust MCP candidate with exact discovery schemas,
+  guarded CDP execution on loopback test pages, approval and cancellation,
+  artifact pagination, and a project-scoped installer for Codex and Claude.
+- Add a native candidate archive and an optional offline npm wrapper. Verify
+  the native executable version and target when packaging.
 - Add an experimental native Rust/CDP MCP counter and live browser matrix.
   The matrix covers the 21 published scenarios on Jev, Decision Luna, and
   Gemini Decision, with per-case timings and independently verified outcomes.

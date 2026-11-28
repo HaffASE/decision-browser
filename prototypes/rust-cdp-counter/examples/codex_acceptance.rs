@@ -19,10 +19,17 @@ struct AppServer {
     messages: Receiver<Result<Value, String>>,
     next_id: u64,
     forms: Vec<Value>,
+    product: bool,
 }
 
 impl AppServer {
-    fn start(binary: &Path, scratch: &Path, output: &Path, provider: &str) -> TestResult<Self> {
+    fn start(
+        binary: &Path,
+        scratch: &Path,
+        output: &Path,
+        provider: &str,
+        product: bool,
+    ) -> TestResult<Self> {
         // Codex merges configuration tables, so disable inherited entries explicitly.
         let inventory = Command::new("codex")
             .args([
@@ -43,8 +50,13 @@ impl AppServer {
         let inherited = inventory
             .as_array()
             .ok_or("unexpected Codex MCP inventory")?;
+        let arguments = if product {
+            r#"["serve", "--admission", "standard_form"]"#
+        } else {
+            "[]"
+        };
         let config = format!(
-            "mcp_servers = {{ {SERVER_NAME} = {{ command = {}, args = [], startup_timeout_sec = 15, tool_timeout_sec = 60, env = {{ DECISION_BROWSER_PROVIDER = {} }} }} }}",
+            "mcp_servers = {{ {SERVER_NAME} = {{ command = {}, args = {arguments}, startup_timeout_sec = 15, tool_timeout_sec = 60, env = {{ DECISION_BROWSER_PROVIDER = {} }} }} }}",
             serde_json::to_string(&binary.to_string_lossy())?,
             serde_json::to_string(provider)?
         );
@@ -105,6 +117,7 @@ impl AppServer {
             messages,
             next_id: 0,
             forms: Vec::new(),
+            product,
         })
     }
 
@@ -138,7 +151,7 @@ impl AppServer {
                 if form_seen {
                     return Err("multiple confirmation forms for one counter call".into());
                 }
-                validate_form(&message, thread_id)?;
+                validate_form(&message, thread_id, self.product)?;
                 form_seen = true;
                 self.forms.push(message["params"].clone());
                 let result = match action {
@@ -176,7 +189,7 @@ impl Drop for AppServer {
     }
 }
 
-fn validate_form(message: &Value, thread_id: &str) -> TestResult<()> {
+fn validate_form(message: &Value, thread_id: &str, product: bool) -> TestResult<()> {
     let params = &message["params"];
     if message["method"] != "mcpServer/elicitation/request"
         || params["serverName"] != SERVER_NAME
@@ -199,7 +212,12 @@ fn validate_form(message: &Value, thread_id: &str) -> TestResult<()> {
         return Err("counter confirmation schema changed".into());
     }
     let text = params["message"].as_str().ok_or("form message missing")?;
-    if !text.contains("one click") || !text.contains("local test counter") {
+    let valid = if product {
+        text.starts_with("Review this browser action scope") && text.contains("http://127.0.0.1:")
+    } else {
+        text.contains("one click") && text.contains("local test counter")
+    };
+    if !valid {
         return Err("counter confirmation scope changed".into());
     }
     Ok(())
@@ -214,7 +232,7 @@ fn write_json(path: &Path, value: &Value) -> TestResult<()> {
 
 fn main() -> TestResult<()> {
     let mut args = std::env::args_os().skip(1);
-    let usage = "usage: codex_acceptance MCP_BINARY [EVIDENCE_DIRECTORY] [fixture|jev|luna]";
+    let usage = "usage: codex_acceptance MCP_BINARY [EVIDENCE_DIRECTORY] [fixture|jev|luna|gemini] [--product]";
     let binary = args.next().ok_or(usage)?;
     let binary = PathBuf::from(binary).canonicalize()?;
     let nonce = SystemTime::now().duration_since(UNIX_EPOCH)?.as_nanos();
@@ -227,7 +245,12 @@ fn main() -> TestResult<()> {
         .unwrap_or_else(|| scratch.join("evidence"));
     let provider = args.next().unwrap_or_else(|| "fixture".into());
     let provider = provider.to_str().ok_or(usage)?;
-    if !["fixture", "jev", "luna"].contains(&provider) || args.next().is_some() {
+    let product = match args.next().as_deref() {
+        None => false,
+        Some(flag) if flag == "--product" => true,
+        _ => return Err(usage.into()),
+    };
+    if !["fixture", "jev", "luna", "gemini"].contains(&provider) || args.next().is_some() {
         return Err(usage.into());
     }
     fs::create_dir_all(&output)?;
@@ -235,13 +258,19 @@ fn main() -> TestResult<()> {
         return Err("evidence directory must be empty".into());
     }
     let output = output.canonicalize()?;
-    let result = run(&binary, &scratch, &output, provider);
+    let result = run(&binary, &scratch, &output, provider, product);
     let _ = fs::remove_dir(&scratch);
     result
 }
 
-fn run(binary: &Path, scratch: &Path, output: &Path, provider: &str) -> TestResult<()> {
-    let mut app = AppServer::start(binary, scratch, output, provider)?;
+fn run(
+    binary: &Path,
+    scratch: &Path,
+    output: &Path,
+    provider: &str,
+    product: bool,
+) -> TestResult<()> {
+    let mut app = AppServer::start(binary, scratch, output, provider, product)?;
     app.request("initialize", json!({
         "clientInfo": {"name": "rust_cdp_acceptance", "title": "Rust CDP acceptance test", "version": "0.1.0"},
         "capabilities": {"experimentalApi": true}
@@ -282,6 +311,9 @@ fn run(binary: &Path, scratch: &Path, output: &Path, provider: &str) -> TestResu
         {
             return Err("an inherited MCP server started during the isolated test".into());
         }
+    }
+    if product {
+        return product_counter(&mut app, &thread_id, provider, output);
     }
     let arguments = json!({"threadId": thread_id, "server": SERVER_NAME, "tool": "run_counter", "arguments": {}});
     let declined = app.request_with_form(
@@ -355,5 +387,106 @@ fn run(binary: &Path, scratch: &Path, output: &Path, provider: &str) -> TestResu
     write_json(&output.join("summary.json"), &summary)?;
     println!("{}", serde_json::to_string_pretty(&summary)?);
     println!("Evidence saved in {}", output.display());
+    Ok(())
+}
+
+fn product_counter(
+    app: &mut AppServer,
+    thread: &str,
+    provider: &str,
+    output: &Path,
+) -> TestResult<()> {
+    let fixture = decision_browser_rust_cdp::matrix_fixtures::start("counter")?;
+    let call = |tool: &str, arguments: Value| json!({"threadId":thread,"server":SERVER_NAME,"tool":tool,"arguments":arguments});
+    let capabilities = app.request("mcpServer/tool/call", call("capabilities", json!({})))?;
+    write_json(&output.join("capabilities.json"), &capabilities)?;
+    // The historical counter fixture requires exactly three real increments.
+    let request = json!({
+        "goal":fixture.goal, "start_url":fixture.url, "values":fixture.values,
+        "checks":[{"kind":"text","target":"#status","expected":"Count: 3"}],
+        "privacy":{},"limits":{"max_steps":8,"max_provider_calls":12,"max_seconds":75.0}
+    });
+    let started_at = Instant::now();
+    let started = app.request(
+        "mcpServer/tool/call",
+        call("start_task", json!({"request":request})),
+    )?;
+    write_json(&output.join("started.json"), &started)?;
+    let run_id = started
+        .pointer("/structuredContent/result/run_id")
+        .and_then(Value::as_str)
+        .ok_or("start_task returned no run ID")?;
+    let mut previous = Value::Null;
+    let terminal = loop {
+        if started_at.elapsed() > REQUEST_TIMEOUT {
+            return Err("product counter did not reach a terminal result".into());
+        }
+        let result = app.request(
+            "mcpServer/tool/call",
+            call("get_task", json!({"run_id":run_id})),
+        )?;
+        let snapshot = &result["structuredContent"];
+        let proposal = &snapshot["pending_proposal"];
+        if !proposal.is_null() && *proposal != previous {
+            let approval = json!({
+                "run_id":run_id,"proposal_id":proposal["proposal_id"],"digest":proposal["digest"]
+            });
+            app.request_with_form(
+                "mcpServer/tool/call",
+                call("present_admission", approval),
+                Some(("accept", thread)),
+            )?;
+            previous = proposal.clone();
+            write_json(&output.join("forms.json"), &json!(app.forms))?;
+        }
+        match snapshot["result"]["terminal"].as_str() {
+            Some("queued" | "running" | "awaiting_human_admission") => {}
+            Some(_) => break snapshot["result"].clone(),
+            None => return Err("get_task returned no task result".into()),
+        }
+        thread::sleep(Duration::from_millis(75));
+    };
+    write_json(&output.join("terminal.json"), &terminal)?;
+    if terminal["terminal"] != "verified"
+        || terminal["functional"] != "verified"
+        || !fixture.verify()?
+        || app.forms.len() < 2
+    {
+        return Err("product counter did not verify the owned fixture and admission".into());
+    }
+    let artifact_id = terminal
+        .pointer("/artifact_ids/0")
+        .and_then(Value::as_str)
+        .ok_or("product counter has no evidence artifact")?;
+    let artifact = app.request(
+        "mcpServer/tool/call",
+        call(
+            "read_artifact",
+            json!({
+                "run_id":run_id,"artifact_id":artifact_id,"channel":"structured"
+            }),
+        ),
+    )?;
+    let chunk = &artifact["structuredContent"];
+    let report = STANDARD.decode(
+        chunk["content"]
+            .as_str()
+            .ok_or("artifact content missing")?,
+    )?;
+    if chunk["eof"] != true
+        || chunk["media_type"] != "application/json"
+        || serde_json::from_slice::<Value>(&report)? != json!({"checks_passed":1})
+    {
+        return Err("unexpected product counter evidence".into());
+    }
+    fs::write(output.join("checks.json"), &report)?;
+    let summary = json!({
+        "status":"verified", "host":"Codex app-server", "provider":provider,
+        "approvalSource":"programmatic acceptance test", "forms":app.forms.len(),
+        "elapsedMs":started_at.elapsed().as_millis() as u64, "counter":3,
+        "artifactBytes":report.len(), "artifactType":"application/json", "usage":terminal["usage"]
+    });
+    write_json(&output.join("summary.json"), &summary)?;
+    println!("{}", serde_json::to_string_pretty(&summary)?);
     Ok(())
 }

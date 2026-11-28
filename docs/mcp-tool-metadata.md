@@ -28,6 +28,17 @@ resource data. Domain errors still have `isError=true` and `{"error": code}` and
 are not constrained by the success schema. Artifact fields that only exist for
 particular channels are optional; their descriptions explain the channel contract.
 
+## Rust discovery and native stdio
+
+The Rust candidate serves the six-tool discovery captured from PR #10.
+The native stdio tests exercise strict argument validation, retained-run
+recovery, proposal binding and the three artifact channels. The isolated
+Codex App Server smoke verifies real `start_task`, `get_task`,
+`present_admission` and `read_artifact` on an owned browser fixture.
+
+- [Frozen discovery schemas](../prototypes/rust-cdp-counter/contracts/generated-tools.json)
+- [Native Codex smoke](../prototypes/rust-cdp-counter/fixtures/native-codex-smoke-2026-11-28.json)
+
 ## Verification
 
 `tests/unit/test_mcp_tool_metadata.py` connects through the real

@@ -6,14 +6,30 @@
     return copy.textContent;
   }).join(' ')) : '';
   const label = e => clean(e.getAttribute('aria-label') || associatedLabel(e) || e.getAttribute('placeholder') || e.textContent || e.getAttribute('title') || e.name || e.id);
+  const privateControl = e => ['password','file','hidden'].includes(e.type)
+    || /(?:^|\s)(?:current-password|new-password|one-time-code|cc-[\w-]+)(?:\s|$)/i.test(e.autocomplete || '');
+  const effect = e => {
+    const form = e.form;
+    return {
+      href: e.tagName === 'A' ? e.href : null,
+      destination: form && ['submit','image'].includes(e.type)
+        ? [e.hasAttribute('formaction') ? e.formAction : form.action,
+           e.hasAttribute('formmethod') ? e.formMethod : form.method,
+           e.hasAttribute('formtarget') ? e.formTarget : form.target] : null,
+      linkTarget: e.tagName === 'A' ? e.target : null,
+      formContext: clean(form?.textContent).slice(0,2000)
+    };
+  };
   globalThis.__matrixLabel = label;
+  globalThis.__matrixEffect = effect;
+  globalThis.__matrixPrivateControl = privateControl;
   globalThis.__matrixNodes ??= new Map();
   globalThis.__matrixIds ??= new WeakMap();
   globalThis.__matrixNextId ??= 0;
   const choices = [];
   for (const e of document.querySelectorAll('a[href],button,input,textarea,select,[role="button"],[role="option"]')) {
     const r = e.getBoundingClientRect(), s = getComputedStyle(e);
-    if (e.disabled || e.closest('[hidden],[inert]') || s.display === 'none' || s.visibility === 'hidden' || r.width <= 0 || r.height <= 0 || r.bottom <= 0 || r.top >= innerHeight || r.right <= 0 || r.left >= innerWidth || e.type === 'hidden') continue;
+    if (e.disabled || privateControl(e) || e.closest('[hidden],[inert]') || s.display === 'none' || s.visibility === 'hidden' || r.width <= 0 || r.height <= 0 || r.bottom <= 0 || r.top >= innerHeight || r.right <= 0 || r.left >= innerWidth) continue;
     const x = r.x + r.width / 2, y = r.y + r.height / 2, hit = document.elementFromPoint(x, y);
     if (!(hit === e || e.contains(hit))) continue;
     let id = globalThis.__matrixIds.get(e);
@@ -24,6 +40,10 @@
     if (e.tagName === 'INPUT' || e.tagName === 'TEXTAREA' || e.tagName === 'SELECT') choice.current = e.type === 'checkbox' || e.type === 'radio' ? String(e.checked) : e.value;
     if (e.tagName === 'SELECT') choice.options = Array.from(e.options, o => ({value:o.value,label:clean(o.textContent),disabled:o.disabled}));
     if (e.tagName === 'A') choice.href = e.href;
+    choice.effect = effect(e);
+    choice.context = clean(e.closest('form')?.textContent).slice(0,2000);
+    choice.inputType = e.type || '';
+    choice.tag = e.tagName;
     choices.push(choice);
   }
   return {url:location.href,text:document.body?.innerText?.slice(0,18000) || '',choices,scroll:{up:scrollY > 0,down:scrollY + innerHeight < document.documentElement.scrollHeight}};

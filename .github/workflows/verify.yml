@@ -17,6 +17,7 @@ concurrency:
 jobs:
   verify:
     name: Verify Python ${{ matrix.python }}
+    if: github.ref_type != 'tag'
     strategy:
       fail-fast: false
       matrix:
@@ -45,10 +46,6 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Require a Python-free tree for release tags
-        if: startsWith(github.ref, 'refs/tags/v')
-        run: sh scripts/check-python-free.sh
-
       - name: Set up Python
         id: python
         uses: actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548 # v6.1.0
@@ -60,17 +57,8 @@ jobs:
         with:
           node-version: '24'
 
-      - name: Check version and release prerequisites
-        env:
-          REF_TYPE: ${{ github.ref_type }}
-          REF_NAME: ${{ github.ref_name }}
-        run: |
-          set -euo pipefail
-          if [[ "$REF_TYPE" == tag ]]; then
-            python -I scripts/check_release.py --tag "$REF_NAME"
-          else
-            python -I scripts/check_release.py
-          fi
+      - name: Check legacy version consistency
+        run: python -I scripts/check_release.py
 
       - name: Set up uv
         id: uv
@@ -152,25 +140,8 @@ jobs:
           include-hidden-files: false
           retention-days: 7
 
-      - name: Upload tested Python 3.12 release candidate
-        if: ${{ success() && github.ref_type == 'tag' && matrix.python == '3.12' }}
-        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
-        with:
-          name: release-candidate-${{ github.ref_name }}
-          path: |
-            ${{ runner.temp }}/decision-browser-evidence/verification/dist/*.whl
-            ${{ runner.temp }}/decision-browser-evidence/verification/dist/*.tar.gz
-            ${{ runner.temp }}/decision-browser-evidence/verification/dist/*.pyz
-            ${{ runner.temp }}/decision-browser-evidence/verification/dist/installer.sha256
-            ${{ runner.temp }}/decision-browser-evidence/verification/dist/*.tgz
-            ${{ runner.temp }}/decision-browser-evidence/verification/dist/npm.sha256
-            ${{ runner.temp }}/decision-browser-evidence/verification/result.json
-          if-no-files-found: error
-          include-hidden-files: false
-          retention-days: 14
-
   rust:
-    name: Verify Rust prototype
+    name: Verify Rust
     runs-on: ubuntu-22.04
     timeout-minutes: 15
     steps:
@@ -178,6 +149,10 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
+
+      - name: Require a Python-free tree for release tags
+        if: github.ref_type == 'tag'
+        run: sh scripts/check-python-free.sh
 
       - name: Install Rust and check the native crate
         shell: bash
@@ -187,13 +162,41 @@ jobs:
           cargo +1.100.0 fmt --manifest-path prototypes/rust-cdp-counter/Cargo.toml --check
           cargo +1.100.0 clippy --manifest-path prototypes/rust-cdp-counter/Cargo.toml --locked --all-targets -- -D warnings
           cargo +1.100.0 test --manifest-path prototypes/rust-cdp-counter/Cargo.toml --locked --all-targets
+          cargo +1.100.0 run --manifest-path prototypes/rust-cdp-counter/Cargo.toml --locked --bin check-native-release
+      - name: Build the checked native candidate
+        if: github.ref_type == 'tag'
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+          RUSTUP_TOOLCHAIN: 1.100.0
+        run: sh scripts/build-native-release.sh --tag "$RELEASE_TAG" --output "$RUNNER_TEMP/native-candidate"
+      - name: Verify the unpacked native archive
+        if: github.ref_type == 'tag'
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP/native-candidate"
+          sha256sum -c SHA256SUMS
+          scratch=$(mktemp -d)
+          archive=(decision-browser-*.tar.gz)
+          tar -xzf "${archive[0]}" -C "$scratch"
+          cd "$scratch/${archive[0]%.tar.gz}"
+          sha256sum -c SHA256SUMS
+          ./bin/decision-browser --version
+      - name: Upload the native candidate
+        if: github.ref_type == 'tag'
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: native-candidate-${{ github.ref_name }}-linux-x64
+          path: ${{ runner.temp }}/native-candidate/
+          if-no-files-found: error
+          retention-days: 14
 
   release-ready:
     name: Release candidate gate
-    needs: [verify, rust]
+    needs: [rust]
     if: ${{ github.ref_type == 'tag' }}
     runs-on: ubuntu-22.04
     timeout-minutes: 5
     steps:
-      - name: Require the complete verification matrix
-        run: echo "All required verification jobs passed. Candidate may be reviewed for publication."
+      - name: Require the Python-free native candidate
+        run: echo "Native candidate built and verified. Publication requires separate review."

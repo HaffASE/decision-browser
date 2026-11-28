@@ -14,7 +14,10 @@ use tungstenite::{Message, WebSocket};
 
 #[path = "matrix_browser.rs"]
 mod matrix_browser;
-pub use matrix_browser::{MatrixPage, run_scenario};
+pub use matrix_browser::{
+    MatrixPage, existing_chrome_available, run_existing_task_scenario, run_scenario,
+    run_task_scenario,
+};
 
 pub type BrowserResult<T> = Result<T, Box<dyn Error + Send + Sync>>;
 
@@ -191,6 +194,9 @@ struct Cdp {
     socket: WebSocket<TcpStream>,
     next_id: u64,
     deadline: Instant,
+    origin_filter: Option<(String, String)>,
+    filter_commands: std::collections::HashSet<u64>,
+    pending_network: std::collections::HashSet<String>,
 }
 
 impl Cdp {
@@ -214,7 +220,146 @@ impl Cdp {
             socket,
             next_id: 0,
             deadline,
+            origin_filter: None,
+            filter_commands: std::collections::HashSet::new(),
+            pending_network: std::collections::HashSet::new(),
         })
+    }
+
+    fn restrict_origin(&mut self, session: &str, origin: &str) -> BrowserResult<()> {
+        self.origin_filter = Some((session.to_owned(), origin.to_owned()));
+        self.call("Network.enable", json!({}), Some(session))?;
+        self.call(
+            "Network.setBypassServiceWorker",
+            json!({"bypass":true}),
+            Some(session),
+        )?;
+        self.call(
+            "Network.setCacheDisabled",
+            json!({"cacheDisabled":true}),
+            Some(session),
+        )?;
+        self.call(
+            "Fetch.enable",
+            json!({"patterns":[{"urlPattern":"*","requestStage":"Request"}]}),
+            Some(session),
+        )?;
+        Ok(())
+    }
+
+    fn handle_paused_request(&mut self, event: &Value) -> BrowserResult<()> {
+        let (session, origin) = self
+            .origin_filter
+            .as_ref()
+            .ok_or_else(|| failure("unexpected paused network request"))?;
+        if event["sessionId"] != *session {
+            return Err(failure("network request came from an unguarded session"));
+        }
+        let request_id = event["params"]["requestId"]
+            .as_str()
+            .ok_or_else(|| failure("paused request ID missing"))?;
+        let url = event["params"]["request"]["url"]
+            .as_str()
+            .ok_or_else(|| failure("paused request URL missing"))?;
+        let allow = reqwest::Url::parse(url).ok().is_some_and(|url| {
+            matches!(url.scheme(), "http" | "https")
+                && url.username().is_empty()
+                && url.password().is_none()
+                && url.origin().ascii_serialization() == *origin
+        });
+        if self.filter_commands.len() >= 4096 {
+            return Err(failure("network guard queue limit"));
+        }
+        if allow && let Some(id) = event["params"]["networkId"].as_str() {
+            self.pending_network.insert(id.to_owned());
+        }
+        self.next_id += 1;
+        let id = self.next_id;
+        let (method, params) = if allow {
+            ("Fetch.continueRequest", json!({"requestId":request_id}))
+        } else {
+            (
+                "Fetch.failRequest",
+                json!({"requestId":request_id,"errorReason":"BlockedByClient"}),
+            )
+        };
+        self.socket.send(Message::Text(
+            json!({"id":id,"method":method,"sessionId":session,"params":params})
+                .to_string()
+                .into(),
+        ))?;
+        self.filter_commands.insert(id);
+        Ok(())
+    }
+
+    fn process_network_event(&mut self, event: &Value) -> BrowserResult<bool> {
+        if event["method"] == "Fetch.requestPaused" {
+            self.handle_paused_request(event)?;
+            return Ok(true);
+        }
+        if matches!(
+            event["method"].as_str(),
+            Some("Network.loadingFinished" | "Network.loadingFailed")
+        ) {
+            if self
+                .origin_filter
+                .as_ref()
+                .is_some_and(|(session, _)| event["sessionId"] == *session)
+                && let Some(id) = event["params"]["requestId"].as_str()
+            {
+                self.pending_network.remove(id);
+            }
+            return Ok(true);
+        }
+        if event["id"]
+            .as_u64()
+            .is_some_and(|id| self.filter_commands.remove(&id))
+        {
+            if event.get("error").is_some() {
+                return Err(failure("network guard command failed"));
+            }
+            return Ok(true);
+        }
+        Ok(false)
+    }
+
+    /// Drain request-stage pauses and wait for their network completions before
+    /// observing the next action. Pending commands are never replayed.
+    fn settle_network(&mut self) -> BrowserResult<()> {
+        if self.origin_filter.is_none() {
+            return Ok(());
+        }
+        let deadline = self.deadline.min(Instant::now() + Duration::from_secs(3));
+        let mut quiet_since = Instant::now();
+        loop {
+            if Instant::now() >= deadline {
+                return Err(failure("network settlement deadline exceeded"));
+            }
+            let message = match self.socket.read() {
+                Ok(message) => message,
+                Err(tungstenite::Error::Io(error))
+                    if matches!(
+                        error.kind(),
+                        io::ErrorKind::TimedOut | io::ErrorKind::WouldBlock
+                    ) =>
+                {
+                    if self.pending_network.is_empty()
+                        && self.filter_commands.is_empty()
+                        && quiet_since.elapsed() >= Duration::from_millis(150)
+                    {
+                        return Ok(());
+                    }
+                    continue;
+                }
+                Err(error) => return Err(error.into()),
+            };
+            if let Message::Text(text) = message {
+                let event: Value = serde_json::from_str(&text)?;
+                if self.process_network_event(&event)? {
+                    quiet_since = Instant::now();
+                }
+            }
+        }
     }
 
     fn call(&mut self, method: &str, params: Value, session: Option<&str>) -> BrowserResult<Value> {
@@ -250,6 +395,10 @@ impl Cdp {
                 continue;
             };
             let response: Value = serde_json::from_str(&text)?;
+            if self.process_network_event(&response)? {
+                continue;
+            }
+
             if response.get("id").and_then(Value::as_u64) != Some(id) {
                 continue;
             }

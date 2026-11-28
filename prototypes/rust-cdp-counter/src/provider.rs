@@ -1,3 +1,6 @@
+#[path = "native_provider_config.rs"]
+mod native_provider_config;
+
 use reqwest::blocking::Client;
 use serde_json::{Value, json};
 use std::error::Error;
@@ -17,6 +20,9 @@ pub enum Provider {
     Jev,
     Luna,
     Gemini,
+    OpenRouter,
+    OpenCode,
+    Local,
 }
 
 pub struct MatrixDecision {
@@ -25,12 +31,13 @@ pub struct MatrixDecision {
     pub input_tokens: Option<u64>,
     pub output_tokens: Option<u64>,
     pub request_bytes: usize,
+    pub response_bytes: usize,
 }
 
 pub struct ProviderSession {
     provider: Provider,
     client: Client,
-    key: String,
+    key: Option<String>,
 }
 
 pub struct DecisionEvidence {
@@ -51,9 +58,13 @@ impl fmt::Display for ProviderError {
 
 impl Error for ProviderError {}
 
-type ProviderResult<T> = Result<T, ProviderError>;
+pub type ProviderResult<T> = Result<T, ProviderError>;
 
 impl Provider {
+    pub fn from_production_environment() -> ProviderResult<Self> {
+        Ok(native_provider_config::resolve(&native_provider_config::environment()?)?.provider)
+    }
+
     pub fn from_environment() -> ProviderResult<Self> {
         match std::env::var("DECISION_BROWSER_PROVIDER") {
             Err(std::env::VarError::NotPresent) => Ok(Self::Fixture),
@@ -65,9 +76,12 @@ impl Provider {
     pub fn from_name(name: &str) -> ProviderResult<Self> {
         match name {
             "fixture" => Ok(Self::Fixture),
-            "jev" => Ok(Self::Jev),
-            "luna" => Ok(Self::Luna),
+            "jev" | "typesafe" => Ok(Self::Jev),
+            "luna" | "openai" => Ok(Self::Luna),
             "gemini" => Ok(Self::Gemini),
+            "openrouter" => Ok(Self::OpenRouter),
+            "opencode" => Ok(Self::OpenCode),
+            "local" | "nimble" => Ok(Self::Local),
             _ => Err(failure("invalid_provider")),
         }
     }
@@ -80,6 +94,15 @@ impl Provider {
                 "https://opencode.ai/inference/systemone/v1/systemone",
                 "codex-opencode-console",
             )),
+            Self::OpenRouter => Ok((
+                "https://openrouter.ai/api/alpha/decisions",
+                "OPENROUTER_API_KEY",
+            )),
+            Self::OpenCode => Ok((
+                "https://opencode.ai/inference/systemone/v1/systemone",
+                "codex-opencode-console",
+            )),
+            Self::Local => Ok(("http://127.0.0.1:8000/v1/systemone", "")),
             Self::Fixture => Err(failure("fixture_has_no_live_route")),
         }
     }
@@ -97,7 +120,11 @@ impl Provider {
         Ok(ProviderSession {
             provider: self,
             client,
-            key: keychain_key(service)?,
+            key: match native_provider_config::key_for(self)? {
+                Some(key) => Some(key),
+                None if matches!(self, Self::Local) => None,
+                None => Some(keychain_key(service)?),
+            },
         })
     }
 
@@ -124,6 +151,9 @@ impl Provider {
             Self::Jev => "jev",
             Self::Luna => "luna",
             Self::Gemini => "gemini",
+            Self::OpenRouter => "openrouter",
+            Self::OpenCode => "opencode",
+            Self::Local => "local",
         }
     }
 
@@ -133,7 +163,14 @@ impl Provider {
             Self::Jev => "jev-latest",
             Self::Luna => "gpt-6-luna",
             Self::Gemini => "gemini-decision-1",
+            Self::OpenRouter => "typesafe/jev-1.13",
+            Self::OpenCode => "jev-1.13",
+            Self::Local => "nimble-latest",
         }
+    }
+
+    pub fn max_choices(self) -> usize {
+        if matches!(self, Self::Local) { 26 } else { 255 }
     }
 
     fn matrix_payload(
@@ -143,7 +180,7 @@ impl Provider {
         choices: &[String],
     ) -> ProviderResult<Value> {
         if goal.is_empty()
-            || !(1..=255).contains(&choices.len())
+            || !(1..=self.max_choices()).contains(&choices.len())
             || choices.iter().any(|choice| choice.trim().is_empty())
         {
             return Err(failure("provider_invalid_choices"));
@@ -156,7 +193,7 @@ impl Provider {
             .map(|(index, label)| (format!("c{index}"), label.clone()))
             .collect();
         Ok(match self {
-            Self::Jev | Self::Gemini => {
+            Self::Jev | Self::Gemini | Self::OpenRouter | Self::OpenCode | Self::Local => {
                 let criteria: serde_json::Map<String, Value> = mapped
                     .into_iter()
                     .map(|(key, description)| (key, Value::String(description)))
@@ -181,6 +218,7 @@ impl Provider {
         response: &Value,
         count: usize,
         request_bytes: usize,
+        response_bytes: usize,
     ) -> ProviderResult<MatrixDecision> {
         let model = response["model"]
             .as_str()
@@ -195,7 +233,9 @@ impl Provider {
                                 .all(|byte| byte.is_ascii_digit() || byte == b'.')
                     })
             }
-            Self::Luna | Self::Gemini => model == self.model(),
+            Self::Luna | Self::Gemini | Self::OpenRouter | Self::OpenCode | Self::Local => {
+                model == self.model()
+            }
             Self::Fixture => false,
         };
         if !valid || model.len() > 64 || response.get("error").is_some() {
@@ -208,7 +248,8 @@ impl Provider {
             .as_u64()
             .ok_or_else(|| failure("provider_invalid_usage"))?;
         let answer = match self {
-            Self::Jev | Self::Gemini => response["answers"]
+            Self::Jev | Self::Gemini | Self::OpenRouter | Self::OpenCode | Self::Local => response
+                ["answers"]
                 .as_object()
                 .filter(|answers| answers.len() == 1)
                 .and_then(|answers| answers.get(QUESTION)),
@@ -231,7 +272,7 @@ impl Provider {
             .ok_or_else(|| failure("provider_unknown_choice"))?;
         unit(&answer["confidence"])?;
         match self {
-            Self::Jev | Self::Gemini => {
+            Self::Jev | Self::Gemini | Self::OpenRouter | Self::OpenCode | Self::Local => {
                 let probabilities = answer["probabilities"]
                     .as_object()
                     .filter(|entries| entries.len() == count)
@@ -265,6 +306,7 @@ impl Provider {
             input_tokens: Some(input_tokens),
             output_tokens: Some(output_tokens),
             request_bytes,
+            response_bytes,
         })
     }
 
@@ -286,7 +328,11 @@ impl Provider {
         }
 
         let (endpoint, service) = self.route()?;
-        let key = keychain_key(service)?;
+        let key = match native_provider_config::key_for(self)? {
+            Some(key) => Some(key),
+            None if matches!(self, Self::Local) => None,
+            None => Some(keychain_key(service)?),
+        };
         let client = Client::builder()
             .redirect(reqwest::redirect::Policy::none())
             .retry(reqwest::retry::never())
@@ -295,9 +341,12 @@ impl Provider {
             .timeout(Duration::from_secs(25))
             .build()
             .map_err(|_| failure("provider_client_failed"))?;
-        let response = client
-            .post(endpoint)
-            .bearer_auth(key)
+        let request = client.post(endpoint);
+        let request = match key {
+            Some(key) => request.bearer_auth(key),
+            None => request,
+        };
+        let response = request
             .json(&self.payload(button_label, before))
             .send()
             .map_err(|_| failure("provider_request_failed"))?;
@@ -334,7 +383,7 @@ impl Provider {
         });
         let instructions = "Choose the next action that achieves the goal from the observed counter and buttons. Choose stop if no offered button is suitable.";
         match self {
-            Self::Jev | Self::Gemini => json!({
+            Self::Jev | Self::Gemini | Self::OpenRouter | Self::OpenCode | Self::Local => json!({
                 "model": self.model(),
                 "state": state,
                 "questions": {QUESTION: {
@@ -380,7 +429,7 @@ impl Provider {
                     })
             }
             Self::Luna => model == self.model(),
-            Self::Gemini => model == self.model(),
+            Self::Gemini | Self::OpenRouter | Self::OpenCode | Self::Local => model == self.model(),
             Self::Fixture => false,
         };
         if !valid_model || model.len() > 64 || response.get("error").is_some() {
@@ -398,7 +447,8 @@ impl Provider {
             .and_then(Value::as_u64)
             .ok_or_else(|| failure("provider_invalid_usage"))?;
         let answer = match self {
-            Self::Jev | Self::Gemini => response["answers"]
+            Self::Jev | Self::Gemini | Self::OpenRouter | Self::OpenCode | Self::Local => response
+                ["answers"]
                 .as_object()
                 .filter(|answers| answers.len() == 1)
                 .and_then(|answers| answers.get(QUESTION)),
@@ -419,7 +469,7 @@ impl Provider {
             .ok_or_else(|| failure("provider_unknown_choice"))?;
         unit(&answer["confidence"])?;
         let probabilities = match self {
-            Self::Jev | Self::Gemini => {
+            Self::Jev | Self::Gemini | Self::OpenRouter | Self::OpenCode | Self::Local => {
                 let raw = answer["probabilities"]
                     .as_object()
                     .filter(|entries| entries.len() == CHOICES.len())
@@ -479,6 +529,27 @@ impl ProviderSession {
         choices: &[String],
         remaining_input_bytes: usize,
     ) -> ProviderResult<MatrixDecision> {
+        self.decide_bounded(
+            goal,
+            state,
+            choices,
+            remaining_input_bytes,
+            MAX_RESPONSE_BYTES as usize,
+        )
+    }
+
+    pub fn decide_bounded(
+        &self,
+        goal: &str,
+        state: &Value,
+        choices: &[String],
+        remaining_input_bytes: usize,
+        remaining_output_bytes: usize,
+    ) -> ProviderResult<MatrixDecision> {
+        let limit = (remaining_output_bytes as u64).min(MAX_RESPONSE_BYTES);
+        if limit == 0 {
+            return Err(failure("output_limit"));
+        }
         let payload = self.provider.matrix_payload(goal, state, choices)?;
         let bytes =
             serde_json::to_vec(&payload).map_err(|_| failure("provider_request_invalid"))?;
@@ -486,10 +557,12 @@ impl ProviderSession {
             return Err(failure("provider_input_budget_exhausted"));
         }
         let request_bytes = bytes.len();
-        let response = self
-            .client
-            .post(self.provider.route()?.0)
-            .bearer_auth(&self.key)
+        let request = self.client.post(self.provider.route()?.0);
+        let request = match &self.key {
+            Some(key) => request.bearer_auth(key),
+            None => request,
+        };
+        let response = request
             .header(reqwest::header::CONTENT_TYPE, "application/json")
             .body(bytes)
             .send()
@@ -502,23 +575,67 @@ impl ProviderSession {
         }
         if response
             .content_length()
-            .is_some_and(|length| length > MAX_RESPONSE_BYTES)
+            .is_some_and(|length| length > limit)
         {
-            return Err(failure("provider_response_too_large"));
+            return Err(failure("output_limit"));
         }
         let mut body = Vec::new();
         response
-            .take(MAX_RESPONSE_BYTES + 1)
+            .take(limit + 1)
             .read_to_end(&mut body)
             .map_err(|_| failure("provider_response_read_failed"))?;
-        if body.len() as u64 > MAX_RESPONSE_BYTES {
-            return Err(failure("provider_response_too_large"));
+        if body.len() as u64 > limit {
+            return Err(failure("output_limit"));
         }
         let response: Value =
             serde_json::from_slice(&body).map_err(|_| failure("provider_response_invalid_json"))?;
         self.provider
-            .matrix_response(&response, choices.len(), request_bytes)
+            .matrix_response(&response, choices.len(), request_bytes, body.len())
     }
+}
+
+pub fn production_provider_status() -> Value {
+    native_provider_config::status(
+        native_provider_config::environment().and_then(|env| native_provider_config::resolve(&env)),
+        keychain_item_present,
+    )
+}
+
+/// Inspect the selected credential item's metadata without reading its password.
+#[cfg(target_os = "macos")]
+fn keychain_item_present(provider: Provider) -> bool {
+    if matches!(provider, Provider::Local | Provider::Fixture) {
+        return false;
+    }
+    let Ok((_, service)) = provider.route() else {
+        return false;
+    };
+    let Ok(mut child) = Command::new("/usr/bin/security")
+        .args(["find-generic-password", "-s", service])
+        .stdin(Stdio::null())
+        .stdout(Stdio::null())
+        .stderr(Stdio::null())
+        .spawn()
+    else {
+        return false;
+    };
+    let deadline = Instant::now() + Duration::from_secs(2);
+    loop {
+        match child.try_wait() {
+            Ok(Some(status)) => return status.success(),
+            Ok(None) if Instant::now() < deadline => thread::sleep(Duration::from_millis(10)),
+            _ => {
+                let _ = child.kill();
+                let _ = child.wait();
+                return false;
+            }
+        }
+    }
+}
+
+#[cfg(not(target_os = "macos"))]
+fn keychain_item_present(_provider: Provider) -> bool {
+    false
 }
 
 fn unit(value: &Value) -> ProviderResult<f64> {
@@ -713,21 +830,29 @@ mod tests {
 
     #[test]
     fn matrix_codecs_accept_only_offered_choice_with_complete_usage() {
-        for provider in [Provider::Jev, Provider::Luna, Provider::Gemini] {
+        for provider in [
+            Provider::Jev,
+            Provider::Luna,
+            Provider::Gemini,
+            Provider::OpenRouter,
+            Provider::OpenCode,
+            Provider::Local,
+        ] {
             let mut response = matrix_answer(provider);
-            let result = provider.matrix_response(&response, 2, 100).unwrap();
+            let result = provider.matrix_response(&response, 2, 100, 200).unwrap();
             assert_eq!(result.choice, 1);
             assert_eq!(result.request_bytes, 100);
+            assert_eq!(result.response_bytes, 200);
             assert_eq!(result.input_tokens, Some(30));
             response["usage"]["output_tokens"] = Value::Null;
-            assert!(provider.matrix_response(&response, 2, 100).is_err());
+            assert!(provider.matrix_response(&response, 2, 100, 200).is_err());
             let mut response = matrix_answer(provider);
             if matches!(provider, Provider::Luna) {
                 response["answers"][0]["choice"] = json!("c2");
             } else {
                 response["answers"]["action"]["choice"] = json!("c2");
             }
-            assert!(provider.matrix_response(&response, 2, 100).is_err());
+            assert!(provider.matrix_response(&response, 2, 100, 200).is_err());
         }
     }
 
@@ -735,9 +860,70 @@ mod tests {
     fn matrix_probability_duplicates_and_non_numeric_values_are_rejected() {
         let mut response = matrix_answer(Provider::Luna);
         response["answers"][0]["probabilities"][0]["value"] = json!("c1");
-        assert!(Provider::Luna.matrix_response(&response, 2, 100).is_err());
+        assert!(
+            Provider::Luna
+                .matrix_response(&response, 2, 100, 200)
+                .is_err()
+        );
         let mut response = matrix_answer(Provider::Gemini);
         response["answers"]["action"]["probabilities"]["c0"] = json!(true);
-        assert!(Provider::Gemini.matrix_response(&response, 2, 100).is_err());
+        assert!(
+            Provider::Gemini
+                .matrix_response(&response, 2, 100, 200)
+                .is_err()
+        );
+    }
+    #[test]
+    fn remaining_presets_bind_fixed_routes_and_system_one_payloads() {
+        for (provider, endpoint, service, model) in [
+            (
+                Provider::OpenRouter,
+                "https://openrouter.ai/api/alpha/decisions",
+                "OPENROUTER_API_KEY",
+                "typesafe/jev-1.13",
+            ),
+            (
+                Provider::OpenCode,
+                "https://opencode.ai/inference/systemone/v1/systemone",
+                "codex-opencode-console",
+                "jev-1.13",
+            ),
+            (
+                Provider::Local,
+                "http://127.0.0.1:8000/v1/systemone",
+                "",
+                "nimble-latest",
+            ),
+        ] {
+            assert_eq!(provider.route().unwrap(), (endpoint, service));
+            let state = json!({"text":"Synthetic browser observation"});
+            let payload = provider
+                .matrix_payload(
+                    "Click once",
+                    &state,
+                    &["Click".to_owned(), "Wait".to_owned()],
+                )
+                .unwrap();
+            assert_eq!(payload["model"], model);
+            assert_eq!(payload["state"]["page"], state);
+            assert_eq!(
+                payload["questions"]["action"]["criteria"],
+                json!({"c0":"Click","c1":"Wait"})
+            );
+            assert_eq!(
+                provider
+                    .matrix_response(&matrix_answer(provider), 2, 80, 60)
+                    .unwrap()
+                    .choice,
+                1
+            );
+        }
+        assert_eq!(Provider::from_name("nimble").unwrap().name(), "local");
+        assert_eq!(Provider::Local.max_choices(), 26);
+        assert!(
+            Provider::Local
+                .matrix_payload("test", &json!({}), &vec!["option".to_owned(); 27])
+                .is_err()
+        );
     }
 }

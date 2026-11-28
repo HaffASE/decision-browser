@@ -37,20 +37,22 @@ among observed controls; the runner rechecks the target before acting.
 
 > **Experimental, version 0.1.3.**
 
-## Experimental Rust/CDP runner
+## Experimental Rust/CDP candidate
 
-The Rust prototype builds a native stdio counter server and a direct CDP
-matrix runner. The matrix covers the 21 published browser cases, runs Jev,
-Decision Luna, and Gemini Decision against live APIs, and records elapsed
-time, provider time, browser observation/input time, and oracle results.
+The native Rust candidate exposes all six Decision Browser tools over MCP.
+The isolated task runner uses direct CDP on trusted `http://127.0.0.1` fixtures,
+checks task results, and provides artifact reads. The candidate also includes a
+native Codex/Claude project installer and a separate live browser matrix.
 
-In the recorded optimized Rust run, Jev confirmed **20/21** cases
-(5.828 s median), Luna **19/21** (5.160 s), and Gemini **19/21** (5.131 s).
-The timing report retains all failed cases.
+On the owned counter, the native executable completed the six-tool MCP
+workflow through Codex App Server with Jev (5.926 s), Decision Luna (6.443 s),
+and Gemini Decision (6.659 s). Each test approves four forms programmatically,
+executes three verified clicks and reads a JSON report.
+The native archive passed isolated install, doctor and
+uninstall checks. [Native installation](docs/native-installation.md) ·
+[Codex smoke evidence](prototypes/rust-cdp-counter/fixtures/native-codex-smoke-2026-11-28.json)
 
-The stable installation path still uses Python. The migration PR tracks the
-remaining product MCP tools, installer, diagnostics, test and release changes.
-[Run the Rust prototype and inspect the timing evidence](prototypes/rust-cdp-counter/README.md).
+The stable release still uses Python. [Rust tests and browser timing results](prototypes/rust-cdp-counter/README.md)
 
 ## Quick start
 

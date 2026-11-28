@@ -69,16 +69,35 @@ pub fn start(name: &str) -> Result<Fixture> {
         let shared = state.clone();
         let stopped = stop.clone();
         let worker = thread::spawn(move || {
+            let mut connections: Vec<JoinHandle<()>> = Vec::new();
             while !stopped.load(Ordering::Acquire) {
+                let mut index = 0;
+                while index < connections.len() {
+                    if connections[index].is_finished() {
+                        let _ = connections.swap_remove(index).join();
+                    } else {
+                        index += 1;
+                    }
+                }
                 match listener.accept() {
                     Ok((stream, _)) => {
-                        let _ = serve(stream, &data, &shared);
+                        if connections.len() >= 32 {
+                            continue;
+                        }
+                        let data = data.clone();
+                        let shared = shared.clone();
+                        connections.push(thread::spawn(move || {
+                            let _ = serve(stream, &data, &shared);
+                        }));
                     }
                     Err(error) if error.kind() == std::io::ErrorKind::WouldBlock => {
                         thread::sleep(Duration::from_millis(5));
                     }
                     Err(_) => break,
                 }
+            }
+            for connection in connections {
+                let _ = connection.join();
             }
         });
         (url, Some(worker))
@@ -163,6 +182,9 @@ impl Drop for Fixture {
 }
 
 fn serve(mut stream: TcpStream, spec: &Value, state: &Mutex<State>) -> Result<()> {
+    // macOS accepts inherit the listener nonblocking mode. Each bounded worker
+    // waits for a complete HTTP request using its socket read deadline.
+    stream.set_nonblocking(false)?;
     stream.set_read_timeout(Some(Duration::from_secs(5)))?;
     stream.set_write_timeout(Some(Duration::from_secs(5)))?;
     let mut bytes = Vec::new();
@@ -661,6 +683,55 @@ mod tests {
                 assert!(response.text().unwrap().contains("<!doctype html>"));
             }
         }
+    }
+
+    #[test]
+    fn idle_browser_connection_cannot_block_search_acknowledgement() {
+        let fixture = start("search").unwrap();
+        let url = reqwest::Url::parse(&fixture.url).unwrap();
+        let idle = TcpStream::connect(("127.0.0.1", url.port().unwrap())).unwrap();
+        thread::sleep(Duration::from_millis(30));
+        let client = reqwest::blocking::Client::builder()
+            .no_proxy()
+            .timeout(Duration::from_secs(1))
+            .build()
+            .unwrap();
+        let response = client
+            .post(format!("{}event", fixture.url))
+            .json(&json!({"name":"search","query":"orbital mechanics"}))
+            .send();
+        drop(idle);
+        let response =
+            response.expect("idle speculative browser socket must not delay a submitted form");
+        assert_eq!(response.status(), 200);
+        assert!(fixture.verify().unwrap());
+    }
+
+    #[test]
+    fn form_request_survives_delayed_header_and_body_delivery() {
+        let fixture = start("search").unwrap();
+        let url = reqwest::Url::parse(&fixture.url).unwrap();
+        let mut stream = TcpStream::connect(("127.0.0.1", url.port().unwrap())).unwrap();
+        stream
+            .set_read_timeout(Some(Duration::from_secs(2)))
+            .unwrap();
+        stream
+            .write_all(b"POST /search/event HTTP/1.1\r\nHost:")
+            .unwrap();
+        thread::sleep(Duration::from_millis(40));
+        let body = r#"{"name":"search","query":"orbital mechanics"}"#;
+        write!(
+            stream,
+            " 127.0.0.1\r\nContent-Length: {}\r\nConnection: close\r\n\r\n",
+            body.len()
+        )
+        .unwrap();
+        thread::sleep(Duration::from_millis(40));
+        stream.write_all(body.as_bytes()).unwrap();
+        let mut reply = String::new();
+        stream.read_to_string(&mut reply).unwrap();
+        assert!(reply.starts_with("HTTP/1.1 200"), "{reply:?}");
+        assert!(fixture.verify().unwrap());
     }
 
     #[test]
