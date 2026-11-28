@@ -7,8 +7,8 @@ checks its SHA-256 before running it. Node.js 20 or newer is required.
 Install Chrome or Chromium separately, then run from your project.
 
 ```sh
-npm exec --yes --package=@haffa/decision-browser@0.2.1 -- decision-browser setup codex
-npm exec --yes --package=@haffa/decision-browser@0.2.1 -- decision-browser configure openai
+npm exec --yes --package=@haffa/decision-browser@0.2.2 -- decision-browser setup codex
+npm exec --yes --package=@haffa/decision-browser@0.2.2 -- decision-browser configure openai
 ```
 
 Choose `claude` or `both` for the other client registrations. `setup` copies the
@@ -26,7 +26,7 @@ Source builds and release packaging use the [release procedure](https://github.c
 Maintainers can test a reviewed local tarball in a fresh directory.
 
 ```sh
-npm exec --offline --yes --package=/absolute/path/haffa-decision-browser-0.2.1.tgz -- decision-browser --version
+npm exec --offline --yes --package=/absolute/path/haffa-decision-browser-0.2.2.tgz -- decision-browser --version
 ```
 
 The checked-in package template stays private. The release builder creates the

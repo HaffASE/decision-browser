@@ -236,6 +236,9 @@ fn serve(mut stream: TcpStream, spec: &Value, state: &Mutex<State>) -> Result<()
         return reply(&mut stream, 404, "text/plain", "not found", None);
     };
     let mut state = state.lock().map_err(|_| "fixture state lock poisoned")?;
+    if name == "counter" && suffix.is_empty() && parsed.query() == Some("control=native") {
+        return native_counter(&mut stream, &method, &mut state);
+    }
     match spec["kind"].as_str().unwrap() {
         "baseline" => baseline(&mut stream, &method, suffix, body, spec, &mut state),
         "workflow" => workflow(
@@ -282,6 +285,27 @@ fn reply(
         body.len()
     )?;
     Ok(())
+}
+
+fn native_counter(stream: &mut TcpStream, method: &str, state: &mut State) -> Result<()> {
+    match method {
+        "POST" => {
+            state
+                .events
+                .push(json!({"name":"increment","query":null,"order":null}));
+            state.count += 1;
+        }
+        "GET" => {}
+        _ => return reply(stream, 404, "text/plain", "not found", None),
+    }
+    let page = format!(
+        r#"<!doctype html><html lang="en"><title>Benchmark counter</title><body>
+<h1>Counter</h1><form action="?control=native" method="post">
+<button id="increment" type="submit">Increase</button></form>
+<p id="status">Count: {}</p></body></html>"#,
+        state.count
+    );
+    reply(stream, 200, "text/html; charset=utf-8", &page, None)
 }
 
 fn baseline(

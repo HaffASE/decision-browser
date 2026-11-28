@@ -120,6 +120,7 @@ struct Run {
     max_stored: usize,
     admission_denial: Option<&'static str>,
     admitted_origin: Option<String>,
+    admitted_operations: Vec<String>,
 }
 impl Run {
     fn snapshot(&self) -> Value {
@@ -320,6 +321,7 @@ impl Server {
             max_stored,
             admission_denial: None,
             admitted_origin: None,
+            admitted_operations: Vec::new(),
         });
         self.run.as_ref().expect("run").snapshot()
     }
@@ -329,6 +331,10 @@ impl Server {
         };
         if run.gate.cancelled() {
             run.gate.answer(Err("cancelled"));
+            return;
+        }
+        if Instant::now() >= run.gate.deadline {
+            run.gate.answer(Err("admission_expired"));
             return;
         }
         if self.mode == "task_scope" {
@@ -349,8 +355,10 @@ impl Server {
                 run.admitted_origin = Some(origin.to_owned());
             }
             let ordinary = proposal["classification"] == "ordinary"
-                && run.admitted_origin.as_deref() == proposal["document_origin"].as_str()
-                && run.admitted_origin.as_deref() == proposal["destination_origin"].as_str();
+                && run.admitted_origin.as_deref().is_some_and(|origin| {
+                    proposal["document_origin"].as_str() == Some(origin)
+                        && proposal["destination_origin"].as_str() == Some(origin)
+                });
             if !(navigation || ordinary) {
                 run.gate.answer(Err("task_scope_expansion_required"));
                 return;
@@ -360,6 +368,30 @@ impl Server {
             run.result["reason"] = Value::Null;
             run.gate.answer(Ok(()));
             return;
+        }
+        if proposal["classification"] == "consequential" {
+            run.gate.answer(Err("consequential_action_blocked"));
+            return;
+        }
+        if proposal["kind"] == "beta" && !run.admitted_operations.is_empty() {
+            let within_task = run.admitted_origin.as_deref().is_some_and(|origin| {
+                proposal["document_origin"].as_str() == Some(origin)
+                    && proposal["destination_origin"].as_str() == Some(origin)
+            }) && proposal["operation"].as_str().is_some_and(|operation| {
+                run.admitted_operations
+                    .iter()
+                    .any(|allowed| allowed == operation)
+            });
+            if !within_task {
+                run.gate.answer(Err("task_scope_expansion_required"));
+                return;
+            }
+            if proposal["classification"] == "ordinary" {
+                run.result["terminal"] = json!("running");
+                run.result["reason"] = Value::Null;
+                run.gate.answer(Ok(()));
+                return;
+            }
         }
         let mut scope = if proposal.is_object() {
             proposal
@@ -412,8 +444,19 @@ impl Server {
         }
         let form_id = json!(new_id("form"));
         pending.presentation = Some((id.clone(), form_id.clone()));
+        let message = if pending.scope["kind"] == "alpha" && pending.scope["mode"] == "isolated" {
+            format!(
+                "Allow ordinary browser actions at this exact origin for this task and its displayed limits. Accept this form before its displayed deadline. Page handlers may cause effects such as autosave. Actions with unresolved effects require separate review. {}",
+                pending.scope
+            )
+        } else {
+            format!(
+                "Review this browser action scope before allowing it. {}",
+                pending.scope
+            )
+        };
         Some(
-            json!({"jsonrpc":"2.0","id":form_id,"method":"elicitation/create","params":{"mode":"form","message":format!("Review this browser action scope before allowing it. {}",pending.scope),"requestedSchema":{"type":"object","properties":{"reviewed":{"type":"boolean","title":"I reviewed the displayed action scope"}},"required":["reviewed"],"additionalProperties":false}}}),
+            json!({"jsonrpc":"2.0","id":form_id,"method":"elicitation/create","params":{"mode":"form","message":message,"requestedSchema":{"type":"object","properties":{"reviewed":{"type":"boolean","title":"I reviewed the displayed action scope"}},"required":["reviewed"],"additionalProperties":false}}}),
         )
     }
     fn form_response(&mut self, message: &Value) -> Option<Value> {
@@ -437,6 +480,20 @@ impl Server {
             "admission_declined"
         };
         let is_beta = pending.scope["kind"] == "beta";
+        if accepted && pending.scope["kind"] == "alpha" {
+            run.admitted_origin = None;
+            run.admitted_operations.clear();
+            if pending.scope["mode"] == "isolated" {
+                run.admitted_origin = pending.scope["origin"].as_str().map(str::to_owned);
+                run.admitted_operations = pending.scope["operations"]
+                    .as_array()
+                    .into_iter()
+                    .flatten()
+                    .filter_map(Value::as_str)
+                    .map(str::to_owned)
+                    .collect();
+            }
+        }
         run.pending = None;
         if accepted {
             run.admission_denial = None;
@@ -449,6 +506,8 @@ impl Server {
             run.result["reason"] = Value::Null;
             run.gate.answer(Ok(()));
         } else {
+            run.admitted_origin = None;
+            run.admitted_operations.clear();
             run.admission_denial = Some(reason);
             run.result["terminal"] = json!(if reason == "cancelled" {
                 "cancelled"
@@ -465,6 +524,8 @@ impl Server {
             && run.completed.is_none()
         {
             run.gate.cancel();
+            run.admitted_origin = None;
+            run.admitted_operations.clear();
             if let Some(pending) = run.pending.take()
                 && let Some((id, _)) = pending.presentation
             {
@@ -552,6 +613,8 @@ impl Server {
             return None;
         }
         let pending = run.pending.take().expect("pending");
+        run.admitted_origin = None;
+        run.admitted_operations.clear();
         run.admission_denial = Some("admission_expired");
         run.gate.answer(Err("admission_expired"));
         run.result["terminal"] = json!("blocked");
@@ -702,6 +765,7 @@ mod tests {
             max_stored: 10485760,
             admission_denial: None,
             admitted_origin: None,
+            admitted_operations: Vec::new(),
         });
     }
     #[test]
@@ -714,6 +778,11 @@ mod tests {
         assert!(run.pending.is_none());
         assert_eq!(
             *run.gate.answer.lock().unwrap(),
+            Some(Err("task_scope_expansion_required"))
+        );
+        server.proposal(json!({"kind":"beta","classification":"ordinary","operation":"click"}));
+        assert_eq!(
+            *server.run.as_ref().unwrap().gate.answer.lock().unwrap(),
             Some(Err("task_scope_expansion_required"))
         );
     }
@@ -742,6 +811,268 @@ mod tests {
                 *server.run.as_ref().unwrap().gate.answer.lock().unwrap(),
                 Some(Err("task_scope_expansion_required"))
             );
+        }
+    }
+    fn accept_task(server: &mut Server, mode: &str) {
+        server.form = true;
+        server.proposal(json!({
+            "kind":"alpha", "mode":mode, "origin":"https://example.org",
+            "operations":["click","fill","wait"]
+        }));
+        let scope = server
+            .run
+            .as_ref()
+            .unwrap()
+            .pending
+            .as_ref()
+            .unwrap()
+            .scope
+            .clone();
+        let form = server
+            .present(
+                &json!(10),
+                &json!({
+                    "proposal_id":scope["proposal_id"],"digest":scope["digest"]
+                }),
+            )
+            .unwrap();
+        if mode == "isolated" {
+            assert!(
+                form["params"]["message"]
+                    .as_str()
+                    .unwrap()
+                    .contains("for this task")
+            );
+        }
+        let response = server
+            .form_response(&json!({
+                "id":form["id"],"result":{"action":"accept","content":{"reviewed":true}}
+            }))
+            .unwrap();
+        assert_eq!(
+            response["result"]["structuredContent"]["result"]["terminal"],
+            "running"
+        );
+    }
+    fn ordinary_action(operation: &str) -> Value {
+        json!({"kind":"beta","classification":"ordinary","operation":operation,
+            "document_origin":"https://example.org","destination_origin":"https://example.org"})
+    }
+    #[test]
+    fn one_accepted_isolated_form_covers_multiple_ordinary_actions() {
+        let mut server = server();
+        retained(&mut server);
+        accept_task(&mut server, "isolated");
+        for operation in ["click", "fill", "click", "wait"] {
+            server
+                .run
+                .as_ref()
+                .unwrap()
+                .gate
+                .answer
+                .lock()
+                .unwrap()
+                .take();
+            server.proposal(ordinary_action(operation));
+            let run = server.run.as_ref().unwrap();
+            assert!(run.pending.is_none());
+            assert_eq!(*run.gate.answer.lock().unwrap(), Some(Ok(())));
+            assert_eq!(run.result["admission_class"], "ordinary_admitted");
+        }
+    }
+    #[test]
+    fn ordinary_actions_require_an_accepted_task_form() {
+        let mut server = server();
+        retained(&mut server);
+        server.proposal(ordinary_action("click"));
+        let run = server.run.as_ref().unwrap();
+        assert!(run.pending.is_some());
+        assert_eq!(*run.gate.answer.lock().unwrap(), None);
+    }
+    #[test]
+    fn accepted_task_rejects_changed_origins_and_unlisted_operations() {
+        for (field, value) in [
+            ("document_origin", "https://other.example.org"),
+            ("destination_origin", "https://other.example.org"),
+            ("operation", "submit"),
+        ] {
+            let mut server = server();
+            retained(&mut server);
+            accept_task(&mut server, "isolated");
+            let mut action = ordinary_action("click");
+            action[field] = json!(value);
+            server.proposal(action);
+            let run = server.run.as_ref().unwrap();
+            assert!(run.pending.is_none());
+            assert_eq!(
+                *run.gate.answer.lock().unwrap(),
+                Some(Err("task_scope_expansion_required"))
+            );
+        }
+    }
+    #[test]
+    fn unresolved_actions_and_existing_chrome_keep_individual_review() {
+        for (mode, classification) in [("isolated", "unresolved"), ("existing_chrome", "ordinary")]
+        {
+            let mut server = server();
+            retained(&mut server);
+            accept_task(&mut server, mode);
+            server
+                .run
+                .as_ref()
+                .unwrap()
+                .gate
+                .answer
+                .lock()
+                .unwrap()
+                .take();
+            let mut action = ordinary_action("click");
+            action["classification"] = json!(classification);
+            server.proposal(action);
+            let run = server.run.as_ref().unwrap();
+            assert!(run.pending.is_some());
+            assert_eq!(*run.gate.answer.lock().unwrap(), None);
+        }
+    }
+    #[test]
+    fn ordinary_followup_preserves_evidence_of_an_accepted_action_form() {
+        let mut server = server();
+        retained(&mut server);
+        accept_task(&mut server, "isolated");
+        let mut action = ordinary_action("click");
+        action["classification"] = json!("unresolved");
+        server.proposal(action);
+        let scope = server
+            .run
+            .as_ref()
+            .unwrap()
+            .pending
+            .as_ref()
+            .unwrap()
+            .scope
+            .clone();
+        let form = server
+            .present(
+                &json!(11),
+                &json!({
+                    "proposal_id":scope["proposal_id"],"digest":scope["digest"]
+                }),
+            )
+            .unwrap();
+        server
+            .form_response(&json!({
+                "id":form["id"],"result":{"action":"accept","content":{"reviewed":true}}
+            }))
+            .unwrap();
+        server.proposal(ordinary_action("click"));
+        assert_eq!(
+            server.run.as_ref().unwrap().result["admission_class"],
+            "ordinary_beta_admitted"
+        );
+        assert!(server.run.as_ref().unwrap().pending.is_none());
+    }
+    #[test]
+    #[ignore = "requires an installed sandboxed Chrome"]
+    fn one_task_form_covers_three_native_counter_clicks()
+    -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
+        let fixture = crate::matrix_fixtures::start("counter")?;
+        let url = format!("{}?control=native", fixture.url);
+        let (sender, receiver) = mpsc::channel();
+        let mut server = Server::new("standard_form", sender);
+        server.provider = Some(Provider::Fixture);
+        server
+            .message(
+                &json!({"jsonrpc":"2.0","id":1,"method":"initialize","params":{
+                    "protocolVersion":"2025-11-25","capabilities":{"elicitation":{"form":{}}}
+                }}),
+            )
+            .unwrap();
+        server.message(&json!({"jsonrpc":"2.0","method":"notifications/initialized"}));
+        let start = server
+            .message(
+                &json!({"jsonrpc":"2.0","id":2,"method":"tools/call","params":{
+                    "name":"start_task","arguments":{"request":{
+                        "goal":"Click Increase exactly three times and verify Count: 3.",
+                        "start_url":url,"mode":"isolated","values":{},"privacy":{},
+                        "checks":[{"kind":"text","target":"#status","expected":"Count: 3"}],
+                        "limits":{"max_steps":3,"max_provider_calls":8,"max_seconds":30.0}
+                    }}
+                }}),
+            )
+            .unwrap();
+        let run_id = start["result"]["structuredContent"]["result"]["run_id"].clone();
+        assert!(run_id.is_string(), "{start}");
+        let mut forms = 0;
+        let mut proposals = 0;
+        loop {
+            match receiver.recv_timeout(Duration::from_secs(40))? {
+                Event::Proposal(scope) => {
+                    proposals += 1;
+                    server.proposal(scope);
+                    if let Some(pending) = server.run.as_ref().unwrap().pending.as_ref() {
+                        let scope = pending.scope.clone();
+                        let form = server.message(&json!({"jsonrpc":"2.0","id":3 + forms,
+                            "method":"tools/call","params":{"name":"present_admission",
+                            "arguments":{"run_id":run_id,"proposal_id":scope["proposal_id"],"digest":scope["digest"]}}
+                        })).unwrap();
+                        assert_eq!(form["method"], "elicitation/create");
+                        forms += 1;
+                        // Protocol acceptance is simulated only inside this test.
+                        server
+                            .message(&json!({"jsonrpc":"2.0","id":form["id"],
+                                "result":{"action":"accept","content":{"reviewed":true}}
+                            }))
+                            .unwrap();
+                    }
+                }
+                Event::Finished(outcome) => {
+                    server.finished(outcome);
+                    break;
+                }
+                _ => panic!("unexpected event in controlled MCP test"),
+            }
+        }
+        let result = &server.run.as_ref().unwrap().result;
+        assert_eq!(forms, 1, "{result}");
+        assert_eq!(proposals, 4, "{result}");
+        assert_eq!(result["terminal"], "verified", "{result}");
+        assert_eq!(result["functional"], "verified", "{result}");
+        assert_eq!(result["admission_class"], "ordinary_admitted", "{result}");
+        assert_eq!(result["usage"]["steps"], 3, "{result}");
+        let oracle = fixture.oracle()?;
+        assert_eq!(oracle["counter"], 3, "{oracle}");
+        assert_eq!(oracle["observed"].as_array().unwrap().len(), 3, "{oracle}");
+        assert_eq!(oracle["success"], true, "{oracle}");
+        Ok(())
+    }
+    #[test]
+    fn accepted_task_cannot_override_cancellation_expiry_or_consequences() {
+        for reason in [
+            "cancelled",
+            "admission_expired",
+            "consequential_action_blocked",
+        ] {
+            let mut server = server();
+            retained(&mut server);
+            accept_task(&mut server, "isolated");
+            let mut action = ordinary_action("click");
+            match reason {
+                "cancelled" => server.run.as_ref().unwrap().gate.cancel(),
+                "admission_expired" => {
+                    server.run.as_mut().unwrap().gate = Arc::new(Gate {
+                        cancelled: AtomicBool::new(false),
+                        answer: Mutex::new(None),
+                        ready: Condvar::new(),
+                        events: server.events.clone(),
+                        deadline: Instant::now() - Duration::from_millis(1),
+                    })
+                }
+                _ => action["classification"] = json!("consequential"),
+            }
+            server.proposal(action);
+            let run = server.run.as_ref().unwrap();
+            assert!(run.pending.is_none());
+            assert_eq!(*run.gate.answer.lock().unwrap(), Some(Err(reason)));
         }
     }
     #[test]
@@ -927,6 +1258,7 @@ mod admission_finalization_tests {
             max_stored: 1024,
             admission_denial: Some("admission_declined"),
             admitted_origin: None,
+            admitted_operations: Vec::new(),
         });
         server.finished(TaskOutcome {
             terminal: "outcome_unknown".to_owned(),

@@ -453,7 +453,23 @@ pub fn execute(request: &Value, provider: Provider, control: &dyn RunControl) ->
             max_stored: bounded(request, "max_stored_bytes", 10485760, 104857600)? as usize,
         };
         alive(control, budget.deadline)?;
-        control.approve(json!({"kind":"alpha","mode":mode,"start_url":url,"origin":parsed.origin().ascii_serialization(),"provider":provider.name(),"operations":["navigate","click","fill","select","enter","submit","scroll","wait"],"budgets":request["limits"]}))?;
+        control.approve(json!({
+            "kind": "alpha",
+            "mode": mode,
+            "goal": goal,
+            "start_url": url,
+            "origin": parsed.origin().ascii_serialization(),
+            "provider": provider.name(),
+            "operations": ["navigate", "click", "fill", "select", "enter", "submit", "scroll", "wait"],
+            "budgets": {
+                "max_seconds": seconds,
+                "max_steps": budget.max_steps,
+                "max_provider_calls": budget.max_calls,
+                "max_input_bytes": budget.max_input,
+                "max_output_bytes": budget.max_output,
+                "max_stored_bytes": budget.max_stored
+            }
+        }))?;
         alive(control, budget.deadline)?;
         let session = if matches!(provider, Provider::Fixture) {
             None
@@ -1110,6 +1126,43 @@ mod tests {
         assert!(fixture.verify().unwrap());
         assert_eq!(result.usage["steps"], 2);
         assert_eq!(control.proposals.load(Ordering::SeqCst), 3);
+    }
+    #[test]
+    #[ignore = "requires installed sandboxed Chrome"]
+    fn native_counter_form_produces_three_ordinary_submits() {
+        struct OrdinaryOnly(AtomicUsize);
+        impl RunControl for OrdinaryOnly {
+            fn cancelled(&self) -> bool {
+                false
+            }
+
+            fn approve(&self, scope: Value) -> Result<(), &'static str> {
+                if scope["kind"] == "alpha" {
+                    return Ok(());
+                }
+                if scope["operation"] == "submit" && scope["classification"] == "ordinary" {
+                    self.0.fetch_add(1, Ordering::SeqCst);
+                    Ok(())
+                } else {
+                    Err("unexpected_counter_action")
+                }
+            }
+        }
+
+        let fixture = crate::matrix_fixtures::start("counter").unwrap();
+        let mut request = fixture_request(&fixture);
+        let url = json!(format!("{}?control=native", fixture.url));
+        request["start_url"] = url.clone();
+        request["checks"][1]["expected"] = url;
+        request["limits"]["max_steps"] = json!(3);
+        let control = OrdinaryOnly(AtomicUsize::new(0));
+        let result = execute(&request, Provider::Fixture, &control);
+        assert_eq!(result.terminal, "verified", "{:?}", result.reason);
+        assert_eq!(control.0.load(Ordering::SeqCst), 3);
+        assert_eq!(result.usage["steps"], 3);
+        let observed = fixture.oracle().unwrap();
+        assert_eq!(observed["counter"], 3);
+        assert_eq!(observed["observed"].as_array().unwrap().len(), 3);
     }
     #[test]
     #[ignore = "requires installed sandboxed Chrome"]
