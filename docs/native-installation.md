@@ -1,9 +1,9 @@
-# Install a native Decision Browser candidate
+# Build and install native Decision Browser
 
 Use a reviewed archive matching your operating system and CPU. The native
 archive contains a Rust executable, license notices, a manifest and SHA-256
-checksums. Chrome is a separate prerequisite. The build script creates local
-candidates and performs no publication.
+checksums. The published 0.2.0 archives target macOS arm64 and Linux x64. Chrome
+is a separate prerequisite. The build script creates local candidates.
 
 ## Build a candidate
 
@@ -25,7 +25,7 @@ the builder also checks that `--version` matches the executable version.
 ```sh
 sh scripts/build-native-release.sh \
   --binary /absolute/path/reviewed/decision-browser \
-  --target aarch64-apple-darwin --version 0.1.5 \
+  --target aarch64-apple-darwin --version 0.2.0 \
   --output /absolute/path/new-native-candidate
 ```
 
@@ -83,19 +83,20 @@ access and credentials when the task makes an API request.
 
 ## Browser and platform prerequisites
 
-The counter and matrix have native execution evidence on macOS arm64 with an
-installed Chrome. Set `DECISION_BROWSER_CHROME` to the browser executable when
+The release verification matrix runs native Chrome and installer tests on
+macOS arm64 and Linux x64. Live provider measurements were recorded on macOS
+arm64. Set `DECISION_BROWSER_CHROME` to the browser executable when
 it is outside the discovery paths. For example, Chrome for Testing uses an
 executable beneath its `.app/Contents/MacOS` directory. Browser discovery
-requires an executable file, and runs use a fresh profile with Chrome's sandbox.
+requires an executable file. Isolated runs start a fresh profile with Chrome's
+sandbox. Existing Chrome tasks use the [selected debugging session](installation.md#existing-chrome).
 
-Linux needs a compatible Chrome/Chromium build, its system libraries, and a
-working Chrome sandbox. Building the Rust executable does not establish native
-browser or installer acceptance on Linux. The builder also recognizes macOS
-x64, Linux x64/arm64 and Windows x64/arm64 target identifiers for preparing a
-matching candidate. Native installation and browser acceptance must be verified
-on each platform before publishing support. Shell build commands require a
-POSIX build environment, including when packaging a Windows executable.
+Linux needs a compatible Chrome/Chromium build, its system libraries and a
+working Chrome sandbox. The builder also recognizes macOS x64, Linux arm64
+and Windows x64/arm64 target identifiers for preparing additional candidates.
+Those targets need their own native installation and browser verification
+before support is published. Shell build commands require a POSIX build
+environment, including when packaging a Windows executable.
 
 The macOS live routes load supported named credentials from Keychain. Other
 platforms require the production provider configuration supported by the native
@@ -129,6 +130,6 @@ when preparing a release. That mode also requires exactly one matching dated
 CHANGELOG heading with a valid calendar date.
 
 ```sh
-cargo run --locked --bin check-native-release -- --tag v0.1.5
-sh scripts/build-native-release.sh --tag v0.1.5 --output /absolute/path/new-release
+cargo run --locked --bin check-native-release -- --tag v0.2.0
+sh scripts/build-native-release.sh --tag v0.2.0 --output /absolute/path/new-release
 ```

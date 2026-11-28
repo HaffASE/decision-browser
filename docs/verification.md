@@ -63,6 +63,13 @@ run uses a fresh evidence directory. It records tools, forms, task status,
 provider usage and artifact reads. Run paid acceptance only within the approved
 provider allowance.
 
+Use `--product-existing` with an explicitly selected disposable Chrome for the
+same counter in an existing context. Set `DECISION_BROWSER_DEVTOOLS_ACTIVE_PORT`
+to that browser's absolute `DevToolsActivePort` file first. Use
+`--product-public` for the harness's read-only public About navigation. Its
+page text can reach the selected live provider. Keep the observed outcomes and
+approval source with the [native host record](../tests/native/README.md).
+
 ## Timed browser matrix
 
 The standalone matrix uses the checked-in 21-case corpus, real CDP inputs,
@@ -86,7 +93,7 @@ artifact lifecycle evidence.
 ## Hosted checks and releases
 
 CI executes native formatting, Clippy, Rust tests and package lifecycle checks
-on its configured hosts. Read the exact commit's job results before promotion.
+on Linux x64 and macOS arm64. Read the exact commit's job results before promotion.
 A candidate built for one operating system does not establish browser or
 installer acceptance on another. Cross-compiled external executables need
 native target validation before publication.
