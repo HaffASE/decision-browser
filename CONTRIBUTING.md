@@ -1,35 +1,29 @@
 # Contributing
 
-Decision Browser is an experimental Python MCP server. Start with the
-[README](README.md), [provider guide](docs/providers.md), and
-[verification guide](docs/verification.md).
+Decision Browser is a Rust stdio MCP server. Start with the [README](README.md),
+[provider guide](docs/providers.md) and [verification guide](docs/verification.md).
 
-## Development
+Use Rust 1.100.0 or newer, Cargo and a compatible installed Chrome or Chromium.
+Keep the browser sandbox enabled. `DECISION_BROWSER_CHROME` selects an explicit
+browser executable when automatic discovery does not find it.
 
-Use Python 3.11+, `uv`, and Node.js. Install the locked development dependencies
-with `uv sync --frozen --group dev`. Browser tests also require the official
-Playwright Chromium revision and supported host libraries. Do not disable the
-sandbox or replace the browser to make a test pass.
+```sh
+cargo fmt --check
+cargo clippy --locked --all-targets -- -D warnings
+cargo test --locked --all-targets -- --include-ignored --test-threads=1
+sh scripts/check-python-free.sh
+```
 
-Make focused changes and add regression tests for changed behavior. Use owned
-local fixtures and synthetic data. The normal verifier does not require a live
-model key; live provider calls and paid benchmarks are separate, explicit work.
+Make focused changes and add regression coverage for changed behavior. Browser
+tests use owned local fixtures and synthetic data. Model API acceptance is a
+separate run with a recorded provider, model and cost allowance. Report failures
+and unexecuted checks alongside passing results.
 
-Run the documented full verifier against the final tree and use a fresh output
-directory outside the repository. Report passed, failed, blocked and unexecuted
-checks separately. An offline pass is not a full browser-suite pass.
+Explain the problem, resulting behavior, limitations and exact checks in pull
+requests. Preserve benchmark provenance and link each new measurement to its
+actual revision, environment and attempted cases.
 
-## Pull requests
-
-Explain the problem, the change, relevant limitations, and the exact checks run.
-Do not present historical benchmark measurements as fresh results. Preserve
-provenance when changing benchmark displays or links, and label new experiments
-with their actual tested revision and environment.
-
-Keep keys, cookies, private browser data, local account configuration, raw live
-traces and unrelated agent working notes out of commits. Follow the
-[security policy](SECURITY.md) for vulnerability reports.
-
-The project is licensed under [MIT](LICENSE). Contribute only material you have
-the right to submit under that license, and preserve applicable third-party
-notices. A license does not establish ownership of screenshots or external data.
+Keep credentials, cookies, private browser data, account configuration and raw
+live traces out of commits. Follow [SECURITY.md](SECURITY.md) for reports.
+Contribute material you have rights to submit under [MIT](LICENSE), and preserve
+applicable [third-party notices](THIRD_PARTY_NOTICES.md).

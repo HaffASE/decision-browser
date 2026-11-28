@@ -5,7 +5,6 @@ set -eu
 script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 root=$(CDPATH= cd -- "$script_dir/.." && pwd)
 manifest="$root/Cargo.toml"
-[ -f "$manifest" ] || manifest="$root/prototypes/rust-cdp-counter/Cargo.toml"
 binary=
 target=
 version=
@@ -38,6 +37,9 @@ while [ "$#" -gt 0 ]; do
 done
 [ -n "$output" ] || { usage >&2; exit 2; }
 [ ! -e "$output" ] || { printf '%s\n' 'Output directory already exists.' >&2; exit 2; }
+if [ -n "$tag" ]; then
+    (cd "$root" && sh scripts/check-python-free.sh)
+fi
 if [ -z "$target" ]; then
     target=$(rustc -vV | sed -n 's/^host: //p')
 fi
@@ -118,12 +120,12 @@ printf '%s  %s\n' "$(hash "$output/$bundle.tar.gz")" "$bundle.tar.gz" > "$output
 if "$with_npm"; then
     package="$output/npm"
     mkdir -p "$package/bin" "$package/native"
-    cp "$root/npm/native/bin/decision-browser.cjs" "$package/bin/"
+    cp "$root/npm/bin/decision-browser.cjs" "$package/bin/"
     chmod 755 "$package/bin/decision-browser.cjs"
     cp "$work/$bundle/bin/$executable" "$package/native/"
     cp "$work/$bundle/manifest.json" "$package/native/manifest.json"
-    sed "s/\"version\": \"0.0.0\"/\"version\": \"$version\"/" "$root/npm/native/package.json" > "$package/package.json"
-    cp "$root/npm/native/README.md" "$root/LICENSE" "$root/THIRD_PARTY_NOTICES.md" "$package/"
+    sed "s/\"version\": \"0.0.0\"/\"version\": \"$version\"/" "$root/npm/package.json" > "$package/package.json"
+    cp "$root/npm/README.md" "$root/LICENSE" "$root/THIRD_PARTY_NOTICES.md" "$package/"
     (cd "$package" && npm --cache "$work/npm-cache" pack --offline --ignore-scripts --pack-destination "$output")
     for archive in "$output"/*.tgz; do
         printf '%s  %s\n' "$(hash "$archive")" "$(basename -- "$archive")" >> "$output/SHA256SUMS"

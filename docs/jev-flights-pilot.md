@@ -1,5 +1,11 @@
 # Bounded Google Flights acceptance
 
+Historical design record from the pre-migration implementation. Current native
+commands and acceptance requirements are in [verification](verification.md).
+The [original source and procedure](https://github.com/HaffASE/decision-browser/blob/7babeb4114130e1bf97bd0f23599405b70965372/docs/jev-flights-pilot.md)
+remain available at the pinned revision.
+
+
 The approved fixture is JFK → LAX, 10 November 2026, one way, one adult,
 economy including Basic. Search only: never select a flight or book.
 

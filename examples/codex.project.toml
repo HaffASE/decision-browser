@@ -1,7 +1,6 @@
-# Project-local opt-in only.
-# No global write. No key value is stored; the variable is named, not set.
+# Project-local registration. Replace the absolute executable and project paths.
 [mcp_servers.decision_browser]
-command = "/absolute/path/to/decision-browser/.venv/bin/python"
-args = ["-m", "decision_browser.cli", "serve"]
-cwd = "/absolute/path/to/decision-browser"
+command = "/absolute/path/to/decision-browser"
+args = ["serve", "--admission", "standard_form"]
+cwd = "/absolute/path/to/project"
 env_vars = ["OPENAI_API_KEY"]

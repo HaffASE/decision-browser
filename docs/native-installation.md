@@ -16,8 +16,7 @@ Run the following from the repository root with a fresh output directory.
 sh scripts/build-native-release.sh --output /absolute/path/new-native-candidate
 ```
 
-The default builder locates the root Cargo manifest, or the migration crate
-under `prototypes/rust-cdp-counter` while it exists. It builds the
+The default builder uses the root Cargo manifest and builds the
 `decision-browser` binary for the Rust host target. `--manifest-path`,
 `--target` and `--version` select explicit build inputs. An explicit binary
 must already have been built for the supplied target. For host executables,
@@ -52,6 +51,30 @@ Choose `claude` or `both` when the corresponding clients are installed. Use
 installer copies its executable to a persistent project runtime before writing
 managed client configuration. `doctor` reports local installation state.
 Consult the CLI's help for current configuration and recovery commands.
+
+## Recover an interrupted installation
+
+`decision-browser install-status --project /absolute/path/project --json`
+inspects the installation and retained barrier without changing either.
+`recover-install` uses the same preview unless `--apply` is supplied.
+
+For a native interrupted configuration transaction, `recover-install --apply`
+restores exact journalled files after checking every target for user edits.
+The journal remains available when a target changed or recovery is uncertain.
+
+For a legacy stage-cleanup barrier, recovery first checks the stopped attempt,
+retained files, client registrations, filesystem and running processes.
+`recover-install --apply` records an authenticated host and boot witness. After
+a reboot on the same machine, preview reports `recovery_ready` if the evidence
+still matches. A second `recover-install --apply` repeats those checks, archives
+the residual record, and clears the original lease inode. Retained runtimes
+stay available for inspection. An active installer, referenced runtime, changed
+evidence, additional lock or incomplete process inspection preserves the block.
+
+Boot evidence is supported on macOS and host Linux. Linux namespaces and shared
+or unrecognized filesystems require an explicit blocked result. Recovery never
+reboots the machine automatically. Automated tests use synthetic boot identities
+and temporary projects.
 
 The archive can be copied, extracted, and started on a prepared machine without
 Python, uv, Node.js, or package downloads. Keep Chrome and the coding client
@@ -89,7 +112,7 @@ lifecycle install hooks.
 ```sh
 sh scripts/build-native-release.sh --npm --output /absolute/path/new-candidate
 npm exec --offline --yes \
-  --package=/absolute/path/new-candidate/haffa-decision-browser-native-VERSION.tgz \
+  --package=/absolute/path/new-candidate/haffa-decision-browser-VERSION.tgz \
   -- decision-browser --help
 ```
 
@@ -106,10 +129,6 @@ when preparing a release. That mode also requires exactly one matching dated
 CHANGELOG heading with a valid calendar date.
 
 ```sh
-cargo run --locked --offline --manifest-path prototypes/rust-cdp-counter/Cargo.toml \
-  --bin check-native-release -- --tag v0.1.4
+cargo run --locked --bin check-native-release -- --tag v0.1.4
 sh scripts/build-native-release.sh --tag v0.1.4 --output /absolute/path/new-release
 ```
-
-The legacy release checker remains available for its existing package workflow
-until the native release switchover.

@@ -4,9 +4,9 @@
 
 [mcp_servers.decision_browser_typesafe]
 enabled = false
-command = "/absolute/path/to/venv/bin/python"
-args = ["-m", "decision_browser.cli", "serve"]
-cwd = "/absolute/path/to/decision-browser"
+command = "/absolute/path/to/decision-browser"
+args = ["serve", "--admission", "standard_form"]
+cwd = "/absolute/path/to/project"
 env_vars = ["TYPESAFE_API_KEY"]
 [mcp_servers.decision_browser_typesafe.env]
 DECISION_BROWSER_PROVIDER = "typesafe"
@@ -14,9 +14,9 @@ DECISION_BROWSER_MODEL = "jev-latest"
 
 [mcp_servers.decision_browser_openrouter]
 enabled = false
-command = "/absolute/path/to/venv/bin/python"
-args = ["-m", "decision_browser.cli", "serve"]
-cwd = "/absolute/path/to/decision-browser"
+command = "/absolute/path/to/decision-browser"
+args = ["serve", "--admission", "standard_form"]
+cwd = "/absolute/path/to/project"
 env_vars = ["OPENROUTER_API_KEY"]
 [mcp_servers.decision_browser_openrouter.env]
 DECISION_BROWSER_PROVIDER = "openrouter"
@@ -24,9 +24,9 @@ DECISION_BROWSER_MODEL = "typesafe/jev-1.13"
 
 [mcp_servers.decision_browser_local]
 enabled = false
-command = "/absolute/path/to/venv/bin/python"
-args = ["-m", "decision_browser.cli", "serve"]
-cwd = "/absolute/path/to/decision-browser"
+command = "/absolute/path/to/decision-browser"
+args = ["serve", "--admission", "standard_form"]
+cwd = "/absolute/path/to/project"
 [mcp_servers.decision_browser_local.env]
 DECISION_BROWSER_PROVIDER = "local"
 DECISION_BROWSER_ENDPOINT = "http://127.0.0.1:8000/v1/systemone"
@@ -39,9 +39,9 @@ DECISION_BROWSER_MAX_CHOICES = "26"
 
 [mcp_servers.decision_browser_opencode]
 enabled = false
-command = "/absolute/path/to/venv/bin/python"
-args = ["-m", "decision_browser.cli", "serve"]
-cwd = "/absolute/path/to/decision-browser"
+command = "/absolute/path/to/decision-browser"
+args = ["serve", "--admission", "standard_form"]
+cwd = "/absolute/path/to/project"
 env_vars = ["OPENCODE_API_KEY"]
 [mcp_servers.decision_browser_opencode.env]
 DECISION_BROWSER_PROVIDER = "opencode"
@@ -51,9 +51,9 @@ DECISION_BROWSER_MODEL = "jev-1.13"
 
 [mcp_servers.decision_browser_gemini]
 enabled = false
-command = "/absolute/path/to/venv/bin/python"
-args = ["-m", "decision_browser.cli", "serve"]
-cwd = "/absolute/path/to/decision-browser"
+command = "/absolute/path/to/decision-browser"
+args = ["serve", "--admission", "standard_form"]
+cwd = "/absolute/path/to/project"
 env_vars = ["OPENCODE_API_KEY"]
 [mcp_servers.decision_browser_gemini.env]
 DECISION_BROWSER_PROVIDER = "gemini"
@@ -62,9 +62,9 @@ DECISION_BROWSER_MODEL = "gemini-decision-1"
 
 [mcp_servers.decision_browser_ollama]
 enabled = false
-command = "/absolute/path/to/venv/bin/python"
-args = ["-m", "decision_browser.cli", "serve"]
-cwd = "/absolute/path/to/decision-browser"
+command = "/absolute/path/to/decision-browser"
+args = ["serve", "--admission", "standard_form"]
+cwd = "/absolute/path/to/project"
 [mcp_servers.decision_browser_ollama.env]
 DECISION_BROWSER_PROVIDER = "local"
 DECISION_BROWSER_ENDPOINT = "http://127.0.0.1:11434/v1/systemone"

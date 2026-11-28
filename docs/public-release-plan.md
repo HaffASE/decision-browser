@@ -1,5 +1,11 @@
 # Public release: install, choose a provider, use
 
+Historical design record from the pre-migration implementation. Current native
+commands and acceptance requirements are in [verification](verification.md).
+The [original source and procedure](https://github.com/HaffASE/decision-browser/blob/7babeb4114130e1bf97bd0f23599405b70965372/docs/public-release-plan.md)
+remain available at the pinned revision.
+
+
 Plan started 2026-11-13. This is a delivery plan, not a public-release claim.
 
 ## Product outcome

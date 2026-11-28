@@ -1,5 +1,11 @@
 # Bootstrap origin validation
 
+Historical design record from the pre-migration implementation. Current native
+commands and acceptance requirements are in [verification](verification.md).
+The [original source and procedure](https://github.com/HaffASE/decision-browser/blob/7babeb4114130e1bf97bd0f23599405b70965372/docs/bootstrap-origin-validation.md)
+remain available at the pinned revision.
+
+
 ## Cause and repair plan
 
 The first Google Flights navigation was acknowledged, but the runner stopped

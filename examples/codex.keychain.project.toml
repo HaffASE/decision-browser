@@ -1,7 +1,8 @@
-# Project-local opt-in only.
-# macOS Keychain item: /usr/bin/security find-generic-password -s OPENAI_API_KEY -w
-# No global write. No key value is stored.
+# Project-local registration on macOS. The native route reads its named
+# Keychain credential when needed, without saving a key in this file.
 [mcp_servers.decision_browser]
-command = "/absolute/path/to/decision-browser/.venv/bin/python"
-args = ["-m", "decision_browser.keychain_entry"]
-cwd = "/absolute/path/to/decision-browser"
+command = "/absolute/path/to/decision-browser"
+args = ["serve", "--admission", "standard_form"]
+cwd = "/absolute/path/to/project"
+[mcp_servers.decision_browser.env]
+DECISION_BROWSER_PROVIDER = "openai"

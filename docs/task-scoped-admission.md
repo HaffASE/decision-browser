@@ -1,37 +1,39 @@
-# Ordinary tasks without admission forms
+# Admission modes
 
-## Plan
+The server operator selects an admission mode at startup. MCP task arguments
+cannot change that policy.
 
-The user requested ordinary browser tests without repeated, incomprehensible
-manual admission dialogs. Add an explicit server startup policy, `task_scope`,
-separate from `standard_form`. The default standard-form behavior remains
-unchanged until this policy is selected in the server configuration.
+```sh
+decision-browser serve --admission standard_form
+decision-browser serve --admission task_scope
+```
 
-1. Add a distinct code-owned task-scope admission path and class. Do not call
-   `accept_standard_form`, fabricate `reviewed`, or report a human click.
-2. Restrict the new mode to isolated browsers and the current request's single
-   initial origin, operations, budgets, and deadline. Preserve expiry, revoke,
-   cleanup, and the no-replay boundary.
-3. Keep consequential actions blocked. Stop on origin expansion or uncertain
-   action scope instead of silently granting a beta proposal or presenting an
-   unexpected form.
-4. Expose the selected policy in capabilities, add an explicit CLI option, and
-   carry it through the existing Keychain entry without changing credential
-   retrieval. Update the packaged skill and preserve standard-form tests.
-5. Verify the code before enabling the option in the project-local MCP config.
-   Retest Google Flights in a fresh native connection and retain its evidence.
+## Standard forms
 
-Task-scoped admission is an automated server policy, not standard-form or
-native-human proof. It is scoped to one run; it is not a persistent site
-allowlist. The existing lexical consequence classifier and native DOM guards
-remain in force. Ordinary controls can have hidden application effects, so this
-mode does not certify that a site is read-only or that arbitrary consequences
-are detected.
+`standard_form` is the default. Start a task once and poll its retained run.
+When `pending_proposal` is present, call `present_admission` with its exact
+identifiers. The coding client asks the user to review the scope. The agent
+must never synthesize the host response or its `reviewed` value.
 
-The CLI accepts `serve --admission task_scope`. When the host retains old
-launcher arguments, CLI startup also resolves this saved option from the current
-project's `.codex/config.toml`, only if the interpreter, working directory, and
-Keychain launcher match the active process. Explicit CLI options take precedence.
-Missing/nonmatching project settings keep standard-form defaults; malformed
-matching policy fails before the server starts. This resolves a startup policy,
-not a per-request permission flag or a human grant.
+The accepted form is bound to the live proposal and expiry. Decline, cancel,
+expiry and unsupported form clients stop with a specific reason. Protocol
+acceptance alone provides no evidence of a native user click.
+
+## Task scope
+
+`task_scope` applies to isolated tasks within their exact initial origin,
+operations, budgets and deadline. Its returned `admission_class` identifies the
+operator-selected policy. It grants no standard-form record. Consequential,
+foreign-origin or unsupported actions stop according to their classification.
+
+Read the connected server's `capabilities` for available modes and operations.
+Existing Chrome requires standard-form admission because it shares a selected
+account context. Cross-origin document navigation and forms need a separately
+agreed task scope.
+
+## Cancellation and uncertainty
+
+Use `cancel_task` for the retained run and poll while cleanup is pending.
+An already dispatched effect can have happened before cancellation. Inspect
+`terminal`, `reason`, `recovery` and evidence together. Reconcile unknown outcomes
+before deciding whether another run is appropriate.

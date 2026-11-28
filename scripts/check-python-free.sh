@@ -6,9 +6,13 @@ set -eu
 root=$(git rev-parse --show-toplevel)
 cd "$root"
 
-files=$(git ls-files -- '*.py' '*.pyi' '*.pyw' '*.pyz' '*.whl' 'pyproject.toml' 'uv.lock' 'requirements*.txt' 'Pipfile' 'Pipfile.lock')
+files=$(git ls-files --cached --others --exclude-standard -- '*.py' '*.pyi' '*.pyw' '*.pyz' '*.whl' \
+    ':(glob)**/pyproject.toml' ':(glob)**/uv.lock' ':(glob)**/requirements*.txt' ':(glob)**/Pipfile' ':(glob)**/Pipfile.lock' |
+    while IFS= read -r path; do
+        if [ -e "$path" ]; then printf '%s\n' "$path"; fi
+    done)
 if [ -n "$files" ]; then
-    printf '%s\n' 'Tracked Python code or packaging files:' >&2
+    printf '%s\n' 'Python code or packaging files remain in the release tree:' >&2
     printf '%s\n' "$files" >&2
     exit 1
 fi
@@ -21,4 +25,4 @@ else
     [ "$result" -eq 1 ] || exit "$result"
 fi
 
-printf '%s\n' 'Tracked release tree has no Python sources, packaging or known bootstrap commands.'
+printf '%s\n' 'Release tree has no Python sources, packaging or known bootstrap commands.'

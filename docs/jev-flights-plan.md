@@ -1,5 +1,11 @@
 # План рефакторинга: Jev-подобный цикл и подтверждённый Google Flights
 
+Historical design record from the pre-migration implementation. Current native
+commands and acceptance requirements are in [verification](verification.md).
+The [original source and procedure](https://github.com/HaffASE/decision-browser/blob/7babeb4114130e1bf97bd0f23599405b70965372/docs/jev-flights-plan.md)
+remain available at the pinned revision.
+
+
 Версия1, 10 октября2026. База9f6551d93af1ac0c4b86a35f44a097b1d29d8a10. Reference Jev1231850a0bf1a0c0341fe408ef1668dbbfdfac46. Статус: draft → независимое architecture review → независимое critic review. Реализация пользователем запрошена отдельно; публикация/merge не входят в этот запуск.
 
 ## Результат и границы

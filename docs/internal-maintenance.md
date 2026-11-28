@@ -1,5 +1,11 @@
 # Local interfaces and packaged experimental utilities
 
+Historical design record from the pre-migration implementation. Current native
+commands and acceptance requirements are in [verification](verification.md).
+The [original source and procedure](https://github.com/HaffASE/decision-browser/blob/7babeb4114130e1bf97bd0f23599405b70965372/docs/internal-maintenance.md)
+remain available at the pinned revision.
+
+
 These boundaries describe the existing Python/package contracts. They add no
 browser capability, provider route, consent authority, or human admission claim.
 

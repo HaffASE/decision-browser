@@ -96,7 +96,7 @@ The original fixture, common runner and benchmark workers used source revision `
 
 [Combined GIF](../../assets/browser-four-agents.gif) · [Per-attempt CSV](runs.csv) · [Actions, page checks, saved sections and request usage](evidence.jsonl) · [Summary](summary.json) · [Sources, preflight and retries](audit.json)
 
-[Fixture definitions](../../../scripts/benchmarks/long_scenarios.py) · [Shared limits and pricing](../../../scripts/benchmarks/long_protocol.py) · [Live runner](../../../scripts/benchmarks/long_run.py)
+[Fixture definitions](https://github.com/HaffASE/decision-browser/blob/7babeb4114130e1bf97bd0f23599405b70965372/scripts/benchmarks/long_scenarios.py) · [Shared limits and pricing](https://github.com/HaffASE/decision-browser/blob/7babeb4114130e1bf97bd0f23599405b70965372/scripts/benchmarks/long_protocol.py) · [Live runner](https://github.com/HaffASE/decision-browser/blob/7babeb4114130e1bf97bd0f23599405b70965372/scripts/benchmarks/long_run.py)
 
 The installation command below has been updated for the current bundled full Chromium
 headless channel. This documentation correction does not regenerate or change the
