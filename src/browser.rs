@@ -659,29 +659,31 @@ fn inventory_contains_group(bytes: &[u8], group: i32, owner: u32) -> BrowserResu
         let observed_group = fields[0]
             .parse::<i32>()
             .map_err(|_| failure("process inventory has an invalid group"))?;
+        if observed_group < -1 {
+            return Err(failure("process inventory has an invalid group"));
+        }
+        rows += 1;
+        // System processes can have no group and use status flags that vary
+        // by host. Their ownership and liveness do not affect our group.
+        if observed_group != group {
+            continue;
+        }
         let observed_owner = fields[1]
             .parse::<i64>()
             .map_err(|_| failure("process inventory has an invalid owner"))?;
         let state = fields[2];
-        if observed_group < 0
-            || !(i64::from(i32::MIN)..=i64::from(u32::MAX)).contains(&observed_owner)
-            || state.is_empty()
-            || !state
-                .bytes()
-                .all(|byte| byte.is_ascii_alphabetic() || b"<+>".contains(&byte))
+        if !(i64::from(i32::MIN)..=i64::from(u32::MAX)).contains(&observed_owner)
+            || !state.bytes().all(|byte| byte.is_ascii_graphic())
         {
             return Err(failure("process inventory has invalid process state"));
         }
-        rows += 1;
-        if observed_group == group {
-            // Darwin ps renders system UIDs such as nobody as signed values.
-            if observed_owner as u32 != owner {
-                return Err(failure("process group identity changed"));
-            }
-            // Reaped leaders are never signalled. A remaining zombie has no
-            // executable work or open resources, while live members need time.
-            present |= !state.starts_with('Z');
+        // Darwin ps can render system UIDs as signed values.
+        if observed_owner as u32 != owner {
+            return Err(failure("process group identity changed"));
         }
+        // Zombies have no executable work or open resources. Treat any other
+        // state, including an unknown status, as potentially live.
+        present |= !state.starts_with('Z');
     }
     if rows == 0 {
         return Err(failure("process inventory is empty"));
@@ -901,17 +903,18 @@ mod cancellation_tests {
     #[test]
     fn process_inventory_requires_complete_unambiguous_liveness() {
         assert!(inventory_contains_group(b"0 0 Ss\n2 -2 Ss\n123 501 S+\n", 123, 501).unwrap());
+        assert!(inventory_contains_group(b"0 0 Ss\n123 501 ?\n", 123, 501).unwrap());
         assert!(!inventory_contains_group(b"0 0 Ss\n123 501 Z+\n987 501 R<\n", 123, 501).unwrap());
-        assert!(!inventory_contains_group(b"0 0 Ss\n987 501 R>\n", 123, 501).unwrap());
+        assert!(!inventory_contains_group(b"0 0 Ss\n-1 -2 ?\n987 - R>!\n", 123, 501).unwrap());
         for invalid in [
             b"".as_slice(),
             b"123 501\n",
             b"123 501 S extra\n",
-            b"-1 0 S\n",
+            b"-2 0 S\n",
             b"123 999 S\n",
             b"oops 501 S\n",
-            b"987 uid S\n",
-            b"987 501 ?\n",
+            b"123 uid S\n",
+            b"123 501 \x01\n",
         ] {
             assert!(inventory_contains_group(invalid, 123, 501).is_err());
         }
