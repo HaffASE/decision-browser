@@ -169,12 +169,31 @@ jobs:
           include-hidden-files: false
           retention-days: 14
 
+  rust:
+    name: Verify Rust prototype
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out source
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Install Rust and check the native crate
+        shell: bash
+        run: |
+          set -euo pipefail
+          rustup toolchain install 1.100.0 --profile minimal --component rustfmt --component clippy
+          cargo +1.100.0 fmt --manifest-path prototypes/rust-cdp-counter/Cargo.toml --check
+          cargo +1.100.0 clippy --manifest-path prototypes/rust-cdp-counter/Cargo.toml --locked --all-targets -- -D warnings
+          cargo +1.100.0 test --manifest-path prototypes/rust-cdp-counter/Cargo.toml --locked --all-targets
+
   release-ready:
     name: Release candidate gate
-    needs: verify
+    needs: [verify, rust]
     if: ${{ github.ref_type == 'tag' }}
     runs-on: ubuntu-22.04
     timeout-minutes: 5
     steps:
       - name: Require the complete verification matrix
-        run: echo "All supported Python verification jobs passed. Candidate may be reviewed for publication."
+        run: echo "All required verification jobs passed. Candidate may be reviewed for publication."

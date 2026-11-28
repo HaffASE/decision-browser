@@ -50,7 +50,9 @@ have their own implementation. `elapsed_ms` covers the fixture, browser,
 model, verification and owned browser cleanup. The per-case report includes
 failures so that elapsed time and confirmation rate can be read together.
 
-The matrix exercises the isolated case runner. The separate Codex example
+The public `public_about` case sends observed Python.org page text to the
+selected model. Other cases use synthetic loopback pages. The matrix exercises
+the isolated case runner. The separate Codex example
 exercises MCP form elicitation and a native counter action.
 
 ### Live results on 28 November 2026
@@ -70,3 +72,8 @@ Medians include unconfirmed attempts. The earlier Python run on the same
 Chromium build recorded 3.687 s, 3.722 s, and 4.455 s, respectively. The Rust
 and Python implementations use different action policies and runners, so
 these timings describe the complete pipelines. [Per-case timings and outcomes](fixtures/timed-live-results-2026-11-28.json)
+
+After the full run, the runner was changed to wait locally when the page
+offers no browser actions. The two targeted `loading_overlay` repeats passed
+on Luna (6.790 s) and Gemini (6.750 s). The table still shows the original
+complete matrix.
