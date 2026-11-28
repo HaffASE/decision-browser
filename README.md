@@ -5,7 +5,7 @@ agent a URL, a goal, field values and final checks. The server observes browser
 controls, selects bounded actions through the configured model, rechecks each
 target through CDP and returns a verifiable result.
 
-[Download v0.2.1](https://github.com/HaffASE/decision-browser/releases/tag/v0.2.1) ·
+[Download v0.2.3](https://github.com/HaffASE/decision-browser/releases/tag/v0.2.3) ·
 [Installation](docs/installation.md) · [MCP tools](#mcp-tools) ·
 [Providers](docs/providers.md) · [Verification](docs/verification.md) ·
 [Release procedure](docs/releasing.md)
@@ -45,7 +45,8 @@ Chrome and the coding client are separate prerequisites. See the
 
 ### Install through npm
 
-With Node.js 20 or newer, run the published package from your project.
+With Node.js 20 or newer, run the published npm version 0.2.2 from your project.
+For task-scoped work in an existing Chrome session, use the v0.2.3 archive above.
 
 ```sh
 npm exec --yes --package=@haffa/decision-browser@0.2.2 -- decision-browser setup codex

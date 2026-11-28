@@ -14,14 +14,14 @@ npm exec --yes --package=@haffa/decision-browser@0.2.2 -- decision-browser confi
 Choose `claude` or `both` for the other client registrations. `setup` copies the
 native executable into the project's persistent runtime and writes managed MCP
 settings. Restart the coding client, review its trust and MCP prompts, and
-supply credentials through the [provider guide](https://github.com/HaffASE/decision-browser/blob/v0.2.1/docs/providers.md).
+supply credentials through the [provider guide](https://github.com/HaffASE/decision-browser/blob/v0.2.3/docs/providers.md).
 
 The package has no lifecycle hooks or npm dependencies. Installation and launch
 use the bundled executable and local files. Set `DECISION_BROWSER_CHROME` to the
 browser executable when automatic discovery is insufficient.
 
-For direct native installation, use the [v0.2.1 release archives](https://github.com/HaffASE/decision-browser/releases/tag/v0.2.1).
-Source builds and release packaging use the [release procedure](https://github.com/HaffASE/decision-browser/blob/v0.2.1/docs/releasing.md).
+For direct native installation, use the [v0.2.3 release archives](https://github.com/HaffASE/decision-browser/releases/tag/v0.2.3).
+Source builds and release packaging use the [release procedure](https://github.com/HaffASE/decision-browser/blob/v0.2.3/docs/releasing.md).
 
 Maintainers can test a reviewed local tarball in a fresh directory.
 

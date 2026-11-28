@@ -1,8 +1,10 @@
 # Installation
 
-Version 0.2 starts the native Rust compatibility line. Version 0.2.2 is available
-for macOS arm64 and Linux x64 through npm and native archives. Choose the matching
-archive from the [v0.2.1 release](https://github.com/HaffASE/decision-browser/releases/tag/v0.2.1).
+Version 0.2 starts the native Rust compatibility line. Choose a macOS arm64 or
+Linux x64 archive from the
+[v0.2.3 release](https://github.com/HaffASE/decision-browser/releases/tag/v0.2.3).
+Use that release for task-scoped work in an existing Chrome session. The npm
+commands below install version 0.2.2.
 
 Install a reviewed native archive matching the operating system and CPU. Chrome
 or Chromium and the coding client are separate prerequisites. The archive
