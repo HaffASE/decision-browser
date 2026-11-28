@@ -5,6 +5,14 @@ Versions follow the policy in [Releasing](docs/releasing.md).
 
 ## [Unreleased]
 
+## [0.2.2] - 2026-11-28
+
+- Reuse the confirmed task scope for ordinary actions in isolated Chrome.
+  Review actions with unresolved effects and actions in existing Chrome
+  individually.
+- Let managed Codex installations queue the task and present its confirmation
+  directly. The browser starts after the user accepts the task scope.
+
 ## [0.2.1] - 2026-11-28
 
 - Resume interrupted Chrome CDP WebSocket upgrades on the same socket within

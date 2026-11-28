@@ -15,8 +15,10 @@ local prerequisites using the installed executable and the current project path.
    recover the retained run. A missing run does not establish what happened.
 2. Poll `get_task` with the run ID. When it returns a pending proposal, call
    `present_admission` with the exact run ID, proposal ID, and digest. The host
-   asks the user to review the scope. The agent must never submit the host's
-   answer or synthesize its `reviewed` value.
+   asks the user to review the scope. In an isolated browser, that confirmation
+   covers ordinary actions within the accepted scope. Unresolved effects and
+   actions in existing Chrome receive individual review. The agent must never
+   submit the host's answer or synthesize its `reviewed` value.
 3. Read evidence by artifact ID using `read_artifact`. Report the functional
    result separately from any visual diagnostics. A result of `outcome_unknown`
    requires inspecting the browser before deciding whether another run is safe.

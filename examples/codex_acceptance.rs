@@ -230,10 +230,8 @@ fn validate_form(message: &Value, thread_id: &str, scope: Option<&FormScope>) ->
     }
     let text = params["message"].as_str().ok_or("form message missing")?;
     let valid = if let Some(scope) = scope {
-        let proposal: Value = serde_json::from_str(
-            text.strip_prefix("Review this browser action scope before allowing it. ")
-                .ok_or("unexpected product form message")?,
-        )?;
+        let scope_offset = text.find('{').ok_or("product form scope missing")?;
+        let proposal: Value = serde_json::from_str(&text[scope_offset..])?;
         if proposal["kind"] == "alpha" {
             proposal["origin"] == scope.origin
                 && proposal["start_url"] == scope.start
@@ -518,6 +516,11 @@ fn product_task(
         thread::sleep(Duration::from_millis(75));
     };
     write_json(&output.join("terminal.json"), &terminal)?;
+    let forms_verified = if surface == Surface::Public {
+        app.forms.len() == 1
+    } else {
+        app.forms.len() >= 2
+    };
     if terminal["terminal"] != "verified"
         || terminal["functional"] != "verified"
         || fixture
@@ -525,7 +528,7 @@ fn product_task(
             .map(|fixture| fixture.verify())
             .transpose()?
             == Some(false)
-        || app.forms.len() < 2
+        || !forms_verified
     {
         return Err("product did not verify the declared checks and admission".into());
     }

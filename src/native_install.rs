@@ -454,6 +454,11 @@ fn registration(
         config["cwd"] = json!(project);
         config["startup_timeout_sec"] = json!(30);
         config["tool_timeout_sec"] = json!(180);
+        // These protocol handoffs still require the server-side human admission form.
+        config["tools"] = json!({
+            "start_task":{"approval_mode":"approve"},
+            "present_admission":{"approval_mode":"approve"}
+        });
         config["env_vars"] = json!([
             "DECISION_BROWSER_PROVIDER",
             "DECISION_BROWSER_CHROME",
@@ -526,18 +531,10 @@ fn change_config(
                 stripped.push('\n');
             }
             stripped.push_str(BEGIN);
-            stripped.push_str("[mcp_servers.decision_browser]\n");
-            for (key, value) in config.as_object().ok_or("invalid registration")? {
-                if key != "env" {
-                    stripped.push_str(&format!("{key} = {value}\n"));
-                }
-            }
-            if let Some(env) = config.get("env").and_then(Value::as_object) {
-                stripped.push_str("[mcp_servers.decision_browser.env]\n");
-                for (key, value) in env {
-                    stripped.push_str(&format!("{} = {value}\n", serde_json::to_string(key)?));
-                }
-            }
+            config.as_object().ok_or("invalid registration")?;
+            stripped.push_str(&toml::to_string(&json!({
+                "mcp_servers":{"decision_browser":config}
+            }))?);
             stripped.push_str(END);
         }
         let _: toml::Value = toml::from_str(&stripped)?;
@@ -1134,6 +1131,20 @@ mod tests {
         let source = Path::new("/usr/bin/true");
         install(&project.0, source, &names, false)?;
         let first = manifest(&project.0)?;
+        assert_eq!(
+            first["clients"]["codex"]["config"]["tools"],
+            json!({
+                "start_task":{"approval_mode":"approve"},
+                "present_admission":{"approval_mode":"approve"}
+            })
+        );
+        assert!(first["clients"]["claude"]["config"].get("tools").is_none());
+        let installed: toml::Value =
+            toml::from_str(&fs::read_to_string(project.0.join(".codex/config.toml"))?)?;
+        assert_eq!(
+            serde_json::to_value(&installed["mcp_servers"]["decision_browser"])?,
+            first["clients"]["codex"]["config"]
+        );
         install(&project.0, source, &names, false)?;
         let second = manifest(&project.0)?;
         assert_ne!(
@@ -1280,6 +1291,33 @@ mod tests {
                 );
             }
         }
+    }
+
+    #[test]
+    fn existing_native_registration_adds_only_protocol_handoff_tool_policies() -> Result<()> {
+        let desired = registration(
+            "codex",
+            Path::new("/native/decision-browser"),
+            Path::new("/project"),
+            &std::collections::BTreeMap::new(),
+        );
+        let mut previous = desired.clone();
+        previous.as_object_mut().unwrap().remove("tools");
+        let unrelated = "model = \"example\"\n[mcp_servers.other]\ncommand = \"other\"\n";
+        let before = change_config("codex", Some(unrelated.as_bytes()), None, Some(&previous))?
+            .expect("native registration");
+        let after = change_config("codex", Some(&before), Some(&previous), Some(&desired))?
+            .expect("updated native registration");
+        assert!(std::str::from_utf8(&after)?.starts_with(unrelated));
+        let parsed: toml::Value = toml::from_slice(&after)?;
+        assert_eq!(
+            serde_json::to_value(&parsed["mcp_servers"]["decision_browser"])?,
+            desired
+        );
+        let removed = change_config("codex", Some(&after), Some(&desired), None)?
+            .expect("preserved unrelated configuration");
+        assert_eq!(removed, unrelated.as_bytes());
+        Ok(())
     }
 
     #[test]

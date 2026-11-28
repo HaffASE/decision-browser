@@ -48,8 +48,8 @@ Chrome and the coding client are separate prerequisites. See the
 With Node.js 20 or newer, run the published package from your project.
 
 ```sh
-npm exec --yes --package=@haffa/decision-browser@0.2.1 -- decision-browser setup codex
-npm exec --yes --package=@haffa/decision-browser@0.2.1 -- decision-browser configure openai
+npm exec --yes --package=@haffa/decision-browser@0.2.2 -- decision-browser setup codex
+npm exec --yes --package=@haffa/decision-browser@0.2.2 -- decision-browser configure openai
 ```
 
 The package includes the Rust executables for macOS arm64 and Linux x64 and
@@ -102,8 +102,10 @@ uses the requested page checks. Visual diagnostics are reported separately.
 
 Start once and poll `queued`, `awaiting_human_admission` and `running` results.
 When a pending proposal exists, pass its exact identifiers to `present_admission`
-and let the user answer the client form. Approval binds the displayed scope,
-expiry and semantic target. Read a terminal result's reason and recovery fields.
+and let the user answer the client form. One confirmation covers ordinary
+actions for an isolated task within the displayed origin, operations and
+limits. Ambiguous effects and actions in existing Chrome receive individual
+review. Read a terminal result's reason and recovery fields.
 An `outcome_unknown` result requires inspecting the outcome before deciding
 whether another run is safe.
 

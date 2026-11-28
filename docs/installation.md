@@ -1,6 +1,6 @@
 # Installation
 
-Version 0.2 starts the native Rust compatibility line. Version 0.2.1 is available
+Version 0.2 starts the native Rust compatibility line. Version 0.2.2 is available
 for macOS arm64 and Linux x64 through npm and native archives. Choose the matching
 archive from the [v0.2.1 release](https://github.com/HaffASE/decision-browser/releases/tag/v0.2.1).
 
@@ -14,8 +14,8 @@ See [native build and archive verification](native-installation.md).
 Install Node.js 20 or newer and Chrome or Chromium, then run from your project.
 
 ```sh
-npm exec --yes --package=@haffa/decision-browser@0.2.1 -- decision-browser setup codex
-npm exec --yes --package=@haffa/decision-browser@0.2.1 -- decision-browser configure openai
+npm exec --yes --package=@haffa/decision-browser@0.2.2 -- decision-browser setup codex
+npm exec --yes --package=@haffa/decision-browser@0.2.2 -- decision-browser configure openai
 ```
 
 Choose `claude` or `both` for the client. The public package contains both
@@ -27,7 +27,7 @@ MCP prompts. Supply provider credentials using the [provider guide](providers.md
 To update a registered project, close its coding client and run the new package.
 
 ```sh
-npm exec --yes --package=@haffa/decision-browser@0.2.1 -- decision-browser upgrade codex
+npm exec --yes --package=@haffa/decision-browser@0.2.2 -- decision-browser upgrade codex
 ```
 
 ## Register a project

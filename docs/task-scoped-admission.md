@@ -12,8 +12,15 @@ decision-browser serve --admission task_scope
 
 `standard_form` is the default. Start a task once and poll its retained run.
 When `pending_proposal` is present, call `present_admission` with its exact
-identifiers. The coding client asks the user to review the scope. The agent
-must never synthesize the host response or its `reviewed` value.
+identifiers. The coding client asks the user to review the goal, origin,
+operations and limits. For an isolated task, the accepted form covers ordinary
+actions at that exact origin until the task deadline. Controls with unresolved
+effects and actions in existing Chrome are reviewed individually. The agent
+must never synthesize a host response or its `reviewed` value.
+
+In a managed Codex registration, `start_task` queues the request directly and
+`present_admission` opens the form. That form controls when provider and
+browser work can begin.
 
 The accepted form is bound to the live proposal and expiry. Decline, cancel,
 expiry and unsupported form clients stop with a specific reason. Protocol

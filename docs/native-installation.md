@@ -2,7 +2,7 @@
 
 Use a reviewed archive matching your operating system and CPU. The native
 archive contains a Rust executable, license notices, a manifest and SHA-256
-checksums. The published 0.2.0 archives target macOS arm64 and Linux x64. Chrome
+checksums. The published 0.2.2 archives target macOS arm64 and Linux x64. Chrome
 is a separate prerequisite. The build script creates local candidates.
 
 ## Build a candidate
@@ -25,7 +25,7 @@ the builder also checks that `--version` matches the executable version.
 ```sh
 sh scripts/build-native-release.sh \
   --binary /absolute/path/reviewed/decision-browser \
-  --target aarch64-apple-darwin --version 0.2.0 \
+  --target aarch64-apple-darwin --version 0.2.2 \
   --output /absolute/path/new-native-candidate
 ```
 
