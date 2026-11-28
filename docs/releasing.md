@@ -4,6 +4,11 @@ The native version in Cargo.toml is the version source. Cargo.lock must contain
 the same local package version. Release tags use the exact `vMAJOR.MINOR.PATCH`
 form. Update version metadata deliberately and add one dated changelog heading.
 
+Before 1.0, incompatible runtime, installation or public behavior changes
+increment MINOR. Patches within that line increment PATCH. Version 0.2.0 assigns
+the Rust migration its compatibility boundary. Historical 0.1.x tags remain
+available and published releases retain their original artifacts.
+
 ## Verify a candidate
 
 Run the complete [verification procedure](verification.md) on the exact reviewed

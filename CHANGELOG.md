@@ -5,6 +5,14 @@ Versions follow the policy in [Releasing](docs/releasing.md).
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-28
+
+- Release the Rust runtime from 0.1.5 on the 0.2 compatibility line. Upgrades
+  from the Python distribution move to the native executable and a separately
+  installed Chrome or Chromium. The six MCP discovery schemas are preserved.
+- Document the download targets, managed project upgrades, provider selection,
+  credentials and browser scope. Align the CLI help with those commands.
+
 ## [0.1.5] - 2026-11-28
 
 - Verify Chrome process-group cleanup without interpreting the state of unrelated

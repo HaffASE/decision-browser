@@ -5,24 +5,26 @@ agent a URL, a goal, field values and final checks. The server observes browser
 controls, selects bounded actions through the configured model, rechecks each
 target through CDP and returns a verifiable result.
 
+[Download v0.2.0](https://github.com/HaffASE/decision-browser/releases/tag/v0.2.0) ·
 [Installation](docs/installation.md) · [MCP tools](#mcp-tools) ·
 [Providers](docs/providers.md) · [Verification](docs/verification.md) ·
 [Release procedure](docs/releasing.md)
 
 ## Quick start
 
-Download a reviewed native archive for your operating system and architecture,
-check its SHA-256, and extract it. Keep Chrome or Chromium installed with its
-sandbox enabled. Run the executable from your project.
+Release archives are available for macOS arm64 and Linux x86-64. Check the
+archive against the release's `SHA256SUMS`, then extract it. Keep Chrome or
+Chromium installed with its sandbox enabled. Run the executable from your project.
 
 ```sh
 /absolute/path/to/decision-browser/bin/decision-browser setup codex
+/absolute/path/to/decision-browser/bin/decision-browser configure openai
 ```
 
 Choose `claude` or `both` for the other client registrations. `setup` installs
-project-local MCP settings and a skill, then asks for the provider configuration.
+project-local MCP settings and a skill. `configure` selects the provider preset.
+Supply credentials separately using the [provider guide](docs/providers.md).
 Use `install codex --project /absolute/path/project` for unattended registration.
-The installer stores its executable in the project before writing client settings.
 
 Restart the coding client, review its trust and MCP prompts, and ask it to call
 `capabilities`. Installation, API access, client approval and verified browser
@@ -41,6 +43,21 @@ the dependencies pinned by Cargo.lock when they are absent from the local cache.
 Chrome and the coding client are separate prerequisites. See the
 [installation guide](docs/installation.md) for configuration, upgrades and recovery.
 
+### Upgrade an existing project
+
+Close the coding client and run `upgrade` using the executable from the new
+archive. Select the same client or clients as the old registration.
+
+```sh
+/absolute/path/to/decision-browser/bin/decision-browser upgrade codex --project /absolute/path/project
+/absolute/path/to/decision-browser/bin/decision-browser doctor --json --project /absolute/path/project
+```
+
+Version 0.2 marks the compatibility break from the Python distribution. The
+native installer can migrate recognized, unchanged project registrations.
+For custom MCP registrations, use the native executable with `serve` and follow
+the [installation guide](docs/installation.md).
+
 ## Browser tasks
 
 Supply a URL you are authorized to use, an exact goal and independent checks.
@@ -49,8 +66,10 @@ verify the selected field value. Provide known form text in `values`.
 
 `isolated` mode creates a fresh browser context. `existing_chrome` uses an
 acknowledged task tab in a selected Chrome debugging session and shares that
-session's account access. Check the connected server's `capabilities` before
-selecting a mode. See [browser control](docs/browser-control-stage-one.md).
+session's account access. Use it with `standard_form` and a Chrome session with
+remote debugging enabled. Task navigation and requests follow the agreed origin,
+which can block cross-origin resources and transitions. Check `capabilities`
+before selecting a mode. [Browser control](docs/browser-control-stage-one.md)
 
 The runner enforces the request's step, provider-call, byte and elapsed-time
 limits. Browser inputs operate on observed controls. Functional verification
@@ -86,7 +105,7 @@ hash and the final artifact SHA-256. [Wire schemas](contracts/generated-tools.js
 
 ## Providers
 
-Choose a provider with `decision-browser configure`. Credentials and route
+Choose a provider with `decision-browser configure <provider>`. Credentials and route
 settings belong in operator configuration. The MCP task arguments contain the
 browser goal and values.
 
@@ -108,13 +127,14 @@ and model. [Provider configuration](docs/providers.md)
 
 | Command | Purpose |
 | --- | --- |
-| `setup [codex\|claude\|both]` | Install a project and configure its provider interactively |
+| `setup [codex\|claude\|both]` | Register the selected client, prompting for a client when omitted in a terminal |
 | `install codex\|claude\|both` | Register the native server in the selected project |
-| `configure [provider]` | Save provider configuration |
+| `configure <provider>` | Save the selected provider preset |
 | `serve [--admission standard_form\|task_scope]` | Serve MCP over stdio |
 | `doctor --json` | Inspect local prerequisites |
-| `upgrade` / `uninstall` | Update or remove owned project registrations |
+| `upgrade codex\|claude\|both` / `uninstall codex\|claude\|both` | Update or remove owned project registrations |
 | `install-status` / `recover-install` | Inspect interrupted installation and recovery |
+| `probe-browser [--existing]` | Verify CDP against an owned local fixture |
 
 Use `--project /absolute/path/project` for installation commands. Edited client
 settings or managed skills stop conflicting changes. The recovery preview
@@ -139,8 +159,8 @@ Geometry diagnostics can report `incomplete` and do not establish visual success
 
 ## Native validation
 
-The Rust cutover was exercised through Codex App Server with an optimized
-native executable on macOS arm64. Times include `start_task`, the host's
+The original Rust cutover was exercised through Codex App Server with an optimized
+native executable on macOS arm64. The recorded times include `start_task`, the host's
 programmatic form responses, the browser actions and the artifact read.
 
 | Browser check | Decision route | Elapsed |

@@ -5,7 +5,19 @@ use std::path::Path;
 use std::process::ExitCode;
 
 const MAX_POLICY_BYTES: u64 = 65_536;
-const HELP: &str = "Decision Browser\n\nUsage: decision-browser <command>\n\nCommands:\n  serve [--admission standard_form|task_scope]   Serve MCP over stdio\n  setup [codex|claude|both]                      Install and choose a provider\n  install codex|claude|both                     Register the native server\n  upgrade | uninstall                           Manage a project installation\n  configure [provider]                          Choose provider settings\n  doctor | install-status | recover-install     Inspect or recover an installation\n  probe-browser [--existing]                    Verify CDP on an owned local fixture\n  --help | --version                            Print command or release information";
+const HELP: &str = concat!(
+    "Decision Browser\n\nUsage: decision-browser <command>\n\nCommands:\n",
+    "  serve [--admission standard_form|task_scope]   Serve MCP over stdio\n",
+    "  setup [codex|claude|both]                       Register a client, prompting if omitted in a terminal\n",
+    "  install codex|claude|both                      Register the native server\n",
+    "  upgrade [codex|claude|both]                     Update a project registration\n",
+    "  uninstall [codex|claude|both]                   Remove a project registration\n",
+    "  configure <provider>                           Save a provider preset\n",
+    "  doctor | install-status | recover-install      Inspect or recover an installation\n",
+    "  probe-browser [--existing]                      Verify CDP on an owned local fixture\n",
+    "  --help | --version                             Print command or release information\n",
+    "\nUse --project PATH for project installation, diagnostics or recovery.",
+);
 
 fn absent<T>(result: io::Result<T>) -> io::Result<Option<T>> {
     match result {

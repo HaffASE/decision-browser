@@ -45,9 +45,8 @@ cwd = "/absolute/path/to/project"
 env_vars = ["OPENCODE_API_KEY"]
 [mcp_servers.decision_browser_opencode.env]
 DECISION_BROWSER_PROVIDER = "opencode"
-# Console API, not a confirmed OpenCode Go subscription route. This model is paid.
+# OpenCode Console System One API.
 DECISION_BROWSER_MODEL = "jev-1.13"
-# To explicitly choose the limited-time free offer, use "jev-1.13-free" instead.
 
 [mcp_servers.decision_browser_gemini]
 enabled = false
@@ -58,7 +57,7 @@ env_vars = ["OPENCODE_API_KEY"]
 [mcp_servers.decision_browser_gemini.env]
 DECISION_BROWSER_PROVIDER = "gemini"
 DECISION_BROWSER_MODEL = "gemini-decision-1"
-# Uses the OpenCode Console System One API and a Console key, not a Google key.
+# Uses the OpenCode Console System One API and a Console key.
 
 [mcp_servers.decision_browser_ollama]
 enabled = false

@@ -1,6 +1,6 @@
 # Providers
 
-Choose the route with `decision-browser configure`, or set its explicit
+Choose the route with `decision-browser configure PROVIDER`, or set its explicit
 environment configuration in the MCP registration. Provider settings are
 operator configuration. The six MCP tools accept browser task arguments.
 
@@ -20,9 +20,14 @@ configured OpenCode Console credential.
 
 ## Credentials
 
-On supported Unix hosts, `configure` stores a private profile outside projects
-at `~/.config/decision-browser/provider.json`. The directory is private and the
-file contains the selected credential. Project uninstall preserves this profile.
+`configure openai` selects the OpenAI preset. Use `typesafe`, `gemini`,
+`openrouter`, `opencode` or `local` for the other presets. On supported Unix
+hosts, the command saves that selection in a private profile outside projects
+at `~/.config/decision-browser/provider.json`. An existing same-route credential
+can remain in that profile. Changing presets clears the previous route's key,
+endpoint, model and choice limit. Supply a new credential through the selected
+environment variable or macOS Keychain service. Project uninstall preserves
+the profile.
 Use an absolute `DECISION_BROWSER_CONFIG_FILE` to select another profile.
 
 Explicit provider or endpoint selection prevents credentials from an unrelated
@@ -35,6 +40,10 @@ The macOS native route can read a matching named Keychain item. The supported
 services are `TYPESAFE_API_KEY`, `OPENAI_API_KEY`, `OPENROUTER_API_KEY` and
 `codex-opencode-console`. `capabilities` checks matching item metadata, and a
 live request reads the selected credential when needed.
+
+Provider selection output confirms the saved preset. Inspect
+`doctor.provider.provider_ready` or `capabilities.provider_ready` to check the
+selected route's credential prerequisites.
 
 ## Direct stdio launch
 
@@ -59,6 +68,11 @@ and local System One endpoints are restricted to loopback. Credentials remain
 bound to the selected configuration. Unsupported or invalid settings produce a
 configuration error before a browser task can use them.
 
+The OpenAI Decision preset pins its endpoint, model and choice limit. Other
+routes accept validated custom settings. A custom origin requires an explicitly
+bound `DECISION_BROWSER_API_KEY`; preset-named credentials remain bound to their
+preset origin.
+
 System One services implement finite choice questions. A chat-completions
 endpoint alone does not supply that contract. For a local service, start the
 server separately and ensure its endpoint and choice limits match the model.
@@ -72,9 +86,12 @@ export DECISION_BROWSER_MAX_CHOICES=26
 
 ## Field text and visual results
 
-Provide known field values in `TaskRequest.values`. Text generation uses a
-separately configured helper when advertised by `capabilities.text_generation`.
-Inspect helper configuration and budget use before an unbound-field task.
+Provide known field values in `TaskRequest.values`. OpenAI Decision advertises
+native field text generation. Alternative decision routes use an independent
+helper configured with `DECISION_BROWSER_TEXT_ENDPOINT`,
+`DECISION_BROWSER_TEXT_MODEL` and, for a remote helper,
+`DECISION_BROWSER_TEXT_API_KEY`. Its requests consume the same task time, call
+and byte budgets. Read `capabilities.text_generation` before an unbound-field task.
 
 `visual` and `visual_diagnostic` describe their own capability and result.
 Geometry can be retained locally while pixel capture is unsafe. An incomplete

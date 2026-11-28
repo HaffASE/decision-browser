@@ -31,6 +31,7 @@ cargo test --locked --lib product_mcp
 
 The tests cover strict argument types, retained-run recovery, exact proposal
 binding, form refusal/expiry, cancellation and artifact envelopes. The
-[Codex smoke](../fixtures/native-codex-smoke-2026-11-28.json) records live counter
-acceptance through the client transport. Programmatic responses in that test
-are protocol evidence. Record native user-click evidence separately.
+[Codex cutover evidence](../fixtures/native-codex-cutover-2026-11-28.json) records
+live counter acceptance, an existing disposable Chrome and public HTTPS
+navigation through the client transport. Programmatic form responses are
+protocol evidence. Record native user-click evidence separately.
