@@ -76,13 +76,14 @@ pub fn dispatch(args: &[String]) -> Result<()> {
             Ok(())
         }
         "setup" | "install" | "upgrade" | "uninstall" => {
-            let _lock = lock(&project)?;
+            let lease = lock(&project)?;
             install(
                 &project,
                 &std::env::current_exe()?,
                 &options.clients,
                 options.command == "uninstall",
             )?;
+            drop(lease);
             println!("{}", inspect(&project)?);
             Ok(())
         }

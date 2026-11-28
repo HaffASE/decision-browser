@@ -298,7 +298,9 @@ impl Cdp {
             // A response policy applies before any page script runs. Limit
             // unsupported browsing contexts and transports to the owned page.
             headers.push(json!({"name":"Content-Security-Policy","value":format!("sandbox allow-scripts allow-same-origin allow-forms; base-uri 'self'; form-action {origin}; frame-src 'none'; worker-src 'none'; object-src 'none'; connect-src {origin}")}));
-            self.document_responses.insert(id,json!({"requestId":request_id,"responseCode":event["params"]["responseStatusCode"],"responsePhrase":event["params"]["responseStatusText"],"responseHeaders":headers}));
+            // HTTP/2 has no reason phrase. Let Chrome derive the canonical
+            // phrase from the status code when reconstructing the response.
+            self.document_responses.insert(id,json!({"requestId":request_id,"responseCode":event["params"]["responseStatusCode"],"responseHeaders":headers}));
             ("Fetch.getResponseBody", json!({"requestId":request_id}))
         } else if allow {
             (
@@ -607,12 +609,18 @@ impl OwnedChrome {
                 loop {
                     if unsafe { kill(-group, 0) } != 0 {
                         let error = io::Error::last_os_error();
-                        if error.raw_os_error() != Some(3) {
+                        if error.raw_os_error() == Some(libc::ESRCH) {
+                            break;
+                        }
+                        if error.raw_os_error() == Some(libc::EPERM) {
+                            if !process_group_in_inventory(group, deadline)? {
+                                break;
+                            }
+                        } else {
                             return Err(failure(format!(
                                 "owned Chrome group liveness unverified: {error}"
                             )));
                         }
-                        break;
                     }
                     if Instant::now() >= deadline {
                         return Err(failure("owned Chrome process group is still present"));
@@ -636,6 +644,112 @@ impl OwnedChrome {
         }
         Ok(())
     }
+}
+
+#[cfg(unix)]
+fn inventory_contains_group(bytes: &[u8], group: i32, owner: u32) -> BrowserResult<bool> {
+    let text = std::str::from_utf8(bytes).map_err(|_| failure("process inventory is not UTF-8"))?;
+    let mut rows = 0;
+    let mut present = false;
+    for line in text.lines() {
+        let fields = line.split_ascii_whitespace().collect::<Vec<_>>();
+        if fields.len() != 3 {
+            return Err(failure("process inventory has an invalid row"));
+        }
+        let observed_group = fields[0]
+            .parse::<i32>()
+            .map_err(|_| failure("process inventory has an invalid group"))?;
+        let observed_owner = fields[1]
+            .parse::<i64>()
+            .map_err(|_| failure("process inventory has an invalid owner"))?;
+        let state = fields[2];
+        if observed_group < 0
+            || !(i64::from(i32::MIN)..=i64::from(u32::MAX)).contains(&observed_owner)
+            || state.is_empty()
+            || !state
+                .bytes()
+                .all(|byte| byte.is_ascii_alphabetic() || b"<+>".contains(&byte))
+        {
+            return Err(failure("process inventory has invalid process state"));
+        }
+        rows += 1;
+        if observed_group == group {
+            // Darwin ps renders system UIDs such as nobody as signed values.
+            if observed_owner as u32 != owner {
+                return Err(failure("process group identity changed"));
+            }
+            // Reaped leaders are never signalled. A remaining zombie has no
+            // executable work or open resources, while live members need time.
+            present |= !state.starts_with('Z');
+        }
+    }
+    if rows == 0 {
+        return Err(failure("process inventory is empty"));
+    }
+    Ok(present)
+}
+
+#[cfg(unix)]
+fn process_group_in_inventory(group: i32, deadline: Instant) -> BrowserResult<bool> {
+    use std::os::fd::AsRawFd;
+    let mut process = Command::new("/bin/ps")
+        .args(["-A", "-o", "pgid=,uid=,stat="])
+        .env_clear()
+        .env("LC_ALL", "C")
+        .stdin(Stdio::null())
+        .stdout(Stdio::piped())
+        .stderr(Stdio::null())
+        .spawn()?;
+    let outcome = (|| {
+        let mut stdout = process
+            .stdout
+            .take()
+            .ok_or_else(|| failure("process inventory output missing"))?;
+        let flags = unsafe { libc::fcntl(stdout.as_raw_fd(), libc::F_GETFL) };
+        if flags < 0
+            || unsafe { libc::fcntl(stdout.as_raw_fd(), libc::F_SETFL, flags | libc::O_NONBLOCK) }
+                < 0
+        {
+            return Err(io::Error::last_os_error().into());
+        }
+        let mut bytes = Vec::new();
+        let mut buffer = [0_u8; 8192];
+        loop {
+            if Instant::now() >= deadline {
+                return Err(failure("process inventory timed out"));
+            }
+            match stdout.read(&mut buffer) {
+                Ok(0) => break,
+                Ok(count) => {
+                    if bytes.len() + count > 4 * 1024 * 1024 {
+                        return Err(failure("process inventory exceeds limit"));
+                    }
+                    bytes.extend_from_slice(&buffer[..count]);
+                }
+                Err(error) if error.kind() == io::ErrorKind::WouldBlock => {
+                    thread::sleep(Duration::from_millis(5))
+                }
+                Err(error) => return Err(error.into()),
+            }
+        }
+        loop {
+            if let Some(status) = process.try_wait()? {
+                if !status.success() {
+                    return Err(failure("process inventory failed"));
+                }
+                return inventory_contains_group(&bytes, group, unsafe { libc::geteuid() });
+            }
+            if Instant::now() >= deadline {
+                return Err(failure("process inventory timed out"));
+            }
+            thread::sleep(Duration::from_millis(5));
+        }
+    })();
+    if process.try_wait()?.is_none() {
+        let _ = process.kill();
+        let _ = process.wait();
+    }
+    outcome
 }
 
 impl Drop for OwnedChrome {
@@ -782,6 +896,59 @@ fn failure(message: impl Into<String>) -> Box<dyn Error + Send + Sync> {
 mod cancellation_tests {
     use super::*;
     use std::cell::Cell;
+
+    #[cfg(unix)]
+    #[test]
+    fn process_inventory_requires_complete_unambiguous_liveness() {
+        assert!(inventory_contains_group(b"0 0 Ss\n2 -2 Ss\n123 501 S+\n", 123, 501).unwrap());
+        assert!(!inventory_contains_group(b"0 0 Ss\n123 501 Z+\n987 501 R<\n", 123, 501).unwrap());
+        assert!(!inventory_contains_group(b"0 0 Ss\n987 501 R>\n", 123, 501).unwrap());
+        for invalid in [
+            b"".as_slice(),
+            b"123 501\n",
+            b"123 501 S extra\n",
+            b"-1 0 S\n",
+            b"123 999 S\n",
+            b"oops 501 S\n",
+            b"987 uid S\n",
+            b"987 501 ?\n",
+        ] {
+            assert!(inventory_contains_group(invalid, 123, 501).is_err());
+        }
+    }
+
+    #[cfg(unix)]
+    #[test]
+    #[ignore = "requires permission to inspect native process inventory"]
+    fn native_process_inventory_distinguishes_a_live_and_reaped_owned_group() -> BrowserResult<()> {
+        use std::os::unix::process::CommandExt;
+        let mut child = Command::new("/bin/sleep")
+            .arg("20")
+            .process_group(0)
+            .stdin(Stdio::null())
+            .stdout(Stdio::null())
+            .stderr(Stdio::null())
+            .spawn()?;
+        let group = i32::try_from(child.id())?;
+        let result = (|| {
+            assert!(process_group_in_inventory(
+                group,
+                Instant::now() + Duration::from_secs(2)
+            )?);
+            child.kill()?;
+            child.wait()?;
+            assert!(!process_group_in_inventory(
+                group,
+                Instant::now() + Duration::from_secs(2)
+            )?);
+            Ok(())
+        })();
+        if child.try_wait()?.is_none() {
+            let _ = child.kill();
+            let _ = child.wait();
+        }
+        result
+    }
 
     #[test]
     fn an_already_cancelled_counter_never_reaches_the_provider() {

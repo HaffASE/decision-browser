@@ -1,0 +1,2455 @@
+{
+  "date": "2026-11-28",
+  "host": "macOS arm64",
+  "chromium": "Chrome for Testing 151.0.7922.34",
+  "scope": "Standalone matrix using bounded browser scenarios. Full routes ran concurrently. Targeted reruns retain initial failures and include the final Luna case after the owned Chrome process group cleanup fix.",
+  "initial_binary_sha256": "1fa726b6d28fb9302ae6c5632c43f189a6d0ff804d1e0feb91ac0b680fbc0b8f",
+  "final_retry_binary_sha256": "9916e16fb572340f8bbe2a24b48b1ba66f834e03408235916289f6739f419f1d",
+  "runs": [
+    {
+      "action_ms": 211,
+      "actions": [
+        "click \"Activate\""
+      ],
+      "api_ms": 1338,
+      "calls": 1,
+      "case": "click",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 5688,
+      "error": null,
+      "input_bytes": 928,
+      "input_tokens": 481,
+      "model": "jev-1.14.0",
+      "observe_ms": 8,
+      "oracle": true,
+      "output_tokens": 34,
+      "provider": "jev",
+      "verify_ms": 62
+    },
+    {
+      "action_ms": 460,
+      "actions": [
+        "Fill \"Search query\" with provided value \"orbital mechanics\"",
+        "click \"Search\""
+      ],
+      "api_ms": 1055,
+      "calls": 2,
+      "case": "search",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 3941,
+      "error": null,
+      "input_bytes": 2282,
+      "input_tokens": 1051,
+      "model": "jev-1.14.0",
+      "observe_ms": 4,
+      "oracle": true,
+      "output_tokens": 68,
+      "provider": "jev",
+      "verify_ms": 12
+    },
+    {
+      "action_ms": 413,
+      "actions": [
+        "Set \"Sort order\" to \"Newest first\"",
+        "click \"Apply order\""
+      ],
+      "api_ms": 1014,
+      "calls": 2,
+      "case": "select",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 3940,
+      "error": null,
+      "input_bytes": 2156,
+      "input_tokens": 1063,
+      "model": "jev-1.14.0",
+      "observe_ms": 4,
+      "oracle": true,
+      "output_tokens": 84,
+      "provider": "jev",
+      "verify_ms": 26
+    },
+    {
+      "action_ms": 238,
+      "actions": [
+        "click \"Observatory details\""
+      ],
+      "api_ms": 773,
+      "calls": 1,
+      "case": "navigate",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 3682,
+      "error": null,
+      "input_bytes": 990,
+      "input_tokens": 493,
+      "model": "jev-1.14.0",
+      "observe_ms": 3,
+      "oracle": true,
+      "output_tokens": 34,
+      "provider": "jev",
+      "verify_ms": 28
+    },
+    {
+      "action_ms": 621,
+      "actions": [
+        "click \"Increase\"",
+        "click \"Increase\"",
+        "click \"Increase\""
+      ],
+      "api_ms": 2003,
+      "calls": 3,
+      "case": "counter",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 5516,
+      "error": null,
+      "input_bytes": 2978,
+      "input_tokens": 1511,
+      "model": "jev-1.14.0",
+      "observe_ms": 9,
+      "oracle": true,
+      "output_tokens": 102,
+      "provider": "jev",
+      "verify_ms": 83
+    },
+    {
+      "action_ms": 229,
+      "actions": [
+        "click \"About\""
+      ],
+      "api_ms": 752,
+      "calls": 1,
+      "case": "public_about",
+      "checks": [
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 8360,
+      "error": null,
+      "input_bytes": 5443,
+      "input_tokens": 1821,
+      "model": "jev-1.14.0",
+      "observe_ms": 7,
+      "oracle": true,
+      "output_tokens": 180,
+      "provider": "jev",
+      "verify_ms": 297
+    },
+    {
+      "action_ms": 1069,
+      "actions": [
+        "Fill \"Destination\" with provided value \"Lisbon\"",
+        "Set \"Stay category\" to \"Design\"",
+        "click \"Free cancellation\" (current \"false\")",
+        "click \"Find stays\"",
+        "click \"Casa Flora\""
+      ],
+      "api_ms": 1945,
+      "calls": 5,
+      "case": "hotel",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 5432,
+      "error": null,
+      "input_bytes": 6446,
+      "input_tokens": 2939,
+      "model": "jev-1.14.0",
+      "observe_ms": 10,
+      "oracle": true,
+      "output_tokens": 250,
+      "provider": "jev",
+      "verify_ms": 35
+    },
+    {
+      "action_ms": 837,
+      "actions": [
+        "Fill \"Email\" with provided value \"ada@example.com\"",
+        "Fill \"Full name\" with provided value \"Ada Lovelace\"",
+        "Set \"Delivery\" to \"Express\"",
+        "click \"Confirm profile\""
+      ],
+      "api_ms": 1624,
+      "calls": 4,
+      "case": "profile_form",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 4498,
+      "error": null,
+      "input_bytes": 5095,
+      "input_tokens": 2327,
+      "model": "jev-1.14.0",
+      "observe_ms": 8,
+      "oracle": true,
+      "output_tokens": 160,
+      "provider": "jev",
+      "verify_ms": 26
+    },
+    {
+      "action_ms": 418,
+      "actions": [
+        "Fill \"Origin\" with provided value \"Zurich\"",
+        "click \"Zurich Airport (ZRH)\""
+      ],
+      "api_ms": 1088,
+      "calls": 2,
+      "case": "autocomplete",
+      "checks": [
+        true,
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 3625,
+      "error": null,
+      "input_bytes": 2220,
+      "input_tokens": 1101,
+      "model": "jev-1.14.0",
+      "observe_ms": 4,
+      "oracle": true,
+      "output_tokens": 84,
+      "provider": "jev",
+      "verify_ms": 30
+    },
+    {
+      "action_ms": 620,
+      "actions": [
+        "click \"Departure\"",
+        "click \"September 20, 2026\"",
+        "click \"Done\""
+      ],
+      "api_ms": 1633,
+      "calls": 3,
+      "case": "calendar",
+      "checks": [
+        true,
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 4502,
+      "error": null,
+      "input_bytes": 3268,
+      "input_tokens": 1787,
+      "model": "jev-1.14.0",
+      "observe_ms": 5,
+      "oracle": true,
+      "output_tokens": 182,
+      "provider": "jev",
+      "verify_ms": 28
+    },
+    {
+      "action_ms": 209,
+      "actions": [
+        "click \"닥터자르트\" (current \"false\")"
+      ],
+      "api_ms": 742,
+      "calls": 1,
+      "case": "styled_filter",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 3143,
+      "error": null,
+      "input_bytes": 1004,
+      "input_tokens": 518,
+      "model": "jev-1.14.0",
+      "observe_ms": 3,
+      "oracle": true,
+      "output_tokens": 42,
+      "provider": "jev",
+      "verify_ms": 14
+    },
+    {
+      "action_ms": 1153,
+      "actions": [
+        "click \"Reject all\"",
+        "Wait briefly if the visible input is still changing",
+        "Fill \"From\" with provided value \"London\"",
+        "click \"Find routes\""
+      ],
+      "api_ms": 1469,
+      "calls": 3,
+      "case": "consent",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 5506,
+      "error": null,
+      "input_bytes": 3349,
+      "input_tokens": 1604,
+      "model": "jev-1.14.0",
+      "observe_ms": 8,
+      "oracle": true,
+      "output_tokens": 110,
+      "provider": "jev",
+      "verify_ms": 29
+    },
+    {
+      "action_ms": 1354,
+      "actions": [
+        "Wait briefly for a pending reveal or navigation",
+        "click \"Sections\"",
+        "click \"Sections\"",
+        "click \"Sections\"",
+        "click \"Society\""
+      ],
+      "api_ms": 1430,
+      "calls": 2,
+      "case": "delayed_menu",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 5238,
+      "error": null,
+      "input_bytes": 2044,
+      "input_tokens": 1031,
+      "model": "jev-1.14.0",
+      "observe_ms": 26,
+      "oracle": true,
+      "output_tokens": 84,
+      "provider": "jev",
+      "verify_ms": 59
+    },
+    {
+      "action_ms": 1650,
+      "actions": [
+        "Wait briefly for a pending reveal or navigation",
+        "click \"Load services\"",
+        "Wait briefly for a pending reveal or navigation",
+        "Fill \"Service query\" with provided value \"climate\"",
+        "click \"Search services\""
+      ],
+      "api_ms": 1978,
+      "calls": 3,
+      "case": "loading_overlay",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 5936,
+      "error": null,
+      "input_bytes": 3536,
+      "input_tokens": 1631,
+      "model": "jev-1.14.0",
+      "observe_ms": 6,
+      "oracle": true,
+      "output_tokens": 102,
+      "provider": "jev",
+      "verify_ms": 30
+    },
+    {
+      "action_ms": 624,
+      "actions": [
+        "Scroll down to reveal additional content",
+        "Scroll down to reveal additional content",
+        "click \"Mark evidence as read\""
+      ],
+      "api_ms": 8112,
+      "calls": 3,
+      "case": "below_fold",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 11205,
+      "error": null,
+      "input_bytes": 3469,
+      "input_tokens": 1604,
+      "model": "jev-1.14.0",
+      "observe_ms": 14,
+      "oracle": true,
+      "output_tokens": 126,
+      "provider": "jev",
+      "verify_ms": 78
+    },
+    {
+      "action_ms": 1205,
+      "actions": [
+        "Wait briefly if the visible input is still changing",
+        "Fill \"Search query\" with provided value \"Godel incompleteness\"",
+        "click \"Search articles\"",
+        "click \"Gödel's incompleteness theorems\""
+      ],
+      "api_ms": 20305,
+      "calls": 3,
+      "case": "article",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 23666,
+      "error": null,
+      "input_bytes": 3861,
+      "input_tokens": 1787,
+      "model": "jev-1.14.0",
+      "observe_ms": 8,
+      "oracle": true,
+      "output_tokens": 126,
+      "provider": "jev",
+      "verify_ms": 33
+    },
+    {
+      "action_ms": 2225,
+      "actions": [
+        "Fill \"From station\" with provided value \"York\"",
+        "Fill \"To station\" with provided value \"Durham\"",
+        "click \"Find trains\"",
+        "click \"Express 09:20\"",
+        "Set \"Seat\" to \"Window\"",
+        "click \"Quiet coach\" (current \"false\")",
+        "click \"Apply preferences\"",
+        "Set \"Departure platform\" to \"Platform 4\"",
+        "click \"Add platform\"",
+        "click \"Save itinerary\""
+      ],
+      "api_ms": 18742,
+      "calls": 10,
+      "case": "rail_itinerary",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": false,
+      "elapsed_ms": 25676,
+      "error": "Operation not permitted (os error 1)",
+      "input_bytes": 20012,
+      "input_tokens": 7973,
+      "model": "jev-1.14.0",
+      "observe_ms": 27,
+      "oracle": true,
+      "output_tokens": 460,
+      "provider": "jev",
+      "verify_ms": 133
+    },
+    {
+      "action_ms": 2653,
+      "actions": [
+        "Fill \"Catalogue query\" with provided value \"Glacier Atlas\"",
+        "Set \"Collection\" to \"Earth Science\"",
+        "click \"Search catalogue\"",
+        "click \"Glacier Atlas field guide\"",
+        "click \"Read appendix\"",
+        "Set \"Companion reference\" to \"GL-42\"",
+        "click \"Look up reference\"",
+        "click \"Peer-reviewed paper\"",
+        "Fill \"Reading list name\" with provided value \"Ice Notes\"",
+        "Set \"List tag\" to \"Fieldwork\"",
+        "click \"Preview list\"",
+        "click \"Save reading list\""
+      ],
+      "api_ms": 6412,
+      "calls": 12,
+      "case": "library_research",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": false,
+      "elapsed_ms": 14474,
+      "error": "Operation not permitted (os error 1)",
+      "input_bytes": 32613,
+      "input_tokens": 10849,
+      "model": "jev-1.14.0",
+      "observe_ms": 50,
+      "oracle": true,
+      "output_tokens": 544,
+      "provider": "jev",
+      "verify_ms": 317
+    },
+    {
+      "action_ms": 3059,
+      "actions": [
+        "Fill \"Equipment query\" with provided value \"Boreal\"",
+        "Set \"Category\" to \"Cameras\"",
+        "click \"Search equipment\"",
+        "click \"Boreal WX weatherproof\"",
+        "Set \"Lens\" to \"Telephoto\"",
+        "click \"Protective case\" (current \"false\")",
+        "click \"Add accessories\"",
+        "click \"East depot\"",
+        "Set \"Pickup day\" to \"Friday\"",
+        "Set \"Pickup window\" to \"Afternoon\"",
+        "click \"Set pickup window\"",
+        "Fill \"Collector name\" with provided value \"Lina Cruz\"",
+        "click \"Add collector\"",
+        "click \"Save pick list\""
+      ],
+      "api_ms": 5900,
+      "calls": 14,
+      "case": "equipment_pickup",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": false,
+      "elapsed_ms": 13955,
+      "error": "Operation not permitted (os error 1)",
+      "input_bytes": 37078,
+      "input_tokens": 13117,
+      "model": "jev-1.14.0",
+      "observe_ms": 52,
+      "oracle": true,
+      "output_tokens": 724,
+      "provider": "jev",
+      "verify_ms": 411
+    },
+    {
+      "action_ms": 3362,
+      "actions": [
+        "Fill \"Ticket number\" with provided value \"R-214\"",
+        "Set \"Queue\" to \"Network\"",
+        "click \"Search tickets\"",
+        "click \"R-214 edge packet loss\"",
+        "click \"Open activity log\"",
+        "Set \"Fault code\" to \"EDGE-72\"",
+        "Set \"Priority\" to \"High\"",
+        "click \"Classify fault\"",
+        "Set \"Receiving team\" to \"Network Operations\"",
+        "click \"On-call rotation\" (current \"false\")",
+        "click \"Apply routing\"",
+        "Fill \"Handoff note\" with provided value \"Compare edge counters\"",
+        "Set \"Note tag\" to \"Diagnosis\"",
+        "click \"Add note\"",
+        "click \"Review handoff\"",
+        "click \"Save handoff draft\""
+      ],
+      "api_ms": 5322,
+      "calls": 16,
+      "case": "support_handoff",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": false,
+      "elapsed_ms": 13901,
+      "error": "Operation not permitted (os error 1)",
+      "input_bytes": 46693,
+      "input_tokens": 16631,
+      "model": "jev-1.14.0",
+      "observe_ms": 31,
+      "oracle": true,
+      "output_tokens": 816,
+      "provider": "jev",
+      "verify_ms": 117
+    },
+    {
+      "action_ms": 3823,
+      "actions": [
+        "Fill \"Museum city\" with provided value \"Bristol\"",
+        "Set \"Season\" to \"Spring\"",
+        "click \"Explore exhibitions\"",
+        "click \"Tidal Maps\"",
+        "Set \"Caption language\" to \"English\"",
+        "click \"Audio guide\" (current \"false\")",
+        "click \"Add first stop\"",
+        "click \"Copper wing\"",
+        "click \"Fresco Study\"",
+        "Set \"Entry slot\" to \"12:30\"",
+        "click \"Step-free access\" (current \"false\")",
+        "click \"Set visit options\"",
+        "Fill \"Route name\" with provided value \"Harbour Walk\"",
+        "Set \"Route template\" to \"Two stops\"",
+        "click \"Preview route\"",
+        "Fill \"Plan owner\" with provided value \"Mira Lane\"",
+        "click \"Add owner\"",
+        "click \"Save exhibit route\""
+      ],
+      "api_ms": 5877,
+      "calls": 18,
+      "case": "exhibit_planner",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": false,
+      "elapsed_ms": 15179,
+      "error": "Operation not permitted (os error 1)",
+      "input_bytes": 58616,
+      "input_tokens": 19400,
+      "model": "jev-1.14.0",
+      "observe_ms": 23,
+      "oracle": true,
+      "output_tokens": 884,
+      "provider": "jev",
+      "verify_ms": 118
+    },
+    {
+      "action_ms": 210,
+      "actions": [
+        "click \"Activate\""
+      ],
+      "api_ms": 2303,
+      "calls": 1,
+      "case": "click",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 6640,
+      "error": null,
+      "input_bytes": 1007,
+      "input_tokens": 257,
+      "model": "gpt-6-luna",
+      "observe_ms": 3,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 15
+    },
+    {
+      "action_ms": 428,
+      "actions": [
+        "Fill \"Search query\" with provided value \"orbital mechanics\"",
+        "click \"Search\""
+      ],
+      "api_ms": 1117,
+      "calls": 2,
+      "case": "search",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 3897,
+      "error": null,
+      "input_bytes": 2478,
+      "input_tokens": 602,
+      "model": "gpt-6-luna",
+      "observe_ms": 3,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 51
+    },
+    {
+      "action_ms": 494,
+      "actions": [
+        "Set \"Sort order\" to \"Newest first\"",
+        "click \"Apply order\""
+      ],
+      "api_ms": 1323,
+      "calls": 2,
+      "case": "select",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 4470,
+      "error": null,
+      "input_bytes": 2378,
+      "input_tokens": 602,
+      "model": "gpt-6-luna",
+      "observe_ms": 13,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 54
+    },
+    {
+      "action_ms": 301,
+      "actions": [
+        "click \"Observatory details\""
+      ],
+      "api_ms": 850,
+      "calls": 1,
+      "case": "navigate",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 4188,
+      "error": null,
+      "input_bytes": 1069,
+      "input_tokens": 268,
+      "model": "gpt-6-luna",
+      "observe_ms": 10,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 59
+    },
+    {
+      "action_ms": 0,
+      "actions": [],
+      "api_ms": 10002,
+      "calls": 1,
+      "case": "counter",
+      "checks": [
+        false,
+        true
+      ],
+      "confirmed": false,
+      "elapsed_ms": 32291,
+      "error": "budget_limit",
+      "input_bytes": 0,
+      "input_tokens": 0,
+      "model": "",
+      "observe_ms": 2,
+      "oracle": false,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 15
+    },
+    {
+      "action_ms": 244,
+      "actions": [
+        "click \"About\""
+      ],
+      "api_ms": 3244,
+      "calls": 1,
+      "case": "public_about",
+      "checks": [
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 9067,
+      "error": null,
+      "input_bytes": 6127,
+      "input_tokens": 1424,
+      "model": "gpt-6-luna",
+      "observe_ms": 7,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 251
+    },
+    {
+      "action_ms": 1066,
+      "actions": [
+        "Fill \"Destination\" with provided value \"Lisbon\"",
+        "Set \"Stay category\" to \"Design\"",
+        "click \"Free cancellation\" (current \"false\")",
+        "click \"Find stays\"",
+        "click \"Casa Flora\""
+      ],
+      "api_ms": 5523,
+      "calls": 5,
+      "case": "hotel",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 9218,
+      "error": null,
+      "input_bytes": 7265,
+      "input_tokens": 1721,
+      "model": "gpt-6-luna",
+      "observe_ms": 10,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 52
+    },
+    {
+      "action_ms": 843,
+      "actions": [
+        "Fill \"Full name\" with provided value \"Ada Lovelace\"",
+        "Fill \"Email\" with provided value \"ada@example.com\"",
+        "Set \"Delivery\" to \"Express\"",
+        "click \"Confirm profile\""
+      ],
+      "api_ms": 3070,
+      "calls": 4,
+      "case": "profile_form",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 6844,
+      "error": null,
+      "input_bytes": 5655,
+      "input_tokens": 1381,
+      "model": "gpt-6-luna",
+      "observe_ms": 14,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 81
+    },
+    {
+      "action_ms": 422,
+      "actions": [
+        "Fill \"Origin\" with provided value \"Zurich\"",
+        "click \"Zurich Airport (ZRH)\""
+      ],
+      "api_ms": 5890,
+      "calls": 2,
+      "case": "autocomplete",
+      "checks": [
+        true,
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 8818,
+      "error": null,
+      "input_bytes": 2467,
+      "input_tokens": 625,
+      "model": "gpt-6-luna",
+      "observe_ms": 4,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 57
+    },
+    {
+      "action_ms": 633,
+      "actions": [
+        "click \"Departure\"",
+        "click \"September 20, 2026\"",
+        "click \"Done\""
+      ],
+      "api_ms": 19935,
+      "calls": 3,
+      "case": "calendar",
+      "checks": [
+        true,
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 23038,
+      "error": null,
+      "input_bytes": 3770,
+      "input_tokens": 979,
+      "model": "gpt-6-luna",
+      "observe_ms": 5,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 198
+    },
+    {
+      "action_ms": 211,
+      "actions": [
+        "click \"닥터자르트\" (current \"false\")"
+      ],
+      "api_ms": 3920,
+      "calls": 1,
+      "case": "styled_filter",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 6300,
+      "error": null,
+      "input_bytes": 1107,
+      "input_tokens": 289,
+      "model": "gpt-6-luna",
+      "observe_ms": 3,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 15
+    },
+    {
+      "action_ms": 623,
+      "actions": [
+        "click \"Reject all\"",
+        "Fill \"From\" with provided value \"London\"",
+        "click \"Find routes\""
+      ],
+      "api_ms": 4319,
+      "calls": 3,
+      "case": "consent",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 7616,
+      "error": null,
+      "input_bytes": 3637,
+      "input_tokens": 907,
+      "model": "gpt-6-luna",
+      "observe_ms": 2,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 17
+    },
+    {
+      "action_ms": 952,
+      "actions": [
+        "click \"Sections\"",
+        "Wait briefly for a pending reveal or navigation",
+        "click \"Society\""
+      ],
+      "api_ms": 1735,
+      "calls": 2,
+      "case": "delayed_menu",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": false,
+      "elapsed_ms": 7123,
+      "error": "Operation not permitted (os error 1)",
+      "input_bytes": 2219,
+      "input_tokens": 555,
+      "model": "gpt-6-luna",
+      "observe_ms": 15,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 83
+    },
+    {
+      "action_ms": 1239,
+      "actions": [
+        "click \"Load services\"",
+        "Wait briefly for a pending reveal or navigation",
+        "Fill \"Service query\" with provided value \"climate\"",
+        "click \"Search services\""
+      ],
+      "api_ms": 3979,
+      "calls": 3,
+      "case": "loading_overlay",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": false,
+      "elapsed_ms": 10058,
+      "error": "Operation not permitted (os error 1)",
+      "input_bytes": 3754,
+      "input_tokens": 923,
+      "model": "gpt-6-luna",
+      "observe_ms": 19,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 88
+    },
+    {
+      "action_ms": 633,
+      "actions": [
+        "Scroll down to reveal additional content",
+        "Scroll down to reveal additional content",
+        "click \"Mark evidence as read\""
+      ],
+      "api_ms": 1906,
+      "calls": 3,
+      "case": "below_fold",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 7422,
+      "error": null,
+      "input_bytes": 3805,
+      "input_tokens": 927,
+      "model": "gpt-6-luna",
+      "observe_ms": 9,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 158
+    },
+    {
+      "action_ms": 859,
+      "actions": [
+        "Fill \"Search query\" with provided value \"Godel incompleteness\"",
+        "click \"Search articles\"",
+        "click \"Gödel's incompleteness theorems\""
+      ],
+      "api_ms": 2372,
+      "calls": 3,
+      "case": "article",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": false,
+      "elapsed_ms": 8941,
+      "error": "Operation not permitted (os error 1)",
+      "input_bytes": 4132,
+      "input_tokens": 1015,
+      "model": "gpt-6-luna",
+      "observe_ms": 8,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 125
+    },
+    {
+      "action_ms": 2995,
+      "actions": [
+        "Fill \"From station\" with provided value \"York\"",
+        "Fill \"To station\" with provided value \"Durham\"",
+        "click \"Find trains\"",
+        "click \"Express 09:20\"",
+        "Set \"Seat\" to \"Window\"",
+        "click \"Quiet coach\" (current \"false\")",
+        "click \"Apply preferences\"",
+        "Set \"Departure platform\" to \"Platform 4\"",
+        "Set \"Departure platform\" to \"Platform 2\"",
+        "Set \"Departure platform\" to \"Platform 4\"",
+        "Set \"Departure platform\" to \"Platform 6\"",
+        "Set \"Departure platform\" to \"Platform 4\"",
+        "click \"Add platform\"",
+        "click \"Save itinerary\""
+      ],
+      "api_ms": 5654,
+      "calls": 14,
+      "case": "rail_itinerary",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": false,
+      "elapsed_ms": 13645,
+      "error": "Operation not permitted (os error 1)",
+      "input_bytes": 34105,
+      "input_tokens": 8188,
+      "model": "gpt-6-luna",
+      "observe_ms": 36,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 220
+    },
+    {
+      "action_ms": 2507,
+      "actions": [
+        "Fill \"Catalogue query\" with provided value \"Glacier Atlas\"",
+        "Set \"Collection\" to \"Earth Science\"",
+        "click \"Search catalogue\"",
+        "click \"Glacier Atlas field guide\"",
+        "click \"Read appendix\"",
+        "Set \"Companion reference\" to \"GL-42\"",
+        "click \"Look up reference\"",
+        "click \"Peer-reviewed paper\"",
+        "Fill \"Reading list name\" with provided value \"Ice Notes\"",
+        "Set \"List tag\" to \"Fieldwork\"",
+        "click \"Preview list\"",
+        "click \"Save reading list\""
+      ],
+      "api_ms": 5149,
+      "calls": 12,
+      "case": "library_research",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": false,
+      "elapsed_ms": 13414,
+      "error": "Operation not permitted (os error 1)",
+      "input_bytes": 35429,
+      "input_tokens": 7710,
+      "model": "gpt-6-luna",
+      "observe_ms": 17,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 88
+    },
+    {
+      "action_ms": 3025,
+      "actions": [
+        "Fill \"Equipment query\" with provided value \"Boreal\"",
+        "Set \"Category\" to \"Cameras\"",
+        "click \"Search equipment\"",
+        "click \"Boreal WX weatherproof\"",
+        "Set \"Lens\" to \"Telephoto\"",
+        "click \"Protective case\" (current \"false\")",
+        "click \"Add accessories\"",
+        "click \"East depot\"",
+        "Set \"Pickup day\" to \"Friday\"",
+        "Set \"Pickup window\" to \"Afternoon\"",
+        "click \"Set pickup window\"",
+        "Fill \"Collector name\" with provided value \"Lina Cruz\"",
+        "click \"Add collector\"",
+        "click \"Save pick list\""
+      ],
+      "api_ms": 5007,
+      "calls": 14,
+      "case": "equipment_pickup",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": false,
+      "elapsed_ms": 12380,
+      "error": "Operation not permitted (os error 1)",
+      "input_bytes": 40833,
+      "input_tokens": 9253,
+      "model": "gpt-6-luna",
+      "observe_ms": 31,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 98
+    },
+    {
+      "action_ms": 3397,
+      "actions": [
+        "Fill \"Ticket number\" with provided value \"R-214\"",
+        "Set \"Queue\" to \"Network\"",
+        "click \"Search tickets\"",
+        "click \"R-214 edge packet loss\"",
+        "click \"Open activity log\"",
+        "Set \"Fault code\" to \"EDGE-72\"",
+        "Set \"Priority\" to \"High\"",
+        "click \"Classify fault\"",
+        "Set \"Receiving team\" to \"Network Operations\"",
+        "click \"On-call rotation\" (current \"false\")",
+        "click \"Apply routing\"",
+        "Fill \"Handoff note\" with provided value \"Compare edge counters\"",
+        "Set \"Note tag\" to \"Diagnosis\"",
+        "click \"Add note\"",
+        "click \"Review handoff\"",
+        "click \"Save handoff draft\""
+      ],
+      "api_ms": 7301,
+      "calls": 16,
+      "case": "support_handoff",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": false,
+      "elapsed_ms": 14932,
+      "error": "Operation not permitted (os error 1)",
+      "input_bytes": 51181,
+      "input_tokens": 12008,
+      "model": "gpt-6-luna",
+      "observe_ms": 35,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 92
+    },
+    {
+      "action_ms": 3815,
+      "actions": [
+        "Fill \"Museum city\" with provided value \"Bristol\"",
+        "Set \"Season\" to \"Spring\"",
+        "click \"Explore exhibitions\"",
+        "click \"Tidal Maps\"",
+        "Set \"Caption language\" to \"English\"",
+        "click \"Audio guide\" (current \"false\")",
+        "click \"Add first stop\"",
+        "click \"Copper wing\"",
+        "click \"Fresco Study\"",
+        "Set \"Entry slot\" to \"12:30\"",
+        "click \"Step-free access\" (current \"false\")",
+        "click \"Set visit options\"",
+        "Fill \"Route name\" with provided value \"Harbour Walk\"",
+        "Set \"Route template\" to \"Two stops\"",
+        "click \"Preview route\"",
+        "Fill \"Plan owner\" with provided value \"Mira Lane\"",
+        "click \"Add owner\"",
+        "click \"Save exhibit route\""
+      ],
+      "api_ms": 9498,
+      "calls": 18,
+      "case": "exhibit_planner",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 16806,
+      "error": null,
+      "input_bytes": 64103,
+      "input_tokens": 14573,
+      "model": "gpt-6-luna",
+      "observe_ms": 36,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 85
+    },
+    {
+      "action_ms": 233,
+      "actions": [
+        "click \"Activate\""
+      ],
+      "api_ms": 1105,
+      "calls": 1,
+      "case": "click",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 5483,
+      "error": null,
+      "input_bytes": 935,
+      "input_tokens": 242,
+      "model": "gemini-decision-1",
+      "observe_ms": 2,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "gemini",
+      "verify_ms": 92
+    },
+    {
+      "action_ms": 436,
+      "actions": [
+        "Fill \"Search query\" with provided value \"orbital mechanics\"",
+        "click \"Search\""
+      ],
+      "api_ms": 1346,
+      "calls": 2,
+      "case": "search",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 4168,
+      "error": null,
+      "input_bytes": 2296,
+      "input_tokens": 567,
+      "model": "gemini-decision-1",
+      "observe_ms": 6,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "gemini",
+      "verify_ms": 30
+    },
+    {
+      "action_ms": 414,
+      "actions": [
+        "Set \"Sort order\" to \"Newest first\"",
+        "click \"Apply order\""
+      ],
+      "api_ms": 1666,
+      "calls": 2,
+      "case": "select",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 4444,
+      "error": null,
+      "input_bytes": 2170,
+      "input_tokens": 581,
+      "model": "gemini-decision-1",
+      "observe_ms": 4,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "gemini",
+      "verify_ms": 21
+    },
+    {
+      "action_ms": 213,
+      "actions": [
+        "click \"Observatory details\""
+      ],
+      "api_ms": 893,
+      "calls": 1,
+      "case": "navigate",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 4251,
+      "error": null,
+      "input_bytes": 997,
+      "input_tokens": 253,
+      "model": "gemini-decision-1",
+      "observe_ms": 5,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "gemini",
+      "verify_ms": 75
+    },
+    {
+      "action_ms": 653,
+      "actions": [
+        "click \"Increase\"",
+        "click \"Increase\"",
+        "click \"Increase\""
+      ],
+      "api_ms": 1887,
+      "calls": 3,
+      "case": "counter",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 5178,
+      "error": null,
+      "input_bytes": 2999,
+      "input_tokens": 794,
+      "model": "gemini-decision-1",
+      "observe_ms": 29,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "gemini",
+      "verify_ms": 136
+    },
+    {
+      "action_ms": 213,
+      "actions": [
+        "click \"About\""
+      ],
+      "api_ms": 892,
+      "calls": 1,
+      "case": "public_about",
+      "checks": [
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 8621,
+      "error": null,
+      "input_bytes": 5450,
+      "input_tokens": 1661,
+      "model": "gemini-decision-1",
+      "observe_ms": 5,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "gemini",
+      "verify_ms": 503
+    },
+    {
+      "action_ms": 1054,
+      "actions": [
+        "Fill \"Destination\" with provided value \"Lisbon\"",
+        "Set \"Stay category\" to \"Design\"",
+        "click \"Free cancellation\" (current \"false\")",
+        "click \"Find stays\"",
+        "click \"Casa Flora\""
+      ],
+      "api_ms": 2540,
+      "calls": 5,
+      "case": "hotel",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 5730,
+      "error": null,
+      "input_bytes": 6481,
+      "input_tokens": 1672,
+      "model": "gemini-decision-1",
+      "observe_ms": 14,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "gemini",
+      "verify_ms": 41
+    },
+    {
+      "action_ms": 832,
+      "actions": [
+        "Fill \"Full name\" with provided value \"Ada Lovelace\"",
+        "Fill \"Email\" with provided value \"ada@example.com\"",
+        "Set \"Delivery\" to \"Express\"",
+        "click \"Confirm profile\""
+      ],
+      "api_ms": 2331,
+      "calls": 4,
+      "case": "profile_form",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 5267,
+      "error": null,
+      "input_bytes": 5123,
+      "input_tokens": 1349,
+      "model": "gemini-decision-1",
+      "observe_ms": 7,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "gemini",
+      "verify_ms": 32
+    },
+    {
+      "action_ms": 416,
+      "actions": [
+        "Fill \"Origin\" with provided value \"Zurich\"",
+        "click \"Zurich Airport (ZRH)\""
+      ],
+      "api_ms": 1812,
+      "calls": 2,
+      "case": "autocomplete",
+      "checks": [
+        true,
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 4455,
+      "error": null,
+      "input_bytes": 2234,
+      "input_tokens": 597,
+      "model": "gemini-decision-1",
+      "observe_ms": 3,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "gemini",
+      "verify_ms": 29
+    },
+    {
+      "action_ms": 627,
+      "actions": [
+        "click \"Departure\"",
+        "click \"September 20, 2026\"",
+        "click \"Done\""
+      ],
+      "api_ms": 1824,
+      "calls": 3,
+      "case": "calendar",
+      "checks": [
+        true,
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 4723,
+      "error": null,
+      "input_bytes": 3289,
+      "input_tokens": 991,
+      "model": "gemini-decision-1",
+      "observe_ms": 4,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "gemini",
+      "verify_ms": 66
+    },
+    {
+      "action_ms": 207,
+      "actions": [
+        "click \"닥터자르트\" (current \"false\")"
+      ],
+      "api_ms": 1086,
+      "calls": 1,
+      "case": "styled_filter",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 3999,
+      "error": null,
+      "input_bytes": 1011,
+      "input_tokens": 273,
+      "model": "gemini-decision-1",
+      "observe_ms": 5,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "gemini",
+      "verify_ms": 78
+    },
+    {
+      "action_ms": 624,
+      "actions": [
+        "click \"Reject all\"",
+        "Fill \"From\" with provided value \"London\"",
+        "click \"Find routes\""
+      ],
+      "api_ms": 1955,
+      "calls": 3,
+      "case": "consent",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 5060,
+      "error": null,
+      "input_bytes": 3316,
+      "input_tokens": 875,
+      "model": "gemini-decision-1",
+      "observe_ms": 7,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "gemini",
+      "verify_ms": 35
+    },
+    {
+      "action_ms": 1347,
+      "actions": [
+        "Wait briefly for a pending reveal or navigation",
+        "click \"Sections\"",
+        "click \"Sections\"",
+        "click \"Sections\"",
+        "click \"Society\""
+      ],
+      "api_ms": 4584,
+      "calls": 2,
+      "case": "delayed_menu",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 8417,
+      "error": null,
+      "input_bytes": 2058,
+      "input_tokens": 534,
+      "model": "gemini-decision-1",
+      "observe_ms": 7,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "gemini",
+      "verify_ms": 26
+    },
+    {
+      "action_ms": 1651,
+      "actions": [
+        "Wait briefly for a pending reveal or navigation",
+        "click \"Load services\"",
+        "Wait briefly for a pending reveal or navigation",
+        "Fill \"Service query\" with provided value \"climate\"",
+        "click \"Search services\""
+      ],
+      "api_ms": 17388,
+      "calls": 3,
+      "case": "loading_overlay",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 21825,
+      "error": null,
+      "input_bytes": 3557,
+      "input_tokens": 892,
+      "model": "gemini-decision-1",
+      "observe_ms": 32,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "gemini",
+      "verify_ms": 159
+    },
+    {
+      "action_ms": 626,
+      "actions": [
+        "Scroll down to reveal additional content",
+        "Scroll down to reveal additional content",
+        "click \"Mark evidence as read\""
+      ],
+      "api_ms": 17293,
+      "calls": 3,
+      "case": "below_fold",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 19966,
+      "error": null,
+      "input_bytes": 3490,
+      "input_tokens": 893,
+      "model": "gemini-decision-1",
+      "observe_ms": 5,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "gemini",
+      "verify_ms": 27
+    },
+    {
+      "action_ms": 1142,
+      "actions": [
+        "Wait briefly if the visible input is still changing",
+        "Fill \"Search query\" with provided value \"Godel incompleteness\"",
+        "click \"Search articles\"",
+        "click \"Gödel's incompleteness theorems\""
+      ],
+      "api_ms": 7720,
+      "calls": 3,
+      "case": "article",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 12395,
+      "error": null,
+      "input_bytes": 3882,
+      "input_tokens": 968,
+      "model": "gemini-decision-1",
+      "observe_ms": 4,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "gemini",
+      "verify_ms": 20
+    },
+    {
+      "action_ms": 2176,
+      "actions": [
+        "Fill \"From station\" with provided value \"York\"",
+        "Fill \"To station\" with provided value \"Durham\"",
+        "click \"Find trains\"",
+        "click \"Express 09:20\"",
+        "Set \"Seat\" to \"Window\"",
+        "click \"Quiet coach\" (current \"false\")",
+        "click \"Apply preferences\"",
+        "Set \"Departure platform\" to \"Platform 4\"",
+        "click \"Add platform\"",
+        "click \"Save itinerary\""
+      ],
+      "api_ms": 7546,
+      "calls": 10,
+      "case": "rail_itinerary",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": false,
+      "elapsed_ms": 15059,
+      "error": "Operation not permitted (os error 1)",
+      "input_bytes": 20082,
+      "input_tokens": 5538,
+      "model": "gemini-decision-1",
+      "observe_ms": 108,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "gemini",
+      "verify_ms": 435
+    },
+    {
+      "action_ms": 2809,
+      "actions": [
+        "Fill \"Catalogue query\" with provided value \"Glacier Atlas\"",
+        "Set \"Collection\" to \"Earth Science\"",
+        "click \"Search catalogue\"",
+        "click \"Glacier Atlas field guide\"",
+        "click \"Read appendix\"",
+        "Set \"Companion reference\" to \"GL-42\"",
+        "click \"Look up reference\"",
+        "click \"Peer-reviewed paper\"",
+        "Fill \"Reading list name\" with provided value \"Ice Notes\"",
+        "Set \"List tag\" to \"Fieldwork\"",
+        "click \"Preview list\"",
+        "click \"Save reading list\""
+      ],
+      "api_ms": 7484,
+      "calls": 12,
+      "case": "library_research",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": false,
+      "elapsed_ms": 15370,
+      "error": "Operation not permitted (os error 1)",
+      "input_bytes": 32697,
+      "input_tokens": 8041,
+      "model": "gemini-decision-1",
+      "observe_ms": 98,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "gemini",
+      "verify_ms": 489
+    },
+    {
+      "action_ms": 3890,
+      "actions": [
+        "Fill \"Equipment query\" with provided value \"Boreal\"",
+        "click \"Search equipment\"",
+        "Wait briefly for a pending reveal or navigation",
+        "Set \"Category\" to \"Cameras\"",
+        "click \"Search equipment\"",
+        "click \"Boreal WX weatherproof\"",
+        "Set \"Lens\" to \"Telephoto\"",
+        "click \"Protective case\" (current \"false\")",
+        "click \"Add accessories\"",
+        "click \"East depot\"",
+        "Set \"Pickup day\" to \"Friday\"",
+        "Set \"Pickup window\" to \"Afternoon\"",
+        "click \"Set pickup window\"",
+        "Fill \"Collector name\" with provided value \"Lina Cruz\"",
+        "click \"Add collector\"",
+        "click \"Save pick list\""
+      ],
+      "api_ms": 7861,
+      "calls": 16,
+      "case": "equipment_pickup",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": false,
+      "elapsed_ms": 16265,
+      "error": "Operation not permitted (os error 1)",
+      "input_bytes": 41235,
+      "input_tokens": 10528,
+      "model": "gemini-decision-1",
+      "observe_ms": 37,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "gemini",
+      "verify_ms": 91
+    },
+    {
+      "action_ms": 3366,
+      "actions": [
+        "Fill \"Ticket number\" with provided value \"R-214\"",
+        "Set \"Queue\" to \"Network\"",
+        "click \"Search tickets\"",
+        "click \"R-214 edge packet loss\"",
+        "click \"Open activity log\"",
+        "Set \"Priority\" to \"High\"",
+        "Set \"Fault code\" to \"EDGE-72\"",
+        "click \"Classify fault\"",
+        "Set \"Receiving team\" to \"Network Operations\"",
+        "click \"On-call rotation\" (current \"false\")",
+        "click \"Apply routing\"",
+        "Fill \"Handoff note\" with provided value \"Compare edge counters\"",
+        "Set \"Note tag\" to \"Diagnosis\"",
+        "click \"Add note\"",
+        "click \"Review handoff\"",
+        "click \"Save handoff draft\""
+      ],
+      "api_ms": 9528,
+      "calls": 16,
+      "case": "support_handoff",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": false,
+      "elapsed_ms": 18571,
+      "error": "Operation not permitted (os error 1)",
+      "input_bytes": 46805,
+      "input_tokens": 13185,
+      "model": "gemini-decision-1",
+      "observe_ms": 29,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "gemini",
+      "verify_ms": 102
+    },
+    {
+      "action_ms": 420,
+      "actions": [
+        "Fill \"Museum city\" with provided value \"Bristol\"",
+        "Set \"Season\" to \"Spring\""
+      ],
+      "api_ms": 19459,
+      "calls": 3,
+      "case": "exhibit_planner",
+      "checks": [
+        false,
+        false
+      ],
+      "confirmed": false,
+      "elapsed_ms": 24338,
+      "error": "provider_request_failed",
+      "input_bytes": 3219,
+      "input_tokens": 820,
+      "model": "gemini-decision-1",
+      "observe_ms": 6,
+      "oracle": false,
+      "output_tokens": 0,
+      "provider": "gemini",
+      "verify_ms": 160
+    }
+  ],
+  "targeted_retries": [
+    {
+      "action_ms": 2151,
+      "actions": [
+        "Fill \"From station\" with provided value \"York\"",
+        "Fill \"To station\" with provided value \"Durham\"",
+        "click \"Find trains\"",
+        "click \"Express 09:20\"",
+        "Set \"Seat\" to \"Window\"",
+        "click \"Quiet coach\" (current \"false\")",
+        "click \"Apply preferences\"",
+        "Set \"Departure platform\" to \"Platform 4\"",
+        "click \"Add platform\"",
+        "click \"Save itinerary\""
+      ],
+      "api_ms": 2731,
+      "calls": 10,
+      "case": "rail_itinerary",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 7731,
+      "error": null,
+      "input_bytes": 20012,
+      "input_tokens": 7973,
+      "model": "jev-1.14.0",
+      "observe_ms": 26,
+      "oracle": true,
+      "output_tokens": 460,
+      "provider": "jev",
+      "verify_ms": 113
+    },
+    {
+      "action_ms": 2541,
+      "actions": [
+        "Fill \"Catalogue query\" with provided value \"Glacier Atlas\"",
+        "Set \"Collection\" to \"Earth Science\"",
+        "click \"Search catalogue\"",
+        "click \"Glacier Atlas field guide\"",
+        "click \"Read appendix\"",
+        "Set \"Companion reference\" to \"GL-42\"",
+        "click \"Look up reference\"",
+        "click \"Peer-reviewed paper\"",
+        "Fill \"Reading list name\" with provided value \"Ice Notes\"",
+        "Set \"List tag\" to \"Fieldwork\"",
+        "click \"Preview list\"",
+        "click \"Save reading list\""
+      ],
+      "api_ms": 3141,
+      "calls": 12,
+      "case": "library_research",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 8724,
+      "error": null,
+      "input_bytes": 32613,
+      "input_tokens": 10849,
+      "model": "jev-1.14.0",
+      "observe_ms": 21,
+      "oracle": true,
+      "output_tokens": 544,
+      "provider": "jev",
+      "verify_ms": 68
+    },
+    {
+      "action_ms": 3208,
+      "actions": [
+        "Fill \"Equipment query\" with provided value \"Boreal\"",
+        "click \"Search equipment\"",
+        "Set \"Category\" to \"Cameras\"",
+        "click \"Search equipment\"",
+        "click \"Boreal WX weatherproof\"",
+        "Set \"Lens\" to \"Telephoto\"",
+        "click \"Protective case\" (current \"false\")",
+        "click \"Add accessories\"",
+        "click \"East depot\"",
+        "Set \"Pickup day\" to \"Friday\"",
+        "Set \"Pickup window\" to \"Afternoon\"",
+        "click \"Set pickup window\"",
+        "Fill \"Collector name\" with provided value \"Lina Cruz\"",
+        "click \"Add collector\"",
+        "click \"Save pick list\""
+      ],
+      "api_ms": 3790,
+      "calls": 15,
+      "case": "equipment_pickup",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 9629,
+      "error": null,
+      "input_bytes": 38977,
+      "input_tokens": 13873,
+      "model": "jev-1.14.0",
+      "observe_ms": 25,
+      "oracle": true,
+      "output_tokens": 774,
+      "provider": "jev",
+      "verify_ms": 84
+    },
+    {
+      "action_ms": 3455,
+      "actions": [
+        "Fill \"Ticket number\" with provided value \"R-214\"",
+        "Set \"Queue\" to \"Network\"",
+        "click \"Search tickets\"",
+        "click \"R-214 edge packet loss\"",
+        "click \"Open activity log\"",
+        "Set \"Fault code\" to \"EDGE-72\"",
+        "Set \"Priority\" to \"High\"",
+        "click \"Classify fault\"",
+        "Set \"Receiving team\" to \"Network Operations\"",
+        "click \"On-call rotation\" (current \"false\")",
+        "click \"Apply routing\"",
+        "Fill \"Handoff note\" with provided value \"Compare edge counters\"",
+        "Set \"Note tag\" to \"Diagnosis\"",
+        "click \"Add note\"",
+        "click \"Review handoff\"",
+        "click \"Save handoff draft\""
+      ],
+      "api_ms": 3999,
+      "calls": 16,
+      "case": "support_handoff",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 9767,
+      "error": null,
+      "input_bytes": 46693,
+      "input_tokens": 16631,
+      "model": "jev-1.14.0",
+      "observe_ms": 23,
+      "oracle": true,
+      "output_tokens": 816,
+      "provider": "jev",
+      "verify_ms": 149
+    },
+    {
+      "action_ms": 3836,
+      "actions": [
+        "Fill \"Museum city\" with provided value \"Bristol\"",
+        "Set \"Season\" to \"Spring\"",
+        "click \"Explore exhibitions\"",
+        "click \"Tidal Maps\"",
+        "Set \"Caption language\" to \"English\"",
+        "click \"Audio guide\" (current \"false\")",
+        "click \"Add first stop\"",
+        "click \"Copper wing\"",
+        "click \"Fresco Study\"",
+        "Set \"Entry slot\" to \"12:30\"",
+        "click \"Step-free access\" (current \"false\")",
+        "click \"Set visit options\"",
+        "Fill \"Route name\" with provided value \"Harbour Walk\"",
+        "Set \"Route template\" to \"Two stops\"",
+        "click \"Preview route\"",
+        "Fill \"Plan owner\" with provided value \"Mira Lane\"",
+        "click \"Add owner\"",
+        "click \"Save exhibit route\""
+      ],
+      "api_ms": 4480,
+      "calls": 18,
+      "case": "exhibit_planner",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 10549,
+      "error": null,
+      "input_bytes": 58616,
+      "input_tokens": 19400,
+      "model": "jev-1.14.0",
+      "observe_ms": 27,
+      "oracle": true,
+      "output_tokens": 884,
+      "provider": "jev",
+      "verify_ms": 100
+    },
+    {
+      "action_ms": 655,
+      "actions": [
+        "click \"Increase\"",
+        "click \"Increase\"",
+        "click \"Increase\""
+      ],
+      "api_ms": 1956,
+      "calls": 3,
+      "case": "counter",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 5957,
+      "error": null,
+      "input_bytes": 3248,
+      "input_tokens": 840,
+      "model": "gpt-6-luna",
+      "observe_ms": 9,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 56
+    },
+    {
+      "action_ms": 925,
+      "actions": [
+        "click \"Sections\"",
+        "Wait briefly for a pending reveal or navigation",
+        "click \"Society\""
+      ],
+      "api_ms": 1156,
+      "calls": 2,
+      "case": "delayed_menu",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 4178,
+      "error": null,
+      "input_bytes": 2219,
+      "input_tokens": 555,
+      "model": "gpt-6-luna",
+      "observe_ms": 4,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 31
+    },
+    {
+      "action_ms": 1146,
+      "actions": [
+        "click \"Load services\"",
+        "Wait briefly for a pending reveal or navigation",
+        "Fill \"Service query\" with provided value \"climate\"",
+        "click \"Search services\""
+      ],
+      "api_ms": 1615,
+      "calls": 3,
+      "case": "loading_overlay",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 4904,
+      "error": null,
+      "input_bytes": 3754,
+      "input_tokens": 923,
+      "model": "gpt-6-luna",
+      "observe_ms": 6,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 34
+    },
+    {
+      "action_ms": 640,
+      "actions": [
+        "Fill \"Search query\" with provided value \"Godel incompleteness\"",
+        "click \"Search articles\"",
+        "click \"Gödel's incompleteness theorems\""
+      ],
+      "api_ms": 1096,
+      "calls": 3,
+      "case": "article",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 3986,
+      "error": null,
+      "input_bytes": 4132,
+      "input_tokens": 1015,
+      "model": "gpt-6-luna",
+      "observe_ms": 4,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 18
+    },
+    {
+      "action_ms": 2933,
+      "actions": [
+        "Fill \"From station\" with provided value \"York\"",
+        "Fill \"To station\" with provided value \"Durham\"",
+        "click \"Find trains\"",
+        "click \"Express 09:20\"",
+        "Set \"Seat\" to \"Window\"",
+        "click \"Quiet coach\" (current \"false\")",
+        "click \"Apply preferences\"",
+        "Set \"Departure platform\" to \"Platform 4\"",
+        "Set \"Departure platform\" to \"Platform 2\"",
+        "Set \"Departure platform\" to \"Platform 4\"",
+        "Set \"Departure platform\" to \"Platform 6\"",
+        "Set \"Departure platform\" to \"Platform 4\"",
+        "click \"Add platform\"",
+        "click \"Save itinerary\""
+      ],
+      "api_ms": 5901,
+      "calls": 14,
+      "case": "rail_itinerary",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 12092,
+      "error": null,
+      "input_bytes": 34105,
+      "input_tokens": 8188,
+      "model": "gpt-6-luna",
+      "observe_ms": 34,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 129
+    },
+    {
+      "action_ms": 2552,
+      "actions": [
+        "Fill \"Catalogue query\" with provided value \"Glacier Atlas\"",
+        "Set \"Collection\" to \"Earth Science\"",
+        "click \"Search catalogue\"",
+        "click \"Glacier Atlas field guide\"",
+        "click \"Read appendix\"",
+        "Set \"Companion reference\" to \"GL-42\"",
+        "click \"Look up reference\"",
+        "click \"Peer-reviewed paper\"",
+        "Fill \"Reading list name\" with provided value \"Ice Notes\"",
+        "Set \"List tag\" to \"Fieldwork\"",
+        "click \"Preview list\"",
+        "click \"Save reading list\""
+      ],
+      "api_ms": 3826,
+      "calls": 12,
+      "case": "library_research",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 8785,
+      "error": null,
+      "input_bytes": 35429,
+      "input_tokens": 7710,
+      "model": "gpt-6-luna",
+      "observe_ms": 23,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 60
+    },
+    {
+      "action_ms": 3754,
+      "actions": [
+        "Fill \"Equipment query\" with provided value \"Boreal\"",
+        "Set \"Category\" to \"Cameras\"",
+        "click \"Search equipment\"",
+        "click \"Boreal WX weatherproof\"",
+        "Set \"Lens\" to \"Telephoto\"",
+        "click \"Protective case\" (current \"false\")",
+        "click \"Add accessories\"",
+        "click \"East depot\"",
+        "Set \"Pickup day\" to \"Friday\"",
+        "Set \"Pickup window\" to \"Afternoon\"",
+        "click \"Set pickup window\"",
+        "Fill \"Collector name\" with provided value \"Lina Cruz\"",
+        "click \"Add collector\"",
+        "click \"Save pick list\""
+      ],
+      "api_ms": 4481,
+      "calls": 14,
+      "case": "equipment_pickup",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": false,
+      "elapsed_ms": 13433,
+      "error": "browser cleanup failed: owned Chrome group liveness unverified: Operation not permitted (os error 1)",
+      "input_bytes": 40833,
+      "input_tokens": 9253,
+      "model": "gpt-6-luna",
+      "observe_ms": 342,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 833
+    },
+    {
+      "action_ms": 3352,
+      "actions": [
+        "Fill \"Ticket number\" with provided value \"R-214\"",
+        "Set \"Queue\" to \"Network\"",
+        "click \"Search tickets\"",
+        "click \"R-214 edge packet loss\"",
+        "click \"Open activity log\"",
+        "Set \"Fault code\" to \"EDGE-72\"",
+        "Set \"Priority\" to \"High\"",
+        "click \"Classify fault\"",
+        "Set \"Receiving team\" to \"Network Operations\"",
+        "click \"On-call rotation\" (current \"false\")",
+        "click \"Apply routing\"",
+        "Fill \"Handoff note\" with provided value \"Compare edge counters\"",
+        "Set \"Note tag\" to \"Diagnosis\"",
+        "click \"Add note\"",
+        "click \"Review handoff\"",
+        "click \"Save handoff draft\""
+      ],
+      "api_ms": 5013,
+      "calls": 16,
+      "case": "support_handoff",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 12245,
+      "error": null,
+      "input_bytes": 51181,
+      "input_tokens": 12008,
+      "model": "gpt-6-luna",
+      "observe_ms": 38,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 271
+    },
+    {
+      "action_ms": 2100,
+      "actions": [
+        "Fill \"From station\" with provided value \"York\"",
+        "Fill \"To station\" with provided value \"Durham\"",
+        "click \"Find trains\"",
+        "click \"Express 09:20\"",
+        "Set \"Seat\" to \"Window\"",
+        "click \"Quiet coach\" (current \"false\")",
+        "click \"Apply preferences\"",
+        "Set \"Departure platform\" to \"Platform 4\"",
+        "click \"Add platform\"",
+        "click \"Save itinerary\""
+      ],
+      "api_ms": 6043,
+      "calls": 10,
+      "case": "rail_itinerary",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 11614,
+      "error": null,
+      "input_bytes": 20082,
+      "input_tokens": 5538,
+      "model": "gemini-decision-1",
+      "observe_ms": 17,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "gemini",
+      "verify_ms": 93
+    },
+    {
+      "action_ms": 2501,
+      "actions": [
+        "Fill \"Catalogue query\" with provided value \"Glacier Atlas\"",
+        "Set \"Collection\" to \"Earth Science\"",
+        "click \"Search catalogue\"",
+        "click \"Glacier Atlas field guide\"",
+        "click \"Read appendix\"",
+        "Set \"Companion reference\" to \"GL-42\"",
+        "click \"Look up reference\"",
+        "click \"Peer-reviewed paper\"",
+        "Fill \"Reading list name\" with provided value \"Ice Notes\"",
+        "Set \"List tag\" to \"Fieldwork\"",
+        "click \"Preview list\"",
+        "click \"Save reading list\""
+      ],
+      "api_ms": 5849,
+      "calls": 12,
+      "case": "library_research",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 10933,
+      "error": null,
+      "input_bytes": 32697,
+      "input_tokens": 8041,
+      "model": "gemini-decision-1",
+      "observe_ms": 19,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "gemini",
+      "verify_ms": 54
+    },
+    {
+      "action_ms": 3653,
+      "actions": [
+        "Fill \"Equipment query\" with provided value \"Boreal\"",
+        "click \"Search equipment\"",
+        "Wait briefly for a pending reveal or navigation",
+        "Set \"Category\" to \"Cameras\"",
+        "click \"Search equipment\"",
+        "click \"Boreal WX weatherproof\"",
+        "Set \"Lens\" to \"Telephoto\"",
+        "click \"Protective case\" (current \"false\")",
+        "click \"Add accessories\"",
+        "click \"East depot\"",
+        "Set \"Pickup day\" to \"Friday\"",
+        "Set \"Pickup window\" to \"Afternoon\"",
+        "click \"Set pickup window\"",
+        "Fill \"Collector name\" with provided value \"Lina Cruz\"",
+        "click \"Add collector\"",
+        "click \"Save pick list\""
+      ],
+      "api_ms": 7187,
+      "calls": 16,
+      "case": "equipment_pickup",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 13281,
+      "error": null,
+      "input_bytes": 41235,
+      "input_tokens": 10528,
+      "model": "gemini-decision-1",
+      "observe_ms": 28,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "gemini",
+      "verify_ms": 232
+    },
+    {
+      "action_ms": 3548,
+      "actions": [
+        "Fill \"Ticket number\" with provided value \"R-214\"",
+        "Set \"Queue\" to \"Network\"",
+        "click \"Search tickets\"",
+        "click \"R-214 edge packet loss\"",
+        "click \"Open activity log\"",
+        "Set \"Priority\" to \"High\"",
+        "Set \"Fault code\" to \"EDGE-72\"",
+        "click \"Classify fault\"",
+        "Set \"Receiving team\" to \"Network Operations\"",
+        "click \"On-call rotation\" (current \"false\")",
+        "click \"Apply routing\"",
+        "Fill \"Handoff note\" with provided value \"Compare edge counters\"",
+        "Set \"Note tag\" to \"Diagnosis\"",
+        "click \"Add note\"",
+        "click \"Review handoff\"",
+        "click \"Save handoff draft\""
+      ],
+      "api_ms": 6984,
+      "calls": 16,
+      "case": "support_handoff",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 13012,
+      "error": null,
+      "input_bytes": 46805,
+      "input_tokens": 13185,
+      "model": "gemini-decision-1",
+      "observe_ms": 41,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "gemini",
+      "verify_ms": 284
+    },
+    {
+      "action_ms": 3787,
+      "actions": [
+        "Fill \"Museum city\" with provided value \"Bristol\"",
+        "Set \"Season\" to \"Spring\"",
+        "click \"Explore exhibitions\"",
+        "click \"Tidal Maps\"",
+        "Set \"Caption language\" to \"English\"",
+        "click \"Audio guide\" (current \"false\")",
+        "click \"Add first stop\"",
+        "click \"Copper wing\"",
+        "click \"Fresco Study\"",
+        "click \"Step-free access\" (current \"false\")",
+        "Set \"Entry slot\" to \"12:30\"",
+        "click \"Set visit options\"",
+        "Fill \"Route name\" with provided value \"Harbour Walk\"",
+        "Set \"Route template\" to \"Two stops\"",
+        "click \"Preview route\"",
+        "Fill \"Plan owner\" with provided value \"Mira Lane\"",
+        "click \"Add owner\"",
+        "click \"Save exhibit route\""
+      ],
+      "api_ms": 8562,
+      "calls": 18,
+      "case": "exhibit_planner",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 14651,
+      "error": null,
+      "input_bytes": 58795,
+      "input_tokens": 15101,
+      "model": "gemini-decision-1",
+      "observe_ms": 28,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "gemini",
+      "verify_ms": 63
+    },
+    {
+      "action_ms": 2986,
+      "actions": [
+        "Fill \"Equipment query\" with provided value \"Boreal\"",
+        "Set \"Category\" to \"Cameras\"",
+        "click \"Search equipment\"",
+        "click \"Boreal WX weatherproof\"",
+        "Set \"Lens\" to \"Telephoto\"",
+        "click \"Protective case\" (current \"false\")",
+        "click \"Add accessories\"",
+        "click \"East depot\"",
+        "Set \"Pickup day\" to \"Friday\"",
+        "Set \"Pickup window\" to \"Afternoon\"",
+        "click \"Set pickup window\"",
+        "Fill \"Collector name\" with provided value \"Lina Cruz\"",
+        "click \"Add collector\"",
+        "click \"Save pick list\""
+      ],
+      "api_ms": 6382,
+      "calls": 14,
+      "case": "equipment_pickup",
+      "checks": [
+        true,
+        true
+      ],
+      "confirmed": true,
+      "elapsed_ms": 12473,
+      "error": null,
+      "input_bytes": 40833,
+      "input_tokens": 9253,
+      "model": "gpt-6-luna",
+      "observe_ms": 27,
+      "oracle": true,
+      "output_tokens": 0,
+      "provider": "luna",
+      "verify_ms": 74
+    }
+  ]
+}

@@ -415,8 +415,9 @@ impl Evidence for SystemEvidence {
 
 /// Return a fixed-code report. An uncertain inspection keeps every barrier.
 pub(super) fn inspect(project: &Path, apply: bool) -> Value {
+    let project = system_project_path(project);
     let mutation = Cell::new(false);
-    match inspect_inner(project, apply, &SystemEvidence, &mutation) {
+    match inspect_inner(&project, apply, &SystemEvidence, &mutation) {
         Ok(value) => value,
         Err(error) => {
             let reason = error.to_string();
@@ -473,6 +474,20 @@ pub(super) fn inspect(project: &Path, apply: bool) -> Value {
     }
 }
 
+fn system_project_path(project: &Path) -> PathBuf {
+    #[cfg(target_os = "macos")]
+    for (alias, actual) in [
+        ("/var", "/private/var"),
+        ("/tmp", "/private/tmp"),
+        ("/etc", "/private/etc"),
+    ] {
+        if let Ok(suffix) = project.strip_prefix(alias) {
+            return Path::new(actual).join(suffix);
+        }
+    }
+    project.to_path_buf()
+}
+
 pub(super) fn relevant(project: &Path) -> bool {
     [LEASE, RESIDUAL, ".decision-browser-stage.lease"]
         .iter()
@@ -493,6 +508,14 @@ fn inspect_inner(
     mutation: &Cell<bool>,
 ) -> Result<Value> {
     let directory = project_directory(project)?;
+    if fs::symlink_metadata(project.join(".decision-browser-stage.lease")).is_ok() {
+        return Err("additional_stage_lease".into());
+    }
+    for name in ["install.lock", "prepare.lock"] {
+        if fs::symlink_metadata(project.join(STATE).join(name)).is_ok() {
+            return Err("legacy_install_lock".into());
+        }
+    }
     let native_path = project.join(".decision-browser-install.native.lease");
     let _native_lease = if fs::symlink_metadata(&native_path).is_ok() {
         let file = open_lease(&native_path, false).map_err(|_| "unsafe_recovery_evidence")?;
@@ -781,6 +804,7 @@ fn check_witness(
     Ok(())
 }
 
+#[cfg(target_os = "macos")]
 fn capture_with_pid(program: &str, args: &[&str]) -> Result<(Vec<u8>, u32)> {
     use std::process::{Command, Stdio};
     use std::time::{Duration, Instant};
@@ -828,6 +852,7 @@ fn capture_with_pid(program: &str, args: &[&str]) -> Result<(Vec<u8>, u32)> {
     Ok((output, pid))
 }
 
+#[cfg(target_os = "macos")]
 fn capture(program: &str, args: &[&str]) -> Result<Vec<u8>> {
     Ok(capture_with_pid(program, args)?.0)
 }
@@ -1625,10 +1650,10 @@ fn linux_unused(project: &Path, identities: &BTreeSet<(u64, u64)>) -> Result<()>
             }
             Ok(())
         })();
-        if let Err(error) = inspect {
-            if path.exists() {
-                return Err(error);
-            }
+        if let Err(error) = inspect
+            && path.exists()
+        {
+            return Err(error);
         }
     }
     if linux_processes()?
@@ -2044,5 +2069,37 @@ mod tests {
         assert_eq!(fs::read(moved.join("new-evidence")).unwrap(), b"anchored");
         assert!(!moved.join(RESIDUAL).exists());
         fs::remove_dir_all(moved).unwrap();
+    }
+
+    #[test]
+    fn idle_primary_lease_does_not_override_an_additional_barrier() {
+        for name in [
+            ".decision-browser-stage.lease",
+            ".decision-browser-install/install.lock",
+            ".decision-browser-install/prepare.lock",
+        ] {
+            let project = Project::new();
+            project.write(LEASE, IDLE);
+            project.write(name, b"retained lock");
+            let evidence = FakeEvidence::new();
+            assert!(inspect_with(&project.0, true, &evidence).is_err());
+            assert_eq!(fs::read(project.0.join(LEASE)).unwrap(), IDLE);
+            assert_eq!(fs::read(project.0.join(name)).unwrap(), b"retained lock");
+        }
+    }
+
+    #[cfg(target_os = "macos")]
+    #[test]
+    fn system_temporary_directory_alias_is_accepted_for_preview() {
+        let project = Project::new();
+        let alias = if let Ok(suffix) = project.0.strip_prefix("/private/var") {
+            Path::new("/var").join(suffix)
+        } else if let Ok(suffix) = project.0.strip_prefix("/private/tmp") {
+            Path::new("/tmp").join(suffix)
+        } else {
+            return;
+        };
+        assert_eq!(inspect(&alias, false)["status"], "clear");
+        assert_eq!(fs::read_dir(&project.0).unwrap().count(), 0);
     }
 }

@@ -1,0 +1,115 @@
+{
+  "date": "2026-11-28",
+  "host": "macOS arm64",
+  "chrome": "Google Chrome 158.0.8127.38",
+  "scope": "Codex app-server Standard MCP form responses are programmatic. Existing mode uses a disposable Chrome and verifies original tabs before and after. Public mode reads the public Python.org navigation page.",
+  "runs": [
+    {
+      "approvalSource": "programmatic acceptance test",
+      "artifactBytes": 19,
+      "artifactType": "application/json",
+      "counter": 3,
+      "elapsedMs": 6120,
+      "forms": 4,
+      "host": "Codex app-server",
+      "mode": "isolated",
+      "provider": "jev",
+      "status": "verified",
+      "usage": {
+        "calls": 3,
+        "input_bytes": 2518,
+        "output_bytes": 593,
+        "steps": 3,
+        "stored_bytes": 19
+      }
+    },
+    {
+      "approvalSource": "programmatic acceptance test",
+      "artifactBytes": 19,
+      "artifactType": "application/json",
+      "counter": 3,
+      "elapsedMs": 6260,
+      "forms": 4,
+      "host": "Codex app-server",
+      "mode": "isolated",
+      "provider": "luna",
+      "status": "verified",
+      "usage": {
+        "calls": 3,
+        "input_bytes": 2911,
+        "output_bytes": 1294,
+        "steps": 3,
+        "stored_bytes": 19
+      }
+    },
+    {
+      "approvalSource": "programmatic acceptance test",
+      "artifactBytes": 19,
+      "artifactType": "application/json",
+      "counter": 3,
+      "elapsedMs": 8206,
+      "forms": 4,
+      "host": "Codex app-server",
+      "mode": "isolated",
+      "provider": "gemini",
+      "status": "verified",
+      "usage": {
+        "calls": 3,
+        "input_bytes": 2539,
+        "output_bytes": 1393,
+        "steps": 3,
+        "stored_bytes": 19
+      }
+    },
+    {
+      "approvalSource": "programmatic acceptance test",
+      "artifactBytes": 19,
+      "artifactType": "application/json",
+      "counter": 3,
+      "elapsedMs": 4520,
+      "forms": 4,
+      "host": "Codex app-server",
+      "mode": "existing_chrome",
+      "provider": "jev",
+      "status": "verified",
+      "usage": {
+        "calls": 3,
+        "input_bytes": 2518,
+        "output_bytes": 594,
+        "steps": 3,
+        "stored_bytes": 19
+      },
+      "originalTabsPreserved": true
+    },
+    {
+      "approvalSource": "programmatic acceptance test",
+      "artifactBytes": 19,
+      "artifactType": "application/json",
+      "elapsedMs": 3855,
+      "forms": 2,
+      "host": "Codex app-server",
+      "mode": "isolated",
+      "provider": "jev",
+      "status": "verified",
+      "usage": {
+        "calls": 1,
+        "input_bytes": 5594,
+        "output_bytes": 361,
+        "steps": 1,
+        "stored_bytes": 19
+      },
+      "verifiedUrl": "https://www.python.org/about/"
+    }
+  ],
+  "correctedPublicFailure": {
+    "terminal": "failed",
+    "reason": "execution_failed",
+    "usage": {
+      "calls": 0,
+      "input_bytes": 0,
+      "output_bytes": 0,
+      "steps": 0,
+      "stored_bytes": 0
+    }
+  }
+}

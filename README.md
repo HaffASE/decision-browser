@@ -139,17 +139,23 @@ Geometry diagnostics can report `incomplete` and do not establish visual success
 
 ## Native validation
 
-The recorded Codex App Server counter test on 28 November 2026 used the optimized
-native executable. Jev took 5.926 s, Decision Luna 6.443 s, and Gemini Decision
-6.659 s from `start_task` through reading the JSON artifact. Each test accepted
-four forms programmatically and independently verified exactly three clicks.
-These measurements cover the recorded counter build and environment.
-[Counter evidence](fixtures/native-codex-smoke-2026-11-28.json)
+The Rust cutover was exercised through Codex App Server with an optimized
+native executable on macOS arm64. Times include `start_task`, the host's
+programmatic form responses, the browser actions and the artifact read.
 
-The second complete standalone matrix confirmed 60 of 63 attempts. Targeted
-reruns after progress fixes confirmed the three remaining cells. The reports
-retain every full-run failure and the later attempts.
-[Measured attempts](fixtures/live-matrix-followup-2026-11-28.json)
+| Browser check | Decision route | Elapsed |
+| --- | --- | ---: |
+| Isolated counter with three verified clicks | Jev | 6.120 s |
+| Isolated counter with three verified clicks | OpenAI Decision Luna | 6.260 s |
+| Isolated counter with three verified clicks | Gemini Decision | 8.206 s |
+| Counter in an existing disposable Chrome | Jev | 4.520 s |
+| Public HTTPS About navigation | Jev | 3.855 s |
+
+The existing browser retained its original tab. The public navigation verified
+the exact destination. [Codex cutover evidence](fixtures/native-codex-cutover-2026-11-28.json)
+
+The standalone browser matrix and its live timing reports retain failed
+attempts and targeted reruns. [Browser scenarios](docs/browser-scenarios.md)
 
 
 ## Benchmarks
