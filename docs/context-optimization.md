@@ -1,5 +1,11 @@
 # Compact Decisions context
 
+Historical design record from the pre-migration implementation. Current native
+commands and acceptance requirements are in [verification](verification.md).
+The [original source and procedure](https://github.com/HaffASE/decision-browser/blob/7babeb4114130e1bf97bd0f23599405b70965372/docs/context-optimization.md)
+remain available at the pinned revision.
+
+
 ## Scope and behavior lock
 
 Optimize only the ordinary runner's provider-bound representation. Keep its local

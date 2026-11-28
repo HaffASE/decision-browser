@@ -136,7 +136,7 @@ SHA256 исходного локального файла сохранён в `p
 - [`jev-ra`](https://github.com/brnyxx/jev-ra/tree/721fc73d4571d4e4ad90dab65481e52f5b2f2531):
   версия 0.2.7, локальная копия с адаптером OpenAI. У копии нет `.git`;
   её точное содержимое определяется файловым manifest, а не заявленным Git HEAD.
-  [Патч адаптера](../../scripts/benchmarks/patches/jev-ra-openai.patch) восстановлен
+  [Патч адаптера](https://github.com/HaffASE/decision-browser/blob/7babeb4114130e1bf97bd0f23599405b70965372/scripts/benchmarks/patches/jev-ra-openai.patch) восстановлен
   относительно указанного upstream-коммита с проверкой Git blob SHA. Он добавляет
   конфигурацию/транспорт OpenAI, локальные ответы для единственного кандидата,
   защиту имени `none` и обозначение неизвестной денежной стоимости в MCP.

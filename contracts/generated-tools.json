@@ -1,0 +1,1876 @@
+[
+  {
+    "name": "start_task",
+    "description": "Start one asynchronous browser task that can interact with external pages.\n\nCall once for a new task, after checking capabilities and agreeing the scope\nwith the user. This launches real work; it is not a preview or an approval.\nReturns result (including run_id) and pending_proposal, initially often null\nwith reason preparing_admission. Poll get_task; when awaiting_human_admission\nwith a pending proposal, use present_admission with its exact identifiers.\nIf the start response is lost, call get_task without run_id to recover the\nsingle retained run. Never retry start_task automatically: a retry can start\nnew work after retention expires. busy means a run is still retained.\nTool errors use isError=true and {\"error\": code}; inspect them before acting.\n",
+    "inputSchema": {
+      "properties": {
+        "request": {
+          "$ref": "#/$defs/TaskRequest",
+          "description": "Bounded browser task: goal/start URL, input values, independent checks, budgets and privacy policy. No caller-supplied approval or grant fields."
+        }
+      },
+      "required": [
+        "request"
+      ],
+      "type": "object",
+      "$defs": {
+        "Check": {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "description": "Independent check: route/text/value expect a string, visible a boolean, count a nonnegative integer. fixture_state is reserved for trusted adapters and rejected in public requests.",
+              "enum": [
+                "route",
+                "text",
+                "value",
+                "visible",
+                "count",
+                "fixture_state"
+              ],
+              "title": "Kind",
+              "type": "string"
+            },
+            "target": {
+              "default": "",
+              "description": "Empty for route; otherwise a supported CSS selector (up to 512 UTF-8 bytes). XPath and Playwright selector engines are rejected.",
+              "maxLength": 512,
+              "title": "Target",
+              "type": "string"
+            },
+            "expected": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "integer"
+                }
+              ],
+              "description": "Exact expected value for the check kind; string, boolean or integer, never a caller assertion that verification passed.",
+              "title": "Expected"
+            }
+          },
+          "required": [
+            "kind",
+            "expected"
+          ],
+          "title": "Check",
+          "type": "object"
+        },
+        "Limits": {
+          "additionalProperties": false,
+          "properties": {
+            "max_steps": {
+              "default": 12,
+              "description": "Maximum browser action steps.",
+              "exclusiveMinimum": 0,
+              "maximum": 1000,
+              "title": "Max Steps",
+              "type": "integer"
+            },
+            "max_seconds": {
+              "default": 120.0,
+              "description": "Finite wall-clock task budget in seconds.",
+              "exclusiveMinimum": 0,
+              "maximum": 600,
+              "title": "Max Seconds",
+              "type": "number"
+            },
+            "max_provider_calls": {
+              "default": 12,
+              "description": "Maximum model-provider requests.",
+              "exclusiveMinimum": 0,
+              "maximum": 1000,
+              "title": "Max Provider Calls",
+              "type": "integer"
+            },
+            "max_input_bytes": {
+              "default": 262144,
+              "description": "Cumulative provider input budget in bytes.",
+              "exclusiveMinimum": 0,
+              "maximum": 16777216,
+              "title": "Max Input Bytes",
+              "type": "integer"
+            },
+            "max_output_bytes": {
+              "default": 262144,
+              "description": "Cumulative provider output budget in bytes.",
+              "exclusiveMinimum": 0,
+              "maximum": 16777216,
+              "title": "Max Output Bytes",
+              "type": "integer"
+            },
+            "max_stored_bytes": {
+              "default": 10485760,
+              "description": "Maximum retained artifact storage in bytes.",
+              "exclusiveMinimum": 0,
+              "maximum": 104857600,
+              "title": "Max Stored Bytes",
+              "type": "integer"
+            }
+          },
+          "title": "Limits",
+          "type": "object"
+        },
+        "PrivacyPolicy": {
+          "additionalProperties": false,
+          "description": "Local filter. Do not send or log blocked_literals.",
+          "properties": {
+            "blocked_literals": {
+              "description": "Local payload denylist: up to 32 nonempty literals of 1..256 characters. Never send or log these values.",
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 32,
+              "title": "Blocked Literals",
+              "type": "array"
+            },
+            "send_images": {
+              "default": false,
+              "description": "Whether image payloads may be sent to the provider; does not guarantee privacy or grant admission.",
+              "title": "Send Images",
+              "type": "boolean"
+            }
+          },
+          "title": "PrivacyPolicy",
+          "type": "object"
+        },
+        "TaskRequest": {
+          "additionalProperties": false,
+          "properties": {
+            "goal": {
+              "description": "User-agreed browser goal; nonempty after trimming. A goal is not approval for consequential actions.",
+              "maxLength": 4000,
+              "minLength": 1,
+              "title": "Goal",
+              "type": "string"
+            },
+            "start_url": {
+              "description": "Absolute HTTP(S) starting URL, without userinfo, whitespace or control characters.",
+              "title": "Start Url",
+              "type": "string"
+            },
+            "mode": {
+              "default": "isolated",
+              "description": "isolated creates an owned browser session; existing_chrome uses the supported existing-browser attachment. Check capabilities.modes first.",
+              "enum": [
+                "isolated",
+                "existing_chrome"
+              ],
+              "title": "Mode",
+              "type": "string"
+            },
+            "values": {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "Task input values: at most 32 string entries, keys <=128 characters and values <=4000. Use an empty object when no inputs are needed.",
+              "title": "Values",
+              "type": "object"
+            },
+            "checks": {
+              "description": "Up to 32 independent completion checks. An empty list cannot establish verified functional completion.",
+              "items": {
+                "$ref": "#/$defs/Check"
+              },
+              "maxItems": 32,
+              "title": "Checks",
+              "type": "array"
+            },
+            "viewports": {
+              "description": "One to three CSS-pixel viewport sizes for visual diagnostics.",
+              "items": {
+                "$ref": "#/$defs/Viewport"
+              },
+              "maxItems": 3,
+              "minItems": 1,
+              "title": "Viewports",
+              "type": "array"
+            },
+            "limits": {
+              "$ref": "#/$defs/Limits",
+              "description": "Required execution and byte budgets; an empty object uses bounded defaults."
+            },
+            "privacy": {
+              "$ref": "#/$defs/PrivacyPolicy",
+              "description": "Required local privacy controls; an empty object uses defaults with image sending disabled."
+            },
+            "visual": {
+              "default": false,
+              "description": "Request visual diagnostics at the selected viewports; separate from functional verification.",
+              "title": "Visual",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "goal",
+            "start_url",
+            "values",
+            "checks",
+            "limits",
+            "privacy"
+          ],
+          "title": "TaskRequest",
+          "type": "object"
+        },
+        "Viewport": {
+          "additionalProperties": false,
+          "properties": {
+            "width": {
+              "description": "Viewport width in CSS pixels.",
+              "maximum": 4096,
+              "minimum": 100,
+              "title": "Width",
+              "type": "integer"
+            },
+            "height": {
+              "description": "Viewport height in CSS pixels.",
+              "maximum": 4096,
+              "minimum": 100,
+              "title": "Height",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "width",
+            "height"
+          ],
+          "title": "Viewport",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "title": "start_taskArgumentsClosed"
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "$ref": "#/$defs/TaskResult",
+          "description": "Run ID, state, usage, evidence and artifact IDs. A result is not authorization."
+        },
+        "pending_proposal": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PendingProposal"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Current admission scope, or null while preparing/running/finished. Pass its exact identifiers to present_admission only when awaiting_human_admission."
+        }
+      },
+      "required": [
+        "result",
+        "pending_proposal"
+      ],
+      "type": "object",
+      "$defs": {
+        "PendingProposal": {
+          "description": "Copy these identifiers verbatim; the remaining scope fields depend on proposal kind.",
+          "properties": {
+            "run_id": {
+              "title": "Run Id",
+              "type": "string"
+            },
+            "proposal_id": {
+              "title": "Proposal Id",
+              "type": "string"
+            },
+            "digest": {
+              "title": "Digest",
+              "type": "string"
+            },
+            "expires_at": {
+              "title": "Expires At",
+              "type": "number"
+            },
+            "deadline": {
+              "title": "Deadline",
+              "type": "number"
+            },
+            "development_only": {
+              "title": "Development Only",
+              "type": "boolean"
+            },
+            "budgets": {
+              "additionalProperties": true,
+              "title": "Budgets",
+              "type": "object"
+            },
+            "canonical_urls": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Canonical Urls",
+              "type": "array"
+            },
+            "operations": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Operations",
+              "type": "array"
+            },
+            "origins": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Origins",
+              "type": "array"
+            },
+            "residual_risk": {
+              "title": "Residual Risk",
+              "type": "string"
+            },
+            "destination_origin": {
+              "title": "Destination Origin",
+              "type": "string"
+            },
+            "document_origin": {
+              "title": "Document Origin",
+              "type": "string"
+            },
+            "semantic_fingerprint": {
+              "title": "Semantic Fingerprint",
+              "type": "string"
+            },
+            "operation": {
+              "title": "Operation",
+              "type": "string"
+            },
+            "destination_url": {
+              "title": "Destination Url",
+              "type": "string"
+            }
+          },
+          "required": [
+            "run_id",
+            "proposal_id",
+            "digest",
+            "expires_at",
+            "deadline",
+            "development_only"
+          ],
+          "title": "PendingProposal",
+          "type": "object"
+        },
+        "TaskResult": {
+          "additionalProperties": false,
+          "description": "Closed outcome. Recording admission does not authorize an effect.",
+          "properties": {
+            "run_id": {
+              "minLength": 1,
+              "title": "Run Id",
+              "type": "string"
+            },
+            "terminal": {
+              "enum": [
+                "queued",
+                "awaiting_human_admission",
+                "running",
+                "verified",
+                "completed_unverified",
+                "verification_failed",
+                "blocked",
+                "cancelled",
+                "limit_exceeded",
+                "outcome_unknown",
+                "failed",
+                "refused",
+                "unsupported"
+              ],
+              "title": "Terminal",
+              "type": "string"
+            },
+            "functional": {
+              "default": "not_run",
+              "enum": [
+                "not_run",
+                "verified",
+                "unverified",
+                "failed"
+              ],
+              "title": "Functional",
+              "type": "string"
+            },
+            "visual_diagnostic": {
+              "default": "not_requested",
+              "enum": [
+                "not_requested",
+                "not_run",
+                "complete",
+                "incomplete",
+                "failed"
+              ],
+              "title": "Visual Diagnostic",
+              "type": "string"
+            },
+            "usage": {
+              "$ref": "#/$defs/UsageCounters"
+            },
+            "timings": {
+              "additionalProperties": {
+                "type": "number"
+              },
+              "title": "Timings",
+              "type": "object"
+            },
+            "artifact_ids": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Artifact Ids",
+              "type": "array"
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Reason"
+            },
+            "recovery": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Recovery"
+            },
+            "admission_class": {
+              "default": "unresolved",
+              "enum": [
+                "fixture_mapped",
+                "observe_driver",
+                "ordinary_admitted",
+                "ordinary_task_scoped",
+                "ordinary_beta_admitted",
+                "consequential",
+                "unresolved",
+                "owned_loopback_document"
+              ],
+              "title": "Admission Class",
+              "type": "string"
+            },
+            "effect_guarantee": {
+              "const": "none",
+              "default": "none",
+              "title": "Effect Guarantee",
+              "type": "string"
+            },
+            "development_only": {
+              "default": false,
+              "title": "Development Only",
+              "type": "boolean"
+            },
+            "last_url": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Last Url"
+            },
+            "evidence": {
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 32,
+              "title": "Evidence",
+              "type": "array"
+            }
+          },
+          "required": [
+            "run_id",
+            "terminal",
+            "usage",
+            "timings",
+            "artifact_ids"
+          ],
+          "title": "TaskResult",
+          "type": "object"
+        },
+        "UsageCounters": {
+          "additionalProperties": false,
+          "properties": {
+            "calls": {
+              "minimum": 0,
+              "title": "Calls",
+              "type": "integer"
+            },
+            "input_bytes": {
+              "minimum": 0,
+              "title": "Input Bytes",
+              "type": "integer"
+            },
+            "output_bytes": {
+              "minimum": 0,
+              "title": "Output Bytes",
+              "type": "integer"
+            },
+            "steps": {
+              "minimum": 0,
+              "title": "Steps",
+              "type": "integer"
+            },
+            "stored_bytes": {
+              "minimum": 0,
+              "title": "Stored Bytes",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "calls",
+            "input_bytes",
+            "output_bytes",
+            "steps",
+            "stored_bytes"
+          ],
+          "title": "UsageCounters",
+          "type": "object"
+        }
+      },
+      "description": "Current run snapshot; queued/awaiting_human_admission/running need further polling.",
+      "title": "TaskSnapshot"
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": true
+    }
+  },
+  {
+    "name": "get_task",
+    "description": "Read the current snapshot of one retained task without starting work.\n\nSupply run_id to poll that run; omit it (or pass JSON null) to recover the\nsingle retained run after a lost start_task response. Returns result and\npending_proposal. queued, awaiting_human_admission and running are not final;\nreason finalizing means cleanup is still in progress. Present a pending\nadmission only with its exact identifiers; read result.artifact_ids with\nread_artifact. A terminal outcome_unknown/cleanup_unknown is not proof of\nsuccessful cleanup. unknown/expired errors mean no matching retained run,\nnot evidence that no browser action occurred. Do not restart automatically.\n",
+    "inputSchema": {
+      "properties": {
+        "run_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9_-]{1,128}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Exact result.run_id from a task response. Omit or pass JSON null to recover the single retained run after a lost start response; the string 'null' is an ordinary ID.",
+          "title": "Run Id"
+        }
+      },
+      "type": "object",
+      "additionalProperties": false,
+      "title": "get_taskArgumentsClosed"
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "$ref": "#/$defs/TaskResult",
+          "description": "Run ID, state, usage, evidence and artifact IDs. A result is not authorization."
+        },
+        "pending_proposal": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PendingProposal"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Current admission scope, or null while preparing/running/finished. Pass its exact identifiers to present_admission only when awaiting_human_admission."
+        }
+      },
+      "required": [
+        "result",
+        "pending_proposal"
+      ],
+      "type": "object",
+      "$defs": {
+        "PendingProposal": {
+          "description": "Copy these identifiers verbatim; the remaining scope fields depend on proposal kind.",
+          "properties": {
+            "run_id": {
+              "title": "Run Id",
+              "type": "string"
+            },
+            "proposal_id": {
+              "title": "Proposal Id",
+              "type": "string"
+            },
+            "digest": {
+              "title": "Digest",
+              "type": "string"
+            },
+            "expires_at": {
+              "title": "Expires At",
+              "type": "number"
+            },
+            "deadline": {
+              "title": "Deadline",
+              "type": "number"
+            },
+            "development_only": {
+              "title": "Development Only",
+              "type": "boolean"
+            },
+            "budgets": {
+              "additionalProperties": true,
+              "title": "Budgets",
+              "type": "object"
+            },
+            "canonical_urls": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Canonical Urls",
+              "type": "array"
+            },
+            "operations": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Operations",
+              "type": "array"
+            },
+            "origins": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Origins",
+              "type": "array"
+            },
+            "residual_risk": {
+              "title": "Residual Risk",
+              "type": "string"
+            },
+            "destination_origin": {
+              "title": "Destination Origin",
+              "type": "string"
+            },
+            "document_origin": {
+              "title": "Document Origin",
+              "type": "string"
+            },
+            "semantic_fingerprint": {
+              "title": "Semantic Fingerprint",
+              "type": "string"
+            },
+            "operation": {
+              "title": "Operation",
+              "type": "string"
+            },
+            "destination_url": {
+              "title": "Destination Url",
+              "type": "string"
+            }
+          },
+          "required": [
+            "run_id",
+            "proposal_id",
+            "digest",
+            "expires_at",
+            "deadline",
+            "development_only"
+          ],
+          "title": "PendingProposal",
+          "type": "object"
+        },
+        "TaskResult": {
+          "additionalProperties": false,
+          "description": "Closed outcome. Recording admission does not authorize an effect.",
+          "properties": {
+            "run_id": {
+              "minLength": 1,
+              "title": "Run Id",
+              "type": "string"
+            },
+            "terminal": {
+              "enum": [
+                "queued",
+                "awaiting_human_admission",
+                "running",
+                "verified",
+                "completed_unverified",
+                "verification_failed",
+                "blocked",
+                "cancelled",
+                "limit_exceeded",
+                "outcome_unknown",
+                "failed",
+                "refused",
+                "unsupported"
+              ],
+              "title": "Terminal",
+              "type": "string"
+            },
+            "functional": {
+              "default": "not_run",
+              "enum": [
+                "not_run",
+                "verified",
+                "unverified",
+                "failed"
+              ],
+              "title": "Functional",
+              "type": "string"
+            },
+            "visual_diagnostic": {
+              "default": "not_requested",
+              "enum": [
+                "not_requested",
+                "not_run",
+                "complete",
+                "incomplete",
+                "failed"
+              ],
+              "title": "Visual Diagnostic",
+              "type": "string"
+            },
+            "usage": {
+              "$ref": "#/$defs/UsageCounters"
+            },
+            "timings": {
+              "additionalProperties": {
+                "type": "number"
+              },
+              "title": "Timings",
+              "type": "object"
+            },
+            "artifact_ids": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Artifact Ids",
+              "type": "array"
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Reason"
+            },
+            "recovery": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Recovery"
+            },
+            "admission_class": {
+              "default": "unresolved",
+              "enum": [
+                "fixture_mapped",
+                "observe_driver",
+                "ordinary_admitted",
+                "ordinary_task_scoped",
+                "ordinary_beta_admitted",
+                "consequential",
+                "unresolved",
+                "owned_loopback_document"
+              ],
+              "title": "Admission Class",
+              "type": "string"
+            },
+            "effect_guarantee": {
+              "const": "none",
+              "default": "none",
+              "title": "Effect Guarantee",
+              "type": "string"
+            },
+            "development_only": {
+              "default": false,
+              "title": "Development Only",
+              "type": "boolean"
+            },
+            "last_url": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Last Url"
+            },
+            "evidence": {
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 32,
+              "title": "Evidence",
+              "type": "array"
+            }
+          },
+          "required": [
+            "run_id",
+            "terminal",
+            "usage",
+            "timings",
+            "artifact_ids"
+          ],
+          "title": "TaskResult",
+          "type": "object"
+        },
+        "UsageCounters": {
+          "additionalProperties": false,
+          "properties": {
+            "calls": {
+              "minimum": 0,
+              "title": "Calls",
+              "type": "integer"
+            },
+            "input_bytes": {
+              "minimum": 0,
+              "title": "Input Bytes",
+              "type": "integer"
+            },
+            "output_bytes": {
+              "minimum": 0,
+              "title": "Output Bytes",
+              "type": "integer"
+            },
+            "steps": {
+              "minimum": 0,
+              "title": "Steps",
+              "type": "integer"
+            },
+            "stored_bytes": {
+              "minimum": 0,
+              "title": "Stored Bytes",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "calls",
+            "input_bytes",
+            "output_bytes",
+            "steps",
+            "stored_bytes"
+          ],
+          "title": "UsageCounters",
+          "type": "object"
+        }
+      },
+      "description": "Current run snapshot; queued/awaiting_human_admission/running need further polling.",
+      "title": "TaskSnapshot"
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "cancel_task",
+    "description": "Request cancellation of a retained browser run and revoke its admission.\n\nUse when the user wants the run stopped. Returns result and pending_proposal;\ncancellation is a request, not an immediate cleanup receipt or rollback of\nearlier page changes. Poll get_task until finalization/cleanup finishes.\noutcome_unknown with cleanup_unknown requires inspection, not a success claim\nor automatic restart. Repeated cancellation of the same retained run adds no\nnew work; unknown/expired returns isError=true with {\"error\": code}.\n",
+    "inputSchema": {
+      "properties": {
+        "run_id": {
+          "description": "Exact result.run_id of the retained run to stop; obtain it with get_task if the start response was lost.",
+          "pattern": "^[A-Za-z0-9_-]{1,128}$",
+          "title": "Run Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "run_id"
+      ],
+      "type": "object",
+      "additionalProperties": false,
+      "title": "cancel_taskArgumentsClosed"
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "$ref": "#/$defs/TaskResult",
+          "description": "Run ID, state, usage, evidence and artifact IDs. A result is not authorization."
+        },
+        "pending_proposal": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PendingProposal"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Current admission scope, or null while preparing/running/finished. Pass its exact identifiers to present_admission only when awaiting_human_admission."
+        }
+      },
+      "required": [
+        "result",
+        "pending_proposal"
+      ],
+      "type": "object",
+      "$defs": {
+        "PendingProposal": {
+          "description": "Copy these identifiers verbatim; the remaining scope fields depend on proposal kind.",
+          "properties": {
+            "run_id": {
+              "title": "Run Id",
+              "type": "string"
+            },
+            "proposal_id": {
+              "title": "Proposal Id",
+              "type": "string"
+            },
+            "digest": {
+              "title": "Digest",
+              "type": "string"
+            },
+            "expires_at": {
+              "title": "Expires At",
+              "type": "number"
+            },
+            "deadline": {
+              "title": "Deadline",
+              "type": "number"
+            },
+            "development_only": {
+              "title": "Development Only",
+              "type": "boolean"
+            },
+            "budgets": {
+              "additionalProperties": true,
+              "title": "Budgets",
+              "type": "object"
+            },
+            "canonical_urls": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Canonical Urls",
+              "type": "array"
+            },
+            "operations": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Operations",
+              "type": "array"
+            },
+            "origins": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Origins",
+              "type": "array"
+            },
+            "residual_risk": {
+              "title": "Residual Risk",
+              "type": "string"
+            },
+            "destination_origin": {
+              "title": "Destination Origin",
+              "type": "string"
+            },
+            "document_origin": {
+              "title": "Document Origin",
+              "type": "string"
+            },
+            "semantic_fingerprint": {
+              "title": "Semantic Fingerprint",
+              "type": "string"
+            },
+            "operation": {
+              "title": "Operation",
+              "type": "string"
+            },
+            "destination_url": {
+              "title": "Destination Url",
+              "type": "string"
+            }
+          },
+          "required": [
+            "run_id",
+            "proposal_id",
+            "digest",
+            "expires_at",
+            "deadline",
+            "development_only"
+          ],
+          "title": "PendingProposal",
+          "type": "object"
+        },
+        "TaskResult": {
+          "additionalProperties": false,
+          "description": "Closed outcome. Recording admission does not authorize an effect.",
+          "properties": {
+            "run_id": {
+              "minLength": 1,
+              "title": "Run Id",
+              "type": "string"
+            },
+            "terminal": {
+              "enum": [
+                "queued",
+                "awaiting_human_admission",
+                "running",
+                "verified",
+                "completed_unverified",
+                "verification_failed",
+                "blocked",
+                "cancelled",
+                "limit_exceeded",
+                "outcome_unknown",
+                "failed",
+                "refused",
+                "unsupported"
+              ],
+              "title": "Terminal",
+              "type": "string"
+            },
+            "functional": {
+              "default": "not_run",
+              "enum": [
+                "not_run",
+                "verified",
+                "unverified",
+                "failed"
+              ],
+              "title": "Functional",
+              "type": "string"
+            },
+            "visual_diagnostic": {
+              "default": "not_requested",
+              "enum": [
+                "not_requested",
+                "not_run",
+                "complete",
+                "incomplete",
+                "failed"
+              ],
+              "title": "Visual Diagnostic",
+              "type": "string"
+            },
+            "usage": {
+              "$ref": "#/$defs/UsageCounters"
+            },
+            "timings": {
+              "additionalProperties": {
+                "type": "number"
+              },
+              "title": "Timings",
+              "type": "object"
+            },
+            "artifact_ids": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Artifact Ids",
+              "type": "array"
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Reason"
+            },
+            "recovery": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Recovery"
+            },
+            "admission_class": {
+              "default": "unresolved",
+              "enum": [
+                "fixture_mapped",
+                "observe_driver",
+                "ordinary_admitted",
+                "ordinary_task_scoped",
+                "ordinary_beta_admitted",
+                "consequential",
+                "unresolved",
+                "owned_loopback_document"
+              ],
+              "title": "Admission Class",
+              "type": "string"
+            },
+            "effect_guarantee": {
+              "const": "none",
+              "default": "none",
+              "title": "Effect Guarantee",
+              "type": "string"
+            },
+            "development_only": {
+              "default": false,
+              "title": "Development Only",
+              "type": "boolean"
+            },
+            "last_url": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Last Url"
+            },
+            "evidence": {
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 32,
+              "title": "Evidence",
+              "type": "array"
+            }
+          },
+          "required": [
+            "run_id",
+            "terminal",
+            "usage",
+            "timings",
+            "artifact_ids"
+          ],
+          "title": "TaskResult",
+          "type": "object"
+        },
+        "UsageCounters": {
+          "additionalProperties": false,
+          "properties": {
+            "calls": {
+              "minimum": 0,
+              "title": "Calls",
+              "type": "integer"
+            },
+            "input_bytes": {
+              "minimum": 0,
+              "title": "Input Bytes",
+              "type": "integer"
+            },
+            "output_bytes": {
+              "minimum": 0,
+              "title": "Output Bytes",
+              "type": "integer"
+            },
+            "steps": {
+              "minimum": 0,
+              "title": "Steps",
+              "type": "integer"
+            },
+            "stored_bytes": {
+              "minimum": 0,
+              "title": "Stored Bytes",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "calls",
+            "input_bytes",
+            "output_bytes",
+            "steps",
+            "stored_bytes"
+          ],
+          "title": "UsageCounters",
+          "type": "object"
+        }
+      },
+      "description": "Current run snapshot; queued/awaiting_human_admission/running need further polling.",
+      "title": "TaskSnapshot"
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": true,
+      "openWorldHint": true
+    }
+  },
+  {
+    "name": "read_artifact",
+    "description": "Read retained evidence bytes by server-issued run and artifact IDs.\n\nUse result.artifact_ids from get_task, never a local path. Default legacy is\nonly for a whole artifact fitting one chunk at offset 0; otherwise it returns\nartifact_range_required. Choose structured or resource for large artifacts.\nFollow next_offset with the same IDs/channel until eof=true; offset and limit\ncount original bytes, not base64 characters. Explicit channels include total_bytes,\nsha256 (whole artifact) and chunk_sha256. structured returns base64 in\nstructuredContent.content; resource returns it in content's embedded blob.\nErrors retain isError=true and {\"error\": code}, including bad_range for an\noffset beyond EOF; unknown/expired runs cannot supply retained artifacts.\n",
+    "inputSchema": {
+      "properties": {
+        "run_id": {
+          "description": "Exact result.run_id owning the retained artifact.",
+          "pattern": "^[A-Za-z0-9_-]{1,128}$",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "artifact_id": {
+          "description": "One ID from result.artifact_ids, not a filesystem path or URL.",
+          "pattern": "^[A-Za-z0-9_-]{1,128}$",
+          "title": "Artifact Id",
+          "type": "string"
+        },
+        "offset": {
+          "default": 0,
+          "description": "Zero-based byte offset in the original artifact, not a base64 character offset. For pagination, copy next_offset from the prior response.",
+          "minimum": 0,
+          "title": "Offset",
+          "type": "integer"
+        },
+        "limit": {
+          "default": 65536,
+          "description": "Maximum original bytes per chunk (1..65536), before base64 encoding.",
+          "maximum": 65536,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "channel": {
+          "default": "legacy",
+          "description": "legacy: small whole artifact in text and structuredContent; structured: chunk base64 only in structuredContent; resource: chunk base64 in an embedded resource, metadata in structuredContent.",
+          "enum": [
+            "legacy",
+            "structured",
+            "resource"
+          ],
+          "title": "Channel",
+          "type": "string"
+        }
+      },
+      "required": [
+        "run_id",
+        "artifact_id"
+      ],
+      "type": "object",
+      "additionalProperties": false,
+      "title": "read_artifactArgumentsClosed"
+    },
+    "outputSchema": {
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "media_type": {
+          "title": "Media Type",
+          "type": "string"
+        },
+        "sha256": {
+          "description": "SHA-256 of the entire original artifact, not just this chunk.",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "content": {
+          "description": "Base64 bytes for legacy/structured. Absent for resource: read the embedded resource blob.",
+          "title": "Content",
+          "type": "string"
+        },
+        "format": {
+          "const": "decision-browser-artifact-range-v1",
+          "title": "Format",
+          "type": "string"
+        },
+        "chunk_sha256": {
+          "title": "Chunk Sha256",
+          "type": "string"
+        },
+        "total_bytes": {
+          "title": "Total Bytes",
+          "type": "integer"
+        },
+        "offset": {
+          "title": "Offset",
+          "type": "integer"
+        },
+        "next_offset": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Next byte offset for explicit channels; null at EOF.",
+          "title": "Next Offset"
+        },
+        "eof": {
+          "title": "Eof",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "media_type",
+        "sha256"
+      ],
+      "type": "object",
+      "description": "Legacy whole artifact or explicit byte-range metadata; channel selects where base64 appears.",
+      "title": "ArtifactBody"
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "capabilities",
+    "description": "Inspect local prerequisites and supported operations before starting a task.\n\nTakes no arguments. Returns browser modes, operations, admission classes/mode,\nartifact chunk limits/channels and selected-provider configuration status.\nprovider_ready and PREREQUISITES_PRESENT describe configuration only: no API,\nbrowser, entitlement or human approval is tested. production_ready remains\nfalse and live/native evidence remains NOT_RUN. A configured provider does\nnot guarantee successful execution; resolve BLOCKED prerequisites before use.\nNo credentials are returned and this call does not grant admission.\n",
+    "inputSchema": {
+      "properties": {},
+      "type": "object",
+      "additionalProperties": false,
+      "title": "capabilitiesArgumentsClosed"
+    },
+    "outputSchema": {
+      "properties": {
+        "modes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Modes",
+          "type": "array"
+        },
+        "ops": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Ops",
+          "type": "array"
+        },
+        "classes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Classes",
+          "type": "array"
+        },
+        "artifact_read": {
+          "$ref": "#/$defs/ArtifactReadCapabilities"
+        },
+        "deferred_consequences": {
+          "title": "Deferred Consequences",
+          "type": "boolean"
+        },
+        "native_human": {
+          "const": "NOT_RUN",
+          "title": "Native Human",
+          "type": "string"
+        },
+        "live_ac10": {
+          "const": "NOT_RUN",
+          "title": "Live Ac10",
+          "type": "string"
+        },
+        "both_modes": {
+          "const": "NOT_RUN",
+          "title": "Both Modes",
+          "type": "string"
+        },
+        "provider": {
+          "title": "Provider",
+          "type": "string"
+        },
+        "api_key_present": {
+          "title": "Api Key Present",
+          "type": "boolean"
+        },
+        "provider_ready": {
+          "title": "Provider Ready",
+          "type": "boolean"
+        },
+        "provider_error": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Provider Error"
+        },
+        "text_generation": {
+          "title": "Text Generation",
+          "type": "string"
+        },
+        "visual": {
+          "title": "Visual",
+          "type": "string"
+        },
+        "live_status": {
+          "enum": [
+            "PREREQUISITES_PRESENT",
+            "BLOCKED"
+          ],
+          "title": "Live Status",
+          "type": "string"
+        },
+        "production_ready": {
+          "const": false,
+          "title": "Production Ready",
+          "type": "boolean"
+        },
+        "admission_mode": {
+          "enum": [
+            "standard_form",
+            "task_scope"
+          ],
+          "title": "Admission Mode",
+          "type": "string"
+        },
+        "human_grant_channel": {
+          "anyOf": [
+            {
+              "const": "standard_mcp_form",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Human Grant Channel"
+        },
+        "form_candidate_unverified": {
+          "title": "Form Candidate Unverified",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "modes",
+        "ops",
+        "classes",
+        "artifact_read",
+        "deferred_consequences",
+        "native_human",
+        "live_ac10",
+        "both_modes",
+        "provider",
+        "api_key_present",
+        "provider_ready",
+        "provider_error",
+        "text_generation",
+        "visual",
+        "live_status",
+        "production_ready",
+        "admission_mode",
+        "human_grant_channel",
+        "form_candidate_unverified"
+      ],
+      "type": "object",
+      "$defs": {
+        "ArtifactReadCapabilities": {
+          "properties": {
+            "format": {
+              "title": "Format",
+              "type": "string"
+            },
+            "max_chunk_bytes": {
+              "title": "Max Chunk Bytes",
+              "type": "integer"
+            },
+            "default_channel": {
+              "title": "Default Channel",
+              "type": "string"
+            },
+            "channels": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Channels",
+              "type": "array"
+            }
+          },
+          "required": [
+            "format",
+            "max_chunk_bytes",
+            "default_channel",
+            "channels"
+          ],
+          "title": "ArtifactReadCapabilities",
+          "type": "object"
+        }
+      },
+      "description": "Local prerequisites and supported operations; no live or production certification.",
+      "title": "CapabilityFacts"
+    },
+    "annotations": {
+      "readOnlyHint": true,
+      "openWorldHint": false
+    }
+  },
+  {
+    "name": "present_admission",
+    "description": "Present a pending action scope through the client's Standard MCP form.\n\nCall only when get_task reports awaiting_human_admission and a non-null\npending_proposal. Copy run_id, proposal_id and digest from that same proposal.\nThe tool presents a form; calling it does not itself grant permission. Only\nthe supported form response may record admission, and a host accept is not\nproof of a native human click. Never fabricate reviewed/approval/grant fields.\nReturns the updated result and pending_proposal; continue with get_task.\nUnsupported form clients fail closed. Stale, resolved or concurrent requests\nmay return isError=true with unknown, presentation_resolved or presentation_busy;\nrefresh get_task instead of blindly repeating a prompt.\n",
+    "inputSchema": {
+      "properties": {
+        "run_id": {
+          "description": "Copy pending_proposal.run_id exactly from the latest task snapshot.",
+          "pattern": "^[A-Za-z0-9_-]{1,128}$",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "proposal_id": {
+          "description": "Copy pending_proposal.proposal_id exactly; do not reuse an old or resolved proposal.",
+          "pattern": "^[A-Za-z0-9_-]{1,128}$",
+          "title": "Proposal Id",
+          "type": "string"
+        },
+        "digest": {
+          "description": "Copy pending_proposal.digest verbatim: 64 lowercase hexadecimal characters binding the displayed scope. Never calculate or guess it.",
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Digest",
+          "type": "string"
+        }
+      },
+      "required": [
+        "run_id",
+        "proposal_id",
+        "digest"
+      ],
+      "type": "object",
+      "additionalProperties": false,
+      "title": "present_admissionArgumentsClosed"
+    },
+    "outputSchema": {
+      "properties": {
+        "result": {
+          "$ref": "#/$defs/TaskResult",
+          "description": "Run ID, state, usage, evidence and artifact IDs. A result is not authorization."
+        },
+        "pending_proposal": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PendingProposal"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Current admission scope, or null while preparing/running/finished. Pass its exact identifiers to present_admission only when awaiting_human_admission."
+        }
+      },
+      "required": [
+        "result",
+        "pending_proposal"
+      ],
+      "type": "object",
+      "$defs": {
+        "PendingProposal": {
+          "description": "Copy these identifiers verbatim; the remaining scope fields depend on proposal kind.",
+          "properties": {
+            "run_id": {
+              "title": "Run Id",
+              "type": "string"
+            },
+            "proposal_id": {
+              "title": "Proposal Id",
+              "type": "string"
+            },
+            "digest": {
+              "title": "Digest",
+              "type": "string"
+            },
+            "expires_at": {
+              "title": "Expires At",
+              "type": "number"
+            },
+            "deadline": {
+              "title": "Deadline",
+              "type": "number"
+            },
+            "development_only": {
+              "title": "Development Only",
+              "type": "boolean"
+            },
+            "budgets": {
+              "additionalProperties": true,
+              "title": "Budgets",
+              "type": "object"
+            },
+            "canonical_urls": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Canonical Urls",
+              "type": "array"
+            },
+            "operations": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Operations",
+              "type": "array"
+            },
+            "origins": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Origins",
+              "type": "array"
+            },
+            "residual_risk": {
+              "title": "Residual Risk",
+              "type": "string"
+            },
+            "destination_origin": {
+              "title": "Destination Origin",
+              "type": "string"
+            },
+            "document_origin": {
+              "title": "Document Origin",
+              "type": "string"
+            },
+            "semantic_fingerprint": {
+              "title": "Semantic Fingerprint",
+              "type": "string"
+            },
+            "operation": {
+              "title": "Operation",
+              "type": "string"
+            },
+            "destination_url": {
+              "title": "Destination Url",
+              "type": "string"
+            }
+          },
+          "required": [
+            "run_id",
+            "proposal_id",
+            "digest",
+            "expires_at",
+            "deadline",
+            "development_only"
+          ],
+          "title": "PendingProposal",
+          "type": "object"
+        },
+        "TaskResult": {
+          "additionalProperties": false,
+          "description": "Closed outcome. Recording admission does not authorize an effect.",
+          "properties": {
+            "run_id": {
+              "minLength": 1,
+              "title": "Run Id",
+              "type": "string"
+            },
+            "terminal": {
+              "enum": [
+                "queued",
+                "awaiting_human_admission",
+                "running",
+                "verified",
+                "completed_unverified",
+                "verification_failed",
+                "blocked",
+                "cancelled",
+                "limit_exceeded",
+                "outcome_unknown",
+                "failed",
+                "refused",
+                "unsupported"
+              ],
+              "title": "Terminal",
+              "type": "string"
+            },
+            "functional": {
+              "default": "not_run",
+              "enum": [
+                "not_run",
+                "verified",
+                "unverified",
+                "failed"
+              ],
+              "title": "Functional",
+              "type": "string"
+            },
+            "visual_diagnostic": {
+              "default": "not_requested",
+              "enum": [
+                "not_requested",
+                "not_run",
+                "complete",
+                "incomplete",
+                "failed"
+              ],
+              "title": "Visual Diagnostic",
+              "type": "string"
+            },
+            "usage": {
+              "$ref": "#/$defs/UsageCounters"
+            },
+            "timings": {
+              "additionalProperties": {
+                "type": "number"
+              },
+              "title": "Timings",
+              "type": "object"
+            },
+            "artifact_ids": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Artifact Ids",
+              "type": "array"
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Reason"
+            },
+            "recovery": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Recovery"
+            },
+            "admission_class": {
+              "default": "unresolved",
+              "enum": [
+                "fixture_mapped",
+                "observe_driver",
+                "ordinary_admitted",
+                "ordinary_task_scoped",
+                "ordinary_beta_admitted",
+                "consequential",
+                "unresolved",
+                "owned_loopback_document"
+              ],
+              "title": "Admission Class",
+              "type": "string"
+            },
+            "effect_guarantee": {
+              "const": "none",
+              "default": "none",
+              "title": "Effect Guarantee",
+              "type": "string"
+            },
+            "development_only": {
+              "default": false,
+              "title": "Development Only",
+              "type": "boolean"
+            },
+            "last_url": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Last Url"
+            },
+            "evidence": {
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 32,
+              "title": "Evidence",
+              "type": "array"
+            }
+          },
+          "required": [
+            "run_id",
+            "terminal",
+            "usage",
+            "timings",
+            "artifact_ids"
+          ],
+          "title": "TaskResult",
+          "type": "object"
+        },
+        "UsageCounters": {
+          "additionalProperties": false,
+          "properties": {
+            "calls": {
+              "minimum": 0,
+              "title": "Calls",
+              "type": "integer"
+            },
+            "input_bytes": {
+              "minimum": 0,
+              "title": "Input Bytes",
+              "type": "integer"
+            },
+            "output_bytes": {
+              "minimum": 0,
+              "title": "Output Bytes",
+              "type": "integer"
+            },
+            "steps": {
+              "minimum": 0,
+              "title": "Steps",
+              "type": "integer"
+            },
+            "stored_bytes": {
+              "minimum": 0,
+              "title": "Stored Bytes",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "calls",
+            "input_bytes",
+            "output_bytes",
+            "steps",
+            "stored_bytes"
+          ],
+          "title": "UsageCounters",
+          "type": "object"
+        }
+      },
+      "description": "Current run snapshot; queued/awaiting_human_admission/running need further polling.",
+      "title": "TaskSnapshot"
+    },
+    "annotations": {
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": true
+    }
+  }
+]

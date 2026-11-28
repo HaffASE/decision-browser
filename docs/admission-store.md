@@ -1,48 +1,26 @@
-# Process-local admission contracts
+# Admission and retained runs
 
-`AdmissionStore` is a bounded, in-memory Python API. Development desks are test
-capabilities, not native-human proof or a public MCP grant route. Existing
-object-identity, digest, live-record, deadline and replay checks stay mandatory.
+The native server holds one run in memory. Its scope, pending proposal, worker,
+form response, cancellation flag and artifacts belong to that run. A second
+start returns `busy` while the run remains retained. Restarting the process
+loses its in-memory state.
 
-## Provider and clock boundaries
+The standard-form channel binds the current run ID, proposal ID, canonical
+digest, exact form ID and deadline. The server checks strict `reviewed: true`
+content after an `accept` response. It rechecks expiry and cancellation before
+allowing the worker to continue. Responses for another request, stale proposals,
+replay and URL-only elicitation provide no admission.
 
-A custom trusted `ProviderPort` must return an offered operation and target.
-`DONE` is unavailable while the runner has pending completion obligations;
-unoffered `DONE` is rejected as `helper_schema`. Offered `DONE` and `UNABLE`
-still stop without dispatch, and the independent final verifier decides the
-result. These defensive checks do not establish a remote authorization exploit.
+Each mutating input revalidates its observed target and semantic destination.
+Cancellation prevents later dispatch and asks owned browser resources to close.
+A cleanup failure is returned as `outcome_unknown` with `cleanup_unknown`.
+Read that result and reconcile effects before another logical task.
 
-The clock callback must return a finite non-boolean number. Callback exceptions
-and invalid readings raise `ValueError("clock_error")` without callback text.
-Failure supplies no substitute timestamp, updates no last-good time and extends
-no deadline. Admission reads fail closed until the clock works again. Existing
-`cancel`, `revoke` and process-memory `restart` do not need the clock; time-based
-cleanup still requires a valid reading. Clock recovery cannot resurrect an
-expired record, including after a backward reading.
+`task_scope` is an explicit startup policy for isolated exact-origin tasks.
+Its capability and admission class identify that policy. The default remains
+`standard_form`. [Mode guide](task-scoped-admission.md)
 
-## Unknown run revocation
-
-`revoke(run_id)` validates the ID and is a no-op when no proposal has registered
-that run. It allocates no tombstone. A later proposal may use that previously
-unknown ID. Callers that require cancellation must own their run lifecycle;
-the runner arms admission and retains its separate cancellation event before
-proposal creation. This low-level no-op is not a claim about an immediate-cancel
-MCP bypass. No supported workload requires a new pre-registration revocation
-API, so this change adds no unbounded caller-ID cache.
-
-## Retained proposal capacity
-
-`max_proposals` counts every retained proposal object, including cancelled,
-consumed and revoked proposals. Terminal objects cannot grant or replay. Cancel
-or an unsupported scripted development response hides and terminalizes its own
-proposal, but does not free a retained-object quota slot; cancel also does not
-revoke sibling proposals. The explicit `cancel` response to the development desk
-revokes the whole run instead. Run-deadline plus bounded cleanup-grace expiry
-removes the retained evidence and frees capacity. Restart discards process-local
-memory and never revives old proposal IDs.
-
-The supported runner is already bounded by its action/artifact budgets. No
-supported greater-than-256-proposal journey has established a need to split
-live capacity from bounded terminal evidence. The existing finite backpressure
-and retention contracts therefore remain in place. Increasing capacity or
-adding tombstones is a separate API change, not a side effect of cancellation.
+The native implementation and regression tests are in
+[product_mcp.rs](../src/product_mcp.rs) and [stdio tests](../tests/product_mcp.rs).
+The pre-migration design is preserved in
+[the pinned source](https://github.com/HaffASE/decision-browser/blob/7babeb4114130e1bf97bd0f23599405b70965372/docs/admission-store.md).

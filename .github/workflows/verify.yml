@@ -15,162 +15,93 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  verify:
-    name: Verify Python ${{ matrix.python }}
+  native:
+    name: Native verification (${{ matrix.os }})
     strategy:
       fail-fast: false
       matrix:
-        python: ['3.11', '3.12', '3.13']
-    runs-on: ubuntu-22.04
-    timeout-minutes: 45
+        os: [ubuntu-22.04, macos-15]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
     defaults:
       run:
         shell: bash
     steps:
-      - name: Initialize runner-local paths
-        id: paths
-        run: |
-          set -euo pipefail
-          : "${RUNNER_TEMP:?}" "${GITHUB_ENV:?}"
-          {
-            printf 'UV_PROJECT_ENVIRONMENT=%s\n' "$RUNNER_TEMP/decision-browser-venv"
-            printf 'UV_CACHE_DIR=%s\n' "$RUNNER_TEMP/decision-browser-uv-cache"
-            printf 'PLAYWRIGHT_BROWSERS_PATH=%s\n' "$RUNNER_TEMP/decision-browser-browsers"
-            printf 'CI_EVIDENCE_ROOT=%s\n' "$RUNNER_TEMP/decision-browser-evidence"
-          } >> "$GITHUB_ENV"
-
       - name: Check out source
-        id: checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           persist-credentials: false
 
-      - name: Set up Python
-        id: python
-        uses: actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548 # v6.1.0
-        with:
-          python-version: ${{ matrix.python }}
+      - name: Require a Python-free source and build tree
+        run: sh scripts/check-python-free.sh
 
-      - name: Set up Node.js
+      - name: Install the pinned Rust toolchain
+        run: rustup toolchain install 1.100.0 --profile minimal --component rustfmt --component clippy
+
+      - name: Select the installed Chrome executable
+        run: |
+          set -euo pipefail
+          if [[ "$RUNNER_OS" == macOS ]]; then
+            chrome='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+          else
+            chrome=$(command -v google-chrome || command -v google-chrome-stable || command -v chromium)
+          fi
+          test -x "$chrome"
+          "$chrome" --version
+          printf 'DECISION_BROWSER_CHROME=%s\n' "$chrome" >> "$GITHUB_ENV"
+
+      - name: Format, lint and run every native test with Chrome
+        env:
+          RUSTUP_TOOLCHAIN: 1.100.0
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/native-evidence"
+          cargo fmt --check
+          cargo clippy --locked --all-targets -- -D warnings
+          cargo test --locked --all-targets -- --include-ignored --test-threads=1 2>&1 | tee "$RUNNER_TEMP/native-evidence/tests.log"
+          cargo run --locked --bin check-native-release
+
+      - name: Set up Node.js for the optional npm package checks
         uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
         with:
           node-version: '24'
 
-      - name: Check version and release prerequisites
+      - name: Test the optional native launcher
+        run: node --test npm/test/*.test.cjs
+
+      - name: Build and inspect the native candidate
         env:
+          RELEASE_TAG: ${{ github.ref_name }}
           REF_TYPE: ${{ github.ref_type }}
-          REF_NAME: ${{ github.ref_name }}
+          RUSTUP_TOOLCHAIN: 1.100.0
         run: |
           set -euo pipefail
-          if [[ "$REF_TYPE" == tag ]]; then
-            python -I scripts/check_release.py --tag "$REF_NAME"
-          else
-            python -I scripts/check_release.py
-          fi
+          args=(--npm --output "$RUNNER_TEMP/native-candidate")
+          if [[ "$REF_TYPE" == tag ]]; then args+=(--tag "$RELEASE_TAG"); fi
+          sh scripts/build-native-release.sh "${args[@]}"
+          sh scripts/smoke-native-package.sh "$RUNNER_TEMP/native-candidate" 2>&1 | tee "$RUNNER_TEMP/native-evidence/archive-smoke.log"
+          package=("$RUNNER_TEMP/native-candidate/"*.tgz)
+          npm --cache "$RUNNER_TEMP/offline-npm-cache" exec --offline --yes --package="${package[0]}" -- decision-browser --version
 
-      - name: Set up uv
-        id: uv
-        uses: astral-sh/setup-uv@681c641aba71e4a1c380be3ab5e12ad51f415867 # v7.1.6
-        with:
-          version: '0.13.7'
-          enable-cache: false
-
-      - name: Record setup and install locked dependencies
-        run: |
-          set -euo pipefail
-          mkdir -p "$CI_EVIDENCE_ROOT"
-          {
-            python -I -c 'import platform, sys; print(sys.version); print(sys.executable); print(platform.platform())'
-            cat /etc/os-release
-            uv --version
-            current_python="$(python -I -c 'import sys; print(sys.executable)')"
-            uv --no-config --no-python-downloads lock --check
-            uv --no-config --no-python-downloads sync --frozen --group dev --no-install-project --python "$current_python"
-          } 2>&1 | tee "$CI_EVIDENCE_ROOT/setup.log"
-
-      - name: Install official pinned Chromium and host dependencies
-        run: |
-          set -euo pipefail
-          "$UV_PROJECT_ENVIRONMENT/bin/python" -I -m playwright install --with-deps chromium \
-            2>&1 | tee "$CI_EVIDENCE_ROOT/browser-install.log"
-
-      # A failed install must stay failed, but the verifier can still record
-      # BLOCKED prerequisites and NOT_RUN coverage. Do not use continue-on-error.
-      - name: Run full verification and preserve prerequisite failures
-        if: ${{ !cancelled() && steps.paths.outcome == 'success' && steps.checkout.outcome == 'success' && steps.python.outcome == 'success' && steps.uv.outcome == 'success' }}
-        run: |
-          set -euo pipefail
-          mkdir -p "$CI_EVIDENCE_ROOT"
-          # Hosted Python 3.12 reached 433 passing tests at the old 900s
-          # suite deadline; 558 integration tests plus unit tests must finish.
-          # This outer budget does not change any browser/action test timeout.
-          python -I scripts/verify.py --profile full --timeout 1800 --output-dir "$CI_EVIDENCE_ROOT/verification" \
-            2>&1 | tee "$CI_EVIDENCE_ROOT/verifier.log"
-
-      - name: Build and check standalone installer
-        if: success()
-        run: |
-          set -euo pipefail
-          dist="$CI_EVIDENCE_ROOT/verification/dist"
-          python -I scripts/build_installer.py --wheel "$dist"/*.whl --output "$dist/decision-browser.pyz"
-          python -I "$dist/decision-browser.pyz" --help
-          (cd "$dist" && sha256sum decision-browser.pyz > installer.sha256)
-
-      - name: Build and check npm launcher (no publication)
-        if: success()
-        run: |
-          set -euo pipefail
-          dist="$CI_EVIDENCE_ROOT/verification/dist"
-          python -I scripts/build_npm.py --wheel "$dist"/*.whl --output "$CI_EVIDENCE_ROOT/npm-candidate"
-          node "$CI_EVIDENCE_ROOT/npm-candidate/bin/decision-browser.cjs" --help
-          (cd "$CI_EVIDENCE_ROOT/npm-candidate" && npm pack --offline --ignore-scripts --pack-destination "$dist")
-          candidate=("$dist"/*.tgz)
-          npm exec --offline --yes --package="${candidate[0]}" -- decision-browser --version
-          (cd "$dist" && sha256sum ./*.tgz > npm.sha256)
-
-      - name: Upload bounded verification evidence
+      - name: Upload verification evidence and native candidates
         if: always()
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
-          name: verification-py${{ matrix.python }}-${{ github.run_id }}-${{ github.run_attempt }}
+          name: native-${{ matrix.os }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
-            ${{ runner.temp }}/decision-browser-evidence/setup.log
-            ${{ runner.temp }}/decision-browser-evidence/browser-install.log
-            ${{ runner.temp }}/decision-browser-evidence/verifier.log
-            ${{ runner.temp }}/decision-browser-evidence/verification/result.json
-            ${{ runner.temp }}/decision-browser-evidence/verification/*.log
-            ${{ runner.temp }}/decision-browser-evidence/verification/pytest-*.xml
-            ${{ runner.temp }}/decision-browser-evidence/verification/dist/*.pyz
-            ${{ runner.temp }}/decision-browser-evidence/verification/dist/installer.sha256
-            ${{ runner.temp }}/decision-browser-evidence/verification/dist/*.tgz
-            ${{ runner.temp }}/decision-browser-evidence/verification/dist/npm.sha256
-          if-no-files-found: error
-          include-hidden-files: false
-          retention-days: 7
-
-      - name: Upload tested Python 3.12 release candidate
-        if: ${{ success() && github.ref_type == 'tag' && matrix.python == '3.12' }}
-        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
-        with:
-          name: release-candidate-${{ github.ref_name }}
-          path: |
-            ${{ runner.temp }}/decision-browser-evidence/verification/dist/*.whl
-            ${{ runner.temp }}/decision-browser-evidence/verification/dist/*.tar.gz
-            ${{ runner.temp }}/decision-browser-evidence/verification/dist/*.pyz
-            ${{ runner.temp }}/decision-browser-evidence/verification/dist/installer.sha256
-            ${{ runner.temp }}/decision-browser-evidence/verification/dist/*.tgz
-            ${{ runner.temp }}/decision-browser-evidence/verification/dist/npm.sha256
-            ${{ runner.temp }}/decision-browser-evidence/verification/result.json
-          if-no-files-found: error
-          include-hidden-files: false
+            ${{ runner.temp }}/native-evidence/
+            ${{ runner.temp }}/native-candidate/*.tar.gz
+            ${{ runner.temp }}/native-candidate/*.tgz
+            ${{ runner.temp }}/native-candidate/SHA256SUMS
+          if-no-files-found: warn
           retention-days: 14
 
   release-ready:
     name: Release candidate gate
-    needs: verify
-    if: ${{ github.ref_type == 'tag' }}
+    needs: [native]
+    if: github.ref_type == 'tag'
     runs-on: ubuntu-22.04
     timeout-minutes: 5
     steps:
-      - name: Require the complete verification matrix
-        run: echo "All supported Python verification jobs passed. Candidate may be reviewed for publication."
+      - name: Require the Python-free native test and package matrix
+        run: echo "Native tests and package checks passed on Linux and macOS. Candidate artifacts are ready for release review."

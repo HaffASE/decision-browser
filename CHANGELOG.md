@@ -5,6 +5,20 @@ Versions follow the policy in [Releasing](docs/releasing.md).
 
 ## [Unreleased]
 
+## [0.1.4] - 2026-11-28
+
+- Move the server, project installer, release tools and verification to Rust.
+  The native archive runs with Chrome and needs no auxiliary language runtime.
+- Run ordinary HTTP(S) browser tasks through CDP in an isolated browser or one
+  owned tab of an explicitly selected Chrome. Admit actions at the agreed
+  origin, block recognized consequential actions and retain cleanup outcomes.
+- Preserve all six MCP discovery schemas, the standard admission form and
+  read-only artifact pagination. Add a native `probe-browser` command.
+- Handle interrupted native installation and legacy installer boot-witness
+  recovery with safeguards for retained files and running clients.
+- Build checked native archives, support an optional offline npm launcher, and
+  verify the release tree and browser suite in CI.
+
 ## [0.1.3] - 2026-11-25
 
 - Forward explicitly configured `UV_SYSTEM_CERTS` through the npm launcher and

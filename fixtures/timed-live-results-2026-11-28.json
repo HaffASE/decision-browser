@@ -1,0 +1,1325 @@
+{
+  "date": "2026-11-28",
+  "case_source": "8894ca317ac8fb6d2c541002b77353b8eb9ddb4b",
+  "rust_profile": "release",
+  "host": "macOS arm64",
+  "chromium": "Google Chrome for Testing 151.0.7922.34",
+  "browser_matrix_sha256": "253720fe0e05a26207e8489d00d5d73740c821497cb550eef78c4aece5a86b1a",
+  "attempts_per_case": 1,
+  "reference_python_median_ms": {
+    "jev": 3687,
+    "luna": 3722,
+    "gemini": 4455
+  },
+  "runs": [
+    {
+      "provider": "jev",
+      "model": "jev-1.14.0",
+      "case": "click",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 4292,
+      "api_ms": 896,
+      "observe_ms": 2,
+      "action_ms": 213,
+      "verify_ms": 35,
+      "calls": 1,
+      "input_tokens": 481,
+      "output_tokens": 34,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "jev",
+      "model": "jev-1.14.0",
+      "case": "search",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 4244,
+      "api_ms": 1164,
+      "observe_ms": 7,
+      "action_ms": 447,
+      "verify_ms": 34,
+      "calls": 2,
+      "input_tokens": 1051,
+      "output_tokens": 68,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "jev",
+      "model": "jev-1.14.0",
+      "case": "select",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 3789,
+      "api_ms": 957,
+      "observe_ms": 4,
+      "action_ms": 426,
+      "verify_ms": 17,
+      "calls": 2,
+      "input_tokens": 1063,
+      "output_tokens": 84,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "jev",
+      "model": "jev-1.14.0",
+      "case": "navigate",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 3526,
+      "api_ms": 710,
+      "observe_ms": 1,
+      "action_ms": 249,
+      "verify_ms": 30,
+      "calls": 1,
+      "input_tokens": 493,
+      "output_tokens": 34,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "jev",
+      "model": "jev-1.14.0",
+      "case": "counter",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 4769,
+      "api_ms": 1192,
+      "observe_ms": 5,
+      "action_ms": 639,
+      "verify_ms": 50,
+      "calls": 3,
+      "input_tokens": 1511,
+      "output_tokens": 102,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "jev",
+      "model": "jev-1.14.0",
+      "case": "public_about",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 7438,
+      "api_ms": 961,
+      "observe_ms": 13,
+      "action_ms": 224,
+      "verify_ms": 709,
+      "calls": 1,
+      "input_tokens": 1815,
+      "output_tokens": 180,
+      "checks": [
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "jev",
+      "model": "jev-1.14.0",
+      "case": "hotel",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 5993,
+      "api_ms": 2257,
+      "observe_ms": 60,
+      "action_ms": 1063,
+      "verify_ms": 63,
+      "calls": 5,
+      "input_tokens": 2939,
+      "output_tokens": 250,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "jev",
+      "model": "jev-1.14.0",
+      "case": "profile_form",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 5077,
+      "api_ms": 1886,
+      "observe_ms": 17,
+      "action_ms": 858,
+      "verify_ms": 77,
+      "calls": 4,
+      "input_tokens": 2327,
+      "output_tokens": 160,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "jev",
+      "model": "jev-1.14.0",
+      "case": "autocomplete",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 3666,
+      "api_ms": 1233,
+      "observe_ms": 4,
+      "action_ms": 425,
+      "verify_ms": 16,
+      "calls": 2,
+      "input_tokens": 1101,
+      "output_tokens": 84,
+      "checks": [
+        true,
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "jev",
+      "model": "jev-1.14.0",
+      "case": "calendar",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 4324,
+      "api_ms": 1353,
+      "observe_ms": 3,
+      "action_ms": 636,
+      "verify_ms": 29,
+      "calls": 3,
+      "input_tokens": 1787,
+      "output_tokens": 182,
+      "checks": [
+        true,
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "jev",
+      "model": "jev-1.14.0",
+      "case": "styled_filter",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 3470,
+      "api_ms": 844,
+      "observe_ms": 6,
+      "action_ms": 207,
+      "verify_ms": 35,
+      "calls": 1,
+      "input_tokens": 518,
+      "output_tokens": 42,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "jev",
+      "model": "jev-1.14.0",
+      "case": "consent",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 5828,
+      "api_ms": 1951,
+      "observe_ms": 6,
+      "action_ms": 1674,
+      "verify_ms": 34,
+      "calls": 5,
+      "input_tokens": 2712,
+      "output_tokens": 178,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "jev",
+      "model": "jev-1.14.0",
+      "case": "delayed_menu",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 10994,
+      "api_ms": 3565,
+      "observe_ms": 15,
+      "action_ms": 5049,
+      "verify_ms": 43,
+      "calls": 11,
+      "input_tokens": 5889,
+      "output_tokens": 390,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "jev",
+      "model": "jev-1.14.0",
+      "case": "loading_overlay",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 10517,
+      "api_ms": 3169,
+      "observe_ms": 21,
+      "action_ms": 3275,
+      "verify_ms": 90,
+      "calls": 8,
+      "input_tokens": 4364,
+      "output_tokens": 264,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "jev",
+      "model": "jev-1.14.0",
+      "case": "below_fold",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 4522,
+      "api_ms": 1527,
+      "observe_ms": 4,
+      "action_ms": 638,
+      "verify_ms": 66,
+      "calls": 3,
+      "input_tokens": 1604,
+      "output_tokens": 126,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "jev",
+      "model": "jev-1.14.0",
+      "case": "article",
+      "confirmed": false,
+      "error": "case reached its step or API-call limit",
+      "elapsed_ms": 12289,
+      "api_ms": 4084,
+      "observe_ms": 17,
+      "action_ms": 6080,
+      "verify_ms": 48,
+      "calls": 12,
+      "input_tokens": 7321,
+      "output_tokens": 408,
+      "checks": [
+        false,
+        false
+      ],
+      "oracle": false
+    },
+    {
+      "provider": "jev",
+      "model": "jev-1.14.0",
+      "case": "rail_itinerary",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 8633,
+      "api_ms": 4103,
+      "observe_ms": 9,
+      "action_ms": 2086,
+      "verify_ms": 56,
+      "calls": 10,
+      "input_tokens": 7973,
+      "output_tokens": 460,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "jev",
+      "model": "jev-1.14.0",
+      "case": "library_research",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 8509,
+      "api_ms": 3933,
+      "observe_ms": 13,
+      "action_ms": 2497,
+      "verify_ms": 51,
+      "calls": 12,
+      "input_tokens": 10849,
+      "output_tokens": 544,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "jev",
+      "model": "jev-1.14.0",
+      "case": "equipment_pickup",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 9829,
+      "api_ms": 4358,
+      "observe_ms": 28,
+      "action_ms": 2982,
+      "verify_ms": 146,
+      "calls": 14,
+      "input_tokens": 13117,
+      "output_tokens": 724,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "jev",
+      "model": "jev-1.14.0",
+      "case": "support_handoff",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 10114,
+      "api_ms": 4480,
+      "observe_ms": 24,
+      "action_ms": 3332,
+      "verify_ms": 87,
+      "calls": 16,
+      "input_tokens": 16631,
+      "output_tokens": 816,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "jev",
+      "model": "jev-1.14.0",
+      "case": "exhibit_planner",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 11047,
+      "api_ms": 5077,
+      "observe_ms": 22,
+      "action_ms": 3756,
+      "verify_ms": 80,
+      "calls": 18,
+      "input_tokens": 19400,
+      "output_tokens": 884,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "luna",
+      "model": "gpt-6-luna",
+      "case": "click",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 5031,
+      "api_ms": 1483,
+      "observe_ms": 3,
+      "action_ms": 216,
+      "verify_ms": 122,
+      "calls": 1,
+      "input_tokens": 257,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "luna",
+      "model": "gpt-6-luna",
+      "case": "search",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 3858,
+      "api_ms": 1156,
+      "observe_ms": 4,
+      "action_ms": 421,
+      "verify_ms": 13,
+      "calls": 2,
+      "input_tokens": 602,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "luna",
+      "model": "gpt-6-luna",
+      "case": "select",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 4083,
+      "api_ms": 1071,
+      "observe_ms": 3,
+      "action_ms": 421,
+      "verify_ms": 17,
+      "calls": 2,
+      "input_tokens": 602,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "luna",
+      "model": "gpt-6-luna",
+      "case": "navigate",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 3754,
+      "api_ms": 775,
+      "observe_ms": 2,
+      "action_ms": 231,
+      "verify_ms": 25,
+      "calls": 1,
+      "input_tokens": 268,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "luna",
+      "model": "gpt-6-luna",
+      "case": "counter",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 5433,
+      "api_ms": 1991,
+      "observe_ms": 4,
+      "action_ms": 626,
+      "verify_ms": 36,
+      "calls": 3,
+      "input_tokens": 840,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "luna",
+      "model": "gpt-6-luna",
+      "case": "public_about",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 7436,
+      "api_ms": 798,
+      "observe_ms": 6,
+      "action_ms": 263,
+      "verify_ms": 441,
+      "calls": 1,
+      "input_tokens": 1415,
+      "output_tokens": 0,
+      "checks": [
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "luna",
+      "model": "gpt-6-luna",
+      "case": "hotel",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 6206,
+      "api_ms": 2072,
+      "observe_ms": 8,
+      "action_ms": 1070,
+      "verify_ms": 52,
+      "calls": 5,
+      "input_tokens": 1721,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "luna",
+      "model": "gpt-6-luna",
+      "case": "profile_form",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 9062,
+      "api_ms": 5789,
+      "observe_ms": 4,
+      "action_ms": 844,
+      "verify_ms": 19,
+      "calls": 4,
+      "input_tokens": 1381,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "luna",
+      "model": "gpt-6-luna",
+      "case": "autocomplete",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 3962,
+      "api_ms": 1398,
+      "observe_ms": 7,
+      "action_ms": 429,
+      "verify_ms": 30,
+      "calls": 2,
+      "input_tokens": 625,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "luna",
+      "model": "gpt-6-luna",
+      "case": "calendar",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 4481,
+      "api_ms": 1761,
+      "observe_ms": 5,
+      "action_ms": 634,
+      "verify_ms": 31,
+      "calls": 3,
+      "input_tokens": 979,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "luna",
+      "model": "gpt-6-luna",
+      "case": "styled_filter",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 3182,
+      "api_ms": 890,
+      "observe_ms": 1,
+      "action_ms": 210,
+      "verify_ms": 21,
+      "calls": 1,
+      "input_tokens": 289,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "luna",
+      "model": "gpt-6-luna",
+      "case": "consent",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 5160,
+      "api_ms": 2234,
+      "observe_ms": 4,
+      "action_ms": 645,
+      "verify_ms": 25,
+      "calls": 3,
+      "input_tokens": 907,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "luna",
+      "model": "gpt-6-luna",
+      "case": "delayed_menu",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 4312,
+      "api_ms": 1386,
+      "observe_ms": 4,
+      "action_ms": 966,
+      "verify_ms": 19,
+      "calls": 3,
+      "input_tokens": 816,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "luna",
+      "model": "gpt-6-luna",
+      "case": "loading_overlay",
+      "confirmed": false,
+      "error": "provider_http_400",
+      "elapsed_ms": 3347,
+      "api_ms": 1020,
+      "observe_ms": 2,
+      "action_ms": 211,
+      "verify_ms": 13,
+      "calls": 2,
+      "input_tokens": 280,
+      "output_tokens": 0,
+      "checks": [
+        false,
+        true
+      ],
+      "oracle": false
+    },
+    {
+      "provider": "luna",
+      "model": "gpt-6-luna",
+      "case": "below_fold",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 4161,
+      "api_ms": 1457,
+      "observe_ms": 1,
+      "action_ms": 636,
+      "verify_ms": 7,
+      "calls": 3,
+      "input_tokens": 927,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "luna",
+      "model": "gpt-6-luna",
+      "case": "article",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 6097,
+      "api_ms": 2412,
+      "observe_ms": 4,
+      "action_ms": 648,
+      "verify_ms": 38,
+      "calls": 3,
+      "input_tokens": 1015,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "luna",
+      "model": "gpt-6-luna",
+      "case": "rail_itinerary",
+      "confirmed": false,
+      "error": "case reached its step or API-call limit",
+      "elapsed_ms": 16276,
+      "api_ms": 8593,
+      "observe_ms": 38,
+      "action_ms": 4989,
+      "verify_ms": 176,
+      "calls": 24,
+      "input_tokens": 16246,
+      "output_tokens": 0,
+      "checks": [
+        false,
+        false
+      ],
+      "oracle": false
+    },
+    {
+      "provider": "luna",
+      "model": "gpt-6-luna",
+      "case": "library_research",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 10115,
+      "api_ms": 4765,
+      "observe_ms": 10,
+      "action_ms": 2515,
+      "verify_ms": 36,
+      "calls": 12,
+      "input_tokens": 7710,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "luna",
+      "model": "gpt-6-luna",
+      "case": "equipment_pickup",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 10616,
+      "api_ms": 5076,
+      "observe_ms": 13,
+      "action_ms": 2992,
+      "verify_ms": 282,
+      "calls": 14,
+      "input_tokens": 9253,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "luna",
+      "model": "gpt-6-luna",
+      "case": "support_handoff",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 11545,
+      "api_ms": 5857,
+      "observe_ms": 21,
+      "action_ms": 3356,
+      "verify_ms": 73,
+      "calls": 16,
+      "input_tokens": 12008,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "luna",
+      "model": "gpt-6-luna",
+      "case": "exhibit_planner",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 12288,
+      "api_ms": 6078,
+      "observe_ms": 21,
+      "action_ms": 3734,
+      "verify_ms": 73,
+      "calls": 18,
+      "input_tokens": 14573,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-decision-1",
+      "case": "click",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 4260,
+      "api_ms": 1112,
+      "observe_ms": 2,
+      "action_ms": 214,
+      "verify_ms": 30,
+      "calls": 1,
+      "input_tokens": 242,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-decision-1",
+      "case": "search",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 4660,
+      "api_ms": 1389,
+      "observe_ms": 2,
+      "action_ms": 439,
+      "verify_ms": 11,
+      "calls": 2,
+      "input_tokens": 567,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-decision-1",
+      "case": "select",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 4343,
+      "api_ms": 1495,
+      "observe_ms": 3,
+      "action_ms": 419,
+      "verify_ms": 16,
+      "calls": 2,
+      "input_tokens": 581,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-decision-1",
+      "case": "navigate",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 3982,
+      "api_ms": 912,
+      "observe_ms": 1,
+      "action_ms": 230,
+      "verify_ms": 13,
+      "calls": 1,
+      "input_tokens": 253,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-decision-1",
+      "case": "counter",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 4911,
+      "api_ms": 1694,
+      "observe_ms": 2,
+      "action_ms": 619,
+      "verify_ms": 27,
+      "calls": 3,
+      "input_tokens": 794,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-decision-1",
+      "case": "public_about",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 7446,
+      "api_ms": 914,
+      "observe_ms": 11,
+      "action_ms": 249,
+      "verify_ms": 400,
+      "calls": 1,
+      "input_tokens": 1648,
+      "output_tokens": 0,
+      "checks": [
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-decision-1",
+      "case": "hotel",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 6844,
+      "api_ms": 3125,
+      "observe_ms": 22,
+      "action_ms": 1057,
+      "verify_ms": 67,
+      "calls": 5,
+      "input_tokens": 1672,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-decision-1",
+      "case": "profile_form",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 6080,
+      "api_ms": 3057,
+      "observe_ms": 5,
+      "action_ms": 830,
+      "verify_ms": 19,
+      "calls": 4,
+      "input_tokens": 1349,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-decision-1",
+      "case": "autocomplete",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 3978,
+      "api_ms": 1318,
+      "observe_ms": 2,
+      "action_ms": 418,
+      "verify_ms": 21,
+      "calls": 2,
+      "input_tokens": 597,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-decision-1",
+      "case": "calendar",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 4917,
+      "api_ms": 1847,
+      "observe_ms": 2,
+      "action_ms": 626,
+      "verify_ms": 15,
+      "calls": 3,
+      "input_tokens": 991,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-decision-1",
+      "case": "styled_filter",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 3329,
+      "api_ms": 1011,
+      "observe_ms": 2,
+      "action_ms": 213,
+      "verify_ms": 7,
+      "calls": 1,
+      "input_tokens": 273,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-decision-1",
+      "case": "consent",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 4621,
+      "api_ms": 1913,
+      "observe_ms": 3,
+      "action_ms": 632,
+      "verify_ms": 22,
+      "calls": 3,
+      "input_tokens": 875,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-decision-1",
+      "case": "delayed_menu",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 5894,
+      "api_ms": 2480,
+      "observe_ms": 4,
+      "action_ms": 1440,
+      "verify_ms": 20,
+      "calls": 4,
+      "input_tokens": 1034,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-decision-1",
+      "case": "loading_overlay",
+      "confirmed": false,
+      "error": "provider_http_400",
+      "elapsed_ms": 4600,
+      "api_ms": 1748,
+      "observe_ms": 3,
+      "action_ms": 728,
+      "verify_ms": 25,
+      "calls": 3,
+      "input_tokens": 534,
+      "output_tokens": 0,
+      "checks": [
+        false,
+        true
+      ],
+      "oracle": false
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-decision-1",
+      "case": "below_fold",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 5131,
+      "api_ms": 1872,
+      "observe_ms": 2,
+      "action_ms": 910,
+      "verify_ms": 21,
+      "calls": 3,
+      "input_tokens": 893,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-decision-1",
+      "case": "article",
+      "confirmed": false,
+      "error": "case reached its step or API-call limit",
+      "elapsed_ms": 15788,
+      "api_ms": 6307,
+      "observe_ms": 16,
+      "action_ms": 6066,
+      "verify_ms": 160,
+      "calls": 12,
+      "input_tokens": 4093,
+      "output_tokens": 0,
+      "checks": [
+        false,
+        false
+      ],
+      "oracle": false
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-decision-1",
+      "case": "rail_itinerary",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 10203,
+      "api_ms": 5464,
+      "observe_ms": 23,
+      "action_ms": 2154,
+      "verify_ms": 94,
+      "calls": 10,
+      "input_tokens": 5538,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-decision-1",
+      "case": "library_research",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 10867,
+      "api_ms": 6270,
+      "observe_ms": 14,
+      "action_ms": 2491,
+      "verify_ms": 61,
+      "calls": 12,
+      "input_tokens": 8041,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-decision-1",
+      "case": "equipment_pickup",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 13916,
+      "api_ms": 7438,
+      "observe_ms": 22,
+      "action_ms": 3684,
+      "verify_ms": 280,
+      "calls": 16,
+      "input_tokens": 10564,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-decision-1",
+      "case": "support_handoff",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 14012,
+      "api_ms": 8566,
+      "observe_ms": 21,
+      "action_ms": 3329,
+      "verify_ms": 61,
+      "calls": 16,
+      "input_tokens": 13185,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-decision-1",
+      "case": "exhibit_planner",
+      "confirmed": true,
+      "error": null,
+      "elapsed_ms": 14334,
+      "api_ms": 8357,
+      "observe_ms": 21,
+      "action_ms": 3804,
+      "verify_ms": 56,
+      "calls": 18,
+      "input_tokens": 15101,
+      "output_tokens": 0,
+      "checks": [
+        true,
+        true
+      ],
+      "oracle": true
+    }
+  ],
+  "targeted_followup": {
+    "browser_matrix_sha256": "d371772a520ee79bed64559b6b883571e7f9d79113acfa594929e43104f80083",
+    "change": "Wait locally when there are no offered browser actions.",
+    "runs": [
+      {
+        "provider": "luna",
+        "model": "gpt-6-luna",
+        "case": "loading_overlay",
+        "confirmed": true,
+        "error": null,
+        "elapsed_ms": 6790,
+        "api_ms": 2719,
+        "observe_ms": 14,
+        "action_ms": 1178,
+        "verify_ms": 42,
+        "calls": 3,
+        "input_tokens": 901,
+        "output_tokens": 0,
+        "checks": [
+          true,
+          true
+        ],
+        "oracle": true
+      },
+      {
+        "provider": "gemini",
+        "model": "gemini-decision-1",
+        "case": "loading_overlay",
+        "confirmed": true,
+        "error": null,
+        "elapsed_ms": 6750,
+        "api_ms": 2615,
+        "observe_ms": 6,
+        "action_ms": 1678,
+        "verify_ms": 39,
+        "calls": 4,
+        "input_tokens": 1137,
+        "output_tokens": 0,
+        "checks": [
+          true,
+          true
+        ],
+        "oracle": true
+      }
+    ]
+  }
+}

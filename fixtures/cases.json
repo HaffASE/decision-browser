@@ -1,0 +1,1457 @@
+{
+  "source_commit": "8894ca317ac8fb6d2c541002b77353b8eb9ddb4b",
+  "cases": [
+    {
+      "name": "click",
+      "start_url": "__BASE_URL__",
+      "goal": "Click Activate and verify that the status says Activated.",
+      "values": {},
+      "checks": [
+        {
+          "type": "text_equals",
+          "target": "#status",
+          "value": "Activated"
+        },
+        {
+          "type": "url_equals",
+          "value": "__BASE_URL__"
+        }
+      ],
+      "max_steps": 8,
+      "max_provider_calls": 12,
+      "timeout_s": 75.0,
+      "max_input_bytes": 131072,
+      "kind": "baseline",
+      "body": "<h1>Activation</h1><button id=\"activate\" type=\"button\" onclick=\"eventPost('activate', {})\">Activate</button><p id=\"status\">Not activated</p>",
+      "script": "\n<script>\nlet pending = false;\nasync function eventPost(name, payload) {\n  if (pending) return;\n  pending = true;\n  try {\n    const response = await fetch('event', {method:'POST', headers:{'Content-Type':'application/json'},\n      body:JSON.stringify({name:name, ...payload})});\n    const data = await response.json();\n    if (data.status) document.getElementById('status').textContent = data.status;\n  } finally { pending = false; }\n}\nfunction search(event) { event.preventDefault(); eventPost('search', {query:document.getElementById('query').value}); }\nfunction sortResults() { eventPost('sort', {order:document.getElementById('sort').value}); }\nfunction increment() { eventPost('increment', {}); }\n</script>\n"
+    },
+    {
+      "name": "search",
+      "start_url": "__BASE_URL__",
+      "goal": "Search for orbital mechanics and verify that the results say Results for orbital mechanics.\n\nProvided field values: {\"Search query\":\"orbital mechanics\"}",
+      "values": {
+        "Search query": "orbital mechanics"
+      },
+      "checks": [
+        {
+          "type": "text_equals",
+          "target": "#status",
+          "value": "Results for orbital mechanics"
+        },
+        {
+          "type": "url_equals",
+          "value": "__BASE_URL__"
+        }
+      ],
+      "max_steps": 8,
+      "max_provider_calls": 12,
+      "timeout_s": 75.0,
+      "max_input_bytes": 131072,
+      "kind": "baseline",
+      "body": "<h1>Article search</h1><form onsubmit=\"search(event)\"><label for=\"query\">Search query</label> <input id=\"query\" name=\"query\" type=\"text\"> <button type=\"submit\">Search</button></form><p id=\"status\">No search performed</p>",
+      "script": "\n<script>\nlet pending = false;\nasync function eventPost(name, payload) {\n  if (pending) return;\n  pending = true;\n  try {\n    const response = await fetch('event', {method:'POST', headers:{'Content-Type':'application/json'},\n      body:JSON.stringify({name:name, ...payload})});\n    const data = await response.json();\n    if (data.status) document.getElementById('status').textContent = data.status;\n  } finally { pending = false; }\n}\nfunction search(event) { event.preventDefault(); eventPost('search', {query:document.getElementById('query').value}); }\nfunction sortResults() { eventPost('sort', {order:document.getElementById('sort').value}); }\nfunction increment() { eventPost('increment', {}); }\n</script>\n"
+    },
+    {
+      "name": "select",
+      "start_url": "__BASE_URL__",
+      "goal": "Select Newest first, apply the order, and verify that the status says Sorted newest first.",
+      "values": {},
+      "checks": [
+        {
+          "type": "text_equals",
+          "target": "#status",
+          "value": "Sorted newest first"
+        },
+        {
+          "type": "url_equals",
+          "value": "__BASE_URL__"
+        }
+      ],
+      "max_steps": 8,
+      "max_provider_calls": 12,
+      "timeout_s": 75.0,
+      "max_input_bytes": 131072,
+      "kind": "baseline",
+      "body": "<h1>Results ordering</h1><label for=\"sort\">Sort order</label> <select id=\"sort\"><option value=\"oldest\">Oldest first</option><option value=\"newest\">Newest first</option></select> <button type=\"button\" onclick=\"sortResults()\">Apply order</button><p id=\"status\">Not sorted</p>",
+      "script": "\n<script>\nlet pending = false;\nasync function eventPost(name, payload) {\n  if (pending) return;\n  pending = true;\n  try {\n    const response = await fetch('event', {method:'POST', headers:{'Content-Type':'application/json'},\n      body:JSON.stringify({name:name, ...payload})});\n    const data = await response.json();\n    if (data.status) document.getElementById('status').textContent = data.status;\n  } finally { pending = false; }\n}\nfunction search(event) { event.preventDefault(); eventPost('search', {query:document.getElementById('query').value}); }\nfunction sortResults() { eventPost('sort', {order:document.getElementById('sort').value}); }\nfunction increment() { eventPost('increment', {}); }\n</script>\n"
+    },
+    {
+      "name": "navigate",
+      "start_url": "__BASE_URL__",
+      "goal": "Open the Observatory details page and verify that its status says Observatory details opened.",
+      "values": {},
+      "checks": [
+        {
+          "type": "text_equals",
+          "target": "#status",
+          "value": "Observatory details opened"
+        },
+        {
+          "type": "url_equals",
+          "value": "__BASE_URL__details"
+        }
+      ],
+      "max_steps": 8,
+      "max_provider_calls": 12,
+      "timeout_s": 75.0,
+      "max_input_bytes": 131072,
+      "kind": "baseline",
+      "body": "<h1>Observatory</h1><a href=\"details\">Observatory details</a><p id=\"status\">Details not open</p>",
+      "script": "\n<script>\nlet pending = false;\nasync function eventPost(name, payload) {\n  if (pending) return;\n  pending = true;\n  try {\n    const response = await fetch('event', {method:'POST', headers:{'Content-Type':'application/json'},\n      body:JSON.stringify({name:name, ...payload})});\n    const data = await response.json();\n    if (data.status) document.getElementById('status').textContent = data.status;\n  } finally { pending = false; }\n}\nfunction search(event) { event.preventDefault(); eventPost('search', {query:document.getElementById('query').value}); }\nfunction sortResults() { eventPost('sort', {order:document.getElementById('sort').value}); }\nfunction increment() { eventPost('increment', {}); }\n</script>\n"
+    },
+    {
+      "name": "counter",
+      "start_url": "__BASE_URL__",
+      "goal": "Click Increase exactly three times and verify that the counter reads Count: 3.",
+      "values": {},
+      "checks": [
+        {
+          "type": "text_equals",
+          "target": "#status",
+          "value": "Count: 3"
+        },
+        {
+          "type": "url_equals",
+          "value": "__BASE_URL__"
+        }
+      ],
+      "max_steps": 8,
+      "max_provider_calls": 12,
+      "timeout_s": 75.0,
+      "max_input_bytes": 131072,
+      "kind": "baseline",
+      "body": "<h1>Counter</h1><button id=\"increment\" type=\"button\" onclick=\"increment()\">Increase</button><p id=\"status\">Count: 0</p>",
+      "script": "\n<script>\nlet pending = false;\nasync function eventPost(name, payload) {\n  if (pending) return;\n  pending = true;\n  try {\n    const response = await fetch('event', {method:'POST', headers:{'Content-Type':'application/json'},\n      body:JSON.stringify({name:name, ...payload})});\n    const data = await response.json();\n    if (data.status) document.getElementById('status').textContent = data.status;\n  } finally { pending = false; }\n}\nfunction search(event) { event.preventDefault(); eventPost('search', {query:document.getElementById('query').value}); }\nfunction sortResults() { eventPost('sort', {order:document.getElementById('sort').value}); }\nfunction increment() { eventPost('increment', {}); }\n</script>\n"
+    },
+    {
+      "name": "public_about",
+      "start_url": "https://www.python.org/",
+      "goal": "Open the About page on Python.org.",
+      "values": {},
+      "checks": [
+        {
+          "type": "url_equals",
+          "value": "https://www.python.org/about/"
+        }
+      ],
+      "max_steps": 8,
+      "max_provider_calls": 12,
+      "timeout_s": 75.0,
+      "max_input_bytes": 131072,
+      "kind": "public"
+    },
+    {
+      "name": "hotel",
+      "start_url": "__BASE_URL__",
+      "goal": "Find Lisbon stays, choose Design and Free cancellation, then open Casa Flora.\n\nProvided field values: {\"Destination\":\"Lisbon\"}",
+      "values": {
+        "Destination": "Lisbon"
+      },
+      "checks": [
+        {
+          "type": "text_equals",
+          "target": "#status",
+          "value": "Casa Flora | Lisbon | Design | Free cancellation"
+        },
+        {
+          "type": "url_equals",
+          "target": "",
+          "value": "__BASE_URL__property/casa-flora?destination=Lisbon&category=design&cancellation=true"
+        }
+      ],
+      "max_steps": 24,
+      "max_provider_calls": 12,
+      "timeout_s": 75.0,
+      "max_input_bytes": 131072,
+      "kind": "workflow",
+      "expected_events": [
+        {
+          "name": "search",
+          "data": {
+            "destination": "Lisbon"
+          }
+        },
+        {
+          "name": "category",
+          "data": {
+            "category": "design"
+          }
+        },
+        {
+          "name": "cancellation",
+          "data": {
+            "enabled": true
+          }
+        },
+        {
+          "name": "property",
+          "data": {
+            "property": "casa-flora",
+            "destination": "Lisbon",
+            "category": "design",
+            "cancellation": "true"
+          }
+        }
+      ]
+    },
+    {
+      "name": "profile_form",
+      "start_url": "__BASE_URL__",
+      "goal": "Complete the local profile for Ada Lovelace, ada@example.com, with Express delivery.\n\nProvided field values: {\"Email\":\"ada@example.com\",\"Full name\":\"Ada Lovelace\"}",
+      "values": {
+        "Full name": "Ada Lovelace",
+        "Email": "ada@example.com"
+      },
+      "checks": [
+        {
+          "type": "text_equals",
+          "target": "#status",
+          "value": "Profile confirmed | Ada Lovelace | ada@example.com | Express"
+        },
+        {
+          "type": "url_equals",
+          "target": "",
+          "value": "__BASE_URL__"
+        }
+      ],
+      "max_steps": 24,
+      "max_provider_calls": 12,
+      "timeout_s": 75.0,
+      "max_input_bytes": 131072,
+      "kind": "workflow",
+      "expected_events": [
+        {
+          "name": "profile",
+          "data": {
+            "name": "Ada Lovelace",
+            "email": "ada@example.com",
+            "delivery": "express"
+          }
+        }
+      ]
+    },
+    {
+      "name": "autocomplete",
+      "start_url": "__BASE_URL__",
+      "goal": "Choose Zurich Airport (ZRH), not Zurich city or Zurich Airport hotel.\n\nProvided field values: {\"Origin\":\"Zurich\"}",
+      "values": {
+        "Origin": "Zurich"
+      },
+      "checks": [
+        {
+          "type": "text_equals",
+          "target": "#status",
+          "value": "Selected airport: ZRH"
+        },
+        {
+          "type": "url_equals",
+          "target": "",
+          "value": "__BASE_URL__"
+        },
+        {
+          "type": "value_equals",
+          "target": "#origin",
+          "value": "Zurich Airport (ZRH)"
+        }
+      ],
+      "max_steps": 24,
+      "max_provider_calls": 12,
+      "timeout_s": 75.0,
+      "max_input_bytes": 131072,
+      "kind": "workflow",
+      "expected_events": [
+        {
+          "name": "airport",
+          "data": {
+            "value": "Zurich Airport (ZRH)",
+            "code": "ZRH"
+          }
+        }
+      ]
+    },
+    {
+      "name": "calendar",
+      "start_url": "__BASE_URL__",
+      "goal": "Choose September 20, 2026, and confirm the departure date.",
+      "values": {},
+      "checks": [
+        {
+          "type": "text_equals",
+          "target": "#status",
+          "value": "Departure confirmed: 2026-09-20"
+        },
+        {
+          "type": "url_equals",
+          "target": "",
+          "value": "__BASE_URL__"
+        },
+        {
+          "type": "value_equals",
+          "target": "#departure",
+          "value": "2026-09-20"
+        }
+      ],
+      "max_steps": 24,
+      "max_provider_calls": 12,
+      "timeout_s": 75.0,
+      "max_input_bytes": 131072,
+      "kind": "workflow",
+      "expected_events": [
+        {
+          "name": "date",
+          "data": {
+            "date": "2026-09-20"
+          }
+        }
+      ]
+    },
+    {
+      "name": "styled_filter",
+      "start_url": "__BASE_URL__",
+      "goal": "Enable the 닥터자르트 brand filter.",
+      "values": {},
+      "checks": [
+        {
+          "type": "text_equals",
+          "target": "#status",
+          "value": "filtered: dr-jart"
+        },
+        {
+          "type": "url_equals",
+          "target": "",
+          "value": "__BASE_URL__"
+        }
+      ],
+      "max_steps": 24,
+      "max_provider_calls": 12,
+      "timeout_s": 75.0,
+      "max_input_bytes": 131072,
+      "kind": "workflow",
+      "expected_events": [
+        {
+          "name": "filter",
+          "data": {
+            "brand": "dr-jart",
+            "enabled": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "consent",
+      "start_url": "__BASE_URL__",
+      "goal": "Reject all optional cookies, then search from London.\n\nProvided field values: {\"From\":\"London\"}",
+      "values": {
+        "From": "London"
+      },
+      "checks": [
+        {
+          "type": "text_equals",
+          "target": "#status",
+          "value": "Routes from London | optional cookies rejected"
+        },
+        {
+          "type": "url_equals",
+          "target": "",
+          "value": "__BASE_URL__"
+        }
+      ],
+      "max_steps": 24,
+      "max_provider_calls": 12,
+      "timeout_s": 75.0,
+      "max_input_bytes": 131072,
+      "kind": "workflow",
+      "expected_events": [
+        {
+          "name": "consent",
+          "data": {
+            "choice": "reject"
+          }
+        },
+        {
+          "name": "routes",
+          "data": {
+            "origin": "London",
+            "consent": "reject"
+          }
+        }
+      ]
+    },
+    {
+      "name": "delayed_menu",
+      "start_url": "__BASE_URL__",
+      "goal": "Open the delayed news menu and navigate to Society headlines.",
+      "values": {},
+      "checks": [
+        {
+          "type": "text_equals",
+          "target": "#status",
+          "value": "Society headlines"
+        },
+        {
+          "type": "url_equals",
+          "target": "",
+          "value": "__BASE_URL__news/society?genre=society"
+        }
+      ],
+      "max_steps": 24,
+      "max_provider_calls": 12,
+      "timeout_s": 75.0,
+      "max_input_bytes": 131072,
+      "kind": "workflow",
+      "expected_events": [
+        {
+          "name": "section",
+          "data": {
+            "section": "society"
+          }
+        }
+      ]
+    },
+    {
+      "name": "loading_overlay",
+      "start_url": "__BASE_URL__",
+      "goal": "Wait for the service form to load, then search for climate.\n\nProvided field values: {\"Service query\":\"climate\"}",
+      "values": {
+        "Service query": "climate"
+      },
+      "checks": [
+        {
+          "type": "text_equals",
+          "target": "#status",
+          "value": "Services for climate"
+        },
+        {
+          "type": "url_equals",
+          "target": "",
+          "value": "__BASE_URL__"
+        }
+      ],
+      "max_steps": 24,
+      "max_provider_calls": 12,
+      "timeout_s": 75.0,
+      "max_input_bytes": 131072,
+      "kind": "workflow",
+      "expected_events": [
+        {
+          "name": "services",
+          "data": {
+            "query": "climate"
+          }
+        }
+      ]
+    },
+    {
+      "name": "below_fold",
+      "start_url": "__BASE_URL__",
+      "goal": "Scroll to the Evidence section below the first screen and mark it as read.",
+      "values": {},
+      "checks": [
+        {
+          "type": "text_equals",
+          "target": "#status",
+          "value": "Evidence section read"
+        },
+        {
+          "type": "url_equals",
+          "target": "",
+          "value": "__BASE_URL__"
+        }
+      ],
+      "max_steps": 24,
+      "max_provider_calls": 12,
+      "timeout_s": 75.0,
+      "max_input_bytes": 131072,
+      "kind": "workflow",
+      "expected_events": [
+        {
+          "name": "evidence",
+          "data": {
+            "visible": true,
+            "scrolled": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "article",
+      "start_url": "__BASE_URL__",
+      "goal": "Search for Godel incompleteness and open the exact incompleteness theorems article, not the biography.\n\nProvided field values: {\"Search query\":\"Godel incompleteness\"}",
+      "values": {
+        "Search query": "Godel incompleteness"
+      },
+      "checks": [
+        {
+          "type": "text_equals",
+          "target": "#status",
+          "value": "Gödel's incompleteness theorems"
+        },
+        {
+          "type": "url_equals",
+          "target": "",
+          "value": "__BASE_URL__article/godel-incompleteness"
+        }
+      ],
+      "max_steps": 24,
+      "max_provider_calls": 12,
+      "timeout_s": 75.0,
+      "max_input_bytes": 131072,
+      "kind": "workflow",
+      "expected_events": [
+        {
+          "name": "article_search",
+          "data": {
+            "query": "Godel incompleteness"
+          }
+        },
+        {
+          "name": "article",
+          "data": {
+            "slug": "godel-incompleteness"
+          }
+        }
+      ]
+    },
+    {
+      "name": "rail_itinerary",
+      "start_url": "__BASE_URL__",
+      "goal": "Save a rail itinerary from York to Durham. Pick the earliest direct train after 09:00, choose a Window seat in the Quiet coach, and use that train's listed platform.\n\nProvided field values: {\"From station\":\"York\",\"To station\":\"Durham\"}",
+      "values": {
+        "From station": "York",
+        "To station": "Durham"
+      },
+      "checks": [
+        {
+          "type": "url_equals",
+          "target": "",
+          "value": "__BASE_URL__summary"
+        },
+        {
+          "type": "text_equals",
+          "target": "#saved-selections",
+          "value": "Journey search: Find trains — From station: York, To station: Durham\nTimetable: Express 09:20\nCoach preferences: Apply preferences — Seat: Window, Quiet coach: on\nStation route: Add platform — Departure platform: Platform 4\nItinerary review: Save itinerary"
+        }
+      ],
+      "max_steps": 24,
+      "max_provider_calls": 24,
+      "timeout_s": 180,
+      "max_input_bytes": 524288,
+      "max_calls": 24,
+      "max_cost_usd": 0.25,
+      "kind": "long",
+      "title": "Rail itinerary",
+      "sections": [
+        {
+          "heading": "Journey search",
+          "prompt": "Find departures between two stations.",
+          "action": "Find trains",
+          "fields": [
+            {
+              "label": "From station",
+              "expected": "York",
+              "options": [],
+              "checkbox": false
+            },
+            {
+              "label": "To station",
+              "expected": "Durham",
+              "options": [],
+              "checkbox": false
+            }
+          ],
+          "alternatives": []
+        },
+        {
+          "heading": "Timetable",
+          "prompt": "Local 09:05 changes at Darlington. Express 09:20 is direct, platform 4. Express 09:55 is direct, platform 2.",
+          "action": "Express 09:20",
+          "fields": [],
+          "alternatives": [
+            "Local 09:05",
+            "Express 09:20",
+            "Express 09:55"
+          ]
+        },
+        {
+          "heading": "Coach preferences",
+          "prompt": "Set the preferences for the selected train.",
+          "action": "Apply preferences",
+          "fields": [
+            {
+              "label": "Seat",
+              "expected": "Window",
+              "options": [
+                "Aisle",
+                "Window"
+              ],
+              "checkbox": false
+            },
+            {
+              "label": "Quiet coach",
+              "expected": "on",
+              "options": [],
+              "checkbox": true
+            }
+          ],
+          "alternatives": []
+        },
+        {
+          "heading": "Station route",
+          "prompt": "Select the departure platform from the timetable.",
+          "action": "Add platform",
+          "fields": [
+            {
+              "label": "Departure platform",
+              "expected": "Platform 4",
+              "options": [
+                "Platform 2",
+                "Platform 4",
+                "Platform 6"
+              ],
+              "checkbox": false
+            }
+          ],
+          "alternatives": []
+        },
+        {
+          "heading": "Itinerary review",
+          "prompt": "Review the journey before saving the local itinerary.",
+          "action": "Save itinerary",
+          "fields": [],
+          "alternatives": []
+        }
+      ],
+      "expected_events": [
+        {
+          "action": "Find trains",
+          "fields": {
+            "From station": "York",
+            "To station": "Durham"
+          }
+        },
+        {
+          "action": "Express 09:20",
+          "fields": {}
+        },
+        {
+          "action": "Apply preferences",
+          "fields": {
+            "Seat": "Window",
+            "Quiet coach": "on"
+          }
+        },
+        {
+          "action": "Add platform",
+          "fields": {
+            "Departure platform": "Platform 4"
+          }
+        },
+        {
+          "action": "Save itinerary",
+          "fields": {}
+        }
+      ]
+    },
+    {
+      "name": "library_research",
+      "start_url": "__BASE_URL__",
+      "goal": "Find the Glacier Atlas field guide in the Earth Science collection. Follow its appendix reference to the matching companion work, choose the peer-reviewed edition, and save both works in a reading list named Ice Notes tagged Fieldwork.\n\nProvided field values: {\"Catalogue query\":\"Glacier Atlas\",\"Reading list name\":\"Ice Notes\"}",
+      "values": {
+        "Catalogue query": "Glacier Atlas",
+        "Reading list name": "Ice Notes"
+      },
+      "checks": [
+        {
+          "type": "url_equals",
+          "target": "",
+          "value": "__BASE_URL__summary"
+        },
+        {
+          "type": "text_equals",
+          "target": "#saved-selections",
+          "value": "Library catalogue: Search catalogue — Catalogue query: Glacier Atlas, Collection: Earth Science\nSearch results: Glacier Atlas field guide\nSource record: Read appendix\nAppendix references: Look up reference — Companion reference: GL-42\nCompanion editions: Peer-reviewed paper\nCollection details: Preview list — Reading list name: Ice Notes, List tag: Fieldwork\nReading list review: Save reading list"
+        }
+      ],
+      "max_steps": 24,
+      "max_provider_calls": 24,
+      "timeout_s": 180,
+      "max_input_bytes": 524288,
+      "max_calls": 24,
+      "max_cost_usd": 0.25,
+      "kind": "long",
+      "title": "Reading list",
+      "sections": [
+        {
+          "heading": "Library catalogue",
+          "prompt": "Search for material in a collection.",
+          "action": "Search catalogue",
+          "fields": [
+            {
+              "label": "Catalogue query",
+              "expected": "Glacier Atlas",
+              "options": [],
+              "checkbox": false
+            },
+            {
+              "label": "Collection",
+              "expected": "Earth Science",
+              "options": [
+                "Geography",
+                "Earth Science",
+                "History"
+              ],
+              "checkbox": false
+            }
+          ],
+          "alternatives": []
+        },
+        {
+          "heading": "Search results",
+          "prompt": "Choose a source to inspect.",
+          "action": "Glacier Atlas field guide",
+          "fields": [],
+          "alternatives": [
+            "Glacier Atlas photo book",
+            "Glacier Atlas field guide",
+            "Glacier Atlas index"
+          ]
+        },
+        {
+          "heading": "Source record",
+          "prompt": "Use the bibliography in the appendix to locate its companion work.",
+          "action": "Read appendix",
+          "fields": [],
+          "alternatives": []
+        },
+        {
+          "heading": "Appendix references",
+          "prompt": "Field guide appendix: the companion is reference GL-42. The photo book companion is GL-24; the index companion is GL-14.",
+          "action": "Look up reference",
+          "fields": [
+            {
+              "label": "Companion reference",
+              "expected": "GL-42",
+              "options": [
+                "GL-14",
+                "GL-24",
+                "GL-42"
+              ],
+              "checkbox": false
+            }
+          ],
+          "alternatives": []
+        },
+        {
+          "heading": "Companion editions",
+          "prompt": "Select an edition to pair with the source.",
+          "action": "Peer-reviewed paper",
+          "fields": [],
+          "alternatives": [
+            "Conference abstract",
+            "Peer-reviewed paper",
+            "Working paper"
+          ]
+        },
+        {
+          "heading": "Collection details",
+          "prompt": "Name and tag the list containing these two works.",
+          "action": "Preview list",
+          "fields": [
+            {
+              "label": "Reading list name",
+              "expected": "Ice Notes",
+              "options": [],
+              "checkbox": false
+            },
+            {
+              "label": "List tag",
+              "expected": "Fieldwork",
+              "options": [
+                "Teaching",
+                "Fieldwork"
+              ],
+              "checkbox": false
+            }
+          ],
+          "alternatives": []
+        },
+        {
+          "heading": "Reading list review",
+          "prompt": "Review your two works and list details.",
+          "action": "Save reading list",
+          "fields": [],
+          "alternatives": []
+        }
+      ],
+      "expected_events": [
+        {
+          "action": "Search catalogue",
+          "fields": {
+            "Catalogue query": "Glacier Atlas",
+            "Collection": "Earth Science"
+          }
+        },
+        {
+          "action": "Glacier Atlas field guide",
+          "fields": {}
+        },
+        {
+          "action": "Read appendix",
+          "fields": {}
+        },
+        {
+          "action": "Look up reference",
+          "fields": {
+            "Companion reference": "GL-42"
+          }
+        },
+        {
+          "action": "Peer-reviewed paper",
+          "fields": {}
+        },
+        {
+          "action": "Preview list",
+          "fields": {
+            "Reading list name": "Ice Notes",
+            "List tag": "Fieldwork"
+          }
+        },
+        {
+          "action": "Save reading list",
+          "fields": {}
+        }
+      ]
+    },
+    {
+      "name": "equipment_pickup",
+      "start_url": "__BASE_URL__",
+      "goal": "Prepare a local equipment pick list for the Boreal weatherproof camera, with a Telephoto lens and Protective case. Choose the depot with both items in stock, Friday Afternoon, for collector Lina Cruz, and save the list.\n\nProvided field values: {\"Collector name\":\"Lina Cruz\",\"Equipment query\":\"Boreal\"}",
+      "values": {
+        "Equipment query": "Boreal",
+        "Collector name": "Lina Cruz"
+      },
+      "checks": [
+        {
+          "type": "url_equals",
+          "target": "",
+          "value": "__BASE_URL__summary"
+        },
+        {
+          "type": "text_equals",
+          "target": "#saved-selections",
+          "value": "Equipment catalogue: Search equipment — Equipment query: Boreal, Category: Cameras\nCamera records: Boreal WX weatherproof\nAccessories: Add accessories — Lens: Telephoto, Protective case: on\nDepot inventory: East depot\nPickup window: Set pickup window — Pickup day: Friday, Pickup window: Afternoon\nCollection contact: Add collector — Collector name: Lina Cruz\nKit review: Save pick list"
+        }
+      ],
+      "max_steps": 24,
+      "max_provider_calls": 24,
+      "timeout_s": 180,
+      "max_input_bytes": 524288,
+      "max_calls": 24,
+      "max_cost_usd": 0.25,
+      "kind": "long",
+      "title": "Equipment pick list",
+      "sections": [
+        {
+          "heading": "Equipment catalogue",
+          "prompt": "Look up the requested equipment.",
+          "action": "Search equipment",
+          "fields": [
+            {
+              "label": "Equipment query",
+              "expected": "Boreal",
+              "options": [],
+              "checkbox": false
+            },
+            {
+              "label": "Category",
+              "expected": "Cameras",
+              "options": [
+                "Sensors",
+                "Cameras",
+                "Tripods"
+              ],
+              "checkbox": false
+            }
+          ],
+          "alternatives": []
+        },
+        {
+          "heading": "Camera records",
+          "prompt": "Match the weatherproof model.",
+          "action": "Boreal WX weatherproof",
+          "fields": [],
+          "alternatives": [
+            "Boreal Studio",
+            "Boreal WX weatherproof",
+            "Boreal Pocket"
+          ]
+        },
+        {
+          "heading": "Accessories",
+          "prompt": "Configure the camera kit.",
+          "action": "Add accessories",
+          "fields": [
+            {
+              "label": "Lens",
+              "expected": "Telephoto",
+              "options": [
+                "Wide angle",
+                "Telephoto",
+                "Macro"
+              ],
+              "checkbox": false
+            },
+            {
+              "label": "Protective case",
+              "expected": "on",
+              "options": [],
+              "checkbox": true
+            }
+          ],
+          "alternatives": []
+        },
+        {
+          "heading": "Depot inventory",
+          "prompt": "West has the camera only. East has the camera, telephoto lens and case. North lacks a telephoto lens.",
+          "action": "East depot",
+          "fields": [],
+          "alternatives": [
+            "West depot",
+            "East depot",
+            "North depot"
+          ]
+        },
+        {
+          "heading": "Pickup window",
+          "prompt": "Choose the collection day and time.",
+          "action": "Set pickup window",
+          "fields": [
+            {
+              "label": "Pickup day",
+              "expected": "Friday",
+              "options": [
+                "Thursday",
+                "Friday",
+                "Saturday"
+              ],
+              "checkbox": false
+            },
+            {
+              "label": "Pickup window",
+              "expected": "Afternoon",
+              "options": [
+                "Morning",
+                "Afternoon"
+              ],
+              "checkbox": false
+            }
+          ],
+          "alternatives": []
+        },
+        {
+          "heading": "Collection contact",
+          "prompt": "Record who will collect this kit.",
+          "action": "Add collector",
+          "fields": [
+            {
+              "label": "Collector name",
+              "expected": "Lina Cruz",
+              "options": [],
+              "checkbox": false
+            }
+          ],
+          "alternatives": []
+        },
+        {
+          "heading": "Kit review",
+          "prompt": "Review the kit and save the local pick list.",
+          "action": "Save pick list",
+          "fields": [],
+          "alternatives": []
+        }
+      ],
+      "expected_events": [
+        {
+          "action": "Search equipment",
+          "fields": {
+            "Equipment query": "Boreal",
+            "Category": "Cameras"
+          }
+        },
+        {
+          "action": "Boreal WX weatherproof",
+          "fields": {}
+        },
+        {
+          "action": "Add accessories",
+          "fields": {
+            "Lens": "Telephoto",
+            "Protective case": "on"
+          }
+        },
+        {
+          "action": "East depot",
+          "fields": {}
+        },
+        {
+          "action": "Set pickup window",
+          "fields": {
+            "Pickup day": "Friday",
+            "Pickup window": "Afternoon"
+          }
+        },
+        {
+          "action": "Add collector",
+          "fields": {
+            "Collector name": "Lina Cruz"
+          }
+        },
+        {
+          "action": "Save pick list",
+          "fields": {}
+        }
+      ]
+    },
+    {
+      "name": "support_handoff",
+      "start_url": "__BASE_URL__",
+      "goal": "Prepare a handoff draft for ticket R-214 in the Network queue. Inspect the activity log and classify the most recent fault as High priority. Route it to Network Operations and include the On-call rotation. Add note 'Compare edge counters' tagged Diagnosis and save the draft.\n\nProvided field values: {\"Handoff note\":\"Compare edge counters\",\"Ticket number\":\"R-214\"}",
+      "values": {
+        "Ticket number": "R-214",
+        "Handoff note": "Compare edge counters"
+      },
+      "checks": [
+        {
+          "type": "url_equals",
+          "target": "",
+          "value": "__BASE_URL__summary"
+        },
+        {
+          "type": "text_equals",
+          "target": "#saved-selections",
+          "value": "Support desk: Search tickets — Queue: Network, Ticket number: R-214\nTicket results: R-214 edge packet loss\nTicket record: Open activity log\nActivity log: Classify fault — Fault code: EDGE-72, Priority: High\nRouting: Apply routing — Receiving team: Network Operations, On-call rotation: on\nHandoff notes: Add note — Handoff note: Compare edge counters, Note tag: Diagnosis\nTicket workspace: Review handoff\nHandoff review: Save handoff draft"
+        }
+      ],
+      "max_steps": 24,
+      "max_provider_calls": 24,
+      "timeout_s": 180,
+      "max_input_bytes": 524288,
+      "max_calls": 24,
+      "max_cost_usd": 0.25,
+      "kind": "long",
+      "title": "Support handoff draft",
+      "sections": [
+        {
+          "heading": "Support desk",
+          "prompt": "Find the ticket in its queue.",
+          "action": "Search tickets",
+          "fields": [
+            {
+              "label": "Queue",
+              "expected": "Network",
+              "options": [
+                "Access",
+                "Network",
+                "Storage"
+              ],
+              "checkbox": false
+            },
+            {
+              "label": "Ticket number",
+              "expected": "R-214",
+              "options": [],
+              "checkbox": false
+            }
+          ],
+          "alternatives": []
+        },
+        {
+          "heading": "Ticket results",
+          "prompt": "Open a case record.",
+          "action": "R-214 edge packet loss",
+          "fields": [],
+          "alternatives": [
+            "R-241 edge latency",
+            "R-214 edge packet loss",
+            "R-124 switch alarm"
+          ]
+        },
+        {
+          "heading": "Ticket record",
+          "prompt": "Fault classifications are listed in the activity log.",
+          "action": "Open activity log",
+          "fields": [],
+          "alternatives": []
+        },
+        {
+          "heading": "Activity log",
+          "prompt": "09:00 LINK-12 recovered. 10:00 EDGE-28 reported. 11:00 EDGE-72 reported by the edge monitor.",
+          "action": "Classify fault",
+          "fields": [
+            {
+              "label": "Fault code",
+              "expected": "EDGE-72",
+              "options": [
+                "LINK-12",
+                "EDGE-28",
+                "EDGE-72"
+              ],
+              "checkbox": false
+            },
+            {
+              "label": "Priority",
+              "expected": "High",
+              "options": [
+                "Normal",
+                "High",
+                "Urgent"
+              ],
+              "checkbox": false
+            }
+          ],
+          "alternatives": []
+        },
+        {
+          "heading": "Routing",
+          "prompt": "Set the receiving team and rotation.",
+          "action": "Apply routing",
+          "fields": [
+            {
+              "label": "Receiving team",
+              "expected": "Network Operations",
+              "options": [
+                "Network Operations",
+                "Storage Operations"
+              ],
+              "checkbox": false
+            },
+            {
+              "label": "On-call rotation",
+              "expected": "on",
+              "options": [],
+              "checkbox": true
+            }
+          ],
+          "alternatives": []
+        },
+        {
+          "heading": "Handoff notes",
+          "prompt": "Add the requested context to the draft.",
+          "action": "Add note",
+          "fields": [
+            {
+              "label": "Handoff note",
+              "expected": "Compare edge counters",
+              "options": [],
+              "checkbox": false
+            },
+            {
+              "label": "Note tag",
+              "expected": "Diagnosis",
+              "options": [
+                "History",
+                "Diagnosis",
+                "Resolution"
+              ],
+              "checkbox": false
+            }
+          ],
+          "alternatives": []
+        },
+        {
+          "heading": "Ticket workspace",
+          "prompt": "The classification, routing and note are ready for review.",
+          "action": "Review handoff",
+          "fields": [],
+          "alternatives": []
+        },
+        {
+          "heading": "Handoff review",
+          "prompt": "This saves a local draft.",
+          "action": "Save handoff draft",
+          "fields": [],
+          "alternatives": []
+        }
+      ],
+      "expected_events": [
+        {
+          "action": "Search tickets",
+          "fields": {
+            "Queue": "Network",
+            "Ticket number": "R-214"
+          }
+        },
+        {
+          "action": "R-214 edge packet loss",
+          "fields": {}
+        },
+        {
+          "action": "Open activity log",
+          "fields": {}
+        },
+        {
+          "action": "Classify fault",
+          "fields": {
+            "Fault code": "EDGE-72",
+            "Priority": "High"
+          }
+        },
+        {
+          "action": "Apply routing",
+          "fields": {
+            "Receiving team": "Network Operations",
+            "On-call rotation": "on"
+          }
+        },
+        {
+          "action": "Add note",
+          "fields": {
+            "Handoff note": "Compare edge counters",
+            "Note tag": "Diagnosis"
+          }
+        },
+        {
+          "action": "Review handoff",
+          "fields": {}
+        },
+        {
+          "action": "Save handoff draft",
+          "fields": {}
+        }
+      ]
+    },
+    {
+      "name": "exhibit_planner",
+      "start_url": "__BASE_URL__",
+      "goal": "Plan a Bristol museum visit in Spring. Start with Tidal Maps, turn on English captions and Audio guide, then follow its linked wing to the Fresco Study. Choose the earliest slot after noon with Step-free access. Name the route Harbour Walk, use the Two stops template, set owner Mira Lane and save the plan.\n\nProvided field values: {\"Museum city\":\"Bristol\",\"Plan owner\":\"Mira Lane\",\"Route name\":\"Harbour Walk\"}",
+      "values": {
+        "Museum city": "Bristol",
+        "Route name": "Harbour Walk",
+        "Plan owner": "Mira Lane"
+      },
+      "checks": [
+        {
+          "type": "url_equals",
+          "target": "",
+          "value": "__BASE_URL__summary"
+        },
+        {
+          "type": "text_equals",
+          "target": "#saved-selections",
+          "value": "Museum catalogue: Explore exhibitions — Museum city: Bristol, Season: Spring\nFirst exhibition: Tidal Maps\nFirst stop guide: Add first stop — Caption language: English, Audio guide: on\nWing directory: Copper wing\nSecond exhibition: Fresco Study\nVisit options: Set visit options — Entry slot: 12:30, Step-free access: on\nRoute editor: Preview route — Route name: Harbour Walk, Route template: Two stops\nRoute ownership: Add owner — Plan owner: Mira Lane\nExhibit route review: Save exhibit route"
+        }
+      ],
+      "max_steps": 24,
+      "max_provider_calls": 24,
+      "timeout_s": 180,
+      "max_input_bytes": 524288,
+      "max_calls": 24,
+      "max_cost_usd": 0.25,
+      "kind": "long",
+      "title": "Exhibit route",
+      "sections": [
+        {
+          "heading": "Museum catalogue",
+          "prompt": "Find exhibitions by city and season.",
+          "action": "Explore exhibitions",
+          "fields": [
+            {
+              "label": "Museum city",
+              "expected": "Bristol",
+              "options": [],
+              "checkbox": false
+            },
+            {
+              "label": "Season",
+              "expected": "Spring",
+              "options": [
+                "Winter",
+                "Spring",
+                "Summer"
+              ],
+              "checkbox": false
+            }
+          ],
+          "alternatives": []
+        },
+        {
+          "heading": "First exhibition",
+          "prompt": "Choose the starting exhibition.",
+          "action": "Tidal Maps",
+          "fields": [],
+          "alternatives": [
+            "Tidal Models",
+            "Tidal Maps",
+            "Tidal Poems"
+          ]
+        },
+        {
+          "heading": "First stop guide",
+          "prompt": "Tidal Maps links to the Copper wing. Tidal Models links to the Stone wing and Tidal Poems to the Glass wing.",
+          "action": "Add first stop",
+          "fields": [
+            {
+              "label": "Caption language",
+              "expected": "English",
+              "options": [
+                "French",
+                "English",
+                "Spanish"
+              ],
+              "checkbox": false
+            },
+            {
+              "label": "Audio guide",
+              "expected": "on",
+              "options": [],
+              "checkbox": true
+            }
+          ],
+          "alternatives": []
+        },
+        {
+          "heading": "Wing directory",
+          "prompt": "Follow the connection listed on the first exhibition guide.",
+          "action": "Copper wing",
+          "fields": [],
+          "alternatives": [
+            "Glass wing",
+            "Stone wing",
+            "Copper wing"
+          ]
+        },
+        {
+          "heading": "Second exhibition",
+          "prompt": "Choose an exhibition for the second stop.",
+          "action": "Fresco Study",
+          "fields": [],
+          "alternatives": [
+            "Fresco Sketches",
+            "Fresco Study",
+            "Fresco Materials"
+          ]
+        },
+        {
+          "heading": "Visit options",
+          "prompt": "Choose the time and access requirements.",
+          "action": "Set visit options",
+          "fields": [
+            {
+              "label": "Entry slot",
+              "expected": "12:30",
+              "options": [
+                "11:45",
+                "12:30",
+                "13:00"
+              ],
+              "checkbox": false
+            },
+            {
+              "label": "Step-free access",
+              "expected": "on",
+              "options": [],
+              "checkbox": true
+            }
+          ],
+          "alternatives": []
+        },
+        {
+          "heading": "Route editor",
+          "prompt": "Name the route and choose its layout.",
+          "action": "Preview route",
+          "fields": [
+            {
+              "label": "Route name",
+              "expected": "Harbour Walk",
+              "options": [],
+              "checkbox": false
+            },
+            {
+              "label": "Route template",
+              "expected": "Two stops",
+              "options": [
+                "Single stop",
+                "Two stops"
+              ],
+              "checkbox": false
+            }
+          ],
+          "alternatives": []
+        },
+        {
+          "heading": "Route ownership",
+          "prompt": "Choose who will keep the plan.",
+          "action": "Add owner",
+          "fields": [
+            {
+              "label": "Plan owner",
+              "expected": "Mira Lane",
+              "options": [],
+              "checkbox": false
+            }
+          ],
+          "alternatives": []
+        },
+        {
+          "heading": "Exhibit route review",
+          "prompt": "Save the completed local plan.",
+          "action": "Save exhibit route",
+          "fields": [],
+          "alternatives": []
+        }
+      ],
+      "expected_events": [
+        {
+          "action": "Explore exhibitions",
+          "fields": {
+            "Museum city": "Bristol",
+            "Season": "Spring"
+          }
+        },
+        {
+          "action": "Tidal Maps",
+          "fields": {}
+        },
+        {
+          "action": "Add first stop",
+          "fields": {
+            "Caption language": "English",
+            "Audio guide": "on"
+          }
+        },
+        {
+          "action": "Copper wing",
+          "fields": {}
+        },
+        {
+          "action": "Fresco Study",
+          "fields": {}
+        },
+        {
+          "action": "Set visit options",
+          "fields": {
+            "Entry slot": "12:30",
+            "Step-free access": "on"
+          }
+        },
+        {
+          "action": "Preview route",
+          "fields": {
+            "Route name": "Harbour Walk",
+            "Route template": "Two stops"
+          }
+        },
+        {
+          "action": "Add owner",
+          "fields": {
+            "Plan owner": "Mira Lane"
+          }
+        },
+        {
+          "action": "Save exhibit route",
+          "fields": {}
+        }
+      ]
+    }
+  ]
+}

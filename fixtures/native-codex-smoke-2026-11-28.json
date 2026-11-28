@@ -1,0 +1,71 @@
+{
+  "date": "2026-11-28",
+  "host": "macOS arm64",
+  "chromium": "Google Chrome 158.0.8127.38",
+  "rust_profile": "release",
+  "scope": "Owned isolated loopback fixture; the test client responds to Standard MCP forms through Codex app-server. Elapsed time runs from start_task through reading the artifact.",
+  "tools": [
+    "cancel_task",
+    "capabilities",
+    "get_task",
+    "present_admission",
+    "read_artifact",
+    "start_task"
+  ],
+  "runs": [
+    {
+      "approvalSource": "programmatic acceptance test",
+      "artifactBytes": 19,
+      "artifactType": "application/json",
+      "counter": 3,
+      "elapsedMs": 5926,
+      "forms": 4,
+      "host": "Codex app-server",
+      "provider": "jev",
+      "status": "verified",
+      "usage": {
+        "calls": 3,
+        "input_bytes": 2134,
+        "output_bytes": 533,
+        "steps": 3,
+        "stored_bytes": 19
+      }
+    },
+    {
+      "approvalSource": "programmatic acceptance test",
+      "artifactBytes": 19,
+      "artifactType": "application/json",
+      "counter": 3,
+      "elapsedMs": 6443,
+      "forms": 4,
+      "host": "Codex app-server",
+      "provider": "luna",
+      "status": "verified",
+      "usage": {
+        "calls": 3,
+        "input_bytes": 2383,
+        "output_bytes": 1092,
+        "steps": 3,
+        "stored_bytes": 19
+      }
+    },
+    {
+      "approvalSource": "programmatic acceptance test",
+      "artifactBytes": 19,
+      "artifactType": "application/json",
+      "counter": 3,
+      "elapsedMs": 6659,
+      "forms": 4,
+      "host": "Codex app-server",
+      "provider": "gemini",
+      "status": "verified",
+      "usage": {
+        "calls": 3,
+        "input_bytes": 2155,
+        "output_bytes": 1228,
+        "steps": 3,
+        "stored_bytes": 19
+      }
+    }
+  ]
+}

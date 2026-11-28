@@ -15,21 +15,11 @@
 *.pem
 *.key
 
-# Python environments and generated files
-.venv/
-venv/
-__pycache__/
-*.py[cod]
-*.egg-info/
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
+# Build and verification output
+/target/
 .cache/
-.coverage
-.coverage.*
-htmlcov/
-dist/
-build/
+/dist/
+/build/
 
 # Operating-system and editor files
 .DS_Store
@@ -39,6 +29,7 @@ build/
 # Project-local installer runtime and client configuration
 .decision-browser-install/
 .decision-browser-install.lease
+.decision-browser-install.native.lease
 .decision-browser-stage.lease
 .decision-browser-stage-cleanup-unknown.json
 .claude/
