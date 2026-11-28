@@ -16,9 +16,10 @@ Cancellation prevents later dispatch and asks owned browser resources to close.
 A cleanup failure is returned as `outcome_unknown` with `cleanup_unknown`.
 Read that result and reconcile effects before another logical task.
 
-`task_scope` is an explicit startup policy for isolated exact-origin tasks.
-Its capability and admission class identify that policy. The default remains
-`standard_form`. [Mode guide](task-scoped-admission.md)
+`task_scope` is an explicit startup policy for exact-origin tasks in isolated
+Chrome or in a new tab in an explicitly selected Chrome session. Its capability
+and admission class identify that policy. The default remains `standard_form`.
+[Mode guide](task-scoped-admission.md)
 
 The native implementation and regression tests are in
 [product_mcp.rs](../src/product_mcp.rs) and [stdio tests](../tests/product_mcp.rs).

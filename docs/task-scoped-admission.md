@@ -28,17 +28,22 @@ acceptance alone provides no evidence of a native user click.
 
 ## Task scope
 
-`task_scope` applies to isolated tasks within their exact initial origin,
+`task_scope` admits ordinary actions within the task's exact initial origin,
 operations, budgets and deadline. Its returned `admission_class` identifies the
 operator-selected policy. It grants no standard-form record. Consequential,
 foreign-origin or unsupported actions stop according to their classification.
 Opaque scripted controls with an unresolved effect require a standard form and
 stop under `task_scope`.
 
+`isolated` uses a fresh browser context. To enable `existing_chrome`, set
+`DECISION_BROWSER_DEVTOOLS_ACTIVE_PORT` in the server environment to the
+absolute path of the selected Chrome session's `DevToolsActivePort` file. The
+task shares that profile's account access and opens a separate tab which it
+closes at the end. See the [Chrome setup](installation.md#existing-chrome).
+
 Read the connected server's `capabilities` for available modes and operations.
-Existing Chrome requires standard-form admission because it shares a selected
-account context. To work on a different origin, start a separately agreed task
-there with its own finite limits and admission.
+To work on a different origin, start a separately agreed task there with its
+own finite limits and admission.
 
 ## Cancellation and uncertainty
 

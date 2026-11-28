@@ -15,6 +15,7 @@ use tungstenite::{Message, WebSocket};
 
 #[path = "matrix_browser.rs"]
 mod matrix_browser;
+pub(crate) use matrix_browser::explicit_existing_chrome_available;
 pub use matrix_browser::{
     MatrixPage, existing_chrome_available, run_existing_task_scenario, run_scenario,
     run_task_scenario,

@@ -1,5 +1,6 @@
 //! Retained six-tool MCP lifecycle with request-bound form admission.
 use crate::{
+    browser::explicit_existing_chrome_available,
     provider::Provider,
     sha256_hex as sha,
     task_runner::{self, RunControl, TaskOutcome},
@@ -247,7 +248,12 @@ impl Server {
         }
     }
     fn capabilities(&self) -> Value {
-        let mut facts = json!({"modes":if self.mode=="task_scope" {json!(["isolated"])}else{json!(["isolated","existing_chrome"])},"ops":["scroll","wait","navigate","click","fill","select","enter","submit"],"classes":["fixture_mapped","observe_driver","ordinary_admitted","ordinary_task_scoped","ordinary_beta_admitted","consequential","unresolved","owned_loopback_document"],"artifact_read":{"format":"decision-browser-artifact-range-v1","max_chunk_bytes":RANGE,"default_channel":"legacy","channels":["legacy","structured","resource"]},"deferred_consequences":true,"native_human":"NOT_RUN","live_ac10":"NOT_RUN","both_modes":"NOT_RUN","production_ready":false,"admission_mode":self.mode,"human_grant_channel":if self.mode=="standard_form"{json!("standard_mcp_form")}else{Value::Null},"form_candidate_unverified":self.mode=="standard_form"});
+        let modes = if self.mode == "task_scope" && !explicit_existing_chrome_available() {
+            &["isolated"][..]
+        } else {
+            &["isolated", "existing_chrome"][..]
+        };
+        let mut facts = json!({"modes":modes,"ops":["scroll","wait","navigate","click","fill","select","enter","submit"],"classes":["fixture_mapped","observe_driver","ordinary_admitted","ordinary_task_scoped","ordinary_beta_admitted","consequential","unresolved","owned_loopback_document"],"artifact_read":{"format":"decision-browser-artifact-range-v1","max_chunk_bytes":RANGE,"default_channel":"legacy","channels":["legacy","structured","resource"]},"deferred_consequences":true,"native_human":"NOT_RUN","live_ac10":"NOT_RUN","both_modes":"NOT_RUN","production_ready":false,"admission_mode":self.mode,"human_grant_channel":if self.mode=="standard_form"{json!("standard_mcp_form")}else{Value::Null},"form_candidate_unverified":self.mode=="standard_form"});
         let status = crate::provider::production_provider_status();
         if let Some(status) = status.as_object() {
             for (key, value) in status {
@@ -262,8 +268,11 @@ impl Server {
         body(facts, false)
     }
     fn start(&mut self, request: &Value) -> Value {
-        if self.mode == "task_scope" && request["mode"] == "existing_chrome" {
-            return domain("task_scope_isolated_only");
+        if self.mode == "task_scope"
+            && request["mode"] == "existing_chrome"
+            && !explicit_existing_chrome_available()
+        {
+            return domain("task_scope_existing_chrome_unavailable");
         }
         if self.run.is_some() {
             return domain("busy");
@@ -791,17 +800,20 @@ mod tests {
         let mut server = server();
         retained(&mut server);
         server.mode = "task_scope".to_owned();
-        server.proposal(json!({"kind":"alpha","origin":"https://example.org"}));
+        server.proposal(
+            json!({"kind":"alpha","mode":"existing_chrome","origin":"https://example.org"}),
+        );
         assert_eq!(
             *server.run.as_ref().unwrap().gate.answer.lock().unwrap(),
             Some(Ok(()))
         );
-        server.proposal(json!({"kind":"beta","classification":"ordinary","document_origin":"https://example.org","destination_origin":"https://example.org","operation":"submit"}));
-        assert_eq!(
-            *server.run.as_ref().unwrap().gate.answer.lock().unwrap(),
-            Some(Ok(()))
-        );
-        assert!(server.run.as_ref().unwrap().pending.is_none());
+        for operation in ["click", "click", "click", "submit"] {
+            server.proposal(ordinary_action(operation));
+            let run = server.run.as_ref().unwrap();
+            assert_eq!(run.gate.answer.lock().unwrap().take(), Some(Ok(())));
+            assert!(run.pending.is_none());
+            assert_eq!(run.result["admission_class"], "ordinary_task_scoped");
+        }
         for (classification, destination) in [
             ("ordinary", "https://other.example.org"),
             ("consequential", "https://example.org"),

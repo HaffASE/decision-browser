@@ -5,7 +5,7 @@ agent a URL, a goal, field values and final checks. The server observes browser
 controls, selects bounded actions through the configured model, rechecks each
 target through CDP and returns a verifiable result.
 
-[Download v0.2.1](https://github.com/HaffASE/decision-browser/releases/tag/v0.2.1) ·
+[Download v0.2.3](https://github.com/HaffASE/decision-browser/releases/tag/v0.2.3) ·
 [Installation](docs/installation.md) · [MCP tools](#mcp-tools) ·
 [Providers](docs/providers.md) · [Verification](docs/verification.md) ·
 [Release procedure](docs/releasing.md)
@@ -45,7 +45,8 @@ Chrome and the coding client are separate prerequisites. See the
 
 ### Install through npm
 
-With Node.js 20 or newer, run the published package from your project.
+With Node.js 20 or newer, run the published npm version 0.2.2 from your project.
+For task-scoped work in an existing Chrome session, use the v0.2.3 archive above.
 
 ```sh
 npm exec --yes --package=@haffa/decision-browser@0.2.2 -- decision-browser setup codex
@@ -80,10 +81,11 @@ verify the selected field value. Provide known form text in `values`.
 
 `isolated` mode creates a fresh browser context. `existing_chrome` uses an
 acknowledged task tab in a selected Chrome debugging session and shares that
-session's account access. Use it with `standard_form` and a Chrome session with
-remote debugging enabled. Task navigation and requests follow the agreed origin,
-which can block cross-origin resources and transitions. Check `capabilities`
-before selecting a mode. [Browser control](docs/browser-control-stage-one.md)
+session's account access. For ordinary tasks without forms, start the server in
+`task_scope` and set `DECISION_BROWSER_DEVTOOLS_ACTIVE_PORT` to the chosen
+Chrome session's `DevToolsActivePort` file. Task navigation and requests follow
+the agreed origin, which can block cross-origin resources and transitions. Check
+`capabilities` before selecting a mode. [Browser control](docs/browser-control-stage-one.md)
 
 The runner enforces the request's step, provider-call, byte and elapsed-time
 limits. Browser inputs operate on observed controls. Functional verification
@@ -102,10 +104,10 @@ uses the requested page checks. Visual diagnostics are reported separately.
 
 Start once and poll `queued`, `awaiting_human_admission` and `running` results.
 When a pending proposal exists, pass its exact identifiers to `present_admission`
-and let the user answer the client form. One confirmation covers ordinary
-actions for an isolated task within the displayed origin, operations and
-limits. Ambiguous effects and actions in existing Chrome receive individual
-review. Read a terminal result's reason and recovery fields.
+and let the user answer the client form. Under `standard_form`, one confirmation
+covers ordinary actions for an isolated task within the displayed origin,
+operations and limits. Ambiguous effects and actions in existing Chrome receive
+individual review in that mode. Read a terminal result's reason and recovery fields.
 An `outcome_unknown` result requires inspecting the outcome before deciding
 whether another run is safe.
 

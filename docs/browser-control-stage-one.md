@@ -25,9 +25,11 @@ cookies and account access are shared. Other tabs belong to the user, and task
 cleanup closes its acknowledged resources. Ambiguous cleanup returns
 `outcome_unknown` with a cleanup reason.
 
-Use standard-form admission for this mode. An acceptance run with a disposable
-Chrome profile can verify tab inventory and cleanup. Record account-profile
-acceptance separately if a real account is intentionally tested.
+With an explicit `DECISION_BROWSER_DEVTOOLS_ACTIVE_PORT` selection, the
+`task_scope` policy admits ordinary actions in the task tab without a form.
+An acceptance run with a disposable Chrome profile can verify tab inventory and
+cleanup. Record account-profile acceptance separately if a real account is
+intentionally tested.
 
 ## Actions and evidence
 

@@ -1,8 +1,9 @@
 use serde_json::{Value, json};
 use std::io::{BufRead, BufReader, Write};
+use std::path::Path;
 use std::process::{Child, ChildStdin, Command, Stdio};
 use std::sync::mpsc::{self, Receiver};
-use std::time::Duration;
+use std::time::{Duration, SystemTime, UNIX_EPOCH};
 
 struct Client {
     child: Child,
@@ -14,7 +15,8 @@ impl Client {
         Self::with_capabilities(json!({"elicitation":{"form":{}}}))
     }
     fn with_capabilities(capabilities: Value) -> Self {
-        let mut child = Command::new(env!("CARGO_BIN_EXE_decision-browser"))
+        let mut command = Command::new(env!("CARGO_BIN_EXE_decision-browser"));
+        command
             .args(["serve", "--admission", "standard_form"])
             .env("DECISION_BROWSER_PROVIDER", "openai")
             .env(
@@ -23,7 +25,11 @@ impl Client {
             )
             .env_remove("OPENAI_API_KEY")
             .env_remove("TYPESAFE_API_KEY")
-            .env_remove("OPENCODE_API_KEY")
+            .env_remove("OPENCODE_API_KEY");
+        Self::spawn(command, capabilities)
+    }
+    fn spawn(mut command: Command, capabilities: Value) -> Self {
+        let mut child = command
             .stdin(Stdio::piped())
             .stdout(Stdio::piped())
             .stderr(Stdio::inherit())
@@ -126,6 +132,70 @@ fn reads_report_prerequisites_and_unknown_runs_without_starting_work() {
         json!({"error":"unknown"})
     );
     assert_eq!(recovery["result"]["isError"], true);
+}
+#[test]
+fn task_scope_existing_chrome_requires_a_valid_explicit_selection() {
+    let selected = std::env::temp_dir().join(format!(
+        "decision-browser-devtools-test-{}-{}",
+        std::process::id(),
+        SystemTime::now()
+            .duration_since(UNIX_EPOCH)
+            .unwrap()
+            .as_nanos()
+    ));
+    let mut options = std::fs::OpenOptions::new();
+    options.write(true).create_new(true);
+    #[cfg(unix)]
+    {
+        use std::os::unix::fs::OpenOptionsExt;
+        options.mode(0o600);
+    }
+    writeln!(
+        options.open(&selected).unwrap(),
+        "9\n/devtools/browser/protocol-test"
+    )
+    .unwrap();
+
+    // Checkout is blocked by the worker before any provider call or attachment.
+    let request = json!({"request":{
+        "goal":"Open the checkout page", "start_url":"https://example.org/checkout",
+        "mode":"existing_chrome", "values":{}, "checks":[], "privacy":{},
+        "limits":{"max_seconds":5.0}
+    }});
+    for (path, available) in [
+        (None, false),
+        (Some(Path::new("DevToolsActivePort")), false),
+        (Some(selected.as_path()), true),
+    ] {
+        let mut command = Command::new(env!("CARGO_BIN_EXE_decision-browser"));
+        command
+            .args(["serve", "--admission", "task_scope"])
+            .env_clear()
+            .env("DECISION_BROWSER_PROVIDER", "local");
+        if let Some(path) = path {
+            command.env("DECISION_BROWSER_DEVTOOLS_ACTIVE_PORT", path);
+        }
+        let mut client = Client::spawn(command, json!({"elicitation":{"form":{}}}));
+        let caps = client.tool("capabilities", json!({}));
+        let caps = &caps["result"]["structuredContent"];
+        let start = client.tool("start_task", request.clone());
+        let result = &start["result"]["structuredContent"];
+        assert_eq!(caps["admission_mode"], "task_scope");
+        assert!(caps["human_grant_channel"].is_null());
+        if available {
+            assert_eq!(caps["modes"], json!(["isolated", "existing_chrome"]));
+            assert_eq!(result["result"]["terminal"], "queued", "{start}");
+            assert!(result["pending_proposal"].is_null());
+        } else {
+            assert_eq!(caps["modes"], json!(["isolated"]));
+            assert_eq!(
+                result["error"], "task_scope_existing_chrome_unavailable",
+                "{start}"
+            );
+            assert_eq!(start["result"]["isError"], true);
+        }
+    }
+    std::fs::remove_file(selected).unwrap();
 }
 #[test]
 fn unknown_or_coerced_arguments_are_rejected_before_start() {
