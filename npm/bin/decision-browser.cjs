@@ -8,7 +8,19 @@ const { spawnSync } = require('node:child_process');
 
 function run(args, root = path.resolve(__dirname, '..')) {
   try {
-    const manifestPath = path.join(root, 'native', 'manifest.json');
+    let nativeRoot = path.join(root, 'native');
+    if (!fs.lstatSync(path.join(nativeRoot, 'manifest.json'), { throwIfNoEntry: false })) {
+      const target = `${process.platform}-${process.arch}`;
+      if (target !== 'darwin-arm64' && target !== 'linux-x64') {
+        throw new Error(`unsupported platform: ${target}`);
+      }
+      nativeRoot = path.join(nativeRoot, target);
+      const nativeStat = fs.lstatSync(nativeRoot, { throwIfNoEntry: false });
+      if (!nativeStat || !nativeStat.isDirectory() || nativeStat.isSymbolicLink()) {
+        throw new Error(`bundled executable is missing or invalid for ${target}`);
+      }
+    }
+    const manifestPath = path.join(nativeRoot, 'manifest.json');
     const manifestStat = fs.lstatSync(manifestPath);
     if (!manifestStat.isFile() || manifestStat.isSymbolicLink() || manifestStat.size > 4096) {
       throw new Error('invalid bundled manifest');
@@ -20,7 +32,7 @@ function run(args, root = path.resolve(__dirname, '..')) {
         typeof manifest.sha256 !== 'string' || !/^[a-f0-9]{64}$/.test(manifest.sha256)) {
       throw new Error('bundle does not match this platform or manifest format');
     }
-    const executable = path.join(root, 'native', manifest.file);
+    const executable = path.join(nativeRoot, manifest.file);
     const executableStat = fs.lstatSync(executable);
     if (!executableStat.isFile() || executableStat.isSymbolicLink()) {
       throw new Error('bundled executable is missing or invalid');

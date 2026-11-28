@@ -5,6 +5,15 @@ Versions follow the policy in [Releasing](docs/releasing.md).
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-11-28
+
+- Resume interrupted Chrome CDP WebSocket upgrades on the same socket within
+  the connection deadline. Report errors before provider selection in the
+  cancellation test and cover delayed and stalled upgrades with regression tests.
+- Publish one npm launcher containing the reviewed Rust executables for macOS
+  arm64 and Linux x64. Select and verify the matching bundled executable before
+  launch, and document npm setup alongside direct native installation.
+
 ## [0.2.0] - 2026-11-28
 
 - Release the Rust runtime from 0.1.5 on the 0.2 compatibility line. Upgrades

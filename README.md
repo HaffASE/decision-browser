@@ -5,7 +5,7 @@ agent a URL, a goal, field values and final checks. The server observes browser
 controls, selects bounded actions through the configured model, rechecks each
 target through CDP and returns a verifiable result.
 
-[Download v0.2.0](https://github.com/HaffASE/decision-browser/releases/tag/v0.2.0) ·
+[Download v0.2.1](https://github.com/HaffASE/decision-browser/releases/tag/v0.2.1) ·
 [Installation](docs/installation.md) · [MCP tools](#mcp-tools) ·
 [Providers](docs/providers.md) · [Verification](docs/verification.md) ·
 [Release procedure](docs/releasing.md)
@@ -42,6 +42,20 @@ The native archive runs without Python, uv or Node.js. A source build downloads
 the dependencies pinned by Cargo.lock when they are absent from the local cache.
 Chrome and the coding client are separate prerequisites. See the
 [installation guide](docs/installation.md) for configuration, upgrades and recovery.
+
+### Install through npm
+
+With Node.js 20 or newer, run the published package from your project.
+
+```sh
+npm exec --yes --package=@haffa/decision-browser@0.2.1 -- decision-browser setup codex
+npm exec --yes --package=@haffa/decision-browser@0.2.1 -- decision-browser configure openai
+```
+
+The package includes the Rust executables for macOS arm64 and Linux x64 and
+verifies the matching executable before launch. `setup` copies it into the
+project's persistent runtime. Install Chrome or Chromium separately and supply
+provider credentials as described above.
 
 ### Upgrade an existing project
 

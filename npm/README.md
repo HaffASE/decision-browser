@@ -1,23 +1,33 @@
-# Optional native npm launcher
+# Decision Browser native npm launcher
 
-This package is assembled locally by `scripts/build-native-release.sh --npm`.
-It contains the Rust executable for one operating system and architecture and
-checks that file's SHA-256 before executing it. This launcher requires Node.js 20+.
-For direct installation, use the [v0.2.0 release archives](https://github.com/HaffASE/decision-browser/releases/tag/v0.2.0).
+The public `@haffa/decision-browser` package contains the Rust executables for
+macOS arm64 and Linux x64. The launcher selects the matching executable and
+checks its SHA-256 before running it. Node.js 20 or newer is required.
 
-The packed candidate has no lifecycle hooks or npm dependencies. Installation
-and launch use only the bundled executable and local files. Download the
-candidate from a trusted maintainer and verify its outer SHA-256 before use.
-The embedded hash detects mismatches within a bundle; publisher trust comes
-from the channel supplying the outer archive and checksum.
-
-Use a fresh directory and the exact local tarball to avoid registry resolution.
+Install Chrome or Chromium separately, then run from your project.
 
 ```sh
-npm exec --offline --yes --package=/absolute/path/haffa-decision-browser-0.2.0.tgz -- decision-browser --version
+npm exec --yes --package=@haffa/decision-browser@0.2.1 -- decision-browser setup codex
+npm exec --yes --package=@haffa/decision-browser@0.2.1 -- decision-browser configure openai
 ```
 
-Install Chrome separately and set `DECISION_BROWSER_CHROME` to its executable
-when automatic discovery is insufficient. Native client registration and
-provider configuration are performed by the Rust CLI. This candidate template
-is private and is not published by the build script.
+Choose `claude` or `both` for the other client registrations. `setup` copies the
+native executable into the project's persistent runtime and writes managed MCP
+settings. Restart the coding client, review its trust and MCP prompts, and
+supply credentials through the [provider guide](https://github.com/HaffASE/decision-browser/blob/v0.2.1/docs/providers.md).
+
+The package has no lifecycle hooks or npm dependencies. Installation and launch
+use the bundled executable and local files. Set `DECISION_BROWSER_CHROME` to the
+browser executable when automatic discovery is insufficient.
+
+For direct native installation, use the [v0.2.1 release archives](https://github.com/HaffASE/decision-browser/releases/tag/v0.2.1).
+Source builds and release packaging use the [release procedure](https://github.com/HaffASE/decision-browser/blob/v0.2.1/docs/releasing.md).
+
+Maintainers can test a reviewed local tarball in a fresh directory.
+
+```sh
+npm exec --offline --yes --package=/absolute/path/haffa-decision-browser-0.2.1.tgz -- decision-browser --version
+```
+
+The checked-in package template stays private. The release builder creates the
+public package after verifying both platform candidates.

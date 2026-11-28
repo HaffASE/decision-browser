@@ -46,6 +46,25 @@ The native archive includes the executable, manifest, licenses and checksums.
 Use `--npm` to prepare the optional local npm package. Verify its launcher and
 packaged executable as well. Node.js is needed to build or run that wrapper.
 
+## Build the public npm package
+
+Use the macOS arm64 and Linux x64 native candidates from successful CI jobs for
+the same reviewed commit. Assemble both into one public package in a fresh
+output directory.
+
+```sh
+sh scripts/build-npm-release.sh MACOS_CANDIDATE_DIR LINUX_CANDIDATE_DIR NEW_OUTPUT_DIR
+```
+
+The public package selects the matching bundled executable at launch. Check its
+contents, version and hashes, and test that exact tarball on both supported
+platforms before publication. Retain the npm candidate alongside the two native
+candidates and their verification evidence.
+
+After authorization and npm login, publish the verified tarball and compare the
+registry integrity digest with the local file. Test a fresh installation from
+the registry and verify the published version and `latest` tag.
+
 ## Promote a release
 
 Read hosted verification results for the exact commit and complete the

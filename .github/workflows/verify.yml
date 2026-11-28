@@ -96,12 +96,96 @@ jobs:
           if-no-files-found: warn
           retention-days: 14
 
+  npm-package:
+    name: Assemble the public npm candidate
+    needs: [native]
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+        with:
+          node-version: '24'
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+        with:
+          pattern: native-*-${{ github.run_id }}-*
+          path: ${{ runner.temp }}/platforms
+      - name: Build one npm archive with both verified executables
+        shell: bash
+        run: |
+          set -euo pipefail
+          candidates=()
+          for host in macos-15 ubuntu-22.04; do
+            best_attempt=0
+            candidate=
+            for artifact in "$RUNNER_TEMP/platforms/native-$host-$GITHUB_RUN_ID-"*; do
+              path="$artifact/native-candidate"
+              [[ -f "$path/SHA256SUMS" ]] || continue
+              attempt="${artifact##*-}"
+              if (( attempt > best_attempt )); then
+                best_attempt=$attempt
+                candidate=$path
+              fi
+            done
+            test -n "$candidate"
+            candidates+=("$candidate")
+          done
+          sh scripts/build-npm-release.sh "${candidates[@]}" "$RUNNER_TEMP/npm-release"
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: npm-release-candidate
+          path: ${{ runner.temp }}/npm-release/
+          if-no-files-found: error
+          overwrite: true
+          retention-days: 14
+
+  npm-smoke:
+    name: Public npm smoke (${{ matrix.os }})
+    needs: [npm-package]
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, macos-15]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
+    steps:
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+        with:
+          node-version: '24'
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+        with:
+          name: npm-release-candidate
+          path: ${{ runner.temp }}/npm-release
+      - name: Install the exact tarball offline and run the Chrome probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP/npm-release"
+          shasum -a 256 -c SHA256SUMS
+          packages=("$PWD/"haffa-decision-browser-*.tgz)
+          test "${#packages[@]}" = 1
+          test -f "${packages[0]}"
+          archive="${packages[0]}"
+          version=$(basename "$archive" .tgz)
+          version="${version#haffa-decision-browser-}"
+          if [[ "$RUNNER_OS" == macOS ]]; then
+            export DECISION_BROWSER_CHROME='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+          else
+            export DECISION_BROWSER_CHROME
+            DECISION_BROWSER_CHROME=$(command -v google-chrome || command -v google-chrome-stable || command -v chromium)
+          fi
+          runner=(npm --cache "$RUNNER_TEMP/npm-release-cache" exec --offline --yes --package="$archive" -- decision-browser)
+          test "$("${runner[@]}" --version)" = "decision-browser $version"
+          "${runner[@]}" probe-browser
+
   release-ready:
     name: Release candidate gate
-    needs: [native]
+    needs: [native, npm-smoke]
     if: github.ref_type == 'tag'
     runs-on: ubuntu-22.04
     timeout-minutes: 5
     steps:
-      - name: Require the Python-free native test and package matrix
-        run: echo "Native tests and package checks passed on Linux and macOS. Candidate artifacts are ready for release review."
+      - name: Require the native and npm package matrices
+        run: echo "Native and npm candidates passed on Linux and macOS."
