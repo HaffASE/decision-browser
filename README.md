@@ -37,6 +37,21 @@ among observed controls; the runner rechecks the target before acting.
 
 > **Experimental, version 0.1.3.**
 
+## Experimental Rust/CDP runner
+
+The Rust prototype builds a native stdio counter server and a direct CDP
+matrix runner. The matrix covers the 21 published browser cases, runs Jev,
+Decision Luna, and Gemini Decision against live APIs, and records elapsed
+time, provider time, browser observation/input time, and oracle results.
+
+In the recorded optimized Rust run, Jev confirmed **20/21** cases
+(5.828 s median), Luna **19/21** (5.160 s), and Gemini **19/21** (5.131 s).
+The timing report retains all failed cases.
+
+The stable installation path still uses Python. The migration PR tracks the
+remaining product MCP tools, installer, diagnostics, test and release changes.
+[Run the Rust prototype and inspect the timing evidence](prototypes/rust-cdp-counter/README.md).
+
 ## Quick start
 
 ### 1. Install and choose a provider

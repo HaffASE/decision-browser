@@ -250,3 +250,27 @@ fn acceptance_is_required_again_for_each_counter_call() {
     client.respond(second_id, json!({"action": "decline"}));
     client.status(3, "declined");
 }
+
+#[test]
+fn request_cancellation_settles_approval_and_rejects_its_late_acceptance() {
+    let mut client = form_client();
+    client.call_counter(2);
+    let first_id = client.elicitation();
+    client.send(json!({
+        "jsonrpc": "2.0", "method": "notifications/cancelled", "params": {"requestId": 2}
+    }));
+    client.status(2, "cancelled");
+    client.respond(
+        first_id,
+        json!({"action": "accept", "content": {"reviewed": true}}),
+    );
+    client.send(json!({"jsonrpc": "2.0", "id": 3, "method": "ping"}));
+    assert_eq!(
+        client.receive(),
+        json!({"jsonrpc": "2.0", "id": 3, "result": {}})
+    );
+    client.call_counter(4);
+    let next_id = client.elicitation();
+    client.respond(next_id, json!({"action": "decline"}));
+    client.status(4, "declined");
+}

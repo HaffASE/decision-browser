@@ -5,6 +5,13 @@ Versions follow the policy in [Releasing](docs/releasing.md).
 
 ## [Unreleased]
 
+- Add an experimental native Rust/CDP MCP counter and live browser matrix.
+  The matrix covers the 21 published scenarios on Jev, Decision Luna, and
+  Gemini Decision, with per-case timings and independently verified outcomes.
+- Require the tracked release tree to pass the Python-free check before the
+  next release tag can proceed.
+
+
 ## [0.1.3] - 2026-11-25
 
 - Forward explicitly configured `UV_SYSTEM_CERTS` through the npm launcher and

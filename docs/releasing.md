@@ -18,6 +18,14 @@ equivalence between [PEP 440](https://peps.python.org/pep-0440/) and
 [SemVer](https://semver.org/#spec-item-9). Versions are chosen deliberately by a
 maintainer rather than inferred from every commit message.
 
+## Python-free release gate
+
+The Rust migration requires the release tree to pass
+`sh scripts/check-python-free.sh` before the next tag is published. Verify the
+native installer, upgrade, uninstall, the six MCP tool contracts, and the timed
+live browser matrix on the release candidate. A clean-machine smoke test must
+exercise the published installation with Python and uv unavailable.
+
 ## Prepare a release
 
 1. Review public-readiness findings, tracked files and Git history. Preserve the

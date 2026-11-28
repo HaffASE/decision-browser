@@ -12,6 +12,10 @@ use std::thread::{self, JoinHandle};
 use std::time::{Duration, Instant, SystemTime, UNIX_EPOCH};
 use tungstenite::{Message, WebSocket};
 
+#[path = "matrix_browser.rs"]
+mod matrix_browser;
+pub use matrix_browser::{MatrixPage, run_scenario};
+
 pub type BrowserResult<T> = Result<T, Box<dyn Error + Send + Sync>>;
 
 const COUNTER_HTML: &str = include_str!("../../../examples/browser-control/counter.html");
@@ -29,9 +33,19 @@ pub struct CounterEvidence {
 pub fn run_counter(
     choose_increment: impl FnOnce(&str, u32) -> BrowserResult<()>,
 ) -> BrowserResult<CounterEvidence> {
+    run_counter_guarded(choose_increment, || Ok(()))
+}
+
+/// Stop cancelled work before provider calls and each native input dispatch.
+pub fn run_counter_guarded(
+    choose_increment: impl FnOnce(&str, u32) -> BrowserResult<()>,
+    check_cancelled: impl Fn() -> BrowserResult<()>,
+) -> BrowserResult<CounterEvidence> {
+    check_cancelled()?;
     let fixture = CounterServer::start()?;
+    check_cancelled()?;
     let mut chrome = OwnedChrome::launch()?;
-    let outcome = run_counter_in_browser(&fixture.url, &chrome, choose_increment);
+    let outcome = run_counter_in_browser(&fixture.url, &chrome, choose_increment, &check_cancelled);
     let cleanup = chrome.finish();
     match (outcome, cleanup) {
         (Ok(evidence), Ok(())) => Ok(evidence),
@@ -47,10 +61,26 @@ fn run_counter_in_browser(
     url: &str,
     chrome: &OwnedChrome,
     choose_increment: impl FnOnce(&str, u32) -> BrowserResult<()>,
+    check_cancelled: &impl Fn() -> BrowserResult<()>,
 ) -> BrowserResult<CounterEvidence> {
+    check_cancelled()?;
     let deadline = Instant::now() + RUN_TIMEOUT;
     let endpoint = chrome.debugging_endpoint(deadline)?;
     let mut cdp = Cdp::connect(&endpoint, deadline)?;
+    let outcome = run_counter_on_page(url, &mut cdp, deadline, choose_increment, check_cancelled);
+    // Failure and cancellation also require a graceful browser shutdown before
+    // the process supervisor considers its bounded termination fallback.
+    let _ = cdp.call("Browser.close", json!({}), None);
+    outcome
+}
+
+fn run_counter_on_page(
+    url: &str,
+    cdp: &mut Cdp,
+    deadline: Instant,
+    choose_increment: impl FnOnce(&str, u32) -> BrowserResult<()>,
+    check_cancelled: &impl Fn() -> BrowserResult<()>,
+) -> BrowserResult<CounterEvidence> {
     let context = cdp.call("Target.createBrowserContext", json!({}), None)?;
     let context_id = string_field(&context, "browserContextId")?;
     let target = cdp.call(
@@ -74,6 +104,7 @@ fn run_counter_in_browser(
 
     // Poll this exact document so an unrelated lifecycle event cannot unlock input.
     let observation = loop {
+        check_cancelled()?;
         let observed = cdp.evaluate(OBSERVE_COUNTER, &session)?;
         if !observed.is_null() {
             break observed;
@@ -91,7 +122,9 @@ fn run_counter_in_browser(
         return Err(failure("counter must start at zero"));
     }
     let label = string_field(&observation, "label")?;
+    check_cancelled()?;
     choose_increment(&label, before)?;
+    check_cancelled()?;
     let observation = cdp.evaluate(OBSERVE_COUNTER, &session)?;
     if observation.get("url").and_then(Value::as_str) != Some(url)
         || counter_value(&observation["count"])? != before
@@ -115,6 +148,7 @@ fn run_counter_in_browser(
         return Err(failure("counter button failed the native hit test"));
     }
     for (event, buttons) in [("mousePressed", 1), ("mouseReleased", 0)] {
+        check_cancelled()?;
         cdp.call(
             "Input.dispatchMouseEvent",
             json!({"type": event, "x": x, "y": y, "button": "left", "buttons": buttons, "clickCount": 1}),
@@ -150,8 +184,6 @@ fn run_counter_in_browser(
         json!({"browserContextId": context_id}),
         None,
     )?;
-    // Chrome may close the socket before replying to Browser.close.
-    let _ = cdp.call("Browser.close", json!({}), None);
     Ok(CounterEvidence { before, after, png })
 }
 
@@ -507,4 +539,45 @@ fn counter_value(value: &Value) -> BrowserResult<u32> {
 
 fn failure(message: impl Into<String>) -> Box<dyn Error + Send + Sync> {
     io::Error::other(message.into()).into()
+}
+
+#[cfg(test)]
+mod cancellation_tests {
+    use super::*;
+    use std::cell::Cell;
+
+    #[test]
+    fn an_already_cancelled_counter_never_reaches_the_provider() {
+        let invoked = Cell::new(false);
+        let result = run_counter_guarded(
+            |_, _| {
+                invoked.set(true);
+                Ok(())
+            },
+            || Err(failure("cancelled")),
+        );
+        assert!(!invoked.get());
+        assert_eq!(result.err().unwrap().to_string(), "cancelled");
+    }
+
+    #[test]
+    #[ignore = "requires an installed sandboxed Chrome"]
+    fn cancellation_during_provider_selection_stops_before_input_and_cleans_up() {
+        let cancelled = Cell::new(false);
+        let result = run_counter_guarded(
+            |_, _| {
+                cancelled.set(true);
+                Ok(())
+            },
+            || {
+                if cancelled.get() {
+                    Err(failure("cancelled"))
+                } else {
+                    Ok(())
+                }
+            },
+        );
+        assert!(cancelled.get());
+        assert_eq!(result.err().unwrap().to_string(), "cancelled");
+    }
 }

@@ -26,3 +26,47 @@ target/debug/examples/codex_acceptance target/debug/decision-browser-rust-cdp /t
 ```
 
 The published six-tool interfaces are the next porting surface. The pinned [PR #10 baseline](contracts/pr-10.json) captures source declarations from the PR head for comparison with the future Rust `tools/list` output.
+
+## Timed live browser matrix
+
+The native matrix runner serves the checked-in fixtures in Rust, scores
+browser state and independent server-side events, and writes one JSON line
+per attempted case. The browser uses an isolated Chrome profile. All 21 cases
+are selected when the command is called without case names.
+
+```sh
+cargo build --release --locked --bin browser_matrix
+target/release/browser_matrix --list
+target/release/browser_matrix jev /tmp/decision-browser-rust-jev.jsonl
+target/release/browser_matrix luna /tmp/decision-browser-rust-luna.jsonl
+target/release/browser_matrix gemini /tmp/decision-browser-rust-gemini.jsonl
+```
+
+Use fresh evidence paths. Gemini Decision uses the macOS Keychain service
+`codex-opencode-console` and the OpenCode System One endpoint. The other two
+routes use the same services as the counter. Each run uses the published case
+goals, fixture data, checks and limits. The Rust action policy and CDP driver
+have their own implementation. `elapsed_ms` covers the fixture, browser,
+model, verification and owned browser cleanup. The per-case report includes
+failures so that elapsed time and confirmation rate can be read together.
+
+The matrix exercises the isolated case runner. The separate Codex example
+exercises MCP form elicitation and a native counter action.
+
+### Live results on 28 November 2026
+
+The complete matrix recorded one measured attempt in each of 63 cells.
+The optimized Rust binary used Chrome for Testing 151.0.7922.34 on macOS arm64.
+
+| Live model | Confirmed | Median elapsed | Median provider time |
+| --- | ---: | ---: | ---: |
+| Jev 1.14.0 | 20/21 | 5.828 s | 1.886 s |
+| Decision Luna | 19/21 | 5.160 s | 1.761 s |
+| Gemini Decision 1 | 19/21 | 5.131 s | 1.872 s |
+
+The unconfirmed cases were `article` for Jev, `loading_overlay` and
+`rail_itinerary` for Luna, and `loading_overlay` and `article` for Gemini.
+Medians include unconfirmed attempts. The earlier Python run on the same
+Chromium build recorded 3.687 s, 3.722 s, and 4.455 s, respectively. The Rust
+and Python implementations use different action policies and runners, so
+these timings describe the complete pipelines. [Per-case timings and outcomes](fixtures/timed-live-results-2026-11-28.json)

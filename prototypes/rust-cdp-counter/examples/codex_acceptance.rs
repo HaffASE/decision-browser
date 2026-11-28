@@ -231,6 +231,9 @@ fn main() -> TestResult<()> {
         return Err(usage.into());
     }
     fs::create_dir_all(&output)?;
+    if fs::read_dir(&output)?.next().is_some() {
+        return Err("evidence directory must be empty".into());
+    }
     let output = output.canonicalize()?;
     let result = run(&binary, &scratch, &output, provider);
     let _ = fs::remove_dir(&scratch);
@@ -291,11 +294,13 @@ fn run(binary: &Path, scratch: &Path, output: &Path, provider: &str) -> TestResu
     if declined["structuredContent"]["status"] != "declined" {
         return Err("declined form did not produce the declined status".into());
     }
+    let accepted_started = Instant::now();
     let mut accepted = app.request_with_form(
         "mcpServer/tool/call",
         arguments,
         Some(("accept", &thread_id)),
     )?;
+    let accepted_call_ms = accepted_started.elapsed().as_millis() as u64;
     let contents = accepted["content"]
         .as_array_mut()
         .ok_or("accepted result has no content")?;
@@ -339,7 +344,8 @@ fn run(binary: &Path, scratch: &Path, output: &Path, provider: &str) -> TestResu
         "declined": true,
         "before": 0,
         "after": 1,
-        "pngBytes": png_bytes
+        "pngBytes": png_bytes,
+        "acceptedCallMs": accepted_call_ms
     });
     for field in ["model", "inputTokens", "outputTokens"] {
         if let Some(value) = evidence.get(field) {
