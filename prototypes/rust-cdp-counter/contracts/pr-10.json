@@ -1,0 +1,160 @@
+{
+  "kind": "decision-browser-mcp-contract-baseline",
+  "source": {
+    "repository": "HaffASE/decision-browser",
+    "pull_request": 10,
+    "base_ref": "main",
+    "base_commit": "29710249b1d928ce17bcd7acb35ff99cb23aaf66",
+    "source_ref": "feat/tdqs-tool-contracts",
+    "commit": "8894ca317ac8fb6d2c541002b77353b8eb9ddb4b",
+    "files": {
+      "tools": "src/decision_browser/server.py",
+      "input_fields": "src/decision_browser/contracts.py",
+      "check_kinds": "src/decision_browser/check_validation.py",
+      "success_output_types": "src/decision_browser/mcp_outputs.py",
+      "artifact_limits": "src/decision_browser/artifacts.py"
+    }
+  },
+  "extraction": {
+    "method": "Static source extraction from the PR head. No MCP server or Python code was executed.",
+    "output_required_keys_source": "Declared TypedDict required fields. This artifact does not claim to contain SDK-generated JSON Schema.",
+    "omitted_implicit_annotation_fields": "Only ToolAnnotations fields explicitly set in each decorator are listed.",
+    "injected_context_parameter": "The present_admission ctx parameter is supplied by the MCP server framework and is not a public tool argument."
+  },
+  "prototype_status": {
+    "baseline_tools_implemented": [],
+    "current_prototype_tool": "run_counter",
+    "notice": "These six tools are migration reference contracts, not tools implemented by the Rust counter prototype."
+  },
+  "output_types": {
+    "task_snapshot": {
+      "source_type": "TaskSnapshot",
+      "required_top_level_keys": ["result", "pending_proposal"],
+      "used_by": ["start_task", "get_task", "cancel_task", "present_admission"]
+    },
+    "artifact_body": {
+      "source_type": "ArtifactBody",
+      "required_top_level_keys": ["id", "media_type", "sha256"],
+      "optional_top_level_keys": ["content", "format", "chunk_sha256", "total_bytes", "offset", "next_offset", "eof"],
+      "used_by": ["read_artifact"]
+    },
+    "capability_facts": {
+      "source_type": "CapabilityFacts",
+      "required_top_level_keys": ["modes", "ops", "classes", "artifact_read", "deferred_consequences", "native_human", "live_ac10", "both_modes", "provider", "api_key_present", "provider_ready", "provider_error", "text_generation", "visual", "live_status", "production_ready", "admission_mode", "human_grant_channel", "form_candidate_unverified"],
+      "used_by": ["capabilities"]
+    }
+  },
+  "tools": [
+    {
+      "name": "start_task",
+      "implemented_in_prototype": false,
+      "description": "Start one asynchronous browser task that can interact with external pages.\n\nCall once for a new task, after checking capabilities and agreeing the scope with the user. This launches real work; it is not a preview or an approval. Returns result (including run_id) and pending_proposal, initially often null with reason preparing_admission. Poll get_task; when awaiting_human_admission with a pending proposal, use present_admission with its exact identifiers. If the start response is lost, call get_task without run_id to recover the single retained run. Never retry start_task automatically: a retry can start new work after retention expires. busy means a run is still retained. Tool errors use isError=true and {\"error\": code}; inspect them before acting.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "parameters": [
+        {
+          "name": "request",
+          "type": "object",
+          "required": true,
+          "description": "Bounded browser task: goal/start URL, input values, independent checks, budgets and privacy policy. No caller-supplied approval or grant fields.",
+          "fields_source_type": "TaskRequest",
+          "additional_properties": false,
+          "fields": [
+            {"name": "goal", "type": "string", "required": true, "constraints": {"minLength": 1, "maxLength": 4000}, "description": "User-agreed browser goal; nonempty after trimming. A goal is not approval for consequential actions."},
+            {"name": "start_url", "type": "string", "required": true, "constraints": {"scheme": ["http", "https"], "absolute": true, "userinfo": false, "whitespace_or_control_characters": false}, "description": "Absolute HTTP(S) starting URL, without userinfo, whitespace or control characters."},
+            {"name": "mode", "type": "string", "required": false, "default": "isolated", "enum": ["isolated", "existing_chrome"], "description": "isolated creates an owned browser session; existing_chrome uses the supported existing-browser attachment. Check capabilities.modes first."},
+            {"name": "values", "type": "object", "required": true, "value_type": "string", "constraints": {"maxProperties": 32, "keyMaxLength": 128, "valueMaxLength": 4000}, "description": "Task input values: at most 32 string entries, keys <=128 characters and values <=4000. Use an empty object when no inputs are needed."},
+            {"name": "checks", "type": "array", "required": true, "maxItems": 32, "items_source_type": "Check", "description": "Up to 32 independent completion checks. An empty list cannot establish verified functional completion.", "item_fields": [
+              {"name": "kind", "type": "string", "required": true, "enum": ["route", "text", "value", "visible", "count", "fixture_state"], "description": "Independent check: route/text/value expect a string, visible a boolean, count a nonnegative integer. fixture_state is reserved for trusted adapters and rejected in public requests."},
+              {"name": "target", "type": "string", "required": false, "default": "", "constraints": {"maxUtf8Bytes": 512}, "description": "Empty for route; otherwise a supported CSS selector (up to 512 UTF-8 bytes). XPath and Playwright selector engines are rejected."},
+              {"name": "expected", "type": ["string", "boolean", "integer"], "required": true, "description": "Exact expected value for the check kind; string, boolean or integer, never a caller assertion that verification passed."}
+            ]},
+            {"name": "viewports", "type": "array", "required": false, "minItems": 1, "maxItems": 3, "default_factory": [{"width": 390, "height": 844}, {"width": 768, "height": 1024}, {"width": 1440, "height": 900}], "items_source_type": "Viewport", "description": "One to three CSS-pixel viewport sizes for visual diagnostics.", "item_fields": [
+              {"name": "width", "type": "integer", "required": true, "minimum": 100, "maximum": 4096, "description": "Viewport width in CSS pixels."},
+              {"name": "height", "type": "integer", "required": true, "minimum": 100, "maximum": 4096, "description": "Viewport height in CSS pixels."}
+            ]},
+            {"name": "limits", "type": "object", "required": true, "fields_source_type": "Limits", "additional_properties": false, "description": "Required execution and byte budgets; an empty object uses bounded defaults.", "fields": [
+              {"name": "max_steps", "type": "integer", "required": false, "default": 12, "minimum": 1, "maximum": 1000, "description": "Maximum browser action steps."},
+              {"name": "max_seconds", "type": "number", "required": false, "default": 120.0, "minimum_exclusive": 0, "maximum": 600, "finite": true, "description": "Finite wall-clock task budget in seconds."},
+              {"name": "max_provider_calls", "type": "integer", "required": false, "default": 12, "minimum": 1, "maximum": 1000, "description": "Maximum model-provider requests."},
+              {"name": "max_input_bytes", "type": "integer", "required": false, "default": 262144, "minimum": 1, "maximum": 16777216, "description": "Cumulative provider input budget in bytes."},
+              {"name": "max_output_bytes", "type": "integer", "required": false, "default": 262144, "minimum": 1, "maximum": 16777216, "description": "Cumulative provider output budget in bytes."},
+              {"name": "max_stored_bytes", "type": "integer", "required": false, "default": 10485760, "minimum": 1, "maximum": 104857600, "description": "Maximum retained artifact storage in bytes."}
+            ]},
+            {"name": "privacy", "type": "object", "required": true, "fields_source_type": "PrivacyPolicy", "additional_properties": false, "description": "Required local privacy controls; an empty object uses defaults with image sending disabled.", "fields": [
+              {"name": "blocked_literals", "type": "array", "required": false, "default_factory": [], "maxItems": 32, "itemType": "string", "itemMinLength": 1, "itemMaxLength": 256, "description": "Local payload denylist: up to 32 nonempty literals of 1..256 characters. Never send or log these values."},
+              {"name": "send_images", "type": "boolean", "required": false, "default": false, "description": "Whether image payloads may be sent to the provider; does not guarantee privacy or grant admission."}
+            ]},
+            {"name": "visual", "type": "boolean", "required": false, "default": false, "description": "Request visual diagnostics at the selected viewports; separate from functional verification."}
+          ]
+        }
+      ],
+      "output_type": "TaskSnapshot",
+      "output_required_top_level_keys": ["result", "pending_proposal"]
+    },
+    {
+      "name": "get_task",
+      "implemented_in_prototype": false,
+      "description": "Read the current snapshot of one retained task without starting work.\n\nSupply run_id to poll that run; omit it (or pass JSON null) to recover the single retained run after a lost start_task response. Returns result and pending_proposal. queued, awaiting_human_admission and running are not final; reason finalizing means cleanup is still in progress. Present a pending admission only with its exact identifiers; read result.artifact_ids with read_artifact. A terminal outcome_unknown/cleanup_unknown is not proof of successful cleanup. unknown/expired errors mean no matching retained run, not evidence that no browser action occurred. Do not restart automatically.",
+      "annotations": {"readOnlyHint": true, "openWorldHint": false},
+      "parameters": [
+        {"name": "run_id", "type": ["string", "null"], "required": false, "default": null, "constraints": {"pattern": "^[A-Za-z0-9_-]{1,128}$"}, "description": "Exact result.run_id from a task response. Omit or pass JSON null to recover the single retained run after a lost start response; the string 'null' is an ordinary ID."}
+      ],
+      "output_type": "TaskSnapshot",
+      "output_required_top_level_keys": ["result", "pending_proposal"]
+    },
+    {
+      "name": "cancel_task",
+      "implemented_in_prototype": false,
+      "description": "Request cancellation of a retained browser run and revoke its admission.\n\nUse when the user wants the run stopped. Returns result and pending_proposal; cancellation is a request, not an immediate cleanup receipt or rollback of earlier page changes. Poll get_task until finalization/cleanup finishes. outcome_unknown with cleanup_unknown requires inspection, not a success claim or automatic restart. Repeated cancellation of the same retained run adds no new work; unknown/expired returns isError=true with {\"error\": code}.",
+      "annotations": {"readOnlyHint": false, "destructiveHint": true, "idempotentHint": true, "openWorldHint": true},
+      "parameters": [
+        {"name": "run_id", "type": "string", "required": true, "constraints": {"pattern": "^[A-Za-z0-9_-]{1,128}$"}, "description": "Exact result.run_id of the retained run to stop; obtain it with get_task if the start response was lost."}
+      ],
+      "output_type": "TaskSnapshot",
+      "output_required_top_level_keys": ["result", "pending_proposal"]
+    },
+    {
+      "name": "read_artifact",
+      "implemented_in_prototype": false,
+      "description": "Read retained evidence bytes by server-issued run and artifact IDs.\n\nUse result.artifact_ids from get_task, never a local path. Default legacy is only for a whole artifact fitting one chunk at offset 0; otherwise it returns artifact_range_required. Choose structured or resource for large artifacts. Follow next_offset with the same IDs/channel until eof=true; offset and limit count original bytes, not base64 characters. Explicit channels include total_bytes, sha256 (whole artifact) and chunk_sha256. structured returns base64 in structuredContent.content; resource returns it in content's embedded blob. Errors retain isError=true and {\"error\": code}, including bad_range for an offset beyond EOF; unknown/expired runs cannot supply retained artifacts.",
+      "annotations": {"readOnlyHint": true, "openWorldHint": false},
+      "parameters": [
+        {"name": "run_id", "type": "string", "required": true, "constraints": {"pattern": "^[A-Za-z0-9_-]{1,128}$"}, "description": "Exact result.run_id owning the retained artifact."},
+        {"name": "artifact_id", "type": "string", "required": true, "constraints": {"pattern": "^[A-Za-z0-9_-]{1,128}$"}, "description": "One ID from result.artifact_ids, not a filesystem path or URL."},
+        {"name": "offset", "type": "integer", "required": false, "default": 0, "minimum": 0, "description": "Zero-based byte offset in the original artifact, not a base64 character offset. For pagination, copy next_offset from the prior response."},
+        {"name": "limit", "type": "integer", "required": false, "default": 65536, "minimum": 1, "maximum": 65536, "description": "Maximum original bytes per chunk (1..65536), before base64 encoding."},
+        {"name": "channel", "type": "string", "required": false, "default": "legacy", "enum": ["legacy", "structured", "resource"], "description": "legacy: small whole artifact in text and structuredContent; structured: chunk base64 only in structuredContent; resource: chunk base64 in an embedded resource, metadata in structuredContent."}
+      ],
+      "output_type": "ArtifactBody",
+      "output_required_top_level_keys": ["id", "media_type", "sha256"],
+      "output_optional_top_level_keys": ["content", "format", "chunk_sha256", "total_bytes", "offset", "next_offset", "eof"]
+    },
+    {
+      "name": "capabilities",
+      "implemented_in_prototype": false,
+      "description": "Inspect local prerequisites and supported operations before starting a task.\n\nTakes no arguments. Returns browser modes, operations, admission classes/mode, artifact chunk limits/channels and selected-provider configuration status. provider_ready and PREREQUISITES_PRESENT describe configuration only: no API, browser, entitlement or human approval is tested. production_ready remains false and live/native evidence remains NOT_RUN. A configured provider does not guarantee successful execution; resolve BLOCKED prerequisites before use. No credentials are returned and this call does not grant admission.",
+      "annotations": {"readOnlyHint": true, "openWorldHint": false},
+      "parameters": [],
+      "output_type": "CapabilityFacts",
+      "output_required_top_level_keys": ["modes", "ops", "classes", "artifact_read", "deferred_consequences", "native_human", "live_ac10", "both_modes", "provider", "api_key_present", "provider_ready", "provider_error", "text_generation", "visual", "live_status", "production_ready", "admission_mode", "human_grant_channel", "form_candidate_unverified"]
+    },
+    {
+      "name": "present_admission",
+      "implemented_in_prototype": false,
+      "description": "Present a pending action scope through the client's Standard MCP form.\n\nCall only when get_task reports awaiting_human_admission and a non-null pending_proposal. Copy run_id, proposal_id and digest from that same proposal. The tool presents a form; calling it does not itself grant permission. Only the supported form response may record admission, and a host accept is not proof of a native human click. Never fabricate reviewed/approval/grant fields. Returns the updated result and pending_proposal; continue with get_task. Unsupported form clients fail closed. Stale, resolved or concurrent requests may return isError=true with unknown, presentation_resolved or presentation_busy; refresh get_task instead of blindly repeating a prompt.",
+      "annotations": {"readOnlyHint": false, "destructiveHint": true, "idempotentHint": false, "openWorldHint": true},
+      "parameters": [
+        {"name": "run_id", "type": "string", "required": true, "constraints": {"pattern": "^[A-Za-z0-9_-]{1,128}$"}, "description": "Copy pending_proposal.run_id exactly from the latest task snapshot."},
+        {"name": "proposal_id", "type": "string", "required": true, "constraints": {"pattern": "^[A-Za-z0-9_-]{1,128}$"}, "description": "Copy pending_proposal.proposal_id exactly; do not reuse an old or resolved proposal."},
+        {"name": "digest", "type": "string", "required": true, "constraints": {"pattern": "^[a-f0-9]{64}$"}, "description": "Copy pending_proposal.digest verbatim: 64 lowercase hexadecimal characters binding the displayed scope. Never calculate or guess it."}
+      ],
+      "output_type": "TaskSnapshot",
+      "output_required_top_level_keys": ["result", "pending_proposal"]
+    }
+  ]
+}
