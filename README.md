@@ -80,10 +80,11 @@ verify the selected field value. Provide known form text in `values`.
 
 `isolated` mode creates a fresh browser context. `existing_chrome` uses an
 acknowledged task tab in a selected Chrome debugging session and shares that
-session's account access. Use it with `standard_form` and a Chrome session with
-remote debugging enabled. Task navigation and requests follow the agreed origin,
-which can block cross-origin resources and transitions. Check `capabilities`
-before selecting a mode. [Browser control](docs/browser-control-stage-one.md)
+session's account access. For ordinary tasks without forms, start the server in
+`task_scope` and set `DECISION_BROWSER_DEVTOOLS_ACTIVE_PORT` to the chosen
+Chrome session's `DevToolsActivePort` file. Task navigation and requests follow
+the agreed origin, which can block cross-origin resources and transitions. Check
+`capabilities` before selecting a mode. [Browser control](docs/browser-control-stage-one.md)
 
 The runner enforces the request's step, provider-call, byte and elapsed-time
 limits. Browser inputs operate on observed controls. Functional verification
@@ -102,10 +103,10 @@ uses the requested page checks. Visual diagnostics are reported separately.
 
 Start once and poll `queued`, `awaiting_human_admission` and `running` results.
 When a pending proposal exists, pass its exact identifiers to `present_admission`
-and let the user answer the client form. One confirmation covers ordinary
-actions for an isolated task within the displayed origin, operations and
-limits. Ambiguous effects and actions in existing Chrome receive individual
-review. Read a terminal result's reason and recovery fields.
+and let the user answer the client form. Under `standard_form`, one confirmation
+covers ordinary actions for an isolated task within the displayed origin,
+operations and limits. Ambiguous effects and actions in existing Chrome receive
+individual review in that mode. Read a terminal result's reason and recovery fields.
 An `outcome_unknown` result requires inspecting the outcome before deciding
 whether another run is safe.
 

@@ -5,6 +5,10 @@ Versions follow the policy in [Releasing](docs/releasing.md).
 
 ## [Unreleased]
 
+- Allow ordinary tasks in an explicitly selected Chrome session under
+  `task_scope`. Each task uses its own tab and runs without Decision Browser
+  forms.
+
 ## [0.2.2] - 2026-11-28
 
 - Reuse the confirmed task scope for ordinary actions in isolated Chrome.

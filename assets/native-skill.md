@@ -1,14 +1,16 @@
 ---
 name: decision-browser
-description: Run bounded browser tasks through the native Decision Browser MCP server. Use isolated mode for ordinary sites or attach to an explicitly selected Chrome in standard_form mode.
+description: Run bounded browser tasks through the native Decision Browser MCP server in isolated mode or an explicitly selected Chrome session.
 ---
 
 # Decision Browser
 
 Read `capabilities` and the schemas of the connected tools. Use the agreed
 HTTP(S) origin in `isolated` mode. Use `existing_chrome` only with an explicitly
-selected Chrome and `standard_form` admission. `decision-browser doctor` checks
-local prerequisites using the installed executable and the current project path.
+selected Chrome. Under `task_scope`, the server requires an explicit
+`DECISION_BROWSER_DEVTOOLS_ACTIVE_PORT` selection and admits ordinary actions
+in either advertised mode without a Decision Browser form. Use
+`decision-browser doctor` to check local prerequisites.
 
 1. Call `start_task` once with the agreed URL, goal, checks, values, and limits.
    Keep its run ID. If the response is lost, use `get_task` without a run ID to

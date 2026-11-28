@@ -29,9 +29,11 @@ shares account access. Recognized consequential actions are blocked by policy.
    cleanup settles. Preserve the original deadline and budgets.
 
 The operator selects `standard_form` or `task_scope` at server startup.
-Task-scoped isolated work follows the exact initial origin, allowed operations,
-limits and deadline reported by the server. It does not create a form response.
-Call `present_admission` only for an actual pending proposal.
+Task-scoped work follows the exact initial origin, allowed operations, limits
+and deadline reported by the server. For `existing_chrome`, the server requires
+an explicit `DECISION_BROWSER_DEVTOOLS_ACTIVE_PORT` selection. Ordinary actions
+under `task_scope` require no form. Call `present_admission` only for an actual
+pending proposal.
 
 Read `terminal`, `reason` and `recovery` together. An `outcome_unknown` result
 requires inspecting the outcome before choosing another logical run. A provider

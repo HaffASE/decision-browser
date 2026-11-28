@@ -108,16 +108,21 @@ procedure](native-installation.md) documents current preview and apply behavior.
 ## Existing Chrome
 
 Use `existing_chrome` only when `capabilities` advertises it and a selected
-Chrome debugging session is available. `DECISION_BROWSER_DEVTOOLS_ACTIVE_PORT`
-can select its absolute `DevToolsActivePort` file. The path, ownership and
-loopback endpoint are checked before attachment. Chrome must already have
-remote debugging enabled with the selected profile.
+Chrome debugging session is available. Chrome must already have remote debugging
+enabled with the selected profile. Set `DECISION_BROWSER_DEVTOOLS_ACTIVE_PORT`
+in the MCP server environment to the absolute path of that profile's
+`DevToolsActivePort` file. An explicit selection is required with `task_scope`,
+which admits ordinary actions without Decision Browser forms. The path and
+loopback endpoint are checked before attachment.
+
+Managed Codex registrations forward this variable from the Codex process. An
+absolute path supplied during a managed setup or upgrade is saved in that
+registration.
 
 The task creates and owns an acknowledged tab in that session. Existing account
 cookies are shared. The task's exact-origin scope can prevent cross-origin
-navigation, form submissions and externally hosted resources. Use a dedicated
-test profile for initial acceptance. A test that preserves a foreign tab in a
-disposable browser establishes that tested cleanup path.
+navigation, form submissions and externally hosted resources. The server closes
+its task tab after execution and leaves existing tabs open.
 
 ## Historical distributions
 

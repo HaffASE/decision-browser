@@ -53,14 +53,25 @@ pub fn existing_chrome_available() -> bool {
         .is_ok()
 }
 
-fn selected_devtools_file() -> BrowserResult<std::path::PathBuf> {
-    use std::path::PathBuf;
-    if let Some(path) = std::env::var_os("DECISION_BROWSER_DEVTOOLS_ACTIVE_PORT") {
-        let path = PathBuf::from(path);
+pub(crate) fn explicit_existing_chrome_available() -> bool {
+    explicit_devtools_file()
+        .is_some_and(|path| path.and_then(|path| read_devtools_file(&path)).is_ok())
+}
+
+fn explicit_devtools_file() -> Option<BrowserResult<std::path::PathBuf>> {
+    std::env::var_os("DECISION_BROWSER_DEVTOOLS_ACTIVE_PORT").map(|path| {
+        let path = std::path::PathBuf::from(path);
         if !path.is_absolute() {
             return Err(failure("invalid_devtools_path"));
         }
-        return Ok(path);
+        Ok(path)
+    })
+}
+
+fn selected_devtools_file() -> BrowserResult<std::path::PathBuf> {
+    use std::path::PathBuf;
+    if let Some(path) = explicit_devtools_file() {
+        return path;
     }
     let home = std::env::var_os("HOME")
         .map(PathBuf::from)
