@@ -84,8 +84,14 @@ pub fn dispatch(args: &[String]) -> Result<()> {
                 options.command == "uninstall",
             )?;
             drop(lease);
-            println!("{}", inspect(&project)?);
-            Ok(())
+            let status = inspect(&project)?;
+            let clear = status["status"] == "clear";
+            println!("{status}");
+            if clear {
+                Ok(())
+            } else {
+                Err("installation barrier requires inspection".into())
+            }
         }
         _ => Err("unsupported installation command".into()),
     }
@@ -354,10 +360,12 @@ fn open_lease(path: &Path, create: bool) -> Result<File> {
 }
 
 fn lock(project: &Path) -> Result<Lease> {
+    recovery::ensure_no_additional_barriers(project)?;
     let path = checked(project, ".decision-browser-install.native.lease")?;
     let file = open_lease(&path, true)?;
     file.try_lock()
         .map_err(|_| "another native installer is active")?;
+    recovery::ensure_no_additional_barriers(project)?;
     let mut files = vec![file];
     for relative in [
         ".decision-browser-install.lease",
@@ -369,6 +377,7 @@ fn lock(project: &Path) -> Result<Lease> {
             let mut file = open_lease(&old, create)?;
             file.try_lock()
                 .map_err(|_| "a legacy installer is active")?;
+            recovery::ensure_no_additional_barriers(project)?;
             let mut body = Vec::new();
             (&mut file).take(129).read_to_end(&mut body)?;
             if body != b"{\"owner\":\"decision-browser-lease-v1\"}\n" && !body.is_empty() {
@@ -578,6 +587,7 @@ fn skill_path(client: &str) -> &'static str {
 }
 
 fn transaction(project: &Path, changes: Vec<Value>) -> Result<()> {
+    recovery::ensure_no_additional_barriers(project)?;
     let intent = checked(project, &format!("{STATE}/native-intent.json"))?;
     if intent.exists() {
         return Err(
@@ -607,6 +617,7 @@ fn transaction(project: &Path, changes: Vec<Value>) -> Result<()> {
         .as_array()
         .ok_or("invalid installation intent")?
     {
+        recovery::ensure_no_additional_barriers(project)?;
         let path = checked(
             project,
             change["path"].as_str().ok_or("invalid intent path")?,
@@ -694,6 +705,7 @@ fn recover(project: &Path) -> Result<()> {
 }
 
 fn install(project: &Path, source: &Path, clients: &[String], uninstall: bool) -> Result<()> {
+    recovery::ensure_no_additional_barriers(project)?;
     if checked(project, &format!("{STATE}/native-intent.json"))?.exists() {
         return Err("incomplete installation requires recover-install".into());
     }
@@ -1312,6 +1324,73 @@ mod tests {
         )?;
         assert!(lock(&project.0).is_err());
         assert!(!project.0.join(STATE).exists());
+        Ok(())
+    }
+
+    #[test]
+    fn every_install_entry_point_preserves_legacy_barriers_before_mutation() -> Result<()> {
+        for barrier in [
+            ".decision-browser-stage.lease",
+            ".decision-browser-install/install.lock",
+            ".decision-browser-install/prepare.lock",
+        ] {
+            let project = Project::new();
+            write_atomic(&project.0.join(barrier), Some(b"retained barrier"))?;
+            write_atomic(
+                &project.0.join(".codex/config.toml"),
+                Some(b"model = 'preserved'\n"),
+            )?;
+            write_atomic(&project.0.join(".mcp.json"), Some(b"{\"custom\":true}"))?;
+            assert!(recovery::relevant(&project.0));
+            assert_eq!(inspect(&project.0)?["status"], "blocked");
+            for command in ["setup", "install", "upgrade", "uninstall"] {
+                let arguments = [
+                    command.to_owned(),
+                    "both".to_owned(),
+                    "--project".to_owned(),
+                    project.0.to_str().unwrap().to_owned(),
+                ];
+                assert!(
+                    dispatch(&arguments).is_err(),
+                    "{command} accepted {barrier}"
+                );
+                assert_eq!(
+                    fs::read(project.0.join(".codex/config.toml"))?,
+                    b"model = 'preserved'\n"
+                );
+                assert_eq!(fs::read(project.0.join(".mcp.json"))?, b"{\"custom\":true}");
+                assert_eq!(fs::read(project.0.join(barrier))?, b"retained barrier");
+                assert!(
+                    !project
+                        .0
+                        .join(".decision-browser-install.native.lease")
+                        .exists()
+                );
+                assert!(!project.0.join(".decision-browser-install.lease").exists());
+                assert!(!project.0.join(STATE).join("native-runtimes").exists());
+            }
+            assert!(
+                install(
+                    &project.0,
+                    Path::new("/unused/native"),
+                    &clients("both")?,
+                    false
+                )
+                .is_err()
+            );
+            assert!(
+                transaction(
+                    &project.0,
+                    vec![change(
+                        ".mcp.json",
+                        Some(b"{\"custom\":true}".to_vec()),
+                        Some(b"modified".to_vec())
+                    )]
+                )
+                .is_err()
+            );
+            assert!(!project.0.join(STATE).join("native-intent.json").exists());
+        }
         Ok(())
     }
     #[test]

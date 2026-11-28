@@ -489,10 +489,38 @@ fn system_project_path(project: &Path) -> PathBuf {
 }
 
 pub(super) fn relevant(project: &Path) -> bool {
-    [LEASE, RESIDUAL, ".decision-browser-stage.lease"]
-        .iter()
-        .any(|name| fs::symlink_metadata(project.join(name)).is_ok())
+    [
+        LEASE,
+        RESIDUAL,
+        ".decision-browser-stage.lease",
+        ".decision-browser-install/install.lock",
+        ".decision-browser-install/prepare.lock",
+    ]
+    .iter()
+    .any(|name| fs::symlink_metadata(project.join(name)).is_ok())
         || fs::symlink_metadata(project.join(STATE).join("owner.json")).is_ok()
+}
+
+pub(super) fn ensure_no_additional_barriers(project: &Path) -> Result<()> {
+    for (relative, reason) in [
+        (".decision-browser-stage.lease", "additional_stage_lease"),
+        (
+            ".decision-browser-install/install.lock",
+            "legacy_install_lock",
+        ),
+        (
+            ".decision-browser-install/prepare.lock",
+            "legacy_install_lock",
+        ),
+    ] {
+        let path = super::checked(project, relative).map_err(|_| "unsafe_recovery_evidence")?;
+        match fs::symlink_metadata(path) {
+            Ok(_) => return Err(reason.into()),
+            Err(error) if error.kind() == std::io::ErrorKind::NotFound => {}
+            Err(_) => return Err("unsafe_recovery_evidence".into()),
+        }
+    }
+    Ok(())
 }
 
 #[cfg(not(unix))]
@@ -508,14 +536,7 @@ fn inspect_inner(
     mutation: &Cell<bool>,
 ) -> Result<Value> {
     let directory = project_directory(project)?;
-    if fs::symlink_metadata(project.join(".decision-browser-stage.lease")).is_ok() {
-        return Err("additional_stage_lease".into());
-    }
-    for name in ["install.lock", "prepare.lock"] {
-        if fs::symlink_metadata(project.join(STATE).join(name)).is_ok() {
-            return Err("legacy_install_lock".into());
-        }
-    }
+    ensure_no_additional_barriers(project)?;
     let native_path = project.join(".decision-browser-install.native.lease");
     let _native_lease = if fs::symlink_metadata(&native_path).is_ok() {
         let file = open_lease(&native_path, false).map_err(|_| "unsafe_recovery_evidence")?;
@@ -524,15 +545,7 @@ fn inspect_inner(
     } else {
         None
     };
-    for path in [
-        project.join(".decision-browser-stage.lease"),
-        project.join(STATE).join("install.lock"),
-        project.join(STATE).join("prepare.lock"),
-    ] {
-        if fs::symlink_metadata(&path).is_ok() {
-            return Err("additional_stage_lease".into());
-        }
-    }
+    ensure_no_additional_barriers(project)?;
     let lease_path = project.join(LEASE);
     if fs::symlink_metadata(&lease_path).is_err() {
         if fs::symlink_metadata(project.join(RESIDUAL)).is_ok()
