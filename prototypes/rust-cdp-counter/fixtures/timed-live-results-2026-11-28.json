@@ -1275,5 +1275,51 @@
       ],
       "oracle": true
     }
-  ]
+  ],
+  "targeted_followup": {
+    "browser_matrix_sha256": "d371772a520ee79bed64559b6b883571e7f9d79113acfa594929e43104f80083",
+    "change": "Wait locally when there are no offered browser actions.",
+    "runs": [
+      {
+        "provider": "luna",
+        "model": "gpt-6-luna",
+        "case": "loading_overlay",
+        "confirmed": true,
+        "error": null,
+        "elapsed_ms": 6790,
+        "api_ms": 2719,
+        "observe_ms": 14,
+        "action_ms": 1178,
+        "verify_ms": 42,
+        "calls": 3,
+        "input_tokens": 901,
+        "output_tokens": 0,
+        "checks": [
+          true,
+          true
+        ],
+        "oracle": true
+      },
+      {
+        "provider": "gemini",
+        "model": "gemini-decision-1",
+        "case": "loading_overlay",
+        "confirmed": true,
+        "error": null,
+        "elapsed_ms": 6750,
+        "api_ms": 2615,
+        "observe_ms": 6,
+        "action_ms": 1678,
+        "verify_ms": 39,
+        "calls": 4,
+        "input_tokens": 1137,
+        "output_tokens": 0,
+        "checks": [
+          true,
+          true
+        ],
+        "oracle": true
+      }
+    ]
+  }
 }
