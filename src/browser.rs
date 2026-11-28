@@ -10,6 +10,7 @@ use std::sync::Arc;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::thread::{self, JoinHandle};
 use std::time::{Duration, Instant, SystemTime, UNIX_EPOCH};
+use tungstenite::handshake::HandshakeError;
 use tungstenite::{Message, WebSocket};
 
 #[path = "matrix_browser.rs"]
@@ -23,6 +24,7 @@ pub type BrowserResult<T> = Result<T, Box<dyn Error + Send + Sync>>;
 
 const COUNTER_HTML: &str = include_str!("../examples/browser-control/counter.html");
 const COMMAND_TIMEOUT: Duration = Duration::from_secs(5);
+const CDP_CONNECT_TIMEOUT: Duration = Duration::from_secs(10);
 const RUN_TIMEOUT: Duration = Duration::from_secs(30);
 const OBSERVE_COUNTER: &str = "(() => { const count = document.getElementById('count'); const button = document.getElementById('inc'); if (!count || !button || document.readyState !== 'complete') return null; const r = button.getBoundingClientRect(); return {url: location.href, count: Number(count.textContent), label: button.textContent, x: r.x + r.width / 2, y: r.y + r.height / 2, width: r.width, height: r.height}; })()";
 
@@ -207,16 +209,43 @@ impl Cdp {
             .and_then(|rest| rest.split('/').next())
             .ok_or_else(|| failure("Chrome returned a non-loopback CDP endpoint"))?;
         let port = address.parse::<u16>()?;
+        let connect_deadline = deadline.min(Instant::now() + CDP_CONNECT_TIMEOUT);
+        let remaining = connect_deadline.saturating_duration_since(Instant::now());
+        if remaining.is_zero() {
+            return Err(failure(
+                "CDP connection deadline exceeded before TCP connect",
+            ));
+        }
         let stream = TcpStream::connect_timeout(
             &SocketAddr::from(([127, 0, 0, 1], port)),
-            Duration::from_secs(2),
-        )?;
-        stream.set_read_timeout(Some(COMMAND_TIMEOUT))?;
-        stream.set_write_timeout(Some(Duration::from_secs(2)))?;
-        let (socket, _) = tungstenite::client(endpoint, stream)?;
+            remaining.min(Duration::from_secs(2)),
+        )
+        .map_err(|error| failure(format!("CDP TCP connection failed: {error}")))?;
+
+        // Chrome can publish its listening port before it answers the upgrade.
+        // Resume the handshake on this socket, preserving any bytes already read.
+        stream.set_nonblocking(true)?;
+        let mut handshake = tungstenite::client(endpoint, stream);
+        while let Err(HandshakeError::Interrupted(pending)) = handshake {
+            let remaining = connect_deadline.saturating_duration_since(Instant::now());
+            thread::sleep(remaining.min(Duration::from_millis(10)));
+            if Instant::now() >= connect_deadline {
+                return Err(failure("CDP WebSocket handshake timed out"));
+            }
+            handshake = pending.handshake();
+        }
+        if Instant::now() >= connect_deadline {
+            return Err(failure("CDP WebSocket handshake timed out"));
+        }
+        let (socket, _) = handshake
+            .map_err(|error| failure(format!("CDP WebSocket handshake failed: {error}")))?;
+        socket.get_ref().set_nonblocking(false)?;
         socket
             .get_ref()
             .set_read_timeout(Some(Duration::from_millis(250)))?;
+        socket
+            .get_ref()
+            .set_write_timeout(Some(Duration::from_secs(2)))?;
         Ok(Self {
             socket,
             next_id: 0,
@@ -895,6 +924,46 @@ fn failure(message: impl Into<String>) -> Box<dyn Error + Send + Sync> {
 }
 
 #[cfg(test)]
+mod cdp_connection_tests {
+    use super::*;
+
+    #[test]
+    fn cdp_connect_waits_for_a_slow_websocket_upgrade() -> BrowserResult<()> {
+        let listener = TcpListener::bind("127.0.0.1:0")?;
+        let endpoint = format!("ws://{}/devtools/browser/test", listener.local_addr()?);
+        let peer = thread::spawn(move || -> BrowserResult<()> {
+            let (stream, _) = listener.accept()?;
+            stream.set_read_timeout(Some(CDP_CONNECT_TIMEOUT))?;
+            // Once the request arrives, wait past the former five-second timeout.
+            assert_eq!(stream.peek(&mut [0])?, 1);
+            thread::sleep(Duration::from_millis(5250));
+            let _socket = tungstenite::accept(stream)?;
+            Ok(())
+        });
+        let _cdp = Cdp::connect(&endpoint, Instant::now() + Duration::from_secs(15))?;
+        peer.join().expect("test WebSocket peer panicked")
+    }
+
+    #[test]
+    fn cdp_connect_stops_at_the_caller_deadline_when_upgrade_stalls() -> BrowserResult<()> {
+        let listener = TcpListener::bind("127.0.0.1:0")?;
+        let endpoint = format!("ws://{}/devtools/browser/test", listener.local_addr()?);
+        // The listening socket completes TCP but never answers the upgrade.
+        let started = Instant::now();
+        let result = Cdp::connect(&endpoint, started + Duration::from_millis(200));
+        drop(listener);
+        let error = result.err().expect("silent peer unexpectedly upgraded");
+        assert_eq!(error.to_string(), "CDP WebSocket handshake timed out");
+        assert!(
+            started.elapsed() < Duration::from_secs(3),
+            "CDP handshake exceeded its short caller deadline: {:?}",
+            started.elapsed()
+        );
+        Ok(())
+    }
+}
+
+#[cfg(test)]
 mod cancellation_tests {
     use super::*;
     use std::cell::Cell;
@@ -984,7 +1053,14 @@ mod cancellation_tests {
                 }
             },
         );
-        assert!(cancelled.get());
-        assert_eq!(result.err().unwrap().to_string(), "cancelled");
+        assert!(
+            cancelled.get(),
+            "counter did not reach provider selection: {:?}",
+            result.as_ref().err()
+        );
+        let error = result
+            .err()
+            .expect("counter completed despite cancellation");
+        assert_eq!(error.to_string(), "cancelled");
     }
 }
