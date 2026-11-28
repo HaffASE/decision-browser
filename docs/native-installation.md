@@ -25,7 +25,7 @@ the builder also checks that `--version` matches the executable version.
 ```sh
 sh scripts/build-native-release.sh \
   --binary /absolute/path/reviewed/decision-browser \
-  --target aarch64-apple-darwin --version 0.1.4 \
+  --target aarch64-apple-darwin --version 0.1.5 \
   --output /absolute/path/new-native-candidate
 ```
 
@@ -129,6 +129,6 @@ when preparing a release. That mode also requires exactly one matching dated
 CHANGELOG heading with a valid calendar date.
 
 ```sh
-cargo run --locked --bin check-native-release -- --tag v0.1.4
-sh scripts/build-native-release.sh --tag v0.1.4 --output /absolute/path/new-release
+cargo run --locked --bin check-native-release -- --tag v0.1.5
+sh scripts/build-native-release.sh --tag v0.1.5 --output /absolute/path/new-release
 ```

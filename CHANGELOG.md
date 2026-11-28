@@ -5,7 +5,14 @@ Versions follow the policy in [Releasing](docs/releasing.md).
 
 ## [Unreleased]
 
+## [0.1.5] - 2026-11-28
+
+- Verify Chrome process-group cleanup without interpreting the state of unrelated
+  system processes. Unknown states in the owned group still block confirmation.
+
 ## [0.1.4] - 2026-11-28
+
+Tagged release candidate. Its macOS tag verification blocked publication.
 
 - Move the server, project installer, release tools and verification to Rust.
   The native archive runs with Chrome and needs no auxiliary language runtime.
