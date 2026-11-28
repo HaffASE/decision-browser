@@ -5,6 +5,7 @@ use std::time::{Duration, Instant};
 
 const OBSERVE: &str = include_str!("../assets/matrix_observation.js");
 const CHECK_PUBLIC: &str = include_str!("../assets/functional_observation.js");
+const VIEWPORT: &str = "({width:innerWidth,height:innerHeight})";
 
 pub struct MatrixPage {
     cdp: Cdp,
@@ -636,14 +637,17 @@ impl MatrixPage {
         if !(100..=4096).contains(&width) || !(100..=4096).contains(&height) {
             return Err(failure("viewport_invalid"));
         }
+        self.ready()?;
+        self.enter_world()?;
+        let original = self.eval(VIEWPORT)?;
+        let requested = json!({"width":width,"height":height});
         let changed = self.cdp.call(
             "Emulation.setDeviceMetricsOverride",
             json!({"width":width,"height":height,"deviceScaleFactor":1,"mobile":false}),
             Some(&self.session),
         );
         let result = changed.and_then(|_| {
-            self.ready()?;
-            self.enter_world()?;
+            self.wait_for_viewport(&requested)?;
             self.eval(include_str!("../assets/geometry_observation.js"))
         });
         let restored = self.cdp.call(
@@ -651,12 +655,33 @@ impl MatrixPage {
             json!({}),
             Some(&self.session),
         );
-        if restored.is_err() {
+        if restored
+            .and_then(|_| self.wait_for_viewport(&original))
+            .is_err()
+        {
             return Err(failure("viewport_restore_failed"));
         }
         let mut report = result?;
-        report["viewport"] = json!({"width":width,"height":height});
+        report["viewport"] = requested;
         Ok(report)
+    }
+
+    fn wait_for_viewport(&mut self, expected: &Value) -> BrowserResult<()> {
+        // CDP acknowledges the metrics command before the renderer has
+        // necessarily applied the resize.
+        let deadline = self
+            .cdp
+            .deadline
+            .min(Instant::now() + Duration::from_secs(2));
+        loop {
+            if self.eval(VIEWPORT)? == *expected {
+                return Ok(());
+            }
+            if Instant::now() >= deadline {
+                return Err(failure("viewport_change_unverified"));
+            }
+            thread::sleep(Duration::from_millis(20));
+        }
     }
 
     pub fn screenshot(&mut self) -> BrowserResult<Vec<u8>> {
